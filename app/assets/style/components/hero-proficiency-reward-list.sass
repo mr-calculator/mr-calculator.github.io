@@ -1,0 +1,196 @@
+.rewards
+    --gap: 15px
+    
+    width: 100%
+    height: auto
+
+    padding: 40px 80px
+
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    gap: var(--gap)
+
+    &.contrast
+
+        .level-rewards
+            &:hover,
+            &.selected
+                .level-title
+                    background: $blue
+
+                    h3
+                        color: #fff
+
+    .level-rewards
+        display: flex
+        flex-direction: column
+        gap: 10px
+
+        &:hover,
+        &.checked:hover,
+        &.selected
+            .level-title
+                background: #fff
+
+        &.selected
+            &.special
+                .level-title
+                    background: var(--tex-levelGoldBackground) no-repeat
+                    background-size: 100% 100%
+
+                    h3
+                        color: $dark
+
+            .reward-list
+                .reward
+                    .name
+                        background: #fff
+
+        &.checked
+            .level-title
+                background: var(--tex-levelBackground) no-repeat
+                background-size: 100% 100%
+
+                border: none
+
+        .reward-list
+            display: flex
+            gap: var(--gap)
+
+            .reward
+                position: relative
+                width: 100px
+
+                display: flex
+                flex-direction: column
+                gap: 5px
+
+                cursor: pointer
+                user-select: none
+
+                &:hover
+                    .image
+                        img
+                            transform: scale(1.05)
+
+                    .name
+                        background: #fff
+
+                .image
+                    position: relative
+                    width: 100px
+                    height: 100px
+
+                    background: var(--tex-itemBackground) no-repeat
+                    background-size: 100% 100%
+                    background-position: center
+
+                    overflow: hidden
+                    user-select: none
+
+                    &.rarity-rare,
+                    &.rarity-epic,
+                    &.rarity-legendary
+                        &::after
+                            content: ""
+                            position: absolute
+                            bottom: 0
+                            left: 0
+                            transform: skewX(88.5deg) scaleX(5) translateX(-50%)
+
+                            width: 100%
+                            height: 8px
+
+                            pointer-events: none
+
+                    &.rarity-rare::after
+                        background: #65AFE3
+                    &.rarity-epic::after
+                        background: #BE85EF
+                    &.rarity-legendary::after
+                        background: #FFA72E
+
+                    .icon
+                        display: block
+                        width: 100%
+                        height: 100%
+
+                        object-fit: contain
+                        object-position: center
+
+                        transform: scale(1)
+                        transition: transform .1s ease
+
+                        pointer-events: none
+
+                    .animated-icon-wrapper
+                        position: absolute
+                        top: 50%
+                        left: 50%
+                        transform: translate(-50%, -50%)
+
+                    .check
+                        position: absolute
+                        top: 0
+                        right: 0
+
+                        z-index: 2
+
+
+                .name
+                    height: 50px
+                    padding: 5px 5px
+
+                    display: flex
+                    justify-content: center
+                    align-items: center
+
+                    border: 2px solid #fff
+
+                    h3
+                        font-size: 16px
+                        font-family: RefrigeratorDeluxeBold
+                        font-weight: normal
+                        line-height: 14px
+                        color: $light-blue
+                        text-align: center
+                        text-transform: uppercase
+
+
+        .level-title
+            width: 100%
+            padding: 8px
+
+            display: flex
+            gap: 10px
+            justify-content: center
+            align-items: center
+
+            background: $light
+
+            border: 2px solid $light-blue-highlight
+            user-select: none
+
+            .rank-icon
+                position: relative
+                width: 20px
+                height: 20px
+
+                img
+                    position: absolute
+                    left: 50%
+                    top: 50%
+                    transform: translate(-50%, -50%)
+
+                    display: block
+                    height: 35px
+
+                    pointer-events: none
+
+            h3
+                font-size: 18px
+                font-family: RefrigeratorDeluxeBold
+                font-weight: normal
+                color: $light-blue-highlight
+                text-align: center

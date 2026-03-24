@@ -1,0 +1,136 @@
+.modal-wrapper
+    position: fixed
+    top: 0
+    left: 0
+
+    width: 100%
+    height: var(--u100vh)
+    
+    background: #1b172eaf
+    backdrop-filter: blur(5px)
+
+    display: flex
+    justify-content: center
+    align-items: center
+
+    z-index: 20
+
+    +mediaIOS
+        background: #121221e3
+
+.modal-wrapper .modal,
+.headless-modal
+    width: 100%
+    max-height: var(--u100vh)
+
+    padding-top: 20px
+
+    background: $light var(--tex-modalBackground) no-repeat
+    background-size: 150% 100%
+    background-position: center
+
+    color: $text-color
+
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 10px
+
+    overscroll-behavior: contain
+    overflow-x: hidden
+    overflow-y: auto
+
+    +media-mobile
+        padding-bottom: 85px + 20px
+        overflow-x: hidden
+        overflow-y: auto
+
+    +media-tablet
+        background-size: 120% 100%
+
+    +media-desktop
+        background-size: 100% 100%
+
+        // justify-content: center
+
+    +media-large-desktop
+        // max-height: 80vh
+
+    h2
+        font-size: 50px
+        font-family: RefrigeratorDeluxeHeavy
+        font-weight: normal
+        font-style: italic
+        text-transform: uppercase
+        text-align: center
+        line-height: 50px
+
+        +media-mobile
+            padding: 0 20px
+
+    p
+        font-size: 20px
+        font-family: KelsonSans
+
+        +media-mobile
+            padding: 0 20px
+
+        &.modal-subtitle
+            text-align: center
+
+    .separator
+        width: 85%
+        filter: brightness(0.4)
+
+        margin-bottom: 40px
+
+        +media-desktop
+            width: 900px
+
+    .modal-input
+        width: 650px
+        padding: 10px 20px
+        background: #d6dcee
+
+        border: 3px solid $light-blue-highlight
+        outline: none
+        
+        font-size: 20px
+        font-family: KelsonSans
+
+        &:focus
+            border: 3px solid #fff
+
+        &.number
+            width: 320px
+            text-align: center
+
+    .modal-input-wrapper
+        display: flex
+        gap: 5px
+
+    .buttons
+        width: 100%
+        margin-top: 20px
+
+        padding: 15px
+
+        background: $dark
+
+        display: flex
+        justify-content: center
+        gap: 1rem
+
+        +mediaIOS
+            padding-bottom: calc(env(safe-area-inset-bottom) + 20px)
+
+        +media-mobile
+            position: fixed
+            bottom: 0
+
+        > *
+            margin: 0
+
+.headless-modal
+    overscroll-behavior: auto
+    background: none

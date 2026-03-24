@@ -1,0 +1,149 @@
+.hero-card
+    --bg-color: $color
+
+    position: relative
+    display: block
+    width: 200px
+    height: 300px
+
+    display: grid
+    grid-template-columns: 100%
+    grid-template-rows: 250px 50px
+
+    transition: transform .1s ease-out
+
+    &:hover
+        transform: scale(1.1)
+
+        z-index: 2
+
+        &::before
+            background: var(--bg-color)
+            mask: var(--tex-heroCardMask) no-repeat
+            background-size: 100% 100%
+        
+        &::after
+            content: ""
+            position: absolute
+            top: -15px
+            left: -8px
+            right: -8px
+            bottom: -15px
+
+            background: var(--tex-heroCardBackground-hover) no-repeat
+            background-size: 100% 100%
+
+            z-index: -1
+
+        .info
+            background: #fff
+            color: $dark
+
+            .classes
+                img
+                    filter: invert(1)
+
+    &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+
+        z-index: 1
+
+    &.favourite
+        .favourite-bg
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+
+            display: block
+
+            z-index: 2
+
+        .favourite-check
+            position: absolute
+            top: 0
+            right: 0
+
+            display: block
+
+            z-index: 2
+
+
+        .info
+            background: transparent
+            color: $dark
+
+            z-index: 3
+
+            .classes
+                img
+                    filter: invert(1)
+
+    .favourite-bg
+        display: none
+        
+    .favourite-check
+        display: none
+
+    .bg
+        position: absolute
+        width: 100%
+        height: 100%
+        object-fit: cover
+    
+    .hero-image
+        width: 100%
+        height: 100%
+        object-fit: cover
+        object-position: top
+
+        z-index: 2
+
+    .info
+        width: 100%
+        background: $dark
+        color: $light
+
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        padding: 0 8px
+
+        z-index: 2
+
+        .name
+            display: flex
+            align-items: center
+            gap: 10px
+
+            .rank-icon-wrapper
+                width: 20px
+                height: 20px
+
+                display: flex
+                justify-content: center
+                align-items: center
+
+                img
+                    width: 40px
+
+            h3
+                font-size: 19px
+                font-family: RefrigeratorDeluxeBold
+                font-weight: normal
+                line-height: 19px
+                text-transform: uppercase
+
+        .classes
+            max-width: 100%
+            display: flex
+
+            img
+                height: 28px

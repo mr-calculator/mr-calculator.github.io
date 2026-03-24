@@ -1,0 +1,326 @@
+.planner
+    position: relative
+    width: 100%
+    height: 100%
+    
+    display: flex
+    justify-content: start
+    align-items: center
+    flex-direction: column
+    gap: 10px
+    padding: 30px 20px 60px 20px
+
+    overflow-x: hidden
+    overflow-y: auto
+
+    +media-desktop
+        padding: 20px 20px 20px 20px
+        gap: 20px
+
+    .rich-title
+        margin-bottom: 20px
+
+    .option
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 10px
+
+        .label
+            font-size: 20px
+            font-family: KelsonSans
+            font-weight: bold
+
+            color: $blue
+
+        .input
+            width: 100%
+
+            +media-desktop
+                width: 460px
+            
+            &.toggle
+                +media-phone
+                    width: auto
+                    display: block
+
+            ::v-deep(.input)
+                width: 100%
+
+    .calendar
+        width: 100%
+        background: $blue-highlight
+
+        padding: 0 10px 10px 10px
+
+        .toolbar
+            width: 100%
+            padding: 10px 0
+
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            justify-content: center
+            gap: 20px
+
+            +media-tablet
+                justify-content: space-between
+
+            +media-desktop
+                flex-wrap: nowrap
+
+            h2
+                font-size: 28px
+                font-family: RefrigeratorDeluxeHeavy
+                font-weight: normal
+                text-transform: uppercase
+                color: $light
+
+            .tools
+                display: flex
+                flex-wrap: wrap
+                gap: 20px
+
+                +media-desktop
+                    flex-wrap: nowrap
+
+                .measure-unit
+                    display: flex
+                    flex-wrap: wrap
+                    justify-content: center
+                    align-items: center
+                    gap: 10px
+
+                    +media-desktop
+                        flex-wrap: nowrap
+                        justify-content: start
+
+                    .label
+                        font-size: 20px
+                        font-family: RefrigeratorDeluxeBold
+                        text-transform: uppercase
+                        color: $light
+                .link
+                    width: 45px
+                    height: 45px
+                    padding: 0
+
+                    border: 3px solid transparent
+
+                    cursor: pointer
+                    
+                    &:hover
+                        border: 3px solid $light-blue-highlight
+
+                    &:not(.small-button)
+                        display: flex
+                        justify-content: center
+                        align-items: center
+
+        .days
+            display: flex
+            flex-wrap: wrap
+            justify-content: center
+            gap: 10px
+
+            +media-xl-desktop
+                display: grid
+                grid-template-columns: repeat(7, 1fr)
+                justify-content: start
+
+            .day-column
+                background: $light
+                padding: 5px 10px
+
+                display: flex
+                flex-direction: column
+                align-items: center
+                gap: 5px
+
+                +media-mobile
+                    max-width: 200px
+                    flex-grow: 1
+
+                &.disabled
+                    background: $light-blue
+
+                    .header
+                        h3
+                            color: $blue
+
+                .header
+                    display: flex
+                    justify-content: center
+                    align-items: center
+
+                    user-select: none
+                    cursor: pointer
+
+                    .checkbox
+                        pointer-events: none
+
+                .set
+                    width: 100%
+                    display: flex
+                    gap: 5px
+
+                    .input
+                        width: 100%
+
+                        +media-mobile
+                            padding: 0
+
+                        ::v-deep(.input)
+                            width: 100%
+                            padding-left: 0
+                            padding-right: 0
+
+    .live-preview
+        display: flex
+        flex-direction: column
+        gap: 20px
+
+        .data
+            display: flex
+            justify-content: center
+            align-items: stretch
+            gap: 40px
+
+            &.single
+                li
+                    p
+                        text-align: center
+
+            li
+                position: relative
+
+                display: flex
+                flex-direction: column
+                align-items: stretch
+                gap: 10px
+
+                &:not(:last-of-type)
+                    &::after
+                        content: ""
+                        position: absolute
+                        bottom: 50%
+                        right: -20px
+                        transform: translateY(50%)
+
+                        width: 2px
+                        height: 80%
+
+                        background: $light-blue-highlight
+
+                    p
+                        text-align: right
+
+                p
+                    font-size: 22px
+                    font-family: RefrigeratorDeluxeBold
+                    text-align: left
+
+                    color: $light-blue
+
+                h3
+                    display: flex
+                    align-items: center
+                    // gap: 5px
+
+                    font-size: 28px
+                    font-family: RefrigeratorDeluxeHeavy
+
+                    color: $blue
+
+                    > span > span
+                        color: $light-blue
+
+                    img
+                        width: 25px
+
+                        user-select: none
+                        -webkit-user-drag: none
+
+        p
+            text-align: center
+            span
+                color: $blue-highlight
+
+                &.gray
+                    color: $light-blue
+
+
+    // .auto-track
+    //     display: flex
+    //     align-items: center
+    //     flex-direction: column
+    //     gap: 3px
+
+    //     .checkbox
+    //         width: auto
+    //         ::v-deep(.slot)
+    //             color: $blue
+    //             text-align: center
+
+    //     p
+    //         font-size: 14px
+    //         color: $light-blue
+
+    // .button:not(.cancel)
+    //     margin-top: 20px
+
+
+    // .edit-button-wrapper
+    //     display: flex
+    //     align-items: center
+    //     gap: 5px
+
+    //     .edit-button
+    //         position: absolute
+    //         top: 20px
+    //         right: 20px
+
+    //         width: 32px
+    //         height: 32px
+
+    //         display: flex
+    //         justify-content: center
+    //         align-items: center
+
+    //         padding: 3px
+    //         background: url('/img/btn_common_other_light_normal.png') no-repeat
+    //         background-size: 100% 100%
+
+    //         &:hover
+    //             background: url('/img/btn_common_other_light_hover.png') no-repeat
+    //             background-size: 100% 100%
+
+    //         img
+    //             display: block
+    //             width: 100%
+
+    //             user-select: none
+    //             -webkit-user-drag: none
+
+    //             cursor: pointer
+
+    // .roadmap-calendar
+    //     width: 100%
+    //     display: flex
+    //     flex-direction: column
+    //     gap: 0
+
+    //     li 
+    //         width: 100%
+    //         ul
+    //             width: 100%
+    //             display: flex
+    //             justify-content: center
+
+    //             li
+    //                 display: flex
+    //                 justify-content: center
+
+    //                 &.outsidePlan
+    //                     color: red

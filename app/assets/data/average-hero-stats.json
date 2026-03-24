@@ -1,0 +1,194 @@
+{
+    "bruce-banner": {
+        "take_damage": 29532.11821763326,
+        "kos": 15.446431315685068
+    },
+    "the-punisher": {
+        "damage": 20766.48184656172,
+        "finals": 11.919999999999998
+    },
+    "storm": {
+        "damage": 18946.33956437075,
+        "finals": 11.96
+    },
+    "loki": {
+        "heal": 22301.518813967807,
+        "kos_assists": 32.0290935002255
+    },
+    "human-torch": {
+        "damage": 16358.482715889504,
+        "finals": 10.66
+    },
+    "doctor-strange": {
+        "take_damage": 33142.708784111644,
+        "kos": 18.26825016850614
+    },
+    "mantis": {
+        "heal": 14511.68589895951,
+        "kos_assists": 32.62297653828619
+    },
+    "hawkeye": {
+        "damage": 15253.748691730118,
+        "finals": 12.779999999999998
+    },
+    "captain-america": {
+        "take_damage": 22839.9841613473,
+        "kos": 14.363032748462487
+    },
+    "rocket-raccoon": {
+        "heal": 21740.41468166983,
+        "kos_assists": 26.06725654664883
+    },
+    "hela": {
+        "damage": 17683.278490040728,
+        "finals": 11.6
+    },
+    "cloak-and-dagger": {
+        "heal": 27903.070922451643,
+        "kos_assists": 36.11912378062113
+    },
+    "black-panther": {
+        "damage": 11563.114808677643,
+        "finals": 9.959999999999999
+    },
+    "groot": {
+        "take_damage": 41298.852100442185,
+        "kos": 17.59470180603852
+    },
+    "ultron": {
+        "heal": 17020.999627909212,
+        "kos_assists": 38.766036576849345
+    },
+    "magik": {
+        "damage": 17116.583770993257,
+        "finals": 10.98
+    },
+    "moon-knight": {
+        "damage": 23505.488647202757,
+        "finals": 12.26
+    },
+    "luna-snow": {
+        "heal": 23463.656278110055,
+        "kos_assists": 27.784238887844566
+    },
+    "squirrel-girl": {
+        "damage": 20672.767044591143,
+        "finals": 11.979999999999999
+    },
+    "black-widow": {
+        "damage": 12216.736954641785,
+        "finals": 12.9
+    },
+    "ironman": {
+        "damage": 16931.991151364873,
+        "finals": 10.8
+    },
+    "venom": {
+        "take_damage": 29163.73529478771,
+        "kos": 15.901554039947726
+    },
+    "spider-man": {
+        "damage": 9618.427829101054,
+        "finals": 11.82
+    },
+    "magneto": {
+        "take_damage": 29789.25934680754,
+        "kos": 15.463666453277986
+    },
+    "scarlet-witch": {
+        "damage": 15459.30698948707,
+        "finals": 12.1
+    },
+    "thor": {
+        "take_damage": 22278.410389012803,
+        "kos": 17.828139884318734
+    },
+    "mister-fantastic": {
+        "damage": 17687.081782726,
+        "finals": 7.7
+    },
+    "winter-soldier": {
+        "damage": 18036.44248839044,
+        "finals": 12.08
+    },
+    "peni-parker": {
+        "take_damage": 24611.44277355033,
+        "kos": 12.594353569163715
+    },
+    "star-lord": {
+        "damage": 16408.936486517727,
+        "finals": 11.459999999999999
+    },
+    "blade": {
+        "damage": 14186.939069277,
+        "finals": 9.6
+    },
+    "namor": {
+        "damage": 18071.93869872357,
+        "finals": 11
+    },
+    "adam-warlock": {
+        "heal": 14002.467337043814,
+        "kos_assists": 22.94966659033293
+    },
+    "jeff-the-land-shark": {
+        "heal": 21067.13394563508,
+        "kos_assists": 38.59428878267841
+    },
+    "psylocke": {
+        "damage": 15231.792258874772,
+        "finals": 12.116666666666667
+    },
+    "wolverine": {
+        "damage": 13332.312225392947,
+        "finals": 9.080000000000002
+    },
+    "invisible-woman": {
+        "heal": 24912.37859621615,
+        "kos_assists": 35.47270976501008
+    },
+    "the-thing": {
+        "take_damage": 28864.5781337814,
+        "kos": 15.603569406392433
+    },
+    "iron-fist": {
+        "damage": 13505.559580734265,
+        "finals": 9.959999999999999
+    },
+    "emma-frost": {
+        "take_damage": 26300.983949067715,
+        "kos": 16.040651728689365
+    },
+    "phoenix": {
+        "damage": 19147.879148153508,
+        "finals": 11.079999999999998
+    },
+    "daredevil": {
+        "damage": 14908.477337028997,
+        "finals": 10.533333333333333
+    },
+    "angela": {
+        "take_damage": 17213.177500933936,
+        "kos": 15.890427840673711
+    },
+    "deadpool": {
+        "damage_heal": 22248.69355430415,
+        "kos_assists": 24.70589919138888
+    },
+    "gambit": {
+        "heal": 21394.93259115201,
+        "kos_assists": 36.75431980910312
+    },
+    "elsa-bloodstone": {
+        "damage": 20082.69447965863,
+        "finals": 14.5
+    },
+    "rogue": {
+        "take_damage": 21106.337038193473,
+        "kos": 17.342277794252425
+    },
+    "white-fox": {
+        "heal": 19230.172683125787,
+        "kos_assists": 33.72006163251603
+    }
+}

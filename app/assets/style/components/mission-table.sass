@@ -1,0 +1,220 @@
+.mission-table
+    height: 100%
+    
+    display: flex
+    flex-direction: column
+
+    +media-desktop
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: 60px auto
+
+    &.small
+        .column
+            .head
+                font-size: 24px
+
+            ul
+                .mission
+                    +media-desktop
+                        padding: 10px 10px
+
+                    h3
+                        font-size: 16px
+
+                    .points
+                        h4
+                            font-size: 20px
+
+    &.clickable
+        .column
+            ul
+                .mission
+                    cursor: pointer
+
+                    &:hover
+                        background: #fff
+
+    .ranks
+        display: flex
+        justify-content: center
+        gap: 0 15px
+
+        +media-mobile
+            flex-wrap: wrap
+            padding: 5px 30px
+
+        +media-desktop
+            grid-column: span 2
+            gap: 5px
+
+        +media-large-desktop
+            gap: 15px
+        
+        li
+            width: 55px
+            height: 100%
+
+            display: flex
+            justify-content: center
+            align-items: center
+
+            overflow: hidden
+
+            cursor: pointer
+            user-select: none
+
+            &:hover
+                transform: scale(1.1)
+
+                img
+                    filter: drop-shadow(0 0 5px $blue)
+
+            &.selected
+                position: relative
+                transform: scale(1.1)
+
+                &::before
+                    content: ""
+                    position: absolute
+                    top: 0
+                    left: 0
+                    bottom: 0
+                    right: 0
+
+                    mask: var(--src) no-repeat
+                    mask-size: 65px
+                    mask-position: center
+
+                    background: $color
+
+                img
+                    opacity: 0.55
+                    mix-blend-mode: color-burn
+                    filter: drop-shadow(0 0 5px $blue)
+
+            img
+                display: block
+                width: 65px
+                height: 100%
+
+                object-fit: contain
+
+                transition: filter .1s ease, transform .1s ease
+                pointer-events: none
+
+    .column
+        display: flex
+        flex-direction: column
+
+        width: 100%
+        background: $light-blue-highlight
+
+        +media-desktop
+            &:not(:last-of-type)
+                .head
+                    &::after
+                        content: ""
+                        position: absolute
+                        top: 50%
+                        right: -2px
+                        transform: translateY(-50%)
+
+                        width: 4px
+                        height: 80%
+
+                        background: $light-blue-highlight
+
+                        z-index: 2
+
+                ul
+                    margin-left: 0
+                    margin-right: 3px
+
+        .head
+            position: relative
+            padding: 20px
+            background: #bfc4dc
+
+            font-size: 30px
+            font-family: RefrigeratorDeluxeBold
+            color: $dark
+            text-align: center
+
+        ul
+            height: 100%
+
+            display: grid
+            grid-template-columns: 100%
+            grid-auto-rows: 1fr
+            gap: 6px
+
+            +media-desktop
+                margin-left: 3px
+
+            .mission
+                background: $light
+                padding: 20px 10px
+
+                display: grid
+                grid-template-columns: 60px auto 60px
+                justify-items: center
+                align-items: center
+
+                +media-desktop
+                    padding: 0 10px
+
+                .repeats-icon
+                    position: relative
+
+                    span
+                        position: absolute
+                        top: 0
+                        left: 0
+                        width: 100%
+                        height: 100%
+
+                        font-size: 16px
+                        font-family: RefrigeratorDeluxeBold
+                        color: #b5d6ff
+                        
+                        text-align: center
+                        line-height: 36px
+
+                h3
+                    justify-self: start
+
+                    font-size: 18px
+                    font-family: KelsonSans
+                    font-weight: 700
+                    color: $dark
+
+                .points
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    gap: 5px
+
+                    img
+                        width: 40px
+                        height: 40px
+
+                    h4
+                        font-size: 22px
+                        font-family: KelsonSans
+                        color: #ff8522
+
+        .info
+            padding: 20px 0
+
+            font-size: 16px
+            font-family: KelsonSans
+            color: $blue-highlight
+            text-align: center
+
+            +media-desktop
+                padding: 50px 0
+
+            span
+                color: $dark

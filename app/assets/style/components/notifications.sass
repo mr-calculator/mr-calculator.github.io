@@ -1,0 +1,39 @@
+.notifications-wrapper
+    position: fixed
+    bottom: 20px
+    right: 20px
+
+    display: flex
+    flex-direction: column
+    gap: 0px
+
+    z-index: 50
+
+    +media-phone
+        width: 100%
+
+
+.notification
+    width: 100%
+    min-height: 80px
+
+    background: var(--tex-notification) no-repeat
+    background-size: 100% 100%
+
+    padding: 60px 60px 30px 50px
+
+    display: grid
+    grid-template-columns: 30px auto 30px
+    align-items: center
+    gap: 10px
+
+    +media-tablet
+        width: 550px
+
+    p
+        color: $light
+        font-size: 18px
+        font-family: KelsonSans
+
+    
+

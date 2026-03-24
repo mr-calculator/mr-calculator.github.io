@@ -1,0 +1,1328 @@
+@use 'sass:color'
+
+@keyframes scroll-text-bg
+    0%
+        background-position: 0px
+    100%
+        background-position: 1000px
+
+.landing
+    width: 100%
+    min-height: var(--u100vh)
+
+    background: var(--tex-darkBackground)
+    background-position: top
+    background-size: 100% 100vh
+    background-attachment: fixed
+
+    overflow-x: clip
+
+    .left-triangle
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+
+        z-index: 5
+        pointer-events: none
+
+        +media-desktop
+            display: block
+
+    .right-triangle
+        display: none
+        position: fixed
+        bottom: 0
+        right: 0
+
+        z-index: 5
+        pointer-events: none
+
+        +media-desktop
+            display: block
+
+    header
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 80px
+
+        padding: 0 20px
+
+        display: flex
+        justify-content: space-between
+        align-items: center
+        gap: 20px
+
+        z-index: 5
+
+        &::before
+            content: ""
+            position: absolute
+            left: 0
+            top: 0
+            width: 100%
+            height: 200%
+
+            background: linear-gradient(180deg,rgba(18, 18, 33, 1) 0%, rgba(0, 0, 0, 0) 100%)
+
+            z-index: 1
+            pointer-events: none
+
+        +media-desktop
+            padding: 0 70px
+
+        > *
+            z-index: 2
+
+        .logo
+            display: flex
+            align-items: center
+            gap: 20px
+
+            h2.marvel
+                display: none
+                align-items: center
+                overflow: hidden
+                white-space: nowrap
+
+                +media-tablet
+                    display: flex
+
+                .collapse
+                    display: inline-block
+                    overflow: hidden
+
+            h2
+                display: none
+                font-size: 26px
+                color: $light
+
+                +media-tablet
+                    display: block
+                    font-size: 26px
+
+                    &:not(.marvel)
+                        line-height: 24px
+
+                +media-large-desktop
+                    font-size: 40px
+
+                    &:not(.marvel)
+                        line-height: 38px
+
+                span:not(.no-color)
+                    color: $color
+
+                .no-color
+                    display: inline-block
+
+        .cta
+            // gsap initial hidden state
+            opacity: 0
+            transform: translateY(-250px)
+
+            .button
+                width: auto
+
+                span
+                    &.mobile
+                        display: block
+                        +media-desktop
+                            display: none
+                    &.desktop
+                        display: none
+                        +media-desktop
+                            display: block
+
+                .texture
+                    margin-left: 20px
+                    margin-right: 0
+
+    main
+        width: 100%
+
+        color: $light
+
+        section
+            width: 100%
+
+            &.h100
+                min-height: var(--u100vh)
+
+            &.separator
+                position: relative
+
+                &::after
+                    content: ""
+                    position: absolute
+                    left: 0
+                    bottom: 0
+                    transform: translateY(50%)
+
+                    width: 100%
+                    height: 150px
+
+                    background: var(--tex-promoSeparator)
+                    background-size: max(100%, 1000px) 100%
+
+                    pointer-events: none
+            
+            &.separator-top
+                position: relative
+
+                &::before
+                    content: ""
+                    position: absolute
+                    left: 0
+                    top: 0
+                    transform: translateY(-50%)
+
+                    width: 100%
+                    height: 150px
+
+                    background: var(--tex-promoSeparatorFlip)
+                    background-size: max(100%, 1000px) 100%
+
+                    pointer-events: none
+
+            &.double
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                gap: 40px
+
+                padding: 60px 0px
+
+                +media-large-desktop
+                    display: grid
+                    grid-template-columns: 1.25fr 2fr
+                    padding: 120px 60px
+                    gap: 0
+
+                    > :first-child
+                        padding: 0
+
+                +media-ml-desktop
+                    grid-template-columns: 1fr 2fr
+
+                
+                > :first-child
+                    padding: 0 20px
+
+                    +media-tablet
+                        padding: 0 40px
+
+                &.reverse
+                    grid-template-columns: 2fr 1fr
+                    flex-direction: column-reverse
+
+                    +media-mobile
+                        > :first-child
+                            padding: 0
+                        > :last-child
+                            padding: 20px
+
+                h2
+                    font-size: 35px
+                    text-align: center  
+
+                    +media-desktop
+                        font-size: 45px                      
+
+                    +media-large-desktop
+                        text-align: left
+
+                    +media-ml-desktop
+                        font-size: 55px
+
+                h3
+                    font-size: 24px
+                    text-transform: uppercase
+
+                    +media-mobile
+                        text-align: center
+
+                    +media-desktop
+                        font-size: 32px
+
+            &.titled
+                padding: 20px 0
+
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                gap: 40px
+
+                +media-desktop
+                    padding: 20px
+
+                .title
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+
+                    +media-mobile
+                        padding: 20px
+
+                    h2, h3
+                        text-align: center
+                        text-transform: uppercase
+                    h3
+                        font-size: 26px
+
+                        +media-desktop
+                            font-size: 36px
+
+                    h2
+                        font-size: 46px
+
+                        +media-desktop
+                            font-size: 66px
+            h1,
+            h2
+                font-size: 65px
+                text-transform: uppercase
+
+                +media-desktop
+                    font-size: 85px
+
+                span
+                    color: $color
+
+            h2
+                font-size: 45px
+
+                +media-desktop
+                    font-size: 65px
+
+            h3
+                span
+                    color: $color
+
+
+            .showcase
+                background: var(--tex-whiteBackground) no-repeat
+                background-size: 100% 100%
+
+            &.hero
+                position: relative
+                padding-top: 80px
+                padding: 80px 40px 40px 40px
+
+                background: #fbfafa var(--tex-promoHeroBackground) no-repeat
+                background-size: auto 100%
+                background-position: -200px
+
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+
+                &::before
+                    content: ""
+                    position: absolute
+                    top: 0
+                    right: 0
+                    width: 100%
+                    height: 100%
+
+                    background: linear-gradient(0deg, $blue 0%, color-mix(in srgb, #{$blue} 55%, transparent))
+
+                    z-index: 1
+
+                    +media-tablet
+                        background: linear-gradient(-90deg, $blue 0%, color-mix(in srgb, #{$blue} 35%, transparent))
+
+                &::after
+                    z-index: 2
+
+
+                +media-tablet
+                    display: grid
+                    grid-template-columns: 1fr 3fr
+
+                +media-large-desktop
+                    grid-template-columns: 1fr 1fr
+
+                +media-ml-desktop
+                    &::before
+                        display: none
+
+                .info
+                    grid-column: 2 / 3
+                    width: 100%
+
+                    display: none
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    gap: 30px
+
+                    padding: 40px 0
+
+                    z-index: 2
+
+                    .proficiency-icons-anim-wrapper
+                        width: 200px
+                        overflow: visible
+
+                        .proficiency-icons-anim
+                            width: fit-content
+                            display: flex
+                        
+
+                            .proficiency-icon
+                                width: 100px
+                                height: 100px
+
+                                object-fit: cover
+
+                                user-select: none
+                                -webkit-user-drag: none
+
+                                // +media-desktop
+                                //     width: 150px
+
+                    h1
+                        text-align: center
+
+                        span
+                            display: inline-block
+                            -webkit-text-fill-color: color-mix(in srgb, #{$color} 75%, transparent) !important
+
+                    h1,
+                    h1 span,
+                    h1 > ::v-deep(div)
+                        background: var(--tex-promoCtaTextTexture)
+                        background-size: 1000px 100%
+                        -webkit-background-clip: text
+                        -webkit-text-fill-color: transparent
+
+                        animation: scroll-text-bg 32s linear 0s infinite
+
+                        +media-ml-desktop
+                            background-image: var(--tex-promoCtaTextTextureDark)
+
+                    h2
+                        font-size: 26px
+                        text-align: center
+                        text-transform: none
+                        color: $light
+
+                        +media-tablet
+                            width: 70%
+
+                        +media-desktop
+                            font-size: 32px
+
+                        +media-ml-desktop
+                            color: $blue
+
+                    .call-to-action
+                        margin-top: 40px
+
+            &.credibility
+                position: relative
+                display: flex
+                justify-content: end
+                align-items: center
+
+                +media-mobile
+                    flex-direction: column
+                    padding-top: 60px
+
+                .hero-matches
+                    width: 100%
+
+                    display: flex
+                    justify-content: center
+                    align-items: center
+
+                    overflow: clip
+
+                    +media-desktop
+                        width: 65%
+                        transform: skew(-15deg)
+
+                    .hero-list
+                        $height: 800px
+
+                        width: 100%
+                        height: $height
+
+                        overflow: visible
+                        user-select: none
+
+                        +media-desktop
+                            width: calc(100% - 120px)
+                            padding-left: 100px
+
+                        ::v-deep(.scroll-content)
+                            height: 100%
+
+                        ul
+                            display: flex
+                            height: 100%
+
+                            li
+                                width: 100px
+                                height: 100%
+
+                                display: grid
+                                grid-template-columns: 100%
+                                grid-template-rows: 1fr 60px
+                                gap: 10px
+
+                                +media-large-desktop
+                                    width: 140px
+
+                                &:hover,
+                                &.selected
+                                    .bar
+                                        .inner
+                                            background: var(--hero-color-light)
+
+                                            color: $blue
+
+                                        .avatar
+                                            &::before
+                                                display: block
+
+                                &.spacer
+                                    width: 120px
+
+                                    +media-mobile
+                                        display: none
+
+                                .bar
+                                    position: relative
+                                    width: 100%
+                                    height: 100%
+
+                                    display: flex
+                                    flex-direction: column
+                                    justify-content: end
+                                    align-items: center
+                                    gap: 30px
+
+                                    .inner
+                                        position: relative
+                                        width: 100%
+                                        height: calc(var(--progress) * (#{$height} - 150px - 100px))
+
+                                        padding-top: 10px
+
+                                        display: flex
+                                        flex-direction: column
+                                        justify-content: start
+                                        align-items: center
+
+                                        background: var(--hero-color)
+                                        border-top: 10px solid var(--hero-color-dark)
+                                        box-sizing: border-box
+
+                                        cursor: pointer
+
+                                        &::before
+                                            content: ""
+                                            position: absolute
+                                            left: 0
+                                            bottom: 0
+                                            width: 100%
+                                            height: 100%
+
+                                            background: var(--hero-color-dark)
+
+                                            mask: var(--tex-promoGraphBar)
+                                            mask-size: 100% 100%
+                                            mask-mode: luminance
+
+                                            z-index: 1
+
+                                        > *
+                                            position: relative
+
+                                            z-index: 2
+
+                                            +media-desktop
+                                                transform: skew(15deg)
+
+                                        h3
+                                            font-size: 28px
+                                            font-family: RefrigeratorDeluxeHeavy
+
+                                            +media-large-desktop
+                                                font-size: 34px
+
+                                        p
+                                            font-size: 14px
+                                            font-family: KelsonSansBold
+
+                                    .avatar
+                                        position: relative
+                                        width: 100px
+                                        height: 150px
+
+                                        display: flex
+                                        justify-content: center
+                                        align-items: center
+
+                                        cursor: pointer
+
+                                        +media-desktop
+                                            transform: skew(15deg)
+
+                                        &::before
+                                            display: none
+                                            content: ""
+                                            position: absolute
+                                            left: 50%
+                                            top: 50%
+                                            transform: translate(-50%, -50%)
+
+                                            width: 88px + 15px
+                                            height: 105px + 15px
+
+                                            background: var(--hero-color-light)
+
+                                            mask: var(--tex-promoSprayMask)
+                                            mask-size: 100% 100%
+
+                                            z-index: 1
+
+                                            +media-large-desktop  
+                                                width: 88px + 55px
+                                                height: 105px + 55px
+
+                                        img
+                                            position: relative
+                                            width: 110px
+                                            height: 110px
+
+                                            z-index: 2
+
+                                            +media-large-desktop  
+                                                width: 150px
+                                                height: 150px
+
+                                h3.name
+                                    font-size: 22px
+                                    text-transform: uppercase
+                                    text-align: center
+
+                                    +media-desktop
+                                        transform: skew(15deg)
+
+                .info
+                    position: relative
+                    width: 100%
+
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    gap: 40px
+
+                    padding: 50px 20px 20px 20px
+
+                    +media-desktop
+                        width: 35%
+                        height: 100vh
+                        padding: 0 40px 0 100px
+                        align-items: end
+
+                    +media-large-desktop
+                        padding: 0 80px
+
+                    &::before
+                        content: ""
+                        position: absolute
+                        left: 0
+                        top: 0
+                        width: 30px
+                        height: 100%
+
+                        transform: skew(-15deg)
+
+                        background: var(--tex-promoYellowLine) no-repeat
+                        background-size: 30px 80%
+                        background-position: -10px 50%
+
+                        +media-mobile
+                            display: none
+
+                    > h2
+                        font-size: 45px
+                        text-align: center
+
+                        +media-desktop
+                            text-align: right
+
+                        +media-ml-desktop
+                            font-size: 65px
+
+                    .free
+                        font-size: 18px
+                        font-family: KelsonSansBold
+
+                        display: flex
+                        flex-wrap: wrap
+                        justify-content: center
+                        align-items: center
+                        gap: 5px 0
+
+                        +media-desktop
+                            justify-content: end
+
+                        li
+                            position: relative
+
+                            &:not(:last-of-type)
+                                padding-right: 26px
+
+                                &::after
+                                    content: ""
+                                    position: absolute
+                                    top: 50%
+                                    right: 13px
+                                    transform: translate(50%, -50%) skew(-15deg)
+
+                                    width: 2px
+                                    height: 22px
+                                    border-left: 3px solid $light-blue
+                                    border-right: 3px solid $light-blue-highlight
+
+                    .hero-data
+                        height: 350px
+
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+                        align-items: end
+                        gap: 10px
+
+                        +media-mobile
+                            align-items: center
+
+                        &.default-enter-active,
+                        &.default-leave-active
+                            transition: all .3s ease
+
+                        &.default-enter-from,
+                        &.default-leave-to
+                            height: 0px
+                            opacity: 0
+
+                        .profile
+                            background: var(--tex-promoHeroNameplate) no-repeat
+                            background-size: 100% 100%
+
+                            padding: 5px 20px 9px 20px
+
+                            color: $blue
+                            
+                            font-size: 34px
+                            text-align: center
+                            line-height: 32px
+                            text-transform: uppercase
+
+                        h4
+                            font-size: 18px
+                            text-transform: uppercase
+
+                            margin-top: 20px
+
+                        .stats
+                            position: relative
+                            padding: 20px
+
+                            display: grid
+                            grid-template-columns: 1fr 1fr
+                            justify-content: center
+                            align-items: center
+                            gap: 20px
+
+                            li
+                                min-width: 110px
+
+                                display: flex
+                                flex-direction: column
+                                justify-content: center
+                                align-items: center
+
+                                img
+                                    width: 90px
+
+                                    user-select: none
+                                    -webkit-user-drag: none
+
+                                    margin-bottom: 15px
+
+                                p
+                                    color: $light
+                                    font-size: 22px
+                                    font-family: RefrigeratorDeluxeHeavy
+                                    text-transform: uppercase
+
+                                    &.stat-value
+                                        font-size: 36px
+                                        color: $color
+                    
+
+            &.showcase-rewards
+
+                .hero-swap
+                    display: flex
+                    justify-content: center
+
+                    margin-top: 40px
+
+                    +media-desktop
+                        justify-content: start
+
+                    .name
+                        padding: 20px 40px
+
+                        background: var(--tex-top500Element)
+                        background-size: 100% 100%
+
+                        font-size: 20px
+                        font-family: RefrigeratorDeluxeHeavy
+                        text-transform: uppercase
+                        color: $dark
+
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        gap: 10px
+
+                        user-select: none
+
+                        cursor: pointer
+
+                        +media-desktop
+                            font-size: 30px
+
+                        &:hover
+                            background-image: var(--tex-top500Element-hover)
+                            color: $blue
+
+                            .texture
+                                --tex-color: #{$blue} !important
+
+                .rewards-showcase
+                    position: relative
+                    justify-self: center
+                    width: 100%
+
+                    +media-ml-desktop
+                        width: 950px
+
+                    .rewards
+                        position: relative
+                        padding: 20px 5px
+
+                        +media-desktop
+                            padding: 20px
+
+            &.question
+                position: relative
+                background: var(--tex-promoQuestionBg) no-repeat
+                background-size: 100% 100%
+                min-height: 550px
+
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+
+                padding: 80px 30px
+
+                +media-tablet
+                    align-items: start
+
+                +media-desktop
+                    padding: 80px 50px
+
+                +media-ml-desktop
+                    display: grid
+                    grid-template-columns: 10% 1fr 40%
+                    grid-template-rows: 100%
+                    align-items: center
+
+                    padding: 0
+
+                .content
+                    grid-column: 2 / 3
+
+                    padding-right: 120px
+
+                    display: flex
+                    flex-direction: column
+                    gap: 20px
+
+                    z-index: 2
+
+                    +media($size: 375px, $minmax: 'max')
+                        padding-right: 80px
+
+                    +media-tablet
+                        padding-right: 250px
+
+                    +media-ml-desktop
+                        padding: 0
+
+                    h2
+                        font-size: 24px
+
+                        +media-tablet
+                            font-size: 34px
+
+                        +media-desktop
+                            font-size: 44px
+
+                    h3
+                        font-size: 18px
+                        text-transform: none
+
+                        +media-tablet
+                            font-size: 22px
+
+                        +media-desktop
+                            font-size: 36px
+
+                .graphics
+                    position: relative
+                    grid-column: 3 / 4
+                    width: 100%
+                    height: 260px
+
+                    overflow: clip
+
+                    +media-tablet
+                        width: calc(100% - 250px)
+
+                    +media-ml-desktop
+                        width: 100%
+                        height: 100%
+
+                    .lord-icon-container
+                        position: absolute
+                        bottom: 30px
+                        left: 50%
+                        transform: translateX(-50%) scale(0.85)
+
+                        width: 350px
+                        height: 150px
+
+                        z-index: 2
+
+                        +media-ml-desktop
+                            bottom: 50%
+                            left: 20px
+                            transform: translateY(50%)
+
+                        +media-xl-desktop
+                            bottom: 50%
+                            left: 17%
+                            transform: translateY(50%)
+
+                        .frame-bg,
+                        .frame-right,
+                        .frame-left
+                            position: absolute
+                            left: 0
+                            bottom: 0
+
+                            width: 350px
+                            height: 150px
+
+                        .shine
+                            position: absolute
+                            top: 0
+                            right: 0
+
+                            animation: pulsate 3s cubic-bezier(1,-0.01,0,.99) 0s infinite
+
+                            @keyframes pulsate
+                                0%
+                                    opacity: 0
+                                    filter: brightness(1) blur(0px)
+                                    transform: rotate(0deg)
+                                50%
+                                    opacity: 1
+                                    filter: brightness(1.2) blur(1px)
+                                    transform: rotate(90deg)
+                                100%
+                                    opacity: 0
+                                    filter: brightness(1) blur(0px)
+                                    transform: rotate(90deg)
+                                    
+
+                        .animated-icon-wrapper
+                            position: absolute
+                            bottom: 0
+                            width: 100%
+                            height: 200px
+
+                            overflow: clip
+
+                            .animated-icon
+                                position: absolute
+                                bottom: -85px
+                                left: -20px
+
+                                mask-image: var(--mask-url)
+                                mask-repeat: no-repeat
+                                mask-size: 360px 220px
+                                mask-position: -10px 28px
+
+                        .badge
+                            position: absolute
+                            bottom: 25px
+                            left: 38px
+                            width: 80px
+
+                            transform: translate(-50%, 50%)
+                            user-select: none
+                            -webkit-user-drag: none
+
+                        .role
+                            position: absolute
+                            top: 42px
+                            right: 42px
+                            width: 40px
+
+                            filter: invert(1)
+                            opacity: .64
+                            user-select: none
+                            -webkit-user-drag: none
+
+                .hero-skin
+                    position: absolute
+                    bottom: 0
+                    right: 0
+                    height: 520px
+
+                    width: 572px - 230px
+
+                    overflow: clip
+
+                    pointer-events: none
+                    -webkit-user-drag: none
+
+                    +media-desktop
+                        width: 572px - 150px
+
+                    img
+                        height: 520px
+
+                        user-select: none
+                        -webkit-user-drag: none
+
+
+            &.custom-estimates.double.reverse
+                display: flex
+
+                padding: 120px 0 30px 0
+
+                +media-large-desktop
+                    padding: 100px 60px 30px 60px
+
+                +media-ml-desktop
+                    display: grid
+                    grid-template-columns: 1.5fr 1fr
+                
+                .avg-stats-showcase
+                    width: 100%
+                    padding: 20px
+
+                    .modal
+                        max-height: unset
+
+                .title
+                    padding: 20px
+
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+
+                    +media-ml-desktop
+                        align-items: end
+
+                    h2, h3
+                        text-align: center
+
+                        +media-ml-desktop
+                            text-align: end
+
+                    h3
+                        width: 70%
+                        text-transform: none
+
+            &.results
+
+                .calculator-showcase
+                    width: 100%
+                    // min-height: 750px
+                    padding: 20px 0
+
+                    color: $dark
+
+                    +media-desktop
+                        width: 80vw
+
+                        .calculator
+                            &:not(.advanced)
+                                gap: 60px
+                            &.advanced
+                                gap: 24px
+
+            &.planner
+
+                .planner-mobile
+                    position: relative
+                    width: 100%
+                    color: $dark !important
+
+                    +media-large-desktop
+                        display: none
+
+                .planners-view
+                    display: none
+                    gap: 50px
+
+                    +media-large-desktop
+                        display: flex
+
+                    .planner-showcase
+                        color: $dark
+
+                        .planner
+                            justify-content: center
+
+            &.future-proofing
+                padding: 0 20px 60px 20px
+
+                +media-desktop
+                    padding: 60px 60px 120px 60px
+
+                .new-hero-image
+                    display: flex
+                    justify-content: center
+                    align-items: center
+
+                    img
+                        width: 300px
+
+                .new-hero
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+
+                    h2, h3
+                        text-align: center
+
+            &.cta-final
+                $scale: 100px
+
+                position: relative
+                height: (15px + $scale) * 5
+                padding: 200px 0
+
+                > *:not(.lord-icons-grid),
+                &::before,
+                &::after
+                    z-index: 2
+
+                .title
+                    max-width: 450px
+
+                    +media-tablet
+                        max-width: unset
+
+                    h2
+                        background: var(--tex-promoCtaTextTexture)
+                        background-size: 100% 100%
+                        -webkit-background-clip: text
+                        -webkit-text-fill-color: transparent
+
+                        animation: scroll-text-bg 32s linear 0s infinite
+
+                        span
+                            -webkit-text-fill-color: color-mix(in srgb, #{$color} 60%, transparent)
+
+                .lord-icons-grid
+                    position: absolute
+                    left: 0
+                    top: 0
+                    width: 100%
+                    height: (15px + $scale) * 5 + 15px
+
+                    display: flex
+                    flex-direction: column
+                    justify-content: start
+                    align-items: start
+
+                    mask: var(--tex-ctaMask)
+                    mask-size: max(850px, 100%) 100%
+                    mask-position: 50%
+
+                    overflow: clip
+
+                    +media-tablet
+                        mask-size: max(1450px, 100%) 100%
+
+                    .row
+                        display: flex
+                        justify-content: start
+                        width: max-content
+
+                        --duration: calc(var(--item-count) * 12s)
+                        animation: scroll-left var(--duration) linear 0s infinite
+
+                        // alternate rows scroll right
+                        &:nth-child(even)
+                            animation-direction: reverse
+
+                        @keyframes scroll-left
+                            0%
+                                transform: translateX(0)
+                            100%
+                                transform: translateX(-50%) // exactly half = back to start
+
+                        .lord-icon
+                            flex-shrink: 0
+
+                            position: relative
+                            width: 100px + $scale
+                            height: 15px + $scale
+
+                            .lord-icon-wrapper
+                                position: absolute
+                                bottom: 0
+                                
+                                width: 180px + $scale
+                                height: 180px + $scale
+
+                                img
+                                    position: absolute
+                                    left: 50%
+                                    bottom: -20px
+                                    transform: translateX(-50%)
+
+                                    width: 350px + $scale
+                                    height: 150px + $scale
+                                    object-fit: contain
+
+                                    mask: var(--tex-lordGridHeroMask) no-repeat
+                                    mask-size: 300px + $scale 170px + $scale
+                                    mask-position: 0 -20px
+
+                                    user-select: none
+                                    -webkit-user-drag: none
+
+    footer
+        position: relative
+        width: 100%
+        // min-height: 400px
+
+        padding: 80px 20px
+
+        background: var(--tex-promoFooterBgMobile)
+        background-size: auto 100%
+
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+        align-items: center
+        gap: 50px
+
+        color: $light
+
+        z-index: 3
+
+        +media-tablet
+            flex-direction: row
+
+            gap: 20px
+            padding: 80px 40px
+
+        +media-large-desktop
+            background: var(--tex-promoFooterBg) no-repeat
+            background-size: 100% 100%
+            animation: none
+
+            padding: 80px 100px
+
+        .info
+            width: 100%
+            display: flex
+            align-items: start
+            flex-direction: column
+            gap: 20px
+            // padding: 0 20px
+
+            // +media-tablet
+            //     padding: 0 60px
+
+            +media-large-desktop
+                width: 600px
+
+            p
+                text-align: center
+
+                +media-tablet
+                    text-align: left
+
+                span
+                    color: #f13245
+
+                a
+                    text-decoration: underline
+
+                    &:hover
+                        color: $color
+
+        .pages
+            display: flex
+            flex-direction: column
+            align-items: center
+            gap: 10px
+
+            min-width: 150px
+
+            +media-tablet
+                align-items: start
+
+            +media-large-desktop
+                min-width: unset
+
+            > *
+                cursor: pointer
+
+                &:hover
+                    color: $color
+
+        .links
+            display: flex
+            gap: 10px
+
+            .icon
+                width: 50px
+                height: 50px
+
+                display: flex
+                justify-content: center
+                align-items: center
+
+                cursor: pointer
+
+                &:hover
+                    color: $color

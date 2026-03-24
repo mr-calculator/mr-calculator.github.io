@@ -1,0 +1,302 @@
+:root
+    --dark: #0c0c0f
+    --light: #e1e5f1
+    --color: #fbdc2c
+    --color-accent: #efc625
+    --color-highlight: #ffeb57
+    --blue: #2b2b56
+    --blue-accent: #282851
+    --blue-highlight: #30305f
+    --light-blue: #595f82
+    --light-blue-highlight: #7d84ae
+    --text-color: #181a26
+    --gray: #1b1d28
+
+    // for iOS :)
+    --u100vh: 100vh
+    @supports (height: 100dvh)
+        --u100vh: 100dvh
+    
+    
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+
+    +scrollbar($background: $light, $thumb: $light-blue, $active: $color)
+
+html
+    font-size: 62.5%
+    height: -webkit-fill-available
+    
+body
+    font-size: 1.6rem
+    background: $blue-accent
+
+    font-family: KelsonSans, -apple-system, sans-serif
+    color: $text-color
+
+    overflow-x: hidden
+
+    +scrollbar($background: $blue-accent, $thumb: $light-blue, $active: $color)
+
+    +mediaIOS
+        padding-bottom: env(safe-area-inset-bottom)
+
+button,
+input,
+select,
+textarea
+    border: none
+    border-radius: 0
+    background: inherit
+
+    font-family: inherit
+    font-size: inherit
+    color: inherit
+
+    outline-offset: 2px
+    outline-width: 2px
+
+input
+    width: 100%
+    color: $text-color
+
+a
+    color: inherit
+    text-decoration: none
+
+.spinner
+    animation: spinner 1s linear 0s infinite
+    
+    @keyframes spinner
+        0%
+            transform: rotate(0deg)
+        100%
+            transform: rotate(360deg)
+
+
+.hide-mobile
+    display: none !important
+
+    +media-desktop
+        display: unset !important
+
+.flex
+    display: flex
+
+    &.center-h
+        justify-content: center
+    &.center-v
+        align-items: center
+    &.wrap
+        flex-wrap: wrap
+
+
+ul
+    list-style: none
+
+svg.customSvg
+    overflow: visible
+    box-sizing: content-box
+
+    display: var(--fa-display, inline-block)
+    height: 1em
+    overflow: visible
+    vertical-align: -.125em
+    
+
+h1, h2, h3
+    font-family: RefrigeratorDeluxeHeavy
+    font-weight: normal
+
+h1
+    font-size: 70px
+
+.warning-wrapper
+    position: relative
+.warning-bubble
+    position: absolute
+    top: 0
+    right: 0
+
+    transform: translate(50%, -50%)
+
+    width: 20px
+
+.small-button
+    width: auto
+    padding: 10px 20px
+    background: #d6dcee
+
+    border: 3px solid $light-blue-highlight
+    outline: none
+    
+    font-size: 24px
+    font-family: RefrigeratorDeluxeBold
+
+    display: flex
+    justify-content: center
+    align-items: center
+    
+    &:not([disabled])
+        cursor: pointer
+
+        &:hover
+            border: 3px solid #fff
+
+    &[disabled]
+        background: #babecc
+
+.popup
+    width: 520px
+    height: 200px
+
+    background: var(--tex-popup)
+    background-size: 100% 100%
+
+    padding: 40px 20px 60px 20px
+
+    font-size: 24px
+    font-family: RefrigeratorDeluxeBold
+
+    display: flex
+    justify-content: center
+    align-items: center
+
+    .close
+        position: absolute
+        top: 20px
+        right: 30px
+
+        width: 20px
+        height: 20px
+
+        // filter: invert(0.9)
+
+        cursor: pointer
+
+        user-select: none
+        -webkit-user-drag: none
+
+.with-corner-decorations
+    position: relative
+
+    .corners
+        display: none
+
+        +media-large-desktop
+            display: block
+
+        .texture
+            position: absolute
+
+            &.left-top
+                left: 0
+                top: 0
+                transform: translate(-75%, -75%)
+            &.left-bottom
+                left: 0
+                bottom: 0
+                transform: translate(-75%, 75%)
+
+            &.right-top
+                right: 0
+                top: 0
+                transform: translate(75%, -75%)
+            &.right-bottom
+                right: 0
+                bottom: 0
+                transform: translate(75%, 75%)
+
+.with-border-decorations
+    &::before,
+    &::after
+        content: ""
+        position: absolute
+        
+        width: 150px
+        height: 120px
+
+        mask-size: 100% 100%
+
+        background: $blue
+        pointer-events: none
+
+    &::before
+        top: 3px
+        left: 3px
+        mask-image: var(--tex-borderTop)
+
+    &::after
+        bottom: 3px
+        right: 3px
+        mask-image: var(--tex-borderBottom)
+
+.common-page
+    width: 100%
+    min-height: var(--u100vh)
+    background: var(--tex-darkBackground)
+    background-size: 100% 100vh
+    background-attachment: fixed
+
+    +media-desktop
+        display: flex
+        justify-content: center
+        align-items: center
+
+    .logo-standalone
+        position: fixed
+        top: 20px
+        left: 20px
+
+        padding: 10px
+        background: $color
+        border-right: 10px solid $color
+        border-bottom: 10px solid $color
+
+        z-index: 20
+        cursor: pointer
+
+        &::before
+            content: ""
+            position: absolute
+            left: 0
+            top: 0
+            width: 100%
+            height: 100%
+
+            background: #32344c
+
+            z-index: -1
+
+        &:hover
+            &::before
+                background: color-mix(in srgb, #32344c 90%, white)
+
+            img
+                filter: brightness(1.2)
+
+    .content
+        width: 100%
+        min-height: 100vh
+        background: var(--tex-promotionalBackground) no-repeat
+        background-size: 100% 100%
+        background-attachment: fixed
+
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 10px
+        
+        h1
+            font-size: 64px
+            font-family: RefrigeratorDeluxeHeavy
+            text-transform: uppercase
+            color: $blue
+
+            margin-bottom: 20px
+
+            +media-mobile
+                font-size: 46px

@@ -1,0 +1,527 @@
+.hero-page
+    position: relative
+    min-height: 100vh
+
+    background: transparent var(--tex-biColorBackground) no-repeat
+    background-size: 100% 100%
+    background-position: bottom
+    background-attachment: fixed
+
+    +media-desktop
+        background-size: cover
+
+    &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        bottom: 0
+        right: 0
+
+        background: transparent
+        background-repeat: no-repeat
+        background-image: var(--hero-silhouette)
+        background-size: contain
+        background-position: bottom
+
+        +media-mobile
+            background-position: center
+            background-attachment: fixed
+
+    > *
+        z-index: 1
+        
+
+    nav
+        position: fixed
+        top: 0
+        
+        width: 100%
+        height: 65px
+        padding: 0 20px
+        color: $light
+
+        display: flex
+        justify-content: space-between
+        align-items: center
+        gap: 0px
+
+        z-index: 10
+
+        +media-tablet
+            padding: 0 0 0 50px
+    
+        +media-desktop
+            top: 20px
+            width: fit-content
+            justify-content: start
+            gap: 70px
+
+        &::before
+            content: ""
+            position: absolute
+            top: 0
+            left: -10px
+            right: 0
+            height: 100%
+
+            background: $blue-accent var(--tex-barBackground) no-repeat
+            background-size: cover
+            background-position: bottom
+
+            +media-desktop
+                transform: skew(-13deg)
+                right: 10px
+
+        > *
+            z-index: 2
+
+        .head
+            height: 100%
+            display: flex
+            align-items: center
+            gap: 70px
+
+        .menu
+            height: 45px
+
+            +media-desktop
+                display: none
+
+        .title
+            display: flex
+            align-items: center
+            gap: 20px
+
+            h1
+                display: inline-block
+                font-family: RefrigeratorDeluxeHeavy
+                font-weight: normal
+                font-style: italic
+                font-size: 22px
+                line-height: 22px
+                text-transform: uppercase
+
+                +media-desktop
+                    font-size: 36px
+
+            .favourite
+                // width: 45px
+                // height: 45px
+
+                flex-shrink: 0
+
+                // cursor: pointer
+
+                // &:hover,
+                // &.selected
+                //     img
+                //         &:not(.hover)
+                //             display: none
+                //         &.hover
+                //             display: block
+
+                // img
+                //     display: block
+                //     width: 100%
+                //     height: 100%
+
+                //     object-fit: contain
+
+                //     &.hover
+                //         display: none
+
+        ul
+            height: 100%
+            display: none
+
+            +media-mobile
+                position: absolute
+                top: 65px
+                left: 0
+
+                width: 100%
+                height: 200px
+
+                flex-direction: column
+
+                background: $blue-accent var(--tex-barBackground)
+                background-position: bottom
+
+            +media-desktop
+                display: flex !important
+
+            &.visible
+                display: flex
+                
+
+            li
+                position: relative
+                height: 100%
+                padding: 0 40px 0 48px
+
+                display: flex
+                justify-content: center
+                align-items: center
+
+                color: $light
+                font-family: RefrigeratorDeluxeBold
+                font-size: 22px
+                text-transform: uppercase
+
+                cursor: pointer
+                user-select: none
+
+                &::after
+                    content: ""
+                    position: absolute
+                    top: 0
+                    left: -10px
+                    bottom: 0
+                    right: -10px
+
+                    display: none
+                    background: transparent var(--tex-tab) no-repeat
+                    background-size: 35%
+                    background-position: center
+
+                    +media-desktop
+                        background-size: contain
+
+                &:hover
+                    color: #fff
+
+                &:active
+                    &::after
+                        background: transparent var(--tex-tab-active) no-repeat
+                        background-size: 100% 100%
+                        background-position: bottom
+
+                &.selected
+                    color: $color
+
+                    &::after
+                        display: block
+
+                &.warning-wrapper
+                    .warning-bubble
+                        top: 50%
+                        right: -5px
+                        transform: translate(-100%, -100%)
+
+    main
+        display: flex
+        flex-direction: column
+
+        overflow-x: clip
+
+        +media-desktop
+            height: 100vh
+
+            display: grid
+            grid-template-columns: 1fr 2fr
+            grid-template-rows: 100vh
+
+        .hero
+            position: relative
+            width: 100%
+
+            height: 700px
+
+            overflow: visible
+
+            +media-desktop
+                height: 100%
+
+            .prestige
+                position: relative
+                width: 100%
+                height: 100%
+
+                user-select: none
+                -webkit-user-drag: none
+
+                .prestige-bg
+                    position: absolute
+                    top: 0
+                    left: 50%
+                    transform: translateX(-50%)
+                    width: 600px
+                    height: 100%
+
+                    +media-height($minmax: 'max', $size: 880px)
+                        overflow: clip
+                    +media-mobile
+                        overflow: clip
+
+                    .prestige-bg-left,
+                    .prestige-bg-center,
+                    .prestige-bg-right
+                        position: absolute
+                        top: 0
+                        left: 0
+                        width: 100%
+                        height: 100%
+
+                        +media-height($minmax: 'max', $size: 880px)
+                            height: 880px
+                        +media-mobile
+                            height: 880px
+
+                .logo
+                    position: absolute
+                    top: -20px
+                    left: 50%
+                    transform: translateX(-50%)
+
+                    width: 400px
+                    height: 400px
+
+                    object-fit: contain
+
+                    mask-image: linear-gradient(45deg, rgba(255,255,255, 0), rgba(255,255,255,0.5))
+
+                    pointer-events: none
+
+                    user-select: none
+                    -webkit-user-drag: none
+
+                .prestige-img-wrapper
+                    position: absolute
+                    top: 0
+                    left: 50%
+                    transform: translateX(-50%)
+                    width: 600px
+                    height: 100%
+
+                    mask-image: var(--tex-heroPrestigeMask)
+                    mask-repeat: no-repeat
+                    mask-size: 105%
+                    mask-position: 50% calc(100% - 175px)
+
+                    +media-height($minmax: 'max', $size: 880px)
+                        mask-position: 50% 75px
+
+                        .prestige-img
+                            bottom: unset !important
+                            top: 100px
+
+                    +media-mobile
+                        mask-position: 50% 45px
+
+                        .prestige-img
+                            bottom: unset !important
+                            top: 50px
+
+                    .prestige-img
+                        position: absolute
+                        left: 0
+                        bottom: 200px
+                        width: 100%
+
+                        user-select: none
+                        -webkit-user-drag: none
+
+            > * 
+                position: relative
+                z-index: 2
+
+            .player-level
+                position: absolute
+                bottom: 25px
+                right: 50%
+
+                width: 300px
+                padding-left: 50px
+                padding-right: 28px
+                padding-bottom: 12px
+
+                background: var(--tex-heroProficiencyLevel) no-repeat
+                background-size: 100% 100%
+
+                display: grid
+                grid-template-columns: 100%
+                grid-template-rows: 53px 67px
+
+                z-index: 4
+
+                +media-mobile
+                    transform: translateX(50%)
+
+                +media-tablet
+                    width: 375px
+
+                +media-desktop
+                    width: 300px
+                    bottom: 85px
+                    right: 0
+
+                +media-large-desktop
+                    width: 375px
+
+                .current
+                    display: flex
+                    justify-content: space-between
+                    align-items: center
+
+                    .rank h2,
+                    .level
+                        font-size: 28px
+                        font-family: RefrigeratorDeluxeBold
+                        font-weight: normal
+                        text-transform: uppercase
+                        font-style: italic
+
+                    .rank
+                        height: 100%
+                        display: flex
+                        align-items: center
+                        gap: 10px
+
+                        color: $dark
+
+                        .icon
+                            width: 45px
+                            height: 100%
+
+                            display: flex
+                            justify-content: center
+                            align-items: center
+
+                            img
+                                display: block
+                                width: 75px
+
+                                pointer-events: none
+                                user-select: none
+                                -webkit-user-drag: none
+
+                    .level
+                        display: flex
+                        align-items: center
+
+                        color: $light-blue-highlight
+
+                .bottom
+                    align-self: end
+                    width: 100%
+
+                    display: grid
+                    grid-template-columns: auto 40px
+                    gap: 10px
+
+                    .points
+                        width: 100%
+
+                        display: flex
+                        flex-direction: column
+                        gap: 4px
+
+                        cursor: pointer
+
+                        .point-count
+                            display: flex
+                            align-items: center
+                            gap: 5px
+
+                            p
+                                font-family: RefrigeratorDeluxe
+                                font-size: 26px
+                                color: $light
+
+                                span
+                                    color: $light-blue-highlight
+
+                        .progress-bar
+                            width: 100%
+                            height: 6px
+                            background: $light-blue-highlight
+
+                            .inner
+                                width: var(--progress)
+                                height: 100%
+
+                                background: $color
+
+                    .set
+                        position: relative
+                        display: flex
+                        justify-content: center
+                        align-items: center
+
+                        .popup
+                            position: absolute
+                            top: 0
+                            right: 0
+                            transform: translate(60px, -100%)
+
+                            // text-align: center
+
+                            +media-mobile
+                                width: 200px
+                                height: 150px
+
+                                font-size: 20px
+
+                            +media-desktop
+                                width: 300px
+                                height: 150px
+                                padding: 30px 40px 60px 40px
+
+                                transform: translate(90px, -100%)
+
+        .content
+            margin: 0 0 60px 0
+
+            width: 100%
+            height: auto
+            justify-self: center
+
+            background: $light var(--tex-whiteBackground) no-repeat
+            background-size: cover
+
+            z-index: 2
+
+            +media-desktop
+                width: 95%
+                margin: 40px + 65px 0 0 0
+                height: calc(100% - 40px - 65px - 20px)
+
+            +media-large-desktop
+                width: 80%
+                height: calc(100% - 40px - 65px - 85px)
+
+            .tabbed-container
+                width: 100%
+                height: 100%
+
+                &[data-current-tab="rewards"]
+                    ::v-deep(.tab-container)
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+
+                        padding-bottom: 40px
+
+                        .rewards
+                            +media-mobile
+                                padding: 20px 10px
+
+                        > p
+                            color: $light-blue
+                            font-size: 14px
+                            margin-bottom: 10px
+
+                &[data-current-tab="missions"]
+                    ::v-deep(.tab-container)
+                        height: 100%
+
+            ::v-deep(.tab-container)
+                width: 100%
+
+                +media-desktop
+                    height: 100%
+
+                    overflow-x: hidden
+                    overflow-y: auto
+                    +scrollbar($background: $light, $thumb: $light-blue, $active: $color)

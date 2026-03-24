@@ -1,0 +1,63 @@
+.rich-title
+    font-family: RefrigeratorDeluxeBold
+    font-size: 28px
+    text-align: center
+
+    .level
+        color: $light-blue
+
+    .icon
+        position: relative
+        display: inline-block
+        width: 40px
+        height: 28px
+
+        &.reward
+            &::before
+                content: ""
+                position: absolute
+                top: 0
+                left: 0
+                width: 35px
+                height: 35px
+
+                background: var(--tex-itemBackground)
+                border: 2px solid $blue
+
+            .animated-icon-wrapper
+                position: absolute
+                top: 0
+                left: 0
+
+                width: 35px
+                height: 35px
+                overflow: hidden
+                
+                box-sizing: content-box
+                border: 2px solid $blue
+
+            .animated-icon
+                position: absolute
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+
+        img
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, calc(-50% + 5px))
+            height: 35px
+
+            -webkit-user-drag: none
+
+    .reward
+        text-shadow: 0 1px 0px #000
+        text-transform: uppercase
+
+        &.rarity-rare
+            color: #65AFE3
+        &.rarity-epic
+            color: #BE85EF
+        &.rarity-legendary
+            color: #FFA72E

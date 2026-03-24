@@ -1,0 +1,84 @@
+@mixin media-phone
+    @media only screen and (max-width: 470px)
+        @content
+    
+@mixin media-tablet
+    @media only screen and (min-width: 768px)
+        @content
+
+// up to desktop
+@mixin media-mobile
+    @media only screen and (max-width: 992px)
+        @content
+
+@mixin media-desktop
+    @media only screen and (min-width: 992px)
+        @content
+
+@mixin media-large-desktop
+    @media only screen and (min-width: 1200px)
+        @content
+
+@mixin media-ml-desktop
+    @media only screen and (min-width: 1450px)
+        @content
+
+@mixin media-xl-desktop
+    @media only screen and (min-width: 1750px)
+        @content
+
+@mixin media-2k-desktop
+    @media only screen and (min-width: 2560px)
+        @content
+
+@mixin media-height($minmax: 'min', $size: 'null')
+    @if $minmax == 'min'
+        @if $size == 'null'
+            $size: 701px
+
+        @media only screen and (#{$minmax}-height: $size)
+            @content
+    @else
+        @if $size == 'null'
+            $size: 700px
+
+        @media only screen and (#{$minmax}-height: $size)
+            @content
+
+@mixin mediaIOS()
+    @supports (-webkit-touch-callout: none)
+        @content
+
+@mixin media($size, $width-height: 'width', $minmax: 'min')
+    @media only screen and (#{$minmax}-#{$width-height}: $size)
+        @content
+
+
+@mixin scrollbar($thickness: 10px, $background: #000000, $thumb: #8a8a8a, $active: #ffffff)
+    @supports not selector(::-webkit-scrollbar)
+        &
+            scrollbar-color: $background $thumb
+            
+            @if $thickness < 10px
+                scrollbar-width: thin
+            @else
+                scrollbar-width: auto
+
+    &::-webkit-scrollbar
+        background: transparent
+        width: $thickness
+        height: $thickness
+
+    &::-webkit-scrollbar-track
+        background: $background
+
+    &::-webkit-scrollbar-thumb
+        // border-radius: 10px
+        // border-radius: 10px
+        background: $thumb
+
+    &::-webkit-scrollbar-thumb:active
+        background: $active
+
+    &::-webkit-scrollbar-thumb:window-inactive
+        background: $thumb

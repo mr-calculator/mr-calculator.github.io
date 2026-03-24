@@ -1,0 +1,21 @@
+@font-face {
+    font-family: RefrigeratorDeluxe;
+    src: url(@/assets/fonts/RefrigeratorDeluxe.ttf);
+}
+@font-face {
+    font-family: RefrigeratorDeluxeBold;
+    src: url(@/assets/fonts/RefrigeratorDeluxeBold.ttf);
+}
+@font-face {
+    font-family: RefrigeratorDeluxeHeavy;
+    src: url(@/assets/fonts/RefrigeratorDeluxeHeavy.ttf);
+}
+
+@font-face {
+    font-family: KelsonSans;
+    src: url(@/assets/fonts/KelsonSans.ttf) format("truetype");
+}
+@font-face {
+    font-family: KelsonSansBold;
+    src: url(@/assets/fonts/KelsonSansBold.ttf) format("truetype");
+}
