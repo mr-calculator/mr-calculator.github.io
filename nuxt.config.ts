@@ -123,7 +123,8 @@ export default defineNuxtConfig({
         },
         workbox: {
             globPatterns: ['**/*.{js,css,html,png,webp,svg,ico,json,ttf}'],
-            globIgnores: ['img/heroes/data/**/*', 'img/seo/**/*']
+            globIgnores: ['img/heroes/data/**/*', 'img/seo/**/*'],
+            navigateFallbackDenylist: [/\/sitemap\.xml/, /\/robots\.txt/, /\/__sitemap__\/.*/]
         }
     },
 
@@ -132,6 +133,8 @@ export default defineNuxtConfig({
     },
 
     sitemap: {
+        xsl: false,
+        discoverImages: false,
         strictNuxtContentPaths: false,
         urls: [
             ...HERO_LIST.map(h => ({
@@ -139,7 +142,7 @@ export default defineNuxtConfig({
                 changefreq: 'monthly',
                 priority: 0.7
             } as SitemapUrlInput))
-        ]
+        ],
     },
 
     devServer: {
