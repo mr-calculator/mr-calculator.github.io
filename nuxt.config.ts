@@ -32,6 +32,8 @@ export default defineNuxtConfig({
     },
 
     app: {
+        baseURL: '/',
+
         head: {
             htmlAttrs: { lang: 'en' },
             title: 'Marvel Rivals Proficiency Calculator',
