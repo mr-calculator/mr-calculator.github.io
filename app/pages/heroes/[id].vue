@@ -378,14 +378,14 @@ useSeoMeta({
 
     ogTitle: `${hero.value.name} | MR Proficiency Calculator`,
     ogUrl: useAbsoluteUrl('heroes', hero.value.id),
-    ogImage: useAbsoluteUrl('/img/seo/og-image-heroes.png'),
+    ogImage: useAbsoluteUrl('/img/seo/og-image-heroes.webp'),
     ogImageWidth: '1200',
     ogImageHeight: '630',
     ogImageAlt: 'Heroes | Marvel Rivals Proficiency Calculator - Calculate how long it takes to unlock every proficiency reward for any hero',
 
     twitterTitle: 'Heroes | MR Proficiency Calculator',
     twitterDescription: 'Browse all Marvel Rivals heroes and calculate proficiency rewards.',
-    twitterImage: useAbsoluteUrl('/img/seo/og-image-heroes.png'),
+    twitterImage: useAbsoluteUrl('/img/seo/og-image-heroes.webp'),
     twitterImageAlt: 'Heroes | Marvel Rivals Proficiency Calculator - Calculate how long it takes to unlock every proficiency reward for any hero',
 });
 

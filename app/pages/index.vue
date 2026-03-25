@@ -463,7 +463,7 @@ useSeoMeta({
 
     ogTitle: 'Marvel Rivals Proficiency Calculator',
     ogDescription: 'Calculate exactly how long it takes to unlock every proficiency reward for any hero.',
-    ogImage: useAbsoluteUrl('/img/seo/og-image.png'),
+    ogImage: useAbsoluteUrl('/img/seo/og-image.webp'),
     ogUrl: appConfig.domainHttp,
     ogImageWidth: '1200',
     ogImageHeight: '630',
@@ -471,7 +471,7 @@ useSeoMeta({
     
     twitterTitle: 'Marvel Rivals Proficiency Calculator',
     twitterDescription: 'Calculate exactly how long it takes to unlock every proficiency reward for any hero.',
-    twitterImage: useAbsoluteUrl('/img/seo/og-image.png'),
+    twitterImage: useAbsoluteUrl('/img/seo/og-image.webp'),
     twitterImageAlt: 'Marvel Rivals Proficiency Calculator - Calculate how long it takes to unlock every proficiency reward for any hero',
 });
 
