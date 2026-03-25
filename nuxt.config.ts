@@ -138,11 +138,17 @@ export default defineNuxtConfig({
         strictNuxtContentPaths: false,
         urls: [
             ...HERO_LIST.map(h => ({
-                loc: `/heroes/${h.id}`,
+                loc: `/heroes/${h.id}/`,
                 changefreq: 'monthly',
                 priority: 0.7
             } as SitemapUrlInput))
         ],
+
+        exclude: [
+            '/download',
+            '/import',
+            '/heroes/new',
+        ]
     },
 
     devServer: {
