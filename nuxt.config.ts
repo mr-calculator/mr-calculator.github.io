@@ -130,6 +130,7 @@ export default defineNuxtConfig({
 
     site: {
         url: config.domainHttp,
+        trailingSlash: true,
     },
 
     sitemap: {
@@ -143,7 +144,7 @@ export default defineNuxtConfig({
                 priority: 0.7
             } as SitemapUrlInput))
         ],
-
+        
         exclude: [
             '/download',
             '/import',
