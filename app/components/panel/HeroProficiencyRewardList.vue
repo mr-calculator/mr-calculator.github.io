@@ -20,15 +20,17 @@
                     class="reward"
                 >
                     <div :class="['image', `rarity-${reward.rarity ?? 'none'}`]">
-                        <Tex
-                            v-if="checked?.includes(level)"
-                            class="check"
-                            image="checkCorner"
+                        <ClientOnly>
+                            <Tex
+                                v-if="checked?.includes(level)"
+                                class="check"
+                                image="checkCorner"
 
-                            width="30px"
-                            height="30px"
-                            object-fit="contain"
-                        />
+                                width="30px"
+                                height="30px"
+                                object-fit="contain"
+                            />
+                        </ClientOnly>
                         <img
                             v-if="!reward.iconAnimation"
                             class="icon" :src="reward.icon"

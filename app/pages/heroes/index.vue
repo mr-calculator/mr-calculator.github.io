@@ -18,7 +18,9 @@
                 </h1>
             </div>
             <UiSeparator />
-            <PanelHeroList />
+            <ClientOnly>
+                <PanelHeroList />
+            </ClientOnly>
         </div>
     </main>
 </template>

@@ -10,8 +10,8 @@ export default defineNuxtConfig({
     compatibilityDate: '2026-03-03',
     devtools: { enabled: false },
 
-    // ssr: false, // for dev
     routeRules: {
+        '/heroes': { ssr: true },
         '/heroes/new': { ssr: false },
         '/heroes/**': { ssr: false },
         ...prerenderableHeroPages,

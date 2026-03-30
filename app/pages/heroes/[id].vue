@@ -68,13 +68,15 @@
                 >
                     Calculator
 
-                    <Tex
-                        v-if="!storedLevel.openedCalculator"
-                        class="warning-bubble"
-                        image="redDotExcl"
+                    <ClientOnly>
+                        <Tex
+                            v-if="!storedLevel.openedCalculator"
+                            class="warning-bubble"
+                            image="redDotExcl"
 
-                        object-fit="contain"
-                    />
+                            object-fit="contain"
+                        />
+                    </ClientOnly>
                 </li>
             </ul>
         </nav>
@@ -127,85 +129,87 @@
                     </div>
                 </div>
 
-                <div class="player-level">
-                    <div class="current">
-                        <div class="rank">
-                            <div class="icon">
-                                <img :src="currentRankComp.rank.icon" />
+                <ClientOnly>
+                    <div class="player-level">
+                        <div class="current">
+                            <div class="rank">
+                                <div class="icon">
+                                    <img :src="currentRankComp.rank.icon" />
+                                </div>
+                                <h2>{{ currentRankComp.rank.name }}</h2>
                             </div>
-                            <h2>{{ currentRankComp.rank.name }}</h2>
-                        </div>
-                        <div class="level">
-                            LV{{ currentRankComp.level }}
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="points">
-                            <Tex
-                                class="point-count"
-                                @click="editProficiencyPoints()"
-
-                                image="proficiency"
-                                hover="auto"
-                                clickable
-
-                                width="22px"
-                                height="22px"
-                                object-fit="contain"
-                            >
-                                <p>
-                                    {{ currentRankComp.points }}
-                                    <span>/{{ currentRankComp.rank.xpPerLevel }}</span>
-                                </p>
-                            </Tex>
-                            <div
-                                class="progress-bar"
-                                :style="{
-                                    '--progress': (
-                                        currentRankComp.points / currentRankComp.rank.xpPerLevel * 100
-                                    ) + '%'
-                                }"
-                            >
-                                <div class="inner" />
+                            <div class="level">
+                                LV{{ currentRankComp.level }}
                             </div>
                         </div>
-                        <div class="set warning-wrapper" @click="modifyHeroData">
-                            <Tex
-                                image="userCog"
-                                hover="auto"
-                                clickable
-
-                                width="40px"
-                                height="40px"
-                                object-fit="cover"
-                            />
-
-                            <Tex
-                                v-if="!hasAvgStats || isLv1AndGoalLv1 || unknownHeroHasPossibleMatch"
-                                class="warning-bubble"
-                                image="redDotExcl"
-
-                                object-fit="contain"
-                            />
-
-                            <div
-                                v-if="showEditPopup"
-                                class="popup"
-                                :style="{
-                                    backgroundImage: texUrl('popupGoldDownRight')
-                                }"
-                            >
-                                You can change your hero details from here
+                        <div class="bottom">
+                            <div class="points">
                                 <Tex
-                                    class="close"
-                                    image="crossBlue"
-                                    color="var(--blue)"
-                                    @click.stop="showEditPopup = false"
+                                    class="point-count"
+                                    @click="editProficiencyPoints()"
+
+                                    image="proficiency"
+                                    hover="auto"
+                                    clickable
+
+                                    width="22px"
+                                    height="22px"
+                                    object-fit="contain"
+                                >
+                                    <p>
+                                        {{ currentRankComp.points }}
+                                        <span>/{{ currentRankComp.rank.xpPerLevel }}</span>
+                                    </p>
+                                </Tex>
+                                <div
+                                    class="progress-bar"
+                                    :style="{
+                                        '--progress': (
+                                            currentRankComp.points / currentRankComp.rank.xpPerLevel * 100
+                                        ) + '%'
+                                    }"
+                                >
+                                    <div class="inner" />
+                                </div>
+                            </div>
+                            <div class="set warning-wrapper" @click="modifyHeroData">
+                                <Tex
+                                    image="userCog"
+                                    hover="auto"
+                                    clickable
+
+                                    width="40px"
+                                    height="40px"
+                                    object-fit="cover"
                                 />
+
+                                <Tex
+                                    v-if="!hasAvgStats || isLv1AndGoalLv1 || unknownHeroHasPossibleMatch"
+                                    class="warning-bubble"
+                                    image="redDotExcl"
+
+                                    object-fit="contain"
+                                />
+
+                                <div
+                                    v-if="showEditPopup"
+                                    class="popup"
+                                    :style="{
+                                        backgroundImage: texUrl('popupGoldDownRight')
+                                    }"
+                                >
+                                    You can change your hero details from here
+                                    <Tex
+                                        class="close"
+                                        image="crossBlue"
+                                        color="var(--blue)"
+                                        @click.stop="showEditPopup = false"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </ClientOnly>
             </div>
 
             <div

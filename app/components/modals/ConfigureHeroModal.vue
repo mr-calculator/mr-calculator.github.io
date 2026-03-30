@@ -299,6 +299,9 @@
                     &:hover
                         color: $blue
 
+        ::v-deep(input)
+            width: 100% !important
+
         .popup
             position: absolute
             top: 20px
@@ -310,12 +313,16 @@
     .mission
         width: 100%
 
+        background: $light
         border: 3px solid $light-blue
         padding: 10px
 
         display: flex
         flex-direction: column
         gap: 10px
+
+        +media-desktop
+            background: transparent
 
         &.add
             background: #d6dcee
