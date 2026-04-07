@@ -224,8 +224,20 @@
 
             cursor: pointer
 
-            &:hover,
-            &.selected
+            &.last
+                cursor: unset
+
+            &:not(.last):hover,
+            &:not(.last).selected
+
+                + li, + li.dimmed
+                    .icon
+                        img
+                            filter: brightness(1.4)
+
+                        .level
+                            background: $light
+
                 .time
                     &.conservative
                         color: oklch(from #98680e calc(l + 0.08) calc(c + 0.10) h)

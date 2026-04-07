@@ -359,10 +359,6 @@ p
             color: $blue
 </style>
 
-<script lang="ts">
-
-</script>
-
 <script setup lang="ts">
 import {
     DEFAULT_PREFERENCES_STORE,
