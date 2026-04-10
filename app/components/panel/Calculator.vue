@@ -430,7 +430,17 @@
                                 :style="{
                                     '--color': rank.rank.color
                                 }"
-                            />
+                            >
+                                <Tex
+                                    v-if="selectedGameType == 'arcade'"
+                                    class="arcade"
+                                    image="arcadeIcon"
+
+                                    width="20px"
+                                    height="20px"
+                                    object-fit="contain"
+                                />
+                            </div>
 
                             <div v-if="rank.time" class="per-level time avg">
                                 {{ secondsToHoursString(rank.time.perLvlAvg) }}h
@@ -632,9 +642,13 @@ const times = computed(() => {
     for (let i = 0; i < props.hero.ranks.length; i++) {
         const rank = props.hero.ranks[i]!;
         const calculatedRank = props.timeEstimates.find(r => r[0] == rank.type.id);
+        const calculatedRankArcade = props.timeEstimatesArcade?.find(r => r[0] == rank.type.id);
 
         if (calculatedRank) {
-            const [ rankId, time, points, levelCount ] = calculatedRank;
+            let [ rankId, time, points, levelCount ] = calculatedRank;
+
+            if (selectedGameType.value == 'arcade' && calculatedRankArcade)
+                time = calculatedRankArcade[1];
 
             const showLevel = currentLevelRank?.id == rankId ? 
                 props.level.level
