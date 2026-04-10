@@ -263,6 +263,8 @@ export const RankSchema = z.object({
     challenges: z.array(ChallengeSchema)
 })
 
+export const NO_DAILY_POINTS_ATTENUATION_RANK_IDS = ['agent','knight','captain','centurion'];
+
 export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
     agent: {
         id: 'agent',
@@ -702,6 +704,7 @@ export interface PlayerHeroStore {
     goal: number,
 
     averageStats: Record<string, number>,
+    averageStatsArcade?: Record<string, number>,
     openedCalculator: boolean,
     usesGenericStats: boolean
 
@@ -777,6 +780,7 @@ export const DEFAULT_HERO_STORE: () => PlayerHeroStore = () => ({
     goal: 1,
 
     averageStats: {},
+    averageStatsArcade: {},
     openedCalculator: false,
     usesGenericStats: false,
 
@@ -808,6 +812,7 @@ export const DEFAULT_PREFERENCES_STORE: () => PreferencesStore = () => ({
 
 export const AVG_QUICK_MATCH_DURATION_MIN = 8.5;
 export const AVG_COMP_MATCH_DURATION_MIN = 11.7;
+export const AVG_ARCADE_MATCH_DURATION_MIN = 4.2;
 
 // ==== SERIALIZATION ====
 

@@ -15,9 +15,31 @@ export const useHasAvgStats = (heroReactive: MaybeRefOrGetter<HeroData>, ignoreG
         const stats = storedLevel.value.averageStats;
         return neededStats.every(s => {
             if (s === 'play')
-                return true
+                return true;
 
-            return !!stats[s]
+            return !!stats[s];
+        });
+    });
+}
+
+export const useHasAvgArcadeStats = (heroReactive: MaybeRefOrGetter<HeroData>) => {
+    return computed(() => {
+        const hero = toValue(heroReactive);
+
+        const storedLevel = useLocalStorage<PlayerHeroStore>(
+            `hero_${hero.id}`, DEFAULT_HERO_STORE()
+        );
+        const neededStats: string[] = hero.ranks[0]?.challenges.map(c => c.type) as string[] || [];
+
+        const stats = storedLevel.value.averageStatsArcade;
+        if (!stats)
+            return false;
+
+        return neededStats.every(s => {
+            if (s === 'play')
+                return true;
+
+            return !!stats[s];
         });
     });
 }

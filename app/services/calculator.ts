@@ -1,4 +1,4 @@
-import { getAverageStatsForHero, levelToRank, PROFICIENCY_RANKS, type Challenge, type HeroData, type PlayerHeroStore, type Rank } from "~/assets/data/common";
+import { getAverageStatsForHero, levelToRank, NO_DAILY_POINTS_ATTENUATION_RANK_IDS, PROFICIENCY_RANKS, type Challenge, type HeroData, type PlayerHeroStore, type Rank } from "~/assets/data/common";
 
 export type PersonalRankTimeEstimate = [
     rankId: string, 
@@ -16,7 +16,7 @@ export class Calculator {
         this.store = level;
     }
 
-    private avgPointsPer10MinForRank(rank: Rank): number {
+    private avgPointsPer10MinForRank(rank: Rank, daily = false): number {
         const neededStats: Challenge[] = rank.challenges;
         const playNeeded = rank.challenges.find(c => c.type == 'play')?.needed ?? 15;
         
@@ -24,12 +24,15 @@ export class Calculator {
 
         let points = 0;
         for (const stat of neededStats) {
+            const shouldAttenuate = !NO_DAILY_POINTS_ATTENUATION_RANK_IDS.includes(rank.type.id);
+            const reward = daily && shouldAttenuate ? (stat.reward * 45) / 60 : stat.reward;
+
             if (stat.type == 'play') {
-                points += 10 * stat.reward / playNeeded;
+                points += 10 * reward / playNeeded;
                 continue;
             }
 
-            let avgStat = this.store.averageStats[stat.type];
+            let avgStat = daily ? (this.store.averageStatsArcade?.[stat.type] ?? 0) : this.store.averageStats[stat.type];
 
             if (!avgStat) {
                 avgStat = genericStats?.[stat.type] ?? 0;
@@ -38,7 +41,7 @@ export class Calculator {
                     continue;
             }
 
-            points += avgStat * stat.reward / stat.needed;
+            points += avgStat * reward / stat.needed;
         }
 
         return points;
@@ -53,8 +56,9 @@ export class Calculator {
         rank: Rank,
         fromLevel: number,
         toLevel: number,
-        points: number): [PersonalRankTimeEstimate[1], PersonalRankTimeEstimate[2], levelCount: number]
-    {
+        points: number,
+        daily = false
+    ): [PersonalRankTimeEstimate[1], PersonalRankTimeEstimate[2], levelCount: number] {
         // assume all levels initially
         let noLevels = rank.type.levelCount;
 
@@ -95,7 +99,7 @@ export class Calculator {
         // within the bounds of this rank)
         const pointsNeeded = rank.type.xpPerLevel * noLevels - (fromLevelWithinBounds ? points : 0);
         // calculate averages
-        const avgPointsPer10 = this.avgPointsPer10MinForRank(rank);
+        const avgPointsPer10 = this.avgPointsPer10MinForRank(rank, daily);
         const conservativePointsPer10 = avgPointsPer10 * 0.9;
         const optimisticPointsPer10 = avgPointsPer10 * 1.1;
 
@@ -114,7 +118,7 @@ export class Calculator {
         ];
     }
 
-    public totalTimes(): PersonalRankTimeEstimate[] {
+    public totalTimes(daily = false): PersonalRankTimeEstimate[] {
         const currentLevel = this.store.level;
         let goal = this.store.goal;
 
@@ -135,7 +139,7 @@ export class Calculator {
         for (const rank of remainingRanks) {
             totalTimes.push([
                 rank.type.id, 
-                ...this.rankTime(rank, currentLevel, goal, this.store.points)
+                ...this.rankTime(rank, currentLevel, goal, this.store.points, daily)
             ]);
         }
 

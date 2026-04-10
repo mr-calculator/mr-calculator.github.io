@@ -146,6 +146,9 @@ export const TEX = {
     time: {
         default: 'icon/time.png'
     } as Texture,
+    timeArcade: {
+        default: 'icon/time-arcade.png'
+    } as Texture,
     gameTime: {
         default: 'icon/game-time.png'
     } as Texture,
@@ -210,6 +213,9 @@ export const TEX = {
     } as Texture,
     quickMatchIcon: {
         default: 'icon/quick-match.png'
+    } as Texture,
+    arcadeIcon: {
+        default: 'icon/arcade.png'
     } as Texture,
     chain: {
         default: 'icon/chain.png'

@@ -99,7 +99,7 @@
 <style src="@/assets/style/components/mission-table.sass" scoped></style>
 
 <script setup lang="ts">
-import { CHALLENGE_TEXTS, PROFICIENCY_RANKS, type Challenge, type HeroData, type ProficiencyRank } from '~/assets/data/common';
+import { CHALLENGE_TEXTS, NO_DAILY_POINTS_ATTENUATION_RANK_IDS, PROFICIENCY_RANKS, type Challenge, type HeroData, type ProficiencyRank } from '~/assets/data/common';
 
 const props = defineProps<{
     hero: HeroData,
@@ -122,7 +122,7 @@ function generateChallengeText(type: Challenge['type'], needed: number) {
 }
 
 function attenuateRewardPointsForDailyMission(reward: number, rank: ProficiencyRank['id']) {
-    if (['agent','knight','captain','centurion'].includes(rank))
+    if (NO_DAILY_POINTS_ATTENUATION_RANK_IDS.includes(rank))
         return reward;
 
     return ((reward * 45) / 60).toFixed(0);

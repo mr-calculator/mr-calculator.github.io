@@ -294,7 +294,8 @@
 
                             :hero="hero"
                             :level="storedLevel"
-                            :time-estimates="timeEstimates"
+                            :time-estimates="timeEstimates.normal"
+                            :time-estimates-arcade="timeEstimates.arcade"
 
                             :animate="!finishedAnimation"
 
@@ -320,7 +321,8 @@
 
                             :hero="hero"
                             v-model="storedLevel"
-                            :time-estimates="timeEstimates"
+                            :time-estimates="timeEstimates.normal"
+                            :time-estimates-arcade="timeEstimates.arcade"
                         />
                         <PanelSetupCalculator
                             v-else
@@ -489,6 +491,7 @@ function toggleFavourite() {
 
 const storedLevel = useLocalStorage<PlayerHeroStore>(`hero_${hero.value.id}`, DEFAULT_HERO_STORE());
 const hasAvgStats = useHasAvgStats(hero);
+const hasAvgArcadeStats = useHasAvgArcadeStats(hero);
 const isLv1AndGoalLv1 = computed(() => storedLevel.value.level == 1 && storedLevel.value.goal == 1);
 const unknownHeroHasPossibleMatch = useUnknownHeroHasPossibleMatch(hero.value).value.length;
 const isIncorrectSelection = computed(() => storedLevel.value.goal <= storedLevel.value.level);
@@ -617,19 +620,36 @@ function editProficiencyPoints(callback = () => {}, callbackOnSuccess = false) {
 }
 
 function editAvgStats(callback = () => {}, callbackOnSuccess = false) {
-    openModal(AverageStatsModal, {
+    openModal<{stats: Record<string, string>, statsArcade: Record<string, string>}>(AverageStatsModal, {
         title: 'Set your average stats',
         message: 'Input your Avg/10 Mins stats to get accurate time spans to get your desired rewards!',
         hero: hero.value,
 
-        stats: storedLevel.value.averageStats
+        stats: storedLevel.value.averageStats,
+        arcadeStats: storedLevel.value.averageStatsArcade
     })
     .promise
-    .then((stats: Record<string, string>) => {
+    .then(({stats, statsArcade}) => {
         const parsedStats: Record<string, number> = {};
         Object.entries(stats).forEach(([type, value]) => parsedStats[type] = parseFloat(value) || 0);
 
+        const parsedStatsArcade: Record<string, number> = {};
+        Object.entries(statsArcade).forEach(([type, value]) => {
+            if (type == 'play') {
+                parsedStatsArcade[type] = 0;
+
+                return;
+            }
+
+            const parsedValue = parseFloat(value);
+            if (!parsedValue || isNaN(parsedValue))
+                return;
+
+            parsedStatsArcade[type] = parsedValue;
+        });
+
         storedLevel.value.averageStats = parsedStats;
+        storedLevel.value.averageStatsArcade = parsedStatsArcade;
 
         notify(
             `Updated your average stats!`,
@@ -836,7 +856,9 @@ function setGoal(level: number) {
 const timeEstimates = computed(() => {
     const calculator = new Calculator(hero.value, storedLevel.value);
 
-    return calculator.totalTimes();
+    const arcade = hasAvgArcadeStats.value ? calculator.totalTimes(true) : undefined;
+
+    return { normal: calculator.totalTimes(), arcade };
 });
 
 </script>

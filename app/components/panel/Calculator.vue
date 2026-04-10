@@ -54,10 +54,12 @@
             </span>
             <span class="level">LV{{ totalTitleRanks.nextRank?.level }}</span>.
         </div>
-        <div class="total">
+        <div :class="{total: 1, 'single-game-type': selectedGameType != 'normal'}">
             <div class="column">
-                <div class="title">
+                <div :class="{title: 1, arcade: selectedGameType == 'arcade'}">
                     <Tex
+                        v-if="selectedGameType != 'arcade'"
+                        class="time-icon"
                         image="time"
                         color="#4fdbff"
 
@@ -65,15 +67,34 @@
                         height="35px"
                         object-fit="contain"
                     />
+                    <Tex
+                        v-else
+                        image="timeArcade"
+
+                        width="35px"
+                        height="35px"
+                        object-fit="contain"
+                    />
                     <h3>Time</h3>
+                    <h4 v-if="selectedGameType == 'arcade'">(ARCADE)</h4>
                 </div>
                 <div class="time conservative">
                     <p class="desc">Conservative</p>
                     <div :class="{'with-points': !!displayTimeNumbers.points}">
-                        {{ displayTimeNumbers.time.conservative }}h
+                        {{ 
+                            selectedGameType != 'arcade' ?
+                                displayTimeNumbers.time.conservative
+                                :
+                                displayTimeNumbers.arcadeTime?.conservative
+                        }}h
 
                         <div v-if="!!displayTimeNumbers.points" class="points">
-                            +{{ displayTimeNumbers.points.time.conservative }}
+                            +{{
+                                selectedGameType != 'arcade' ?
+                                    displayTimeNumbers.points.time.conservative
+                                    :
+                                    displayTimeNumbers.points.arcadeTime?.conservative
+                            }}
                             <Tex
                                 image="proficiency"
                                 state="hover"
@@ -88,10 +109,20 @@
                 <div class="time avg">
                     <p class="desc">Average</p>
                     <div :class="{'with-points': !!displayTimeNumbers.points}">
-                        {{ displayTimeNumbers.time.avg }}h
+                        {{
+                            selectedGameType != 'arcade' ?
+                                displayTimeNumbers.time.avg
+                                :
+                                displayTimeNumbers.arcadeTime?.avg
+                        }}h
 
                         <div v-if="!!displayTimeNumbers.points" class="points">
-                            +{{ displayTimeNumbers.points.time.avg }}
+                            +{{
+                                selectedGameType != 'arcade' ?
+                                    displayTimeNumbers.points.time.avg
+                                    :
+                                    displayTimeNumbers.points.arcadeTime?.avg
+                            }}
                             <Tex
                                 image="proficiency"
                                 state="hover"
@@ -106,10 +137,20 @@
                 <div class="time optimistic">
                     <p class="desc">Optimistic</p>
                     <div :class="{'with-points': !!displayTimeNumbers.points}">
-                        {{ displayTimeNumbers.time.optimistic }}h
+                        {{
+                            selectedGameType != 'arcade' ?
+                                displayTimeNumbers.time.optimistic
+                                :
+                                displayTimeNumbers.arcadeTime?.optimistic
+                        }}h
 
                         <div v-if="!!displayTimeNumbers.points" class="points">
-                            +{{ displayTimeNumbers.points.time.conservative }}
+                            +{{
+                                selectedGameType != 'arcade' ?
+                                    displayTimeNumbers.points.time.conservative
+                                    :
+                                    displayTimeNumbers.points.arcadeTime?.conservative
+                            }}
                             <Tex
                                 image="proficiency"
                                 state="hover"
@@ -122,9 +163,14 @@
                     </div>
                 </div>
             </div>
-            <div class="column">
+            <div v-if="selectedGameType == 'normal' || selectedGameType == 'quickmatch'" class="column">
                 <div class="title">
+                    <PanelCalculatorGameTypeSwitcher
+                        v-if="selectedGameType != 'normal'"
+                        v-model="selectedGameTypeRaw"
+                    />
                     <Tex
+                        v-else
                         image="quickMatchIcon"
 
                         width="35px"
@@ -188,9 +234,14 @@
                     </div>
                 </div>
             </div>
-            <div class="column">
+            <div v-if="selectedGameType == 'normal' || selectedGameType == 'competitive'" class="column">
                 <div class="title">
+                    <PanelCalculatorGameTypeSwitcher
+                        v-if="selectedGameType != 'normal'"
+                        v-model="selectedGameTypeRaw"
+                    />
                     <Tex
+                        v-else
                         image="competitiveIcon"
 
                         width="35px"
@@ -242,6 +293,68 @@
 
                         <div v-if="!!displayTimeNumbers.points" class="points">
                             +{{ displayTimeNumbers.points.competitive.optimistic }}
+                            <Tex
+                                image="proficiency"
+                                state="hover"
+
+                                width="20px"
+                                height="20px"
+                            />
+                            / match
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="displayTimeNumbers.games.arcade && selectedGameType == 'arcade'" class="column">
+                <div class="title">
+                    <PanelCalculatorGameTypeSwitcher
+                        v-model="selectedGameTypeRaw"
+                    />
+                    <h3>ARCADE</h3>
+                </div>
+                <div class="time conservative">
+                    <p class="desc">Conservative</p>
+                    <div :class="{'with-points': !!displayTimeNumbers.points}">
+                        {{ displayTimeNumbers.games.arcade.conservative }}
+
+                        <div v-if="!!displayTimeNumbers.points?.arcade" class="points">
+                            +{{ displayTimeNumbers.points.arcade.conservative }}
+                            <Tex
+                                image="proficiency"
+                                state="hover"
+
+                                width="20px"
+                                height="20px"
+                            />
+                            / match
+                        </div>
+                    </div>
+                </div>
+                <div class="time avg">
+                    <p class="desc">Average</p>
+                    <div :class="{'with-points': !!displayTimeNumbers.points}">
+                        {{ displayTimeNumbers.games.arcade.avg }}
+
+                        <div v-if="!!displayTimeNumbers.points?.arcade" class="points">
+                            +{{ displayTimeNumbers.points.arcade.avg }}
+                            <Tex
+                                image="proficiency"
+                                state="hover"
+
+                                width="20px"
+                                height="20px"
+                            />
+                            / match
+                        </div>
+                    </div>
+                </div>
+                <div class="time optimistic">
+                    <p class="desc">Optimistic</p>
+                    <div :class="{'with-points': !!displayTimeNumbers.points}">
+                        {{ displayTimeNumbers.games.arcade.optimistic }}
+
+                        <div v-if="!!displayTimeNumbers.points?.arcade" class="points">
+                            +{{ displayTimeNumbers.points.arcade.optimistic }}
                             <Tex
                                 image="proficiency"
                                 state="hover"
@@ -362,13 +475,14 @@
 
 <script setup lang="ts">
 import HorizontalScrollContainer from './HorizontalScrollContainer.vue'
-import { AVG_COMP_MATCH_DURATION_MIN, AVG_QUICK_MATCH_DURATION_MIN, levelToRank, PROFICIENCY_RANKS, type HeroData, type PlayerHeroStore, type ProficiencyRank, type Rank, type Reward } from '~/assets/data/common';
+import { AVG_ARCADE_MATCH_DURATION_MIN, AVG_COMP_MATCH_DURATION_MIN, AVG_QUICK_MATCH_DURATION_MIN, levelToRank, PROFICIENCY_RANKS, type HeroData, type PlayerHeroStore, type ProficiencyRank, type Rank, type Reward } from '~/assets/data/common';
 import { type PersonalRankTimeEstimate } from '~/services/calculator';
 
 const props = defineProps<{
     hero: HeroData,
     level: PlayerHeroStore,
     timeEstimates: PersonalRankTimeEstimate[],
+    timeEstimatesArcade?: PersonalRankTimeEstimate[],
     animate?: boolean,
     haltAnimation?: boolean
 }>();
@@ -389,6 +503,15 @@ const hasStartedAnimation = ref(false);
 
 const timeTableScrollable = ref<InstanceType<typeof HorizontalScrollContainer>>();
 const rankRefs = ref<Record<string, Element|ComponentPublicInstance|null>>({});
+
+type GameType = 'normal'|'quickmatch'|'competitive'|'arcade'; // normal is qm and comp
+const selectedGameTypeRaw = ref<GameType>('quickmatch');
+const selectedGameType = computed<GameType>(() => {
+    if (!props.timeEstimatesArcade)
+        return 'normal';
+
+    return selectedGameTypeRaw.value;
+});
 
 watch(props, () => {
     setTimeout(() => timeTableScrollable.value?.updateBounds(), 100);
@@ -416,6 +539,19 @@ const total = computed(() => {
 
     return { conservative, avg, optimistic };
 });
+const totalArcade = computed(() => {
+    if (!props.timeEstimatesArcade)
+        return null;
+
+    let conservative = 0;
+    props.timeEstimatesArcade.forEach(r => conservative += r[1][0]);
+    let avg = 0;
+    props.timeEstimatesArcade.forEach(r => avg += r[1][1]);
+    let optimistic = 0;
+    props.timeEstimatesArcade.forEach(r => optimistic += r[1][2]);
+
+    return { conservative, avg, optimistic };
+});
 
 function c(duration: number, percent: number) {
     return duration * (1 + percent);
@@ -426,8 +562,22 @@ function qmC(percent: number) {
 function compC(percent: number) {
     return c(AVG_COMP_MATCH_DURATION_MIN, percent);
 }
+function arcadeC(percent: number) {
+    return c(AVG_ARCADE_MATCH_DURATION_MIN, percent);
+}
 
-function calcGameCount(time: { conservative: number, avg: number, optimistic: number }) {
+interface AverageValues { conservative: number, avg: number, optimistic: number };
+
+interface GameCounts {
+    quickMatch: AverageValues
+    competitive: AverageValues
+    arcade?: AverageValues
+}
+
+function calcGameCount(
+    time: { conservative: number, avg: number, optimistic: number },
+    timeArcade?: { conservative: number, avg: number, optimistic: number } | null,
+) : GameCounts {
     const quickMatch = {
         conservative: time.conservative / (qmC(-0.1) * 60),
         avg: time.avg / (qmC(0) * 60),
@@ -440,10 +590,20 @@ function calcGameCount(time: { conservative: number, avg: number, optimistic: nu
         optimistic: time.optimistic / (compC(0.1) * 60),
     }
 
+    if (timeArcade) {
+        const arcade = {
+            conservative: timeArcade.conservative / (arcadeC(-0.1) * 60),
+            avg: timeArcade.avg / (arcadeC(0) * 60),
+            optimistic: timeArcade.optimistic / (arcadeC(0.1) * 60),
+        }
+
+        return { quickMatch, competitive, arcade };
+    }
+
     return { quickMatch, competitive };
 }
 
-const totalGames = computed(() => calcGameCount(total.value));
+const totalGames = computed(() => calcGameCount(total.value, totalArcade.value));
 
 interface Column {
     id: string,
@@ -593,7 +753,7 @@ const totalAnimationPercent = ref(0);
 const totalAnimated = computed(() => {
     const easing = ease(totalAnimationPercent.value / 100) * 100;
 
-    return {
+    const values: { time: AverageValues, arcadeTime?: AverageValues, games: GameCounts } = {
         time: {
             conservative: total.value.conservative / 100 * easing,
             avg: total.value.avg / 100 * easing,
@@ -611,7 +771,22 @@ const totalAnimated = computed(() => {
                 optimistic: totalGames.value.competitive.optimistic / 100 * easing,
             }
         }
+    };
+
+    if (totalGames.value.arcade && totalArcade.value) {
+        values.games.arcade = {
+            conservative: totalGames.value.arcade.conservative / 100 * easing,
+            avg: totalGames.value.arcade.avg / 100 * easing,
+            optimistic: totalGames.value.arcade.optimistic / 100 * easing,
+        }
+        values.arcadeTime = {
+            conservative: totalArcade.value.conservative / 100 * easing,
+            avg: totalArcade.value.avg / 100 * easing,
+            optimistic: totalArcade.value.optimistic / 100 * easing,
+        }
     }
+
+    return values;
 });
 
 function ease(t: number) {
@@ -685,6 +860,7 @@ const displayTimeNumbers = computed(() => {
     }
 
     const calculatedRank = props.timeEstimates.find(r => r[0] == displayTimeRank.value);
+    const calculatedRankArcade = props.timeEstimatesArcade?.find(r => r[0] == displayTimeRank.value);
     
     if (
         !calculatedRank
@@ -699,6 +875,11 @@ const displayTimeNumbers = computed(() => {
                 avg: secondsToHoursString(totalAnimated.value.time.avg),
                 optimistic: secondsToHoursString(totalAnimated.value.time.optimistic),
             },
+            arcadeTime: totalAnimated.value.arcadeTime ? {
+                conservative: secondsToHoursString(totalAnimated.value.arcadeTime.conservative),
+                avg: secondsToHoursString(totalAnimated.value.arcadeTime.avg),
+                optimistic: secondsToHoursString(totalAnimated.value.arcadeTime.optimistic),
+            } : undefined,
             games: {
                 quickMatch: {
                     conservative: displayNumber(totalAnimated.value.games.quickMatch.conservative),
@@ -709,7 +890,12 @@ const displayTimeNumbers = computed(() => {
                     conservative: displayNumber(totalAnimated.value.games.competitive.conservative),
                     avg: displayNumber(totalAnimated.value.games.competitive.avg),
                     optimistic: displayNumber(totalAnimated.value.games.competitive.optimistic),
-                }
+                },
+                arcade: totalAnimated.value.games.arcade ? {
+                    conservative: displayNumber(totalAnimated.value.games.arcade.conservative),
+                    avg: displayNumber(totalAnimated.value.games.arcade.avg),
+                    optimistic: displayNumber(totalAnimated.value.games.arcade.optimistic),
+                } : undefined
             }
         }
     }
@@ -719,11 +905,20 @@ const displayTimeNumbers = computed(() => {
         avg: calculatedRank[1][1],
         optimistic: calculatedRank[1][2],
     }
-    const gameCount = calcGameCount(time);
+    const timeArcade = {
+        conservative: calculatedRankArcade?.[1][0]!,
+        avg: calculatedRankArcade?.[1][1]!,
+        optimistic: calculatedRankArcade?.[1][2]!,
+    }
+    const gameCount = calcGameCount(time, calculatedRankArcade ? timeArcade : null);
 
     const pointsPerMinCons = calculatedRank[2][0] / 10;
     const pointsPerMinAvg = calculatedRank[2][1] / 10;
     const pointsPerMinOpt = calculatedRank[2][2] / 10;
+
+    const arcadePointsPerMinCons = (calculatedRankArcade?.[2][0] ?? 0) / 10;
+    const arcadePointsPerMinAvg = (calculatedRankArcade?.[2][1] ?? 0) / 10;
+    const arcadePointsPerMinOpt = (calculatedRankArcade?.[2][2] ?? 0) / 10;
 
     return {
         time: {
@@ -731,6 +926,11 @@ const displayTimeNumbers = computed(() => {
             avg: secondsToHoursString(time.avg),
             optimistic: secondsToHoursString(time.optimistic),
         },
+        arcadeTime: calculatedRankArcade ? {
+            conservative: secondsToHoursString(timeArcade.conservative),
+            avg: secondsToHoursString(timeArcade.avg),
+            optimistic: secondsToHoursString(timeArcade.optimistic),
+        } : undefined,
         games: {
             quickMatch: {
                 conservative: displayNumber(gameCount.quickMatch.conservative),
@@ -741,14 +941,24 @@ const displayTimeNumbers = computed(() => {
                 conservative: displayNumber(gameCount.competitive.conservative),
                 avg: displayNumber(gameCount.competitive.avg),
                 optimistic: displayNumber(gameCount.competitive.optimistic),
-            }
+            },
+            arcade: gameCount.arcade ? {
+                conservative: displayNumber(gameCount.arcade.conservative),
+                avg: displayNumber(gameCount.arcade.avg),
+                optimistic: displayNumber(gameCount.arcade.optimistic),
+            } : undefined
         },
         points: {
-            time : {
+            time: {
                 conservative: displayNumber(calculatedRank[2][0]),
                 avg: displayNumber(calculatedRank[2][1]),
                 optimistic: displayNumber(calculatedRank[2][2]),
             },
+            arcadeTime: calculatedRankArcade ? {
+                conservative: displayNumber(calculatedRankArcade[2][0]),
+                avg: displayNumber(calculatedRankArcade[2][1]),
+                optimistic: displayNumber(calculatedRankArcade[2][2]),
+            } : undefined,
             quickMatch: {
                 conservative: displayNumber(pointsPerMinCons * qmC(-0.1)),
                 avg: displayNumber(pointsPerMinAvg * qmC(0)),
@@ -758,7 +968,12 @@ const displayTimeNumbers = computed(() => {
                 conservative: displayNumber(pointsPerMinCons * compC(-0.1)),
                 avg: displayNumber(pointsPerMinAvg * compC(0)),
                 optimistic: displayNumber(pointsPerMinOpt * compC(0.1)),
-            }
+            },
+            arcade: calculatedRankArcade ? {
+                conservative: displayNumber(arcadePointsPerMinCons * arcadeC(-0.1)),
+                avg: displayNumber(arcadePointsPerMinAvg * arcadeC(0)),
+                optimistic: displayNumber(arcadePointsPerMinOpt * arcadeC(0.1)),
+            } : undefined
         }
     }
 });

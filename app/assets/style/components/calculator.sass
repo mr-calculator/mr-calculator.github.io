@@ -74,6 +74,10 @@
             grid-template-columns: 1fr 1fr 1fr
             gap: 20px
 
+        &.single-game-type
+            +media-desktop
+                grid-template-columns: 1fr 1fr
+
         .column
             position: relative
 
@@ -120,6 +124,9 @@
                 text-align: center
                 text-transform: uppercase
                 color: $light-blue
+
+                h4
+                    font-size: 18px
 
                 .texture
                     width: 35px

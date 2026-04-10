@@ -156,6 +156,16 @@
                         />
                         {{ secondsToHoursString(liveEstimatesNumberOfDays.dailyPlayTime) }}h
                     </h3>
+                    <h3 v-if="totalTimesArcade">
+                        <Tex
+                            image="timeArcade"
+
+                            width="25px"
+                            height="25px"
+                            object-fit="contain"
+                        />
+                        {{ secondsToHoursString(liveEstimatesNumberOfDays.dailyPlayTimeArcade!) }}h
+                    </h3>
                     <h3>
                         <Tex
                             image="quickMatchIcon"
@@ -176,6 +186,16 @@
                         />
                         {{ liveEstimatesNumberOfDays.dailyCompMatches.toFixed(1) }}
                     </h3>
+                    <h3 v-if="totalTimesArcade">
+                        <Tex
+                            image="arcadeIcon"
+
+                            width="25px"
+                            height="25px"
+                            object-fit="contain"
+                        />
+                        {{ liveEstimatesNumberOfDays.dailyArcadeMatches!.toFixed(1) }}
+                    </h3>
                 </li>
                 <li v-if="settings.numberOfDays.days >= 7">
                     <p>WEEKLY</p>
@@ -189,6 +209,16 @@
                             object-fit="contain"
                         />
                         {{ secondsToHoursString(liveEstimatesNumberOfDays.weeklyPlayTime) }}h
+                    </h3>
+                    <h3 v-if="totalTimesArcade">
+                        <Tex
+                            image="timeArcade"
+
+                            width="25px"
+                            height="25px"
+                            object-fit="contain"
+                        />
+                        {{ secondsToHoursString(liveEstimatesNumberOfDays.weeklyPlayTimeArcade!) }}h
                     </h3>
                     <h3>
                         <Tex
@@ -210,12 +240,28 @@
                         />
                         {{ liveEstimatesNumberOfDays.weeklyCompMatches.toFixed(1) }}
                     </h3>
+
+                    <h3 v-if="totalTimesArcade">
+                        <Tex
+                            image="arcadeIcon"
+
+                            width="25px"
+                            height="25px"
+                            object-fit="contain"
+                        />
+                        {{ liveEstimatesNumberOfDays.weeklyArcadekMatches!.toFixed(1) }}
+                    </h3>
                 </li>
             </ul>
 
             <p>
                 At this rate you will reach your goal on
                 <span>{{ toDateAndTime(liveEstimatesNumberOfDays.finishDate) }}</span>
+                <span class="gray"> (excluding arcade missions)</span>
+            </p>
+
+            <p v-if="totalTimesArcade" class="small">
+                (Arcade games can only give points for 15 missions of each type every day. The results <b>do not</b> account for that!)
             </p>
         </div>
         <div
@@ -231,6 +277,10 @@
                     <h3><span>
                         {{ weeksToWeeksAndDays(liveEstimatesWeekly.totalWeeks) }} <span>total</span>
                     </span></h3>
+                    <h3 v-if="totalTimesArcade"><span>
+                        {{ weeksToWeeksAndDays(liveEstimatesWeekly.totalWeeksArcade!) }} <span>arcade</span>
+                    </span></h3>
+                    <span v-if="totalTimesArcade">(limits apply)</span>
                 </li>
                 <li>
                     <p>WEEKLY</p>
@@ -265,6 +315,16 @@
                         />
                         {{ liveEstimatesWeekly.weeklyCompMatches.toFixed(1) }}
                     </h3>
+                    <h3 v-if="totalTimesArcade">
+                        <Tex
+                            image="arcadeIcon"
+
+                            width="25px"
+                            height="25px"
+                            object-fit="contain"
+                        />
+                        {{ liveEstimatesWeekly.weeklyArcadeMatches.toFixed(1) }}
+                    </h3>
                 </li>
             </ul>
 
@@ -273,7 +333,12 @@
                 <span>
                     {{ toDateAndTime(liveEstimatesWeekly.finishDate) }}
                     (<span class="gray">in {{ liveEstimatesWeekly.dayCount }} days</span>)
+                    <span class="gray">(excluding arcade missions)</span>
                 </span>
+            </p>
+
+            <p v-if="totalTimesArcade" class="small">
+                (Arcade games can only give points for 15 missions of each type every day. The results <b>do not</b> account for that!)
             </p>
         </div>
 
@@ -376,12 +441,13 @@
 <style src="@/assets/style/components/planner.sass" scoped></style>
 
 <script setup lang="ts">
-import { AVG_COMP_MATCH_DURATION_MIN, AVG_QUICK_MATCH_DURATION_MIN, DEFAULT_PREFERENCES_STORE, WEEK_KEYS, type HeroData, type PlayerHeroStore, type PreferencesStore, type WeekDay, type PlannerWeekDay } from '~/assets/data/common';
+import { AVG_COMP_MATCH_DURATION_MIN, AVG_QUICK_MATCH_DURATION_MIN, DEFAULT_PREFERENCES_STORE, WEEK_KEYS, type HeroData, type PlayerHeroStore, type PreferencesStore, type WeekDay, type PlannerWeekDay, AVG_ARCADE_MATCH_DURATION_MIN } from '~/assets/data/common';
 import type { PersonalRankTimeEstimate } from '~/services/calculator';
 
 const props = defineProps<{
     hero: HeroData,
     timeEstimates: PersonalRankTimeEstimate[],
+    timeEstimatesArcade?: PersonalRankTimeEstimate[],
 
     valueLinking?: boolean
 }>();
@@ -395,6 +461,19 @@ const totalTimes = computed(() => {
     props.timeEstimates.forEach(r => avg += r[1][1]);
     let optimistic = 0;
     props.timeEstimates.forEach(r => optimistic += r[1][2]);
+
+    return { conservative, avg, optimistic };
+});
+const totalTimesArcade = computed(() => {
+    if (!props.timeEstimatesArcade)
+        return null;
+
+    let conservative = 0;
+    props.timeEstimatesArcade.forEach(r => conservative += r[1][0]);
+    let avg = 0;
+    props.timeEstimatesArcade.forEach(r => avg += r[1][1]);
+    let optimistic = 0;
+    props.timeEstimatesArcade.forEach(r => optimistic += r[1][2]);
 
     return { conservative, avg, optimistic };
 });
@@ -485,20 +564,37 @@ const liveEstimatesNumberOfDays = computed(() => {
 
     const weekCount = settings.value.numberOfDays.days / 7;
 
+    let dailyPlayTimeArcade = undefined;
+    let weeklyPlayTimeArcade = undefined;
+    let dailyArcadeMatches = undefined;
+    let weeklyArcadekMatches = undefined;
+
+    if (totalTimesArcade.value) {
+        dailyPlayTimeArcade = totalTimesArcade.value.avg / settings.value.numberOfDays.days;
+        weeklyPlayTimeArcade = dailyPlayTimeArcade * 7;
+        dailyArcadeMatches = dailyPlayTimeArcade / (AVG_ARCADE_MATCH_DURATION_MIN * 60);
+        weeklyArcadekMatches = dailyArcadeMatches * 7;
+    }
+
     return {
         dailyPlayTime,
+        dailyPlayTimeArcade,
+
         weeklyPlayTime,
+        weeklyPlayTimeArcade,
 
         dailyQuickMatches,
         dailyCompMatches,
+        dailyArcadeMatches,
 
         weeklyQuickMatches,
         weeklyCompMatches,
+        weeklyArcadekMatches,
 
         finishDate,
 
         weekCount
-    }
+    };
 });
 
 const liveEstimatesWeekly = computed(() => {
@@ -524,12 +620,20 @@ const liveEstimatesWeekly = computed(() => {
 
     const dayCount = Math.ceil((finishDate.getTime() - now) / 1000 / 60 / 60 / 24);
 
+    const weeklyArcadeMatches = weeklyPlayTime / (AVG_ARCADE_MATCH_DURATION_MIN * 60);
+    let totalWeeksArcade = undefined;
+    if (totalTimesArcade.value) {
+        totalWeeksArcade = totalTimesArcade.value.avg / weeklyPlayTime;
+    }
+
     return {
         weeklyPlayTime,
         weeklyQuickMatches,
         weeklyCompMatches,
+        weeklyArcadeMatches,
 
         totalWeeks,
+        totalWeeksArcade,
         finishDate,
         dayCount
     }

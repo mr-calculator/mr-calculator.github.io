@@ -51,6 +51,23 @@
                 </div> -->
             </div>
 
+            <div class="toggle-wrapper">
+                <FormToggle
+                    class="toggle"
+
+                    both
+                    :model-value="statsType == 'arcade'"
+                    @update:model-value="statsType = $event ? 'arcade' : 'normal'"
+                >
+                    <template #off>
+                        Quick/Comp
+                    </template>
+                    <template #on>
+                        Arcade
+                    </template>
+                </FormToggle>
+            </div>
+
             <ul v-if="neededStats" class="inputs">
                 <li
                     v-for="([type, name, icon, stats], index) in neededStats"
@@ -89,8 +106,8 @@
 
                             :tab-index="index + 1"
 
-                            :model-value="models[type!]"
-                            @update:model-value="models[type!] = $event"
+                            :model-value="statsType == 'normal' ? models[type!] : modelsArcade[type!]"
+                            @update:model-value="statsType == 'normal' ? (models[type!] = $event) : (modelsArcade[type!] = $event)"
 
                             @change="onChange(type!, ($event.target as HTMLInputElement).value)"
                         />
@@ -105,7 +122,7 @@
         </div>
 
         <div v-if="!headless" class="buttons">
-            <FormButton size="small" @click="$emit('confirm', models)">
+            <FormButton size="small" @click="$emit('confirm', { stats: models, statsArcade: modelsArcade })">
                 Confirm
             </FormButton>
             <FormButton size="small" color-scheme="white" @click="$emit('cancel')">Cancel</FormButton>
@@ -131,16 +148,27 @@
             <br />
 
             <p>
+                II.I (Optional) If you want your Arcade stats (such as 18v18 Annihilation), click on the dropdown and select your preferred arcade gamemode.
+            </p>
+            <img src="/img/info/average-stats/step-2.1.png" />
+            <br />
+            <br />
+
+            <p>
                 III. Select the hero you want, then scroll the right panel in order to find the statistics the calculator/missions require.
             </p>
             <img src="/img/info/average-stats/step-3.png" />
+            <p>(Optionally, you can select a Season where you played more with your hero.)</p>
             <br />
             <br />
 
             <p>
                 IV. Type out the number in the "Avg/10 Mins" column into its respective field.
                 <br/>
-                (Optionally, you can select a Season where you played more with your hero.)
+                <br/>
+                Optionally, you can type in your arcade stats instead - or both.
+                <br/>
+                (Note: if you only type your arcade stats, you will still be asked if you want to use generic stats or type your own. Feel free to use generic stats if you only care about arcade.)
             </p>
             <img src="/img/info/average-stats/step-4.png" />
             <p>
@@ -272,6 +300,12 @@
                 text-align: right
                 color: $light-blue-highlight
 
+.toggle-wrapper
+    display: flex
+    justify-content: center
+
+    margin: 20px 0
+
 .inputs
     display: flex
     justify-content: center
@@ -355,20 +389,21 @@
 </style>
 
 <script setup lang="ts">
-import { CHALLENGE_ICONS, CHALLENGE_NAMES, CHALLENGE_STATS, DEFAULT_HERO_STORE, getAverageStatsForHero, type Challenge, type ChallengeStats, type HeroData, type PlayerHeroStore } from '~/assets/data/common';
+import { CHALLENGE_ICONS, CHALLENGE_NAMES, CHALLENGE_STATS, getAverageStatsForHero, type Challenge, type ChallengeStats, type HeroData, type PlayerHeroStore } from '~/assets/data/common';
 
 const props = defineProps<{
     title?: string,
     message?: string,
     hero: HeroData,
     stats: PlayerHeroStore['averageStats'],
+    arcadeStats?: PlayerHeroStore['averageStatsArcade'],
 
     headless?: boolean,
     hideGenericStats?: Partial<Record<Challenge['type'], boolean>>
 }>()
 
 const emit = defineEmits<{
-    confirm: [value: Record<string, string>],
+    confirm: [value: { stats: Record<string, string>, statsArcade: Record<string, string> }],
     cancel: []
 }>()
 
@@ -417,7 +452,9 @@ const genericStatsUsed = computed(() => {
 });
 const genericStatsExpanded = ref(false);
 
+const statsType = ref<'normal'|'arcade'>('normal');
 const models = ref<Record<string, string>>({});
+const modelsArcade = ref<Record<string, string>>({});
 
 function setModels() {
     models.value = {};
@@ -427,6 +464,15 @@ function setModels() {
 }
 if (Object.values(models.value ?? {}).length == 0)
     setModels();
+
+function setArcadeModels() {
+    modelsArcade.value = {};
+    neededStats.value?.forEach(stat =>
+        modelsArcade.value![stat[0]] = `${props.arcadeStats?.[stat[0]] ?? ''}`
+    );
+}
+if (Object.values(modelsArcade.value ?? {}).length == 0)
+    setArcadeModels();
 
 // function useGenericStats() {
 //     Object.keys(models.value).forEach(k => models.value[k] = '0');
@@ -467,10 +513,12 @@ function closePopup() {
 
 function reset() {
     setModels();
+    setArcadeModels();
 }
 
 defineExpose({
     stats: models,
+    statsArcade: modelsArcade,
     reset
 })
 

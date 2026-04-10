@@ -278,7 +278,16 @@
                 </div>
 
                 <div class="hero-skin">
-                    <img src="/img/tex/promo/luna-snow-cool-summer.webp" alt="Luna Snow Cool Summer" />
+                    <img
+                        v-if="currentHero.id != 'black-panther'"
+                        src="/img/tex/promo/luna-snow-cool-summer.webp"
+                        alt="Luna Snow Cool Summer"
+                    />
+                    <img
+                        v-else
+                        src="/img/tex/promo/the-thing-cassius-thundercock.webp"
+                        alt="The Thing - You speaking spanish boy?"
+                    />
                 </div>
             </section>
             <section class="custom-estimates double reverse h100">
@@ -314,7 +323,8 @@
                         ref="calculatorPanel"
                         :hero="currentHero"
                         :level="simulatedPlayerHeroStore"
-                        :timeEstimates="timeEstimates"
+                        :time-estimates="timeEstimates.normal"
+                        :time-estimates-arcade="timeEstimates.arcade"
                         animate
                         halt-animation
                     />
@@ -331,7 +341,8 @@
                     <PanelPlanner
                         :hero="currentHero"
                         v-model="plannerHeroStoreMobile"
-                        :time-estimates="timeEstimates"
+                        :time-estimates="timeEstimates.normal"
+                        :time-estimates-arcade="timeEstimates.arcade"
                     />
                 </div>
                 <div class="planners-view">
@@ -341,7 +352,8 @@
                         <PanelPlanner
                             :hero="currentHero"
                             v-model="plannerHeroStoreNumberOfDays"
-                            :time-estimates="timeEstimates"
+                            :time-estimates="timeEstimates.normal"
+                            :time-estimates-arcade="timeEstimates.arcade"
                         />
                     </div>
                     <div class="planner-showcase showcase with-border-decorations with-corner-decorations">
@@ -350,7 +362,8 @@
                         <PanelPlanner
                             :hero="currentHero"
                             v-model="plannerHeroStoreWeekly"
-                            :time-estimates="timeEstimates"
+                            :time-estimates="timeEstimates.normal"
+                            :time-estimates-arcade="timeEstimates.arcade"
 
                             :value-linking="false"
                         />
@@ -823,6 +836,7 @@ const simulatedPlayerHeroStore = computed(() => {
 
     // to place stats to use in the calculator in
     const avgStats: Record<string, number> = {};
+    const avgStatsArcade: Record<string, number> = {};
 
     // reset inputted avg stats
     inputtedAvgStats.value = {};
@@ -842,6 +856,11 @@ const simulatedPlayerHeroStore = computed(() => {
             else
                 inputtedAvgStats.value[type as Challenge['type']] = false;
         });
+        Object.entries(averageStatsModal.value.statsArcade).forEach(([type, value]) => {
+            const parsedNumber = parseFloat(value);
+            if (!isNaN(parsedNumber))
+                avgStatsArcade[type] = parsedNumber;
+        });
     }
 
     statTypes.forEach(stat => {
@@ -858,6 +877,7 @@ const simulatedPlayerHeroStore = computed(() => {
     
     // set random stats and goal of 50 (animated icon)
     store.averageStats = avgStats;
+    store.averageStatsArcade = avgStatsArcade;
     store.goal = 50;
 
     return store;
@@ -904,10 +924,21 @@ watch(plannerHeroStoreWeekly, (store) => {
         plannerHeroStoreWeekly.value.planner.mode = 'weekly';
 }, { deep: true });
 
+// const timeEstimates = computed(() => {
+//     const calculator = new Calculator(currentHero.value, simulatedPlayerHeroStore.value);
+
+//     return calculator.totalTimes();
+// });
 const timeEstimates = computed(() => {
     const calculator = new Calculator(currentHero.value, simulatedPlayerHeroStore.value);
 
-    return calculator.totalTimes();
+    const hasAvgArcadeStats = simulatedPlayerHeroStore.value.averageStatsArcade
+                           && Object.entries(simulatedPlayerHeroStore.value.averageStatsArcade).length;
+
+    const arcade = hasAvgArcadeStats ?
+        calculator.totalTimes(true) : undefined;
+
+    return { normal: calculator.totalTimes(), arcade };
 });
 
 const lordIconsGridHeroes = ref<HeroData[][]>([]);
