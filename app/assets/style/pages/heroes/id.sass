@@ -208,6 +208,8 @@
                         background-size: 100% 100%
                         background-position: bottom
 
+                        display: block
+
                 &.selected
                     color: $color
 
@@ -371,9 +373,50 @@
                     width: 375px
 
                 .current
+                    position: relative
                     display: flex
                     justify-content: space-between
                     align-items: center
+
+                    cursor: pointer
+
+                    &:hover
+                        &::before
+                            content: ""
+                            position: absolute
+                            top: 0
+                            left: 50%
+                            width: calc(100% + 44px)
+                            height: 100%
+
+                            transform: translateX(-50%) skew(4deg)
+
+                            backdrop-filter: brightness(1.1)
+
+                            +media-mobile
+                                left: calc(50% - 4px)
+                                width: calc(100% + 52px)
+                                transform: translateX(-50%) skew(2.5deg)
+
+                            +media-tablet
+                                left: calc(50%)
+                                width: calc(100% + 44px)
+                                transform: translateX(-50%) skew(4deg)
+
+                            +media-desktop
+                                left: 50%
+                                width: calc(100% + 52px)
+                                transform: translateX(-50%) skew(2.5deg)
+
+                            +media-large-desktop
+                                width: calc(100% + 44px)
+
+                        .rank
+                            color: $light-blue
+
+                            .icon
+                                img
+                                    filter: brightness(1.4)
 
                     .rank h2,
                     .level

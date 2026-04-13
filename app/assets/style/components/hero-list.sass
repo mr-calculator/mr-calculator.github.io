@@ -15,12 +15,13 @@
         display: flex
         justify-content: space-between
 
+        z-index: 10
+
         +media-mobile
             gap: 20px
             flex-direction: column
 
         &.sticky
-            z-index: 10
             
             &::before
                 content: ""
@@ -33,6 +34,16 @@
                 background: $blue
 
                 z-index: -1
+
+            .back-button
+                +media-desktop
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    margin-right: 20px
+
+        .back-button
+            display: none
 
         .search
             position: relative

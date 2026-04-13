@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "appropriate": "npx tsx ./scripts/appropriate.ts",
-    "process-game-duration": "npx tsx ./scripts/stats/process-stats.ts",
+    "process-game-duration": "npx tsx ./scripts/stats/process-game-duration.ts",
     "process-stats": "npx tsx ./scripts/stats/process-stats.ts",
     "calc-finals-conversion-rate": "npx tsx ./scripts/stats/calc-finals-conversion-rate.ts",
     "gather-top-players": "npx tsx ./scripts/stats/gather-top-players.ts",

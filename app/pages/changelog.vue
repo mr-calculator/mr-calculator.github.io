@@ -376,6 +376,24 @@ const changelogEntries = ref<ChangeLogEntry[]>([
         },
         title: 'Added the Changelog',
         description: 'Added this very changelog. You can now see all the updates and additions to the calculator, including new heroes and other QoL changes!',
+    },
+    {
+        version: {
+            number: '1.2.2',
+            date: 'Apr 14, 2026'
+        },
+        title: 'QoL changes and bug fixes',
+        description: `Made small improvements to the home page, hero pages, and fixed a few issues.
+        <br/>
+        You can now quickly change your current level by pressing on it!
+        `,
+        list: [
+            'Added "Go to hero" button in the home page under the Generic Hero Stats section',
+            'Added a shortcut to changing current level on the hero page by pressing on the level header (below the hero prestige image)',
+            'Fixed an issue with the sticky header of the hero list',
+            'Fixed an unknown long-standing issue with the active state (on click) of the main tabs on the hero pages. Now it shows a flicker of yellow just like the game client',
+            'Fixed an uncaught error with the math-enabled numerical inputs'
+        ]
     }
 ])
 changelogEntries.value.reverse();

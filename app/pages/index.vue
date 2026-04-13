@@ -172,6 +172,22 @@
                                     <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
                                 </li>
                             </ul>
+
+                            <br/>
+                            <FormButton
+                                class="go-to-hero"
+                                size="tiny"
+                                :to="`/heroes/${credibilitySelectedHeroId}?from=/`"
+                            >
+                                GO TO HERO
+                                <Tex
+                                    image="arrowRight"
+
+                                    color="var(--blue)"
+                                    width="28px"
+                                    height="20px"
+                                />
+                            </FormButton>
                         </div>
                     </Transition>
                 </div>
@@ -477,6 +493,7 @@ import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
 import {default as CalculatorPanel} from '~/components/panel/Calculator.vue';
 import { usePwaInstall } from '~/composables/usePwaInstall';
 import { Calculator } from '~/services/calculator';
+import type HorizontalScrollContainer from '~/components/panel/HorizontalScrollContainer.vue';
 
 useSeoMeta({
     title: 'Marvel Rivals Proficiency Calculator',
@@ -500,6 +517,8 @@ const preferences = useLocalStorage<PreferencesStore>('preferences', DEFAULT_PRE
 const DEFAULT_HERO = HERO_LIST.find(h => h.id == 'luna-snow')!;
 
 const { install: installPwa, canInstall: canInstallPwa } = usePwaInstall(); 
+
+const heroListContainer = ref<InstanceType<typeof HorizontalScrollContainer>>();
 
 // ==== ANIMATIONS ====
 const duplicateProficiencyRanks = ref<ProficiencyRank[]>([]);
@@ -947,4 +966,24 @@ for (let i = 0; i < 5; i++) {
     const row = shuffleArray([...HERO_LIST]);
     lordIconsGridHeroes.value.push([...row, ...row]);
 }
+
+
+const { save, restore } = useScrollPosition();
+onMounted(restore);
+onBeforeUnmount(save);
+
+const { positions: scrollPositions } = useScrollPosition('heroes_stats_scroll');
+
+onMounted(() => {
+    if (!scrollPositions['heroes_stats_scroll'])
+        return;
+
+    heroListContainer.value?.scrollTo(scrollPositions['heroes_stats_scroll']);
+});
+onBeforeUnmount(() => {
+    if (!heroListContainer.value)
+        return;
+
+    scrollPositions['heroes_stats_scroll'] = heroListContainer.value.scrollX;
+});
 </script>

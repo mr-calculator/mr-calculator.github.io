@@ -19,7 +19,9 @@
             </div>
             <UiSeparator />
             <ClientOnly>
-                <PanelHeroList />
+                <PanelHeroList
+                    back-button="/"
+                />
             </ClientOnly>
         </div>
     </main>

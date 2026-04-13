@@ -1,6 +1,17 @@
 <template>
     <div class="hero-list">
         <div ref="tools" class="tools">
+            <NuxtLink v-if="backButton" class="back-button" :to="backButton">
+                <Tex
+                    image="arrowLeft"
+                    hover="color"
+                    clickable
+
+                    width="40px"
+                    height="40px"
+                    object-fit="contain"
+                />
+            </NuxtLink>
             <div class="search">
                 <input
                     ref="searchInput"
@@ -86,6 +97,8 @@ import { tex, texUrl } from '~/assets/data/textures';
 
 const props = withDefaults(defineProps<{
     selectedHero?: string,
+
+    backButton?: string,
 
     links?: boolean,
     addHeroEnabled?: boolean,

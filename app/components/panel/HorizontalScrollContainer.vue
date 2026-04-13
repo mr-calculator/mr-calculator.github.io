@@ -152,6 +152,7 @@ function scrollTo(x: number, smoothing = DEFAULT_SCROLL_SMOOTH) {
 }
 
 defineExpose({
+    scrollX,
     maxScroll() {
         return maxScroll;
     },

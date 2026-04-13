@@ -7,7 +7,7 @@
     >
         <nav>
             <div class="head">
-                <NuxtLink class="back-arrow" href="/heroes">
+                <NuxtLink class="back-arrow" :href="backLink">
                     <Tex
                         image="chevronLeft"
                         hover="color"
@@ -131,7 +131,7 @@
 
                 <ClientOnly>
                     <div class="player-level">
-                        <div class="current">
+                        <div class="current" @click="selectCurrentLevel()">
                             <div class="rank">
                                 <div class="icon">
                                     <img :src="currentRankComp.rank.icon" />
@@ -279,6 +279,16 @@
                                     </FormButton>
                                 </ClientOnly>
                             </template>
+                            <FormButton v-else size="small" @click="editAvgStats()">
+                                <Tex
+                                    image="gameTime"
+                                    color="var(--dark)"
+
+                                    width="40px"
+                                    height="40px"
+                                />
+                                ADD YOUR OWN STATS
+                            </FormButton>
                         </div>
                     </template>
                 </PanelTabbedContainer>
@@ -375,6 +385,8 @@ const hero = ref<HeroData>(HERO_LIST.find(h => h.id === heroId) ?? unknownHero!)
 
 const isUnknownHero = computed(() => !!unknownHero);
 
+const backLink = computed(() => (route.query?.from as string) ?? '/heroes');
+
 // new hero
 if (heroId == 'new') {
     // to not crash the page
@@ -394,20 +406,16 @@ if (heroId == 'new') {
     })
     .promise
     .then((hero: HeroData) => {
-        let backLink = '/heroes';
-        if (route.query?.from)
-            backLink = route.query.from as string;
-
         if (!hero || !hero.id) {
             errorNotify();
-            router.push(backLink);
+            router.push(backLink.value);
             return;
         }
 
         // add hero to local storage or route back on error
         if (!createHero(hero)) {
             errorNotify();
-            router.push(backLink);
+            router.push(backLink.value);
             return;
         }
 

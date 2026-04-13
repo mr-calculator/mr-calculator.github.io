@@ -146,13 +146,16 @@ function onChange(e: Event) {
     if (!props.numberInput?.allowMath || !value.match(MATH_SYMBOLS_REGEX))
         return;
 
-    const evaluated = eval(value);
-    const parsed = parseFloat(evaluated);
-    let toString = parsed + '';
-    if (parsed % 1 != 0)
-        toString = parsed.toFixed(1);
+    try {
+        const evaluated = eval(value);
+        const parsed = parseFloat(evaluated);
+        let toString = parsed + '';
+        if (parsed % 1 != 0)
+            toString = parsed.toFixed(1);
 
-    inputModel.value = toString;
+        inputModel.value = toString;
+    }
+    catch(_) {  }
 }
 
 watch(inputModel, (value) => {

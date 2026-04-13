@@ -66,7 +66,7 @@
         display: flex
         flex-direction: column
 
-        z-index: 10
+        z-index: 15
 
         .option
             position: relative
