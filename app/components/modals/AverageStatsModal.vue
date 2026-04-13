@@ -522,4 +522,12 @@ defineExpose({
     reset
 })
 
+
+useEvent('keydown', (e: KeyboardEvent) => {
+    if (e.code !== 'Enter' || e.shiftKey || e.ctrlKey || e.altKey)
+        return;
+
+    emit('confirm', { stats: models.value, statsArcade: modelsArcade.value });
+});
+
 </script>

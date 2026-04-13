@@ -37,7 +37,7 @@
         </p>
 
         <div class="buttons">
-            <FormButton size="small" @click="$emit('confirm', selectedHero)">
+            <FormButton size="small" @click="confirm()">
                 Confirm
             </FormButton>
             <FormButton size="small" color-scheme="white" @click="$emit('cancel')">Cancel</FormButton>
@@ -135,6 +135,10 @@ const props = defineProps<{
     hero: HeroData
 }>();
 
+const emit = defineEmits(['confirm', 'cancel']);
+
+const { notify } = useNotificationManager();
+
 const unknownHeroHasPossibleMatch = useUnknownHeroHasPossibleMatch(props.hero);
 
 const heroSelectOpen = ref(false);
@@ -158,4 +162,25 @@ function clickHero(heroId: string) {
     selectedHero.value = heroId;
     heroSelectOpen.value = false;
 }
+
+function confirm() {
+    if (!selectedHero.value) {
+        notify(
+            `You must select a hero first`,
+            3000,
+            { image: 'warning', color: '#c94f36' }
+        );
+
+        return;
+    }
+
+    emit('confirm', selectedHero.value);
+}
+
+useEvent('keyup', (e: KeyboardEvent) => {
+    if (e.code !== 'Enter' || e.shiftKey || e.ctrlKey || e.altKey)
+        return;
+
+    confirm();
+});
 </script>

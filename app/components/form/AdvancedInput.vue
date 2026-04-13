@@ -1,10 +1,10 @@
 <template>
     <div :class="{'input-wrapper': 1, disabled}">
         <template v-if="!!numberInput && !numberInput.hideExtraButtons">
-            <button class="small-button step" @click="add((numberInput.step ?? 100) * -1)">
+            <button class="small-button step" @click="add((numberInput.step ?? 100) * -1, $event)">
                 -{{numberInput.step ?? 100}}
             </button>
-            <button class="small-button" @click="add(-1)">
+            <button class="small-button" @click="add(-1, $event)">
                 <Tex
                     image="minus"
                     color="var(--dark)"
@@ -37,7 +37,7 @@
         />
 
         <template v-if="!!numberInput && !numberInput.hideExtraButtons">
-            <button class="small-button" @click="add(1)">
+            <button class="small-button" @click="add(1, $event)">
                 <Tex
                     image="plus"
                     color="var(--dark)"
@@ -47,7 +47,7 @@
                     object-fit="contain"
                 />
             </button>
-            <button class="small-button step" @click="add(numberInput.step ?? 100)">
+            <button class="small-button step" @click="add(numberInput.step ?? 100, $event)">
                 +{{numberInput.step ?? 100}}
             </button>
         </template>
@@ -181,7 +181,10 @@ watch(inputModel, (value) => {
         inputModel.value = props.numberInput.max + '';
 })
 
-function add(number: number) {
+function add(number: number, e: Event) {
+    if (e.defaultPrevented)
+        return;
+
     let numberVal = parseFloat(inputModel.value);
     if (isNaN(numberVal))
         numberVal = 0;

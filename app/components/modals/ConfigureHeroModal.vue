@@ -653,4 +653,11 @@ function confirm() {
     emit('confirm', newHero.value);
 }
 
+useEvent('keydown', (e: KeyboardEvent) => {
+    if (e.code !== 'Enter' || e.shiftKey || e.ctrlKey || e.altKey)
+        return;
+
+    confirm();
+});
+
 </script>

@@ -435,6 +435,7 @@
                 <NuxtLink to="/download">DOWNLOAD MY STATS/DATA</NuxtLink>
                 <NuxtLink to="/import">IMPORT STATS/DATA</NuxtLink>
                 <div v-if="canInstallPwa" @click="installPwa">ADD TO HOME SCREEN</div>
+                <NuxtLink to="/changelog">CHANGELOG</NuxtLink>
                 <a :href="`mailto:${appConfig.email}`" target="_blank">CONTACT</a>
             </div>
             <div class="links">

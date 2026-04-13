@@ -26,7 +26,7 @@
         <img
             v-if="mode == 'image'"
             :src="imgSrc"
-            :alt="imgSrcRel.split(/(?=[A-Z])/).join(' ')"
+            :alt="altText"
 
             :style="{
                 width: typeof width === 'number' ? `${width}px` : width,
@@ -45,6 +45,8 @@
                 '--tex-image': `url('${imgSrc}')`,
                 maskSize: objectFit
             }"
+
+            :title="altText"
         />
 
         <div v-if="$slots.default" class="tex-slot">
@@ -145,6 +147,8 @@ const mode = computed(() => props.hover == 'color' || props.color ? 'mask' : 'im
 const image = computed(() => !props.src ? TEX[props.image!] : { default: props.src });
 const imgSrcRel = ref(image.value[props.state] ?? image.value.default);
 const imgSrc = computed(() => !props.src ? '/img/tex/' + imgSrcRel.value : imgSrcRel.value)
+
+const altText = computed(() => props.image?.replace(/([A-Z])/g, ' $1') ?? imgSrcRel.value.split('-').join(' '))
 
 const isHovering = ref(false);
 

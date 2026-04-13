@@ -51,6 +51,8 @@ const props = defineProps<{
     currentLevel?: number
 }>();
 
+const emit = defineEmits(['confirm', 'cancel'])
+
 const selectedLevel = ref(props.currentLevel ?? undefined);
 
 onMounted(() => {
@@ -59,6 +61,13 @@ onMounted(() => {
         const selectedItem = document.getElementById(selectedItemId);
         selectedItem?.scrollIntoView();
     }, 100);
+});
+
+useEvent('keyup', (e: KeyboardEvent) => {
+    if (e.code !== 'Enter' || e.shiftKey || e.ctrlKey || e.altKey)
+        return;
+
+    emit('confirm', selectedLevel.value);
 });
 
 </script>

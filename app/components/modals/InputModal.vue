@@ -34,6 +34,9 @@ const props = defineProps<{
         max?: number
     },
 }>();
+
+const emit = defineEmits(['confirm', 'cancel']);
+
 const inputModel = ref(typeof props.inputValue === 'undefined' ? '' : props.inputValue);
 
 const input = ref<HTMLInputElement|null>(null);
@@ -42,5 +45,11 @@ onMounted(() => {
     input.value?.focus();
 });
 
+useEvent('keydown', (e: KeyboardEvent) => {
+    if (e.code !== 'Enter' || e.shiftKey || e.ctrlKey || e.altKey)
+        return;
+
+    emit('confirm', inputModel.value);
+});
 
 </script>

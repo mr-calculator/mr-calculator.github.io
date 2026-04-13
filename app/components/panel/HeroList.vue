@@ -1,8 +1,9 @@
 <template>
     <div class="hero-list">
-        <div class="tools">
+        <div ref="tools" class="tools">
             <div class="search">
                 <input
+                    ref="searchInput"
                     type="text"
                     placeholder="Search..."
 
@@ -125,6 +126,36 @@ const roleDropdownOptions = [
     }
 ];
 
+const tools = useTemplateRef('tools');
+const searchInput = useTemplateRef('searchInput');
+
+function getScrollParent(element: HTMLElement|null) {
+    if (!element)
+        return window;
+
+    let parent = element.parentElement;
+    while (parent) {
+        const { overflow, overflowY } = getComputedStyle(parent);
+        if (/(auto|scroll)/.test(overflow + overflowY))
+            return parent;
+
+        parent = parent.parentElement;
+    }
+    return window; // fallback to viewport
+}
+
+await useGsap(({ scrollTrigger }) => {
+    const scroller = getScrollParent(tools.value);
+
+    scrollTrigger.create({
+        trigger: tools.value,
+        scroller,
+        start: 'top 0%',
+        onEnter: () => tools.value?.classList.add('sticky'),
+        onLeaveBack: () => tools.value?.classList.remove('sticky'),
+    });
+});
+
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 
 
@@ -173,4 +204,11 @@ function clickHero(heroId: string) {
 
     emit('clickHero', heroId);
 }
+
+
+// listen for key a-z key presses to automatically focus the search bar
+useEvent('keydown', (e: KeyboardEvent) => {
+    if (e.key.match(/[a-zA-Z]{1}/g)?.length === 1)
+        searchInput.value?.focus();
+});
 </script>

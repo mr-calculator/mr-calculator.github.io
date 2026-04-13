@@ -14,6 +14,15 @@
     </div>
 </template>
 
-<script setup>
-defineProps(['title', 'message'])
+<script setup lang="ts">
+defineProps(['title', 'message']);
+
+const emit = defineEmits(['confirm', 'cancel']);
+
+useEvent('keyup', (e: KeyboardEvent) => {
+    if (e.code !== 'Enter' || e.shiftKey || e.ctrlKey || e.altKey)
+        return;
+
+    emit('confirm', true);
+});
 </script>

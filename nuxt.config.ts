@@ -123,7 +123,8 @@ export default defineNuxtConfig({
         },
         workbox: {
             globPatterns: ['**/*.{js,css,html,png,webp,svg,ico,json,ttf}'],
-            globIgnores: ['img/heroes/data/**/*', 'img/seo/**/*'],
+            globIgnores: ['img/heroes/data/**/*', 'img/seo/**/*', 'img/changelog/**/*'],
+            navigateFallback: undefined, // to show the 404 page since this is not a SPA
             navigateFallbackDenylist: [/\/sitemap\.xml/, /\/robots\.txt/, /\/__sitemap__\/.*/]
         }
     },

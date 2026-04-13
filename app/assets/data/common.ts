@@ -97,14 +97,14 @@ export const CHALLENGE_STATS: Record<Challenge['type'], ChallengeStats|null> = {
     },
     kos: {
         tooLittle: 0,
-        tooMuch: 100,
+        tooMuch: 500,
         step: 5,
         example: '17.6',
         interval: [10, 30]
     },
     kos_assists: {
         tooLittle: 0,
-        tooMuch: 100,
+        tooMuch: 500,
         step: 5,
         example: '14.2+17.5',
         interval: [20, 50]

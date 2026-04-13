@@ -38,6 +38,13 @@
         font-family: RefrigeratorDeluxeBold, sans-serif
         font-size: 28px
 
+    &.tiny
+        width: auto
+        min-height: 35px
+
+        font-family: RefrigeratorDeluxeBold, sans-serif
+        font-size: 22px
+
     &.yellow
         background: var(--tex-button) no-repeat
         background-size: 100% 100%
@@ -70,7 +77,7 @@ const props = withDefaults(defineProps<{
     to?: string,
     target?: '_blank'|'_self'|'_parent'|'_top',
 
-    size?: 'large'|'small',
+    size?: 'large'|'small'|'tiny',
     colorScheme?: 'yellow'|'white'
 }>(), {
     size: 'large',

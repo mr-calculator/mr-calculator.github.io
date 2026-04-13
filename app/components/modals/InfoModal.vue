@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps(['title', 'message', 'noButton', 'action'])
 
 const emit = defineEmits(['confirm']);
@@ -21,4 +21,11 @@ function confirm() {
     
     emit('confirm', true);
 }
+
+useEvent('keyup', (e: KeyboardEvent) => {
+    if (e.code !== 'Enter' || e.shiftKey || e.ctrlKey || e.altKey)
+        return;
+
+    confirm();
+});
 </script>

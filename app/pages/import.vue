@@ -10,7 +10,7 @@
                 object-fit="contain"
             />
         </NuxtLink>
-        <main class="content">
+        <main class="content masked">
             <div class="mask-wrapper">
                 <div class="scroll-container">
                     <h1>
@@ -172,34 +172,6 @@
 </template>
 
 <style lang="sass" scoped>
-.content
-    min-height: 90vh
-
-    .mask-wrapper
-        width: 100%
-        height: 100vh
-
-        mask: var(--tex-promotionalBackgroundMask) no-repeat
-        mask-size: 100% 100%
-        -webkit-mask-attachment: fixed
-
-        overflow-x: hidden
-        overflow-y: auto
-
-        > .scroll-container
-            width: 100%
-
-            display: flex
-            flex-direction: column
-            justify-content: center
-            align-items: center
-            gap: 10px
-
-            padding: 60px 0
-
-            +media-mobile
-                padding: 120px 20px 110px 20px
-
 .upload-container
     width: 700px
     padding: 40px 60px
