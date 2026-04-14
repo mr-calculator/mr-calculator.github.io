@@ -52,6 +52,13 @@ export default defineNuxtConfig({
                 { property: 'og:type', content: 'website' },
                 { property: 'og:site_name', content: 'Marvel Rivals Proficiency Calculator' },
                 { name: 'twitter:card', content: 'summary_large_image' },
+            ],
+            script: [
+                {
+                    defer: true,
+                    src: "https://cloud.umami.is/script.js",
+                    'data-website-id': 'ba5a487f-a0b3-4f9c-b31b-a17a81e785ba'
+                }
             ]
         },
     },

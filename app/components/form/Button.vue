@@ -19,6 +19,7 @@
     text-transform: uppercase
 
     cursor: pointer
+    user-select: none
 
     &.large
         min-width: 355px

@@ -325,6 +325,10 @@
                     <h3>
                         By putting in your <span>own</span> stats, you get the most accurate results
                     </h3>
+                    <br/>
+                    <h4>
+                        Choose between Quickmatch/Competitive and Arcade modes for the most exact estimates!
+                    </h4>
                 </div>
             </section>
             <section class="results titled h100">
@@ -387,7 +391,7 @@
                 </div>
             </section>
 
-            <section class="future-proofing double">
+            <section class="future-proofing double separator">
                 <div class="new-hero-image">
                     <img src="/img/tex/promo/new-hero.webp" alt="Missing Hero Logo" />
                 </div>
@@ -400,6 +404,22 @@
                         JUST ADD IT YOURSELF!
                     </FormButton>
                 </div>
+            </section>
+
+            <section class="changelog titled">
+                <div class="title">
+                    <h2>Recent changes</h2>
+                </div>
+
+                <PanelChangelog
+                    class="list"
+                    :limit="2"
+                    theme="light"
+                />
+
+                <FormButton to="/changelog">
+                    VIEW ALL CHANGES
+                </FormButton>
             </section>
 
             <section id="cta-final" class="cta-final titled separator-top">

@@ -168,6 +168,9 @@
                     background-size: max(100%, 1000px) 100%
 
                     pointer-events: none
+
+                    +media-mobile
+                        background-position: 60% center
             
             &.separator-top
                 position: relative
@@ -1078,6 +1081,13 @@
                         width: 70%
                         text-transform: none
 
+                    h4
+                        max-width: 400px
+                        text-align: center
+
+                        +media-ml-desktop
+                            text-align: right
+
             &.results
 
                 .calculator-showcase
@@ -1141,6 +1151,23 @@
 
                     h2, h3
                         text-align: center
+
+            &.changelog
+                padding: 60px 20px 60px 20px
+
+                +media-desktop
+                    padding: 100px 60px 120px 60px
+
+                .list
+                    flex-direction: row
+                    flex-wrap: wrap
+                    justify-content: center
+                    align-items: start
+
+                    ::v-deep(li)
+                        +media-ml-desktop
+                            grid-template-columns: 200px 500px
+                        
 
             &.cta-final
                 $scale: 100px
