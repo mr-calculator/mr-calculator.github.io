@@ -235,11 +235,17 @@ export const TEX = {
     star: {
         default: 'icon/star.png'
     } as Texture,
+    levelUp: {
+        default: 'icon/level-up.png'
+    } as Texture,
     copy: {
         default: 'icon/copy.png'
     } as Texture,
     allHeroesIcon: {
         default: 'icon/all-heroes.png'
+    } as Texture,
+    download: {
+        default: 'icon/download.png'
     } as Texture,
     upload: {
         default: 'icon/upload.png'

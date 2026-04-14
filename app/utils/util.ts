@@ -542,3 +542,9 @@ export async function setClipboard(text: any) {
     const clipboardItem = new ClipboardItem(clipboardItemData);
     await navigator.clipboard.write([clipboardItem]);
 }
+
+export function hasTouch() {
+  return (('ontouchstart' in window) ||
+      (navigator.maxTouchPoints > 0) ||
+      ((navigator as any).msMaxTouchPoints > 0))
+}

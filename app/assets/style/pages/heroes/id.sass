@@ -357,6 +357,7 @@
                 grid-template-rows: 53px 67px
 
                 z-index: 4
+                user-select: none
 
                 +media-mobile
                     transform: translateX(50%)
@@ -391,7 +392,9 @@
 
                             transform: translateX(-50%) skew(4deg)
 
-                            backdrop-filter: brightness(1.1)
+                            backdrop-filter: brightness(1.2)
+
+                            z-index: -1
 
                             +media-mobile
                                 left: calc(50% - 4px)
@@ -453,8 +456,17 @@
                     .level
                         display: flex
                         align-items: center
+                        gap: 5px
 
                         color: $light-blue-highlight
+                        user-select: none
+
+                        &.can-level-up:hover
+                            color: #ebb72a
+
+                            .texture
+                                ::v-deep(.tex-image)
+                                        background: #ebb72a
 
                 .bottom
                     align-self: end
@@ -487,9 +499,25 @@
                                     color: $light-blue-highlight
 
                         .progress-bar
+                            position: relative
                             width: 100%
                             height: 6px
                             background: $light-blue-highlight
+
+                            +media-mobile
+                                height: 12px
+
+                            .drag-area
+                                position: absolute
+                                width: 100%
+                                height: 30px
+                                left: 0
+                                top: 50%
+                                transform: translateY(-50%)
+
+                                z-index: 2
+
+                                cursor: ew-resize
 
                             .inner
                                 width: var(--progress)

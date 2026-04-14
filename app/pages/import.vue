@@ -49,54 +49,163 @@
                     </div>
 
                     <div v-if="overwriteCheck" class="overwrite-check">
-                        <h2>
-                            {{ overwriteCheck.length ?
-                                'By importing this data, you will overwrite your current data:'
-                                :
-                                'Data was processed successfully, proceed?'
-                            }}
-                        </h2>
+                        <template v-if="overwriteCheck.remaining.length">
+                            <h2>
+                                You will import the data of the following heroes
+                            </h2>
+                            <ul class="heroes">
+                                <li
+                                    v-for="hero in overwriteCheck.remaining"
+                                    :class="{
+                                        checked: overwriteToggles[hero.heroId],
+                                        selected: selectedRemainingHero == hero.heroId
+                                    }"
+                                    :title="hero.hero.name"
 
-                        <ul v-if="heroesWithData.length" class="heroes">
-                            <li
-                                v-for="hero in overwriteCheck"
-                                :class="{
-                                    checked: overwriteToggles[hero.heroId],
-                                    selected: selectedHero == hero.heroId
-                                }"
-                                :title="hero.hero.name"
-
-                                @click="clickHero(hero)"
-                            >
-                                <!--
-                                    :class="{selected: selectedHero == hero.heroId}"
-                                    @click="clickHero(hero.heroId)"
-                                -->
-                                <div
-                                    v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
-                                    class="check"
+                                    @click="clickHero(hero, true)"
                                 >
-                                    <Tex
-                                        image="checkCorner"
+                                    <!--
+                                        :class="{selected: selectedHero == hero.heroId}"
+                                        @click="clickHero(hero.heroId)"
+                                    -->
+                                    <div
+                                        v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
+                                        class="check"
+                                    >
+                                        <Tex
+                                            image="checkCorner"
 
-                                        width="35px"
-                                        height="35px"
+                                            width="35px"
+                                            height="35px"
+                                        />
+                                    </div>
+                                    <div class="icon">
+                                        <img :src="`${hero.hero.dataDir}head.webp`" />
+                                    </div>
+                                    <div
+                                        v-if="hero.rank?.icon && hero.rank.id != 'agent'"
+                                        class="badge"
+                                    >
+                                        <img :src="hero.rank?.icon" />
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div v-if="selectedRemainingHero && selectedRemainingHeroData" class="selected-hero">
+                                <div class="hero-info">
+                                    <FormCheckbox
+                                        v-if="selectedRemainingHeroData.type == 'both'"
+                                        :model-value="overwriteToggles[selectedRemainingHeroData.heroId]! || overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!"
+                                        @update:model-value="$event => {
+                                            overwriteToggles[selectedRemainingHeroData!.heroId] = $event,
+                                            overwriteUnknownHeroToggles[selectedRemainingHeroData!.heroId] = $event
+                                        }"
+
+                                        small
+                                    />
+                                    <div class="icon">
+                                        <img :src="`${selectedRemainingHeroData.hero.dataDir}head.webp`" />
+                                    </div>
+                                    <h3>
+                                        {{ selectedRemainingHeroData.hero.name }}
+                                    </h3>
+                                </div>
+
+                                <div class="toggle">
+                                    <FormCheckbox
+                                        v-if="selectedRemainingHeroData.type == 'both' || selectedRemainingHeroData.type == 'stats'"
+                                        v-model="overwriteToggles[selectedRemainingHeroData.heroId]!"  
+
+                                        small
+                                        append-slot
+                                    >
+                                        <h4>Import stats</h4>
+                                    </FormCheckbox>
+                                    <FormCheckbox
+                                        v-if="selectedRemainingHeroData.type == 'both' || selectedRemainingHeroData.type == 'unknown'"
+                                        v-model="overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!"  
+
+                                        small
+                                        append-slot
+                                    >
+                                        <h4>Import hero info</h4>
+                                    </FormCheckbox>
+
+                                    <Tex
+                                        image="cross"
+                                        color="var(--light-blue)"
+                                        hover="color"
+                                        hover-color="var(--blue-highlight)"
+
+                                        clickable
+                                        @click="selectedRemainingHero = null"
+
+                                        width="20px"
+                                        height="20px"
+                                        title="Close"
                                     />
                                 </div>
-                                <div class="icon">
-                                    <img :src="`${hero.hero.dataDir}head.webp`" />
-                                </div>
-                                <div
-                                    v-if="hero.rank?.icon && hero.rank.id != 'agent'"
-                                    class="badge"
+                            </div>
+                        </template>
+
+                        <template v-if="heroesWithData.length && overwriteCheck.conflicting.length">
+                            <div>
+                                <h2>
+                                    We found conflicts with your current data
+                                </h2>
+                                <p>The following heroes already have data attached to them. Choose which ones to overwrite.</p>
+                            </div>
+                            <ul class="heroes">
+                                <li
+                                    v-for="hero in overwriteCheck.conflicting"
+                                    :class="{
+                                        checked: overwriteToggles[hero.heroId],
+                                        selected: selectedHero == hero.heroId
+                                    }"
+                                    :title="hero.hero.name"
+
+                                    @click="clickHero(hero)"
                                 >
-                                    <img :src="hero.rank?.icon" />
-                                </div>
-                            </li>
-                        </ul>
+                                    <!--
+                                        :class="{selected: selectedHero == hero.heroId}"
+                                        @click="clickHero(hero.heroId)"
+                                    -->
+                                    <div
+                                        v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
+                                        class="check"
+                                    >
+                                        <Tex
+                                            image="checkCorner"
+
+                                            width="35px"
+                                            height="35px"
+                                        />
+                                    </div>
+                                    <div class="icon">
+                                        <img :src="`${hero.hero.dataDir}head.webp`" />
+                                    </div>
+                                    <div
+                                        v-if="hero.rank?.icon && hero.rank.id != 'agent'"
+                                        class="badge"
+                                    >
+                                        <img :src="hero.rank?.icon" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </template>
 
                         <div v-if="selectedHero && selectedHeroData" class="selected-hero">
                             <div class="hero-info">
+                                <FormCheckbox
+                                    v-if="selectedHeroData.type == 'both'"
+                                    :model-value="overwriteToggles[selectedHeroData.heroId]! || overwriteUnknownHeroToggles[selectedHeroData.heroId]!"
+                                    @update:model-value="$event => {
+                                        overwriteToggles[selectedHeroData!.heroId] = $event,
+                                        overwriteUnknownHeroToggles[selectedHeroData!.heroId] = $event
+                                    }"
+
+                                    small
+                                />
                                 <div class="icon">
                                     <img :src="`${selectedHeroData.hero.dataDir}head.webp`" />
                                 </div>
@@ -122,8 +231,23 @@
                                     small
                                     append-slot
                                 >
-                                    <h4>Overwrite added hero</h4>
+                                    <h4>Overwrite hero info</h4>
                                 </FormCheckbox>
+
+                                <Tex
+                                    image="cross"
+                                    color="var(--light-blue)"
+                                    hover="color"
+                                    hover-color="var(--blue-highlight)"
+
+                                    clickable
+                                    @click="selectedHero = null"
+
+                                    width="20px"
+                                    height="20px"
+
+                                    title="Close"
+                                />
                             </div>
                         </div>
 
@@ -230,7 +354,9 @@
                 background: color-mix(in srgb, $light-blue-highlight 20%, white)
 
 .overwrite-check
-    width: 900px
+    $width: 900px
+    width: $width
+    
     display: flex
     align-items: center
     flex-direction: column
@@ -243,8 +369,8 @@
         text-align: center
 
     .icon
-        width: 100px
-        height: 100px
+        width: calc(($width - 70px) / 8)
+        height: calc(($width - 70px) / 8)
 
         border: 3px solid $light-blue
         background: color-mix(in srgb, $light-blue-highlight 60%, white)
@@ -263,11 +389,14 @@
 
         display: flex
         flex-wrap: wrap
-        justify-content: space-between
+        justify-content: start
         align-items: center
         gap: 10px
 
         margin-top: 10px
+
+        +media-mobile
+            justify-content: center
 
         li
             position: relative
@@ -450,18 +579,32 @@ const heroesWithData = computed(() => {
 
 const selectedHero = ref<string|null>(null);
 const selectedHeroData = computed(() => 
-    overwriteCheck.value?.find(h => h.heroId == selectedHero.value)
+    overwriteCheck.value?.conflicting.find(h => h.heroId == selectedHero.value)
 )
-function clickHero(hero: OverwriteCheck[0]) {
+
+const selectedRemainingHero = ref<string|null>(null);
+const selectedRemainingHeroData = computed(() => 
+    overwriteCheck.value?.remaining.find(h => h.heroId == selectedRemainingHero.value)
+)
+
+function clickHero(hero: OverwriteCheck[0], remaining = false) {
     if (hero.type == 'stats') {
         overwriteToggles.value[hero.heroId] = !overwriteToggles.value[hero.heroId];
         return;
     }
 
-    if (selectedHero.value == hero.heroId)
-        selectedHero.value = null;
-    else
-        selectedHero.value = hero.heroId;
+    if (!remaining) {
+        if (selectedHero.value == hero.heroId)
+            selectedHero.value = null;
+        else
+            selectedHero.value = hero.heroId;
+    }
+    else {
+        if (selectedRemainingHero.value == hero.heroId)
+            selectedRemainingHero.value = null;
+        else
+            selectedRemainingHero.value = hero.heroId;
+    }
 }
 
 const dataSegment = ref<AnySerializableDataSegment|null>(null);
@@ -476,7 +619,7 @@ type OverwriteCheck = {
     store?: PlayerHeroStore,
     rank?: ProficiencyRank
 }[]
-const overwriteCheck = computed<OverwriteCheck|null>(() => {
+const overwriteCheck = computed<{ conflicting: OverwriteCheck, remaining: OverwriteCheck}|null>(() => {
     overwriteToggles.value = {};
     overwriteUnknownHeroToggles.value = {};
 
@@ -486,26 +629,44 @@ const overwriteCheck = computed<OverwriteCheck|null>(() => {
     if (dataSegment.value.type === 'hero') {
         const heroSegmentData = dataSegment.value.data;
 
+        overwriteToggles.value[heroSegmentData.id] = true;
+        if (heroSegmentData.__unknownHero)
+            overwriteUnknownHeroToggles.value[heroSegmentData.id] = true;
+
         const existingHero = heroesWithData.value.find(h => h.hero.id == heroSegmentData.id);
         if (existingHero) {
-            overwriteToggles.value[heroSegmentData.id] = true;
-            if (heroSegmentData.__unknownHero)
-                overwriteUnknownHeroToggles.value[heroSegmentData.id] = true;
-
-            return [{
-                type: heroSegmentData.__unknownHero ? 'both' : 'stats',
-                heroId: heroSegmentData.id,
-                hero: existingHero.hero,
-                store: heroSegmentData.stored
-            }];
+            return {
+                conflicting: [{
+                    type: heroSegmentData.__unknownHero ? 'both' : 'stats',
+                    heroId: heroSegmentData.id,
+                    hero: existingHero.hero,
+                    store: heroSegmentData.stored
+                }],
+                remaining: []
+            };
         }
 
-        return []
+        let heroData = null;
+        if (heroSegmentData.__unknownHero && heroSegmentData.hero)
+            heroData = heroSegmentData.hero;
+        else
+            heroData = HERO_LIST.find(h => h.id == heroSegmentData.id);
+
+        const remaining: OverwriteCheck = [];
+        if (heroData)
+            remaining.push({
+                type: heroSegmentData.__unknownHero ? 'both' : 'stats',
+                heroId: heroData.id,
+                hero: heroData,
+                store: heroSegmentData.stored
+            });
+
+        return { conflicting: [], remaining }
     }
     else {
         const profileSegmentData = dataSegment.value.data;
 
-        const result: OverwriteCheck = [];
+        const conflicting: OverwriteCheck = [];
 
         for (const hero of heroesWithData.value) {
             const heroInSegmentStore = profileSegmentData.storedHeroes.find(h => h.id == hero.hero.id);
@@ -517,7 +678,7 @@ const overwriteCheck = computed<OverwriteCheck|null>(() => {
                 if (heroInSegmentUnknownHeroes)
                     overwriteUnknownHeroToggles.value[hero.hero.id] = true;
 
-                result.push({
+                conflicting.push({
                     type: heroInSegmentStore && heroInSegmentUnknownHeroes ? 'both' : (heroInSegmentStore ? 'stats' : 'unknown'),
                     heroId: hero.hero.id,
                     hero: hero.hero,
@@ -527,7 +688,50 @@ const overwriteCheck = computed<OverwriteCheck|null>(() => {
             }
         }
 
-        return result;
+        const remaining: OverwriteCheck = [];
+
+        profileSegmentData.storedHeroes.forEach(heroStore => {
+            if (conflicting.find(conflictingHero => conflictingHero.heroId == heroStore.id))
+                return;
+
+            // look for hero in existing heroes and unknown heroes
+            let hero = HERO_LIST.find(h => h.id == heroStore.id);
+            if (!hero)
+                hero = profileSegmentData.unknownHeroes?.find(h => h.id == heroStore.id);
+
+            if (hero) {
+                remaining.push({
+                    type: 'stats',
+                    heroId: hero.id,
+                    hero,
+                    store: heroStore,
+                    rank: levelToRank(heroStore.level)
+                });
+
+                overwriteToggles.value[hero.id] = true;
+            }
+        });
+
+        profileSegmentData.unknownHeroes?.forEach(hero => {
+            if (conflicting.find(conflictingHero => conflictingHero.heroId == hero.id))
+                return;
+
+            // if it exists, change type to both
+            const index = remaining.findIndex(h => h.heroId == hero.id);
+            if (index != -1)
+                remaining[index]!.type = 'both'
+            // otherwise add unknown hero as standalone
+            else
+                remaining.push({
+                    type: 'unknown',
+                    heroId: hero.id,
+                    hero
+                });
+
+            overwriteUnknownHeroToggles.value[hero.id] = true;
+        });
+
+        return { conflicting, remaining };
     }
 });
 
@@ -651,7 +855,11 @@ function importData() {
     if (dataSegment.value.type == 'hero') {
         const id = dataSegment.value.data.id;
 
-        if (dataSegment.value.data.__unknownHero && dataSegment.value.data.hero) {
+        if (
+            dataSegment.value.data.__unknownHero
+         && dataSegment.value.data.hero
+         && overwriteUnknownHeroToggles.value[id]
+        ) {
             const existingIndex = unknownHeroes.value.findIndex(h => h.id == id);
             if (existingIndex != -1)
                 unknownHeroes.value[existingIndex] = dataSegment.value.data.hero;
@@ -659,7 +867,8 @@ function importData() {
                 unknownHeroes.value.push(dataSegment.value.data.hero);
         }
 
-        localStorage.setItem(`hero_${id}`, JSON.stringify(dataSegment.value.data.stored));
+        if (overwriteToggles.value[id])
+            localStorage.setItem(`hero_${id}`, JSON.stringify(dataSegment.value.data.stored));
 
         if (
             typeof dataSegment.value.data.isFavourite !== 'undefined'
@@ -670,8 +879,10 @@ function importData() {
     else if (dataSegment.value.type == 'profile') {
         if (dataSegment.value.data.unknownHeroes) {
             for (const unknownHero of dataSegment.value.data.unknownHeroes) {
-                const existingIndex = unknownHeroes.value.findIndex(h => h.id == unknownHero.id);
+                if (!overwriteUnknownHeroToggles.value[unknownHero.id])
+                    continue;
 
+                const existingIndex = unknownHeroes.value.findIndex(h => h.id == unknownHero.id);
                 if (existingIndex != -1)
                     unknownHeroes.value[existingIndex] = unknownHero;
                 else
@@ -682,7 +893,8 @@ function importData() {
         for (const hero of dataSegment.value.data.storedHeroes) {
             const { id, ...stored } = hero;
 
-            localStorage.setItem(`hero_${hero.id}`, JSON.stringify(stored));
+            if (overwriteToggles.value[id])
+                localStorage.setItem(`hero_${hero.id}`, JSON.stringify(stored));
         }
 
         if (dataSegment.value.data.favourites)

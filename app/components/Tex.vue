@@ -26,7 +26,7 @@
         <img
             v-if="mode == 'image'"
             :src="imgSrc"
-            :alt="altText"
+            :alt="title ?? altText"
 
             :style="{
                 width: typeof width === 'number' ? `${width}px` : width,
@@ -46,7 +46,7 @@
                 maskSize: objectFit
             }"
 
-            :title="altText"
+            :title="title ?? altText"
         />
 
         <div v-if="$slots.default" class="tex-slot">
@@ -125,7 +125,8 @@ export interface TexProps {
     height?: 'auto'|string|number,
     objectFit?: 'cover'|'contain',
 
-    inline?: boolean
+    inline?: boolean,
+    title?: string
 }
 </script>
 
@@ -148,7 +149,13 @@ const image = computed(() => !props.src ? TEX[props.image!] : { default: props.s
 const imgSrcRel = ref(image.value[props.state] ?? image.value.default);
 const imgSrc = computed(() => !props.src ? '/img/tex/' + imgSrcRel.value : imgSrcRel.value)
 
-const altText = computed(() => props.image?.replace(/([A-Z])/g, ' $1') ?? imgSrcRel.value.split('-').join(' '))
+const altText = computed(() => 
+    props.image?.replace(/([A-Z])/g, ' $1')
+    .trim()
+    .replace(/^./, c => c.toUpperCase())
+    ??
+    imgSrcRel.value.split('-').join(' ')
+);
 
 const isHovering = ref(false);
 

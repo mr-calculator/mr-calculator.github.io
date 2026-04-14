@@ -90,7 +90,7 @@
                         <div class="scroll-container">
                             <PanelJSONDisplay
                                 class="json-display"
-                                :code="allData"
+                                :code="!!selectedHero ? heroData : allData"
                             />
                         </div>
                     </div>
@@ -138,7 +138,15 @@
 
                             @click="downloadData"
                         >
-                            DOWNLOAD MY DATA
+                            {{ !!selectedHero ? `DOWNLOAD ALL DATA` : `DOWNLOAD MY DATA` }}
+
+                            <Tex
+                                image="download"
+                                color="var(--text-color)"
+
+                                width="25px"
+                                height="25px"
+                            />
                         </FormButton>
                     </div>
 
@@ -159,11 +167,12 @@
 
 <style lang="sass" scoped>
 .heroes
-    width: 900px
+    $width: 900px
+    width: $width
 
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
+    justify-content: start
     align-items: center
     gap: 10px
 
@@ -171,6 +180,8 @@
 
     +media-mobile
         width: 100%
+
+        justify-content: center
 
     li
         position: relative
@@ -189,8 +200,8 @@
             pointer-events: none
 
         .icon
-            width: 100px
-            height: 100px
+            width: calc(($width - 70px) / 8)
+            height: calc(($width - 70px) / 8)
 
             border: 3px solid $light-blue
             background: color-mix(in srgb, $light-blue-highlight 60%, white)
@@ -317,6 +328,9 @@
         width: auto
         min-width: 355px
 
+        .texture
+            margin-right: 0
+
 p
     color: $light-blue
 
@@ -418,21 +432,20 @@ const includeUnknownHeroes = ref(true);
 const includeFavourites = ref(true);
 const includePreferences = ref(true);
 
+const dataBase: Pick<SerializableDataSegment<keyof SerializableDataMap>, 'version' | 'exportedAt'> = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+}
+function dataWithBase<T extends keyof SerializableDataMap>
+    (type: T, data: SerializableDataMap[T]): SerializableDataSegment<T> {
+        return {
+            ...dataBase,
+            type,
+            data
+        };
+}
+
 const allData = computed<AnySerializableDataSegment>(() => {
-    const base: Pick<SerializableDataSegment<keyof SerializableDataMap>, 'version' | 'exportedAt'> = {
-        version: 1,
-        exportedAt: new Date().toISOString(),
-    }
-
-    function withBase<T extends keyof SerializableDataMap>
-        (type: T, data: SerializableDataMap[T]): SerializableDataSegment<T> {
-            return {
-                ...base,
-                type,
-                data
-            };
-    }
-
     const data = {
         storedHeroes: storedHeroes.value,
         favourites: includeFavourites.value ? favourites.value : undefined,
@@ -440,28 +453,28 @@ const allData = computed<AnySerializableDataSegment>(() => {
         preferences: includePreferences.value ? preferences.value : undefined
     }
 
-    if (!!selectedHero.value) {
-        const heroData = heroesWithData.value.find(h => h.hero.id == selectedHero.value);
-        if (!heroData)
-            return withBase('profile', data)
+    return dataWithBase('profile', data);
+})
 
-        if (heroData.isUnknownHero)
-            return withBase('hero', {
-                __unknownHero: true,
-                id: heroData.hero.id,
-                hero: heroData.hero,
-                stored: heroData.stored,
-                isFavourite: heroData.isFavourite
-            })
+const heroData = computed<AnySerializableDataSegment>(() => {
+    const heroData = heroesWithData.value.find(h => h.hero.id == selectedHero.value);
+    if (!selectedHero.value || !heroData)
+        return allData.value;
 
-        return withBase('hero', {
+    if (heroData.isUnknownHero)
+        return dataWithBase('hero', {
+            __unknownHero: true,
             id: heroData.hero.id,
+            hero: heroData.hero,
             stored: heroData.stored,
             isFavourite: heroData.isFavourite
-        });
-    }
+        })
 
-    return withBase('profile', data);
+    return dataWithBase('hero', {
+        id: heroData.hero.id,
+        stored: heroData.stored,
+        isFavourite: heroData.isFavourite
+    });
 })
 
 function closeDataDisplay() {
@@ -469,7 +482,8 @@ function closeDataDisplay() {
 }
 
 function copyData() {
-    setClipboard(JSON.stringify(allData.value));
+    const whichData = !!selectedHero.value ? heroData.value : allData.value;
+    setClipboard(JSON.stringify(whichData));
 
     const message = !!selectedHero.value ? 
         `Copied ${selectedHeroData.value?.possesiveName} data to clipboard`
@@ -496,7 +510,7 @@ function downloadFile(content: string, filename: string, mimeType = 'application
 }
 
 function downloadHeroData() {
-    downloadFile(JSON.stringify(allData.value), `${selectedHeroData.value?.possesiveName} data [Marvel Rivals Proficiency Calculator].mrprof`);
+    downloadFile(JSON.stringify(heroData.value), `${selectedHeroData.value?.possesiveName} data [Marvel Rivals Proficiency Calculator].mrprof`);
 }
 function downloadData() {
     downloadFile(JSON.stringify(allData.value), `Your Data [Marvel Rivals Proficiency Calculator].mrprof`);

@@ -394,6 +394,28 @@ const changelogEntries = ref<ChangeLogEntry[]>([
             'Fixed an unknown long-standing issue with the active state (on click) of the main tabs on the hero pages. Now it shows a flicker of yellow just like the game client',
             'Fixed an uncaught error with the math-enabled numerical inputs'
         ]
+    },
+    {
+        version: {
+            number: '1.2.3',
+            date: 'Apr 14, 2026'
+        },
+        title: 'More QoL changes and bug fixes',
+        description: `Improved hero page (again) - it's now easier than ever to change your current level data, no more menu inception.
+        <br/>
+        Fixed some major issues with importing/downloading data.
+        `,
+        list: [
+            'Added ability to increase the current level by 1 just by pressing on it (now marked with a chevron) - resets proficiency points to 0',
+            'Added ability to drag/slide the proficiency points meter to set your proficiency points',
+            'Fixed "Download My Data" button downloading the selected hero\'s data instead of all the data when a hero was selected',
+            'Fixed Import data page not honoring the user choices of what heroes to overwrite (be it custom hero info or stats)',
+            'Added a visual interface to see what heroes are being imported which also allows to filter out heroes (stats or info - for custom heroes) when importing'
+        ],
+        images: [
+            '/img/changelog/v1.2.3/hero.webp',
+            '/img/changelog/v1.2.3/import.webp'
+        ]
     }
 ])
 changelogEntries.value.reverse();

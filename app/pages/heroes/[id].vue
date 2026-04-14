@@ -138,7 +138,21 @@
                                 </div>
                                 <h2>{{ currentRankComp.rank.name }}</h2>
                             </div>
-                            <div class="level">
+                            <div
+                                :class="{ level: 1, 'can-level-up': canLevelUp.state }"
+                                @click.stop="levelUp"
+                                :title="canLevelUp.state ? 'Level Up' : undefined"
+                            >
+                                <Tex
+                                    v-if="canLevelUp.state"
+
+                                    image="levelUp"
+
+                                    color="var(--light-blue-highlight)"
+                                    
+                                    width="20px"
+                                    height="20px"
+                                />
                                 LV{{ currentRankComp.level }}
                             </div>
                         </div>
@@ -162,6 +176,8 @@
                                     </p>
                                 </Tex>
                                 <div
+                                    ref="pointsSlider"
+
                                     class="progress-bar"
                                     :style="{
                                         '--progress': (
@@ -169,6 +185,11 @@
                                         ) + '%'
                                     }"
                                 >
+                                    <div class="drag-area"
+                                        @pointerdown="pointsDragStart"
+                                        @touchstart="pointsDragStart"
+                                    />
+
                                     <div class="inner" />
                                 </div>
                             </div>
@@ -356,7 +377,7 @@
 <style src="@/assets/style/pages/heroes/id.sass" scoped></style>
 
 <script setup lang="ts">
-import { useModalManager } from '#imports';
+import { isMobile, useModalManager } from '#imports';
 import { CHALLENGE_ICONS, CHALLENGE_NAMES, DEFAULT_HERO_STORE, DEFAULT_PREFERENCES_STORE, getAverageStatsForHero, getHeroMatchCount, levelToRank, PROFICIENCY_RANKS, replaceRewardPlaceholders, type Challenge, type PlayerHeroStore, type PreferencesStore, type ProficiencyRank, type Reward } from '~/assets/data/common';
 import { createHero, deleteHero, editHero, HERO_LIST, UNKNOWN_HERO } from '~/assets/data/heroes';
 import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
@@ -539,6 +560,99 @@ const currentRankComp = computed(() => {
 
 const finishedAnimation = ref(false);
 
+const canLevelUp = computed(() => {
+    const level = storedLevel.value.level;
+    const maxRank = Object.values(PROFICIENCY_RANKS).at(-1)!;
+
+    return { state: level + 1 <= maxRank.levelEnd, level };
+})
+function levelUp() {
+    if (!canLevelUp.value.state)
+        return;
+
+    setLevel(canLevelUp.value.level + 1);
+
+    storedLevel.value.points = 0;
+
+    notify(
+        `Leveled up to LV${canLevelUp.value.level + 1}!`,
+        2000, 
+        { image: 'levelUp', width: 20, height: 20, color: 'var(--color)' }
+    );
+}
+
+function setLevel(level: number) {
+    storedLevel.value.level = level;
+    storedLevel.value.rank = levelToRank(level)?.id ?? PROFICIENCY_RANKS.agent!.id;
+    if (storedLevel.value.points > PROFICIENCY_RANKS[storedLevel.value.rank]!.xpPerLevel)
+        storedLevel.value.points = PROFICIENCY_RANKS[storedLevel.value.rank]!.xpPerLevel - 1;
+
+    selectedRank.value = storedLevel.value.rank;
+}
+
+const pointsDraggableSlider = useTemplateRef('pointsSlider');
+const pointsIsDragging = ref(false);
+const initialPoints = ref(0);
+const pointsInitialX = ref(0);
+const pointsCurrentX = ref(0);
+
+const touchDevice = isTouchDevice();
+
+function getClientX(e: PointerEvent|TouchEvent) {
+    return (e as PointerEvent).clientX ?? (e as TouchEvent).touches[0]?.clientX ?? 0;
+}
+
+function pointsDragStart(e: PointerEvent|TouchEvent) {
+    const x = getClientX(e)
+    pointsInitialX.value = x;
+    pointsIsDragging.value = true;
+    initialPoints.value = currentRankComp.value.points;
+
+    if (!touchDevice.value && pointsDraggableSlider.value) {
+        const rect = pointsDraggableSlider.value.getBoundingClientRect();
+        const sliderWidth = rect.width;
+        const dist = Math.abs(x - rect.left);
+        const percent = dist / sliderWidth;
+
+        let points = Math.floor(currentRankComp.value.rank.xpPerLevel * percent);
+
+        if (points < 0)
+            points = 0;
+        if (points > currentRankComp.value.rank.xpPerLevel)
+            points = currentRankComp.value.rank.xpPerLevel - 1;
+
+        storedLevel.value.points = points;
+        initialPoints.value = points;
+    }
+}
+
+function pointsDragMove(e: PointerEvent|TouchEvent) {
+    if (!pointsIsDragging.value || !pointsDraggableSlider.value)
+        return;
+
+    pointsCurrentX.value = getClientX(e);
+
+    const sliderWidth = pointsDraggableSlider.value.getBoundingClientRect().width;
+    const diff = pointsCurrentX.value - pointsInitialX.value;
+    const percent = diff / sliderWidth;
+    
+    let points = initialPoints.value + Math.floor(currentRankComp.value.rank.xpPerLevel * percent);
+
+    if (points < 0)
+        points = 0;
+    if (points > currentRankComp.value.rank.xpPerLevel)
+        points = currentRankComp.value.rank.xpPerLevel - 1;
+
+    storedLevel.value.points = points;
+}
+
+function pointsDragEnd() {
+    pointsIsDragging.value = false;
+}
+
+useEvent(['pointermove', 'touchmove'], pointsDragMove);
+useEvent(['pointerup', 'touchend'], pointsDragEnd);
+
 function modifyHeroData() {
     openModal(ModifyHeroData, {
         title: 'Update your stats',
@@ -574,12 +688,7 @@ function selectCurrentLevel(callback = () => {}, callbackOnSuccess = false) {
     })
     .promise
     .then((level: number) => {
-        storedLevel.value.level = level;
-        storedLevel.value.rank = levelToRank(level)?.id ?? PROFICIENCY_RANKS.agent!.id;
-        if (storedLevel.value.points > PROFICIENCY_RANKS[storedLevel.value.rank]!.xpPerLevel)
-            storedLevel.value.points = PROFICIENCY_RANKS[storedLevel.value.rank]!.xpPerLevel - 1;
-
-        selectedRank.value = storedLevel.value.rank;
+        setLevel(level);
 
         notify(
             `Updated your level!`,
