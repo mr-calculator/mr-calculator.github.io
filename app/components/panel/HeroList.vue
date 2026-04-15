@@ -43,7 +43,7 @@
                 />
             </div>
         </div>
-        <ul class="hero-list">
+        <ul class="list">
             <li v-if="addHeroEnabled && filterByRole == 'all-roles' && !filterFavourites && !searchText">
                 <component
                     :is="links ? NuxtLink : 'div'"

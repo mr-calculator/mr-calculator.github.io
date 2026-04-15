@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "strict": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["../app/*"]
+        }
+    },
+    "include": [
+        "./**/*.ts",
+        "../app/assets/data/**/*.ts"
+    ],
+    "exclude": ["../node_modules"]
+}

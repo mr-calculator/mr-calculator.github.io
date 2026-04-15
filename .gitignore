@@ -24,5 +24,8 @@ logs
 !.env.example
 
 # Other
-scripts/
+scripts/*
 !scripts/fetch-commits.js
+!scripts/add-hero
+!scripts/add-hero/*
+!scripts/tsconfig.json
