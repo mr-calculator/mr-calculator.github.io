@@ -146,7 +146,7 @@
                                         class="inner"
                                         @click="credibilityClickHero(hero.heroId)"
                                     >
-                                        <h3>{{ hero.matchCount.toLocaleString() }}</h3>
+                                        <h3>{{ hero.matchCount?.toLocaleString() ?? 0 }}</h3>
                                         <p>MATCHES</p>
                                     </div>
                                 </div>
@@ -176,17 +176,26 @@
                             <h3 class="profile">
                                 {{ credibilitySelectedHero.heroName }}
                             </h3>
-                            <h4>Average Stats per 10 minutes</h4>
-                            <ul class="stats with-border-decorations">
-                                <li v-for="[statType, statValue] in Object.entries(credibilitySelectedHero.avgStats)">
-                                    <img
-                                        :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
-                                        :alt="`${CHALLENGE_NAMES[statType as Challenge['type']]!} Icon`"
+                            <template
+                                v-if="credibilitySelectedHero.avgStats"
+                            >
+                                <h4>Average Stats per 10 minutes</h4>
+                                <ul class="stats with-border-decorations">
+                                    <li
+                                        v-for="[statType, statValue] in Object.entries(credibilitySelectedHero.avgStats)"
                                     >
-                                    <p>{{ CHALLENGE_NAMES[statType as Challenge['type']]! }}</p>
-                                    <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
-                                </li>
-                            </ul>
+                                        <img
+                                            :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
+                                            :alt="`${CHALLENGE_NAMES[statType as Challenge['type']]!} Icon`"
+                                        >
+                                        <p>{{ CHALLENGE_NAMES[statType as Challenge['type']]! }}</p>
+                                        <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
+                                    </li>
+                                </ul>
+                            </template>
+                            <div v-else class="no-stats">
+                                <h3>Looks like we don't have generic stats for {{ credibilitySelectedHero._hero.name }} yet.</h3>
+                            </div>
 
                             <br/>
                             <FormButton
@@ -841,11 +850,11 @@ const allHeroesWithStats = HERO_LIST.map(h => {
         heroId: h.id,
         heroName: h.name,
         heroAvatar: `${h.dataDir}head.webp`,
-        percent: matchCount / highestMatchCount,
+        percent: matchCount ? matchCount / highestMatchCount : .2,
         matchCount,
         avgStats
     }
-});
+}).sort((a, b) => a._hero.name.localeCompare(b._hero.name));
 
 const credibilitySelectedHeroId = ref<string|null>(null);
 const credibilitySelectedHero = computed(() => {

@@ -1,3 +1,5 @@
+import 'dotenv/config'
+import { log } from "@clack/prompts";
 import fs from "fs"
 import path from "path";
 import sharp from "sharp";
@@ -35,7 +37,7 @@ const GAME_FILES_DIRECTORY = process.env.GAME_FILES_DIRECTORY!;
  * @param internalId Marvel Game ID (e.g.: 1031)
  * @param heroId kebab-case id of hero
  */
-export async function copyImages(internalId: string, heroId: string) {
+export async function copyImages(internalId: string, heroId: string, logger: typeof log) {
     const heroDir = `./public/img/heroes/data/${heroId}/`;
     if (!fs.existsSync(heroDir))
         fs.mkdirSync(heroDir)
@@ -43,6 +45,11 @@ export async function copyImages(internalId: string, heroId: string) {
     for (const [result, resourcePathAny] of Object.entries(FILES)) {
         const resourcePath = resourcePathAny.replaceAll('%HERO_ID%', internalId);
         const resourceFullPath = path.join(GAME_FILES_DIRECTORY, resourcePath) + '.png';
+
+        if (!fs.existsSync(resourceFullPath)) {
+            logger.error(`Couldn\'t find resource [${resourcePath}], skipping.`);
+            continue;
+        }
 
         // cut portrait above the knees
         if (result == 'portrait') {

@@ -1,6 +1,8 @@
 import fs from "fs";
 import { Challenge, CHALLENGE_PLAY_RANKS, HeroRole, PROFICIENCY_RANKS } from "../../app/assets/data/common";
 import { guessChallenge } from "../../app/assets/data/converge";
+import { HERO_FILE_PATH } from "../add-hero/index";
+import { log } from "@clack/prompts";
 
 const emptyChallenge = () =>({
     type: 'damage',
@@ -11,6 +13,10 @@ const emptyChallenge = () =>({
 const template = `import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const %HERO_NAME_CONST%: HeroData = {
+    meta: {
+        releasedAt: '%HERO_RELEASE_DATE%',
+        featured: true
+    },
     id: '%HERO_ID%',
     name: '%HERO_NAME%',
     aliases: [
@@ -46,17 +52,22 @@ export function makeHeroFile({
     mission1Req: string,
     mission2: Challenge['type'],
     mission2Req: string,
-}) {
+}, logger: typeof log) {
     // replace variables with info
     let file = template.replaceAll('%HERO_ID%', id)
                        .replaceAll('%HERO_NAME%', name)
                        .replaceAll('%HERO_NAME_CONST%', name.replace(/\s+/g, ""))
                        .replaceAll('%HERO_ROLES%', `[${roles.map(r => `'${r}'`).join(', ')}]`)
                        .replaceAll('%HERO_COLOR%', color)
+                       .replaceAll('%HERO_RELEASE_DATE%', new Date().toISOString().substring(0, 10))
 
     // guess missions
     const challenge1 = guessChallenge(mission1, parseFloat(mission1Req));
+    if (!challenge1)
+        logger.warn(`Could not find mission 1 [${mission1}] requirement pairings, filling with damage 0.`);
     const challenge2 = guessChallenge(mission2, parseFloat(mission2Req));
+    if (!challenge2)
+        logger.warn(`Could not find mission 2 [${mission2}] requirement pairings, filling with damage 0.`);
 
     // fill all ranks with missions and needed/reward values
     for (const rankId of Object.keys(PROFICIENCY_RANKS)) {
@@ -91,5 +102,5 @@ export function makeHeroFile({
 }`;
 
     // write the ts file
-    fs.writeFileSync(`./app/assets/data/heroes/${id}.ts`, file, { encoding: 'utf-8'});
+    fs.writeFileSync(`${HERO_FILE_PATH}${id}.ts`, file, { encoding: 'utf-8'});
 }
