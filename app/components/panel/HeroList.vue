@@ -43,7 +43,96 @@
                 />
             </div>
         </div>
+        <component
+            v-if="!!featuredHero"
+            :is="links ? NuxtLink : 'div'"
+            class="featured-hero"
+            
+            :to="`/heroes/${featuredHero.hero.id}`"
+            @click="clickHero(featuredHero.hero.id)"
+            :style="{
+                '--hero-color': featuredHero.hero.color
+            }"
+        >
+            <div class="color-mask" />
+
+            <div class="new">
+                NEW
+            </div>
+            <div
+                class="prestige"
+                :style="{
+                    '--prestige-image': `url(${featuredHero.hero.dataDir}prestige.webp)`,
+                }"
+            >
+                <div class="stroke" />
+                <img :src="`${featuredHero.hero.dataDir}prestige.webp`" />
+            </div>
+
+            <div class="info">
+                <h3 class="name">
+                    {{ featuredHero.hero.name }}
+                </h3>
+            </div>
+
+            <div v-if="featuredHeroIsFavourite || featuredHeroIsChecked" class="check">
+                <Tex
+                    class="check-tex"
+                    :image="featuredHeroIsChecked ? 'checkCorner' : 'favouriteCorner'"
+
+                    width="45px"
+                    height="45px"
+                />
+            </div>
+
+            <div class="bar">
+                <div class="rank-icon-wrapper">
+                    <img v-if="featuredHeroRankDetails" :src="featuredHeroRankDetails.icon" />
+                </div>
+                <p class="role">
+                    <span v-if="heroRolesAsArray(featuredHero.hero.roles).length == 1">
+                        {{ heroRolesAsArray(featuredHero.hero.roles)[0] }}
+                    </span>
+                    <Tex
+                        v-for="role in heroRolesAsArray(featuredHero.hero.roles)"
+                        :src="ROLE_ICONS[role]"
+                        color="#fff"
+
+                        width="30px"
+                        height="30px"
+                    />
+                </p>
+            </div>
+        </component>
         <ul class="list">
+            <!-- <li
+                v-if="!!featuredHero"
+                :key="featuredHero.hero.id"
+            >
+                <component
+                    :is="links ? NuxtLink : 'div'"
+                    :to="`/heroes/${featuredHero.hero.id}`"
+
+                    @click="clickHero(featuredHero.hero.id)"
+                >
+                    <div class="promo-hero">
+
+                    </div>
+
+                    <PanelHeroCard
+                        :id="featuredHero.hero.id"
+                        :name="featuredHero.hero.name"
+                        :roles="featuredHero.hero.roles"
+                        :color="featuredHero.hero.color"
+                        :portrait="`${featuredHero.hero.dataDir}portrait.webp`"
+
+                        :is-favourite="favourites.includes(featuredHero.hero.id)"
+                        :is-checked="selectedHero == featuredHero.hero.id"
+                        :rank="featuredHero.level.rank"
+                    />
+                </component>
+            </li> -->
+
             <li v-if="addHeroEnabled && filterByRole == 'all-roles' && !filterFavourites && !searchText">
                 <component
                     :is="links ? NuxtLink : 'div'"
@@ -94,8 +183,8 @@
 
 <script setup lang="ts">
 import { NuxtLink } from '#components';
-import { DEFAULT_HERO_STORE, type HeroData, type HeroRole, type PlayerHeroStore } from '~/assets/data/common';
-import { HERO_LIST } from '~/assets/data/heroes';
+import { DEFAULT_HERO_STORE, PROFICIENCY_RANKS, ROLE_ICONS, type HeroData, type HeroRole, type PlayerHeroStore } from '~/assets/data/common';
+import { getFeaturedHero, HERO_LIST, heroRolesAsArray } from '~/assets/data/heroes';
 import { tex, texUrl } from '~/assets/data/textures';
 
 const props = withDefaults(defineProps<{
@@ -195,7 +284,6 @@ await useGsap(({ scrollTrigger }) => {
 
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 
-
 const filterByRole = ref('all-roles')
 const filterFavourites = ref(false);
 
@@ -203,9 +291,7 @@ const favourites = useLocalStorage<HeroData['id'][]>(`favourite_heroes`, []);
 
 const searchText = ref('');
 
-const heroList = computed<{ hero: HeroData, level: PlayerHeroStore }[]>(() => {
-    let list = [...HERO_LIST, ...(props.showUnknownHeroes ? unknownHeroes.value : [])];
-
+function filterHeroList(list: HeroData[]) {
     if (filterByRole.value != 'all-roles' && filterByRole.value != 'favourite')
         list = list.filter(h => 
             h.roles == filterByRole.value 
@@ -233,6 +319,42 @@ const heroList = computed<{ hero: HeroData, level: PlayerHeroStore }[]>(() => {
     });
 
     return output;
+}
+
+const featuredHero = computed(() => {
+    const featured = getFeaturedHero();
+    if (!featured)
+        return null;
+
+    const filtered = filterHeroList([featured]);
+    if (filtered.length == 0)
+        return null;
+
+    return filtered[0]!;
+});
+
+const featuredHeroRankDetails = computed(() => {
+    if (!featuredHero.value?.level.rank)
+        return null;
+
+    return PROFICIENCY_RANKS[featuredHero.value.level.rank];
+});
+
+const featuredHeroIsFavourite = computed(() => 
+    featuredHero.value ? favourites.value.includes(featuredHero.value.hero.id) : false
+);
+const featuredHeroIsChecked = computed(() => props.selectedHero == featuredHero.value?.hero.id);
+
+const heroList = computed<{ hero: HeroData, level: PlayerHeroStore }[]>(() => {
+    let list = [...HERO_LIST, ...(props.showUnknownHeroes ? unknownHeroes.value : [])];
+
+    // remove featured hero from the list
+    if (featuredHero.value) {
+        const featuredIndex = list.findIndex(h => h.id == featuredHero.value!.hero.id);
+        list.splice(featuredIndex, 1);
+    }
+
+    return filterHeroList(list);
 });
 
 function clickHero(heroId: string) {

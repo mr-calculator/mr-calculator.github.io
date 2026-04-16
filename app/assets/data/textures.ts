@@ -276,6 +276,10 @@ export const TEX = {
         default: 'bg/hero-card-bg.webp',
         hover: 'bg/hero-card-hover.webp'
     } as Texture,
+    heroCardFeatured: {
+        default: 'bg/hero-featured-card.webp',
+        hover: 'bg/hero-featured-card-hover.webp',
+    } as Texture,
     heroCardBorder: {
         default: 'bg/hero-card-border.png'
     } as Texture,
@@ -339,6 +343,9 @@ export const TEX = {
     } as Texture,
     heroCardMask: {
         default: 'mask/hero-card-mask.png'
+    } as Texture,
+    heroFeaturedMask: {
+        default: 'mask/hero-featured-card-mask.png'
     } as Texture,
     heroPrestigeMask: {
         default: 'mask/hero-prestige.webp'
@@ -409,6 +416,10 @@ export const TEX = {
     } as Texture,
     promoHeroNameplate: {
         default: 'promo/hero-nameplate.png'
+    } as Texture,
+    promoFeaturedBar: {
+        default: 'promo/featured-bar.png',
+        active: 'promo/featured-bar-active.png'
     } as Texture
 
 

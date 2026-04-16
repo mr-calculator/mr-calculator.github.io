@@ -622,6 +622,11 @@ export function replaceRewardPlaceholders(string: string, hero: HeroData) {
 }
 
 export interface HeroData {
+    meta?: {
+        releasedAt?: string,
+        featured?: boolean
+    },
+
     id: string,
     name: string,
     aliases?: string[],
@@ -638,6 +643,11 @@ export interface HeroData {
     iconLargeMask?: string
 }
 export const HeroDataSchema = z.object({
+    meta: z.object({
+        releasedAt: z.iso.date().optional(),
+        featured: z.boolean().optional()
+    }).optional(),
+
     id: z.string(),
     name: z.string(),
     aliases: z.array(z.string()).optional(),

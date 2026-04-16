@@ -16,6 +16,7 @@
     font-family: RefrigeratorDeluxeHeavy, sans-serif
     font-size: 32px
 
+    text-align: center
     text-transform: uppercase
 
     cursor: pointer

@@ -4,7 +4,16 @@ export const WhiteFox: HeroData = {
     id: 'white-fox',
     name: 'White Fox',
     aliases: [
-        
+        'Ami Han',
+        '한아미',
+        'Agent F-One',
+        'Director Han',
+        'The Last Kumiho',
+        'Yoon Ji-woo',
+        'Nick Furry',
+
+        '정의의 시간',
+        'Jeong-ui-ui sigan'
     ],
     roles: ['strategist'],
     color: '#64d5e3',

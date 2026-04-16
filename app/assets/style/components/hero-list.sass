@@ -104,6 +104,291 @@
             .checkbox
                 height: fit-content
 
+    .featured-hero
+        $prestige-size: 283px
+        $spacing-top: 320px - 180px
+
+        --width: 300px
+        --prestige-left: -100px
+        --spacing-left: calc(#{$prestige-size} - 140px)
+
+        position: relative
+        width: var(--width)
+        height: 320px
+
+        padding-top: $spacing-top
+        padding-left: var(--spacing-left)
+        margin-bottom: 30px
+
+        display: flex
+        align-items: center
+
+        transition: transform .1s ease-out
+        cursor: pointer
+
+        +media-tablet
+            --width: 400px
+            --prestige-left: -40px
+            --spacing-left: calc(#{$prestige-size} + var(--prestige-left))
+
+        +media-desktop
+            --width: 600px
+
+        @mixin bg-mask($position: bottom)
+            mask: var(--tex-heroCardFeatured) no-repeat
+            mask-size: var(--width) 180px
+            mask-position: $position
+
+        &:hover
+            transform: scale(1.05) translateY(-20px)
+
+            &::after
+                content: ""
+                position: absolute
+                top: $spacing-top - 15px
+                left: -8px
+                right: -8px
+                bottom: -15px
+
+                background: var(--tex-heroCardFeatured-hover) no-repeat
+                background-size: 100% 100%
+
+                z-index: -1
+
+            .color-mask::before
+                background: var(--hero-color)
+                mask: var(--tex-heroFeaturedMask) no-repeat
+                mask-position: bottom
+                mask-size: 100% 90%
+
+            .prestige
+                .stroke
+                    left: -12px
+                    
+                    &::after
+                        left: 6px
+                        background: $color
+
+            .new
+                filter: brightness(1.5)
+                color: $blue
+
+            .info
+                .name
+                    color: color-mix(in srgb, var(--hero-color), #{$color} 70%)
+
+            .bar
+                background: #fff
+
+                .role
+                    color: $light-blue
+            
+                    .texture
+                        --tex-color: #{$light-blue} !important
+
+        &::before
+            content: ""
+            position: absolute
+            bottom: 0
+            left: 0
+            width: var(--width)
+            height: 180px
+
+            background: var(--tex-heroCardFeatured) no-repeat
+            background-size: 100% 100%
+            background-position: center
+        
+        .color-mask
+            position: absolute
+            bottom: 0
+            left: 0
+            width: var(--width)
+            height: 180px
+
+            +bg-mask(top)
+
+            z-index: 1
+
+            &::before
+                content: ""
+                position: absolute
+                top: 0
+                left: 0
+                bottom: 0
+                right: 0
+
+        > *:not(.color-mask)
+            z-index: 2
+
+        .prestige
+            position: absolute
+            top: 0
+            left: var(--prestige-left)
+            width: 283px
+            height: 320px
+
+            .stroke
+                position: absolute
+                left: -6px
+                width: 100%
+                height: 100%
+
+                mask-image: var(--tex-heroPrestigeMask)
+                mask-repeat: no-repeat
+                mask-size: 105%
+                mask-position: 50% 10%
+
+                transition: left .05s ease-out
+
+                &::before
+                    content: ""
+                    position: absolute
+                    top: 0
+                    left: 0
+                    width: 100%
+                    height: 100%
+                    mask-image: var(--prestige-image)
+                    mask-size: 100% 100%
+
+                    background: #fff
+
+                &::after
+                    content: ""
+                    position: absolute
+                    left: 3px
+                    width: 100%
+                    height: 100%
+                    mask-image: var(--prestige-image)
+                    mask-size: 100% 100%
+
+                    background: var(--hero-color)
+
+                    transition: background .1s ease-out, left .05s ease-out
+
+            img
+                display: block
+                height: 100%
+
+                mask-image: var(--tex-heroPrestigeMask)
+                mask-repeat: no-repeat
+                mask-size: 105%
+                mask-position: 50% 10%
+
+                -webkit-user-drag: none
+                user-select: none
+
+        .new
+            position: absolute
+            top: calc($spacing-top / 2)
+            right: -18px
+            transform: translateY(-25%)
+
+            padding: 10px 30px
+
+            background: var(--tex-tab-active)
+            background-size: 100% 100%
+
+            display: flex
+            justify-content: center
+            align-items: center
+
+            font-family: RefrigeratorDeluxeHeavy
+            font-size: 30px
+            color: $text-color
+
+            z-index: 2
+
+            +media-max-tablet
+                top: calc($spacing-top / 1.5)
+                right: -10px
+
+                font-size: 24px
+                padding: 5px 10px
+
+        .info
+            position: relative
+            width: 100%
+            height: 100%
+
+            padding-bottom: 50px
+
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            gap: 10px
+
+            +media-max-tablet
+                gap: 3px
+
+            .name
+                font-size: 28px
+                line-height: 24px
+                font-style: italic
+                text-transform: uppercase
+                text-align: center
+                color: $blue
+
+                +media-desktop
+                    font-size: 38px
+                    line-height: 32px
+
+                +media-large-desktop
+                    font-size: 58px
+                    line-height: 52px
+
+        .check
+            position: absolute
+            top: $spacing-top
+            right: 5.5px
+
+            .check-tex
+                transform: skew(-8deg)
+
+        .bar
+            position: absolute
+            bottom: 0
+            left: 0
+            width: 100%
+            height: 50px
+
+            padding: 0 40px 0 20px
+            background: $dark
+
+            +bg-mask
+            mask-size: calc(var(--width) + 2px) 180px
+
+            display: flex
+            justify-content: space-between
+            align-items: center
+
+            +media-mobile
+                padding: 0 30px 0 20px
+
+            .role
+                display: flex
+                align-items: center
+                gap: 10px
+                font-family: RefrigeratorDeluxeHeavy
+                font-size: 28px
+                text-transform: uppercase
+
+                color: #fff
+
+                +media-max-tablet
+                    font-size: 17px
+
+            .rank-icon-wrapper
+                width: 30px
+                height: 30px
+
+                display: flex
+                justify-content: center
+                align-items: center
+
+                img
+                    width: 50px
+
     .list
         width: 100%
 

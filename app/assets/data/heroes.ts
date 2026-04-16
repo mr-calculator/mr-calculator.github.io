@@ -1,4 +1,4 @@
-import { PROFICIENCY_RANKS, type HeroData } from "./common";
+import { PROFICIENCY_RANKS, type HeroData, type HeroRole } from "./common";
 import { AdamWarlock } from "./heroes/adam-warlock";
 import { CloakAndDagger } from "./heroes/cloak-and-dagger";
 import { Deadpool } from "./heroes/deadpool";
@@ -258,4 +258,34 @@ export function deleteHero(id: string) {
 
     const heroIndex = unknownHeroes.value.findIndex(h => h.id == id);
     unknownHeroes.value.splice(heroIndex, 1);
+}
+
+
+export function getFeaturedHero(maxDisplayDayCount = 15) {
+    const featuredHeroes = HERO_LIST.filter(h => h.meta?.featured && !!h.meta?.releasedAt);
+
+    let latestDate = new Date('1970-01-01');
+    let latestHero: HeroData|null = null;
+    for (const hero of featuredHeroes) {
+        const heroDate = new Date(hero.meta!.releasedAt!);
+        if (latestDate.getTime() < heroDate.getTime()) {
+            latestHero = hero;
+            latestDate = heroDate;
+        }
+    }
+
+    if (!latestHero)
+        return null;
+
+    if (Date.now() - new Date(latestHero.meta!.releasedAt!).getTime() < maxDisplayDayCount * 24 * 60 * 60 * 1000)
+        return latestHero;
+
+    return null;
+}
+
+export function heroRolesAsArray(heroRoles: HeroRole|HeroRole[]) {
+    if (Array.isArray(heroRoles))
+        return heroRoles;
+
+    return [ heroRoles ]
 }

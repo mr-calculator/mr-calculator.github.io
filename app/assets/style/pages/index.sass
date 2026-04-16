@@ -352,82 +352,120 @@
                 +media-large-desktop
                     grid-template-columns: 1fr 1fr
 
+                    padding: 80px 40px 40px 0px
+
                 +media-ml-desktop
                     &::before
                         display: none
 
-                .info
+                .featured-hero-desktop
+                    display: none
+
+                    +media-tablet
+                        grid-column: 1 / 3
+                        grid-row: 2 / 3
+                        display: block
+
+                        justify-self: start
+                        align-self: end
+
+                        z-index: 2
+
+                    +media-large-desktop
+                        grid-column: 1 / 2
+                        grid-row: 1 / 2
+
+                .right-wrapper
                     grid-column: 2 / 3
                     width: 100%
 
-                    display: none
+                    display: flex
                     flex-direction: column
-                    justify-content: center
                     align-items: center
-                    gap: 30px
+                    gap: 40px
 
-                    padding: 40px 0
+                    .featured-hero-mobile
+                        z-index: 2
+                        margin-bottom: 40px
 
-                    z-index: 2
-
-                    .proficiency-icons-anim-wrapper
-                        width: 200px
-                        overflow: visible
-
-                        .proficiency-icons-anim
-                            width: fit-content
-                            display: flex
-                        
-
-                            .proficiency-icon
-                                width: 100px
-                                height: 100px
-
-                                object-fit: cover
-
-                                user-select: none
-                                -webkit-user-drag: none
-
-                                // +media-desktop
-                                //     width: 150px
-
-                    h1
-                        text-align: center
-
-                        span
-                            display: inline-block
-                            -webkit-text-fill-color: color-mix(in srgb, #{$color} 75%, transparent) !important
-
-                    h1,
-                    h1 span,
-                    h1 > ::v-deep(div)
-                        background: var(--tex-promoCtaTextTexture)
-                        background-size: 1000px 100%
-                        -webkit-background-clip: text
-                        -webkit-text-fill-color: transparent
-
-                        animation: scroll-text-bg 32s linear 0s infinite
-
-                        +media-ml-desktop
-                            background-image: var(--tex-promoCtaTextTextureDark)
-
-                    h2
-                        font-size: 26px
-                        text-align: center
-                        text-transform: none
-                        color: $light
+                        width: fit-content
+                        flex-grow: 0
+                        flex-shrink: 0
 
                         +media-tablet
-                            width: 70%
+                            display: none
+                    
+                    .info
+                        width: 100%
 
-                        +media-desktop
-                            font-size: 32px
+                        display: none
+                        flex-direction: column
+                        justify-content: center
+                        align-items: center
+                        gap: 30px
 
-                        +media-ml-desktop
-                            color: $blue
+                        padding: 40px 0
 
-                    .call-to-action
-                        margin-top: 40px
+                        z-index: 3
+
+                        .proficiency-icons-anim-wrapper
+                            width: 200px
+                            overflow: visible
+
+                            .proficiency-icons-anim
+                                width: fit-content
+                                display: flex
+                            
+
+                                .proficiency-icon
+                                    width: 100px
+                                    height: 100px
+
+                                    object-fit: cover
+
+                                    user-select: none
+                                    -webkit-user-drag: none
+
+                                    // +media-desktop
+                                    //     width: 150px
+
+                        h1
+                            text-align: center
+
+                            span
+                                display: inline-block
+                                -webkit-text-fill-color: color-mix(in srgb, #{$color} 75%, transparent) !important
+
+                        h1,
+                        h1 span,
+                        h1 > ::v-deep(div)
+                            background: var(--tex-promoCtaTextTexture)
+                            background-size: 1000px 100%
+                            -webkit-background-clip: text
+                            -webkit-text-fill-color: transparent
+
+                            animation: scroll-text-bg 32s linear 0s infinite
+
+                            +media-ml-desktop
+                                background-image: var(--tex-promoCtaTextTextureDark)
+
+                        h2
+                            font-size: 26px
+                            text-align: center
+                            text-transform: none
+                            color: $light
+
+                            +media-tablet
+                                width: 70%
+
+                            +media-desktop
+                                font-size: 32px
+
+                            +media-ml-desktop
+                                color: $blue
+
+                        .call-to-action
+                            margin-top: 40px
 
             &.credibility
                 position: relative

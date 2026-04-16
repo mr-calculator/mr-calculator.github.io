@@ -69,30 +69,45 @@
         </header>
         <main>
             <section id="hero" class="hero h100 separator">
-                <div class="info">
-                    <div class="proficiency-icons-anim-wrapper">
-                        <div class="proficiency-icons-anim">
-                            <img
-                                v-for="{ icon } in duplicateProficiencyRanks"
-                                class="proficiency-icon"
-                                :src="icon"
-                            />
-                        </div>
-                    </div>
-                    <h1 id="hero-title">
-                        Plan Your Path to <span id="hero-title-mastery">Mastery</span>
-                    </h1>
-                    <h2 id="hero-subtitle">
-                        Calculate exactly how long it takes to unlock every proficiency reward for any hero
-                    </h2>
+                <FeaturedHeroPromo
+                    v-if="!!featuredHero"
+                    :hero="featuredHero"
 
-                    <FormButton
-                        id="hero-cta"
-                        class="call-to-action"
-                        to="/heroes"
-                    >
-                        Start Calculating
-                    </FormButton>
+                    class="featured-hero-desktop"
+                />
+                <div class="right-wrapper">
+                    <div class="info">
+                        <div class="proficiency-icons-anim-wrapper">
+                            <div class="proficiency-icons-anim">
+                                <img
+                                    v-for="{ icon } in duplicateProficiencyRanks"
+                                    class="proficiency-icon"
+                                    :src="icon"
+                                />
+                            </div>
+                        </div>
+                        <h1 id="hero-title">
+                            Plan Your Path to <span id="hero-title-mastery">Mastery</span>
+                        </h1>
+                        <h2 id="hero-subtitle">
+                            Calculate exactly how long it takes to unlock every proficiency reward for any hero
+                        </h2>
+
+                        <FormButton
+                            id="hero-cta"
+                            class="call-to-action"
+                            to="/heroes"
+                        >
+                            Start Calculating
+                        </FormButton>
+                    </div>
+
+                    <FeaturedHeroPromo
+                        v-if="!!featuredHero"
+                        :hero="featuredHero"
+
+                        class="featured-hero-mobile"
+                    />
                 </div>
             </section>
             <section id="credibility" class="credibility h100">
@@ -507,14 +522,15 @@ import { AVG_COMP_MATCH_DURATION_MIN,
     type Challenge,
     type HeroData,
     type PlayerHeroStore,
-    type PreferencesStore 
+    type PreferencesStore, 
 } from '~/assets/data/common';
-import { HERO_LIST } from '~/assets/data/heroes';
+import { getFeaturedHero, HERO_LIST } from '~/assets/data/heroes';
 import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
 import {default as CalculatorPanel} from '~/components/panel/Calculator.vue';
 import { usePwaInstall } from '~/composables/usePwaInstall';
 import { Calculator } from '~/services/calculator';
 import type HorizontalScrollContainer from '~/components/panel/HorizontalScrollContainer.vue';
+import FeaturedHeroPromo from '~/components/panel/FeaturedHeroPromo.vue';
 
 useSeoMeta({
     title: 'Marvel Rivals Proficiency Calculator',
@@ -590,7 +606,7 @@ await useGsap(({ gsap, scrollTrigger, splitText }) => {
         ease: 'power1.in'
     }, '<');
 
-    gsap.set('#hero > .info', {
+    gsap.set('#hero .right-wrapper .info', {
         display: 'flex'
     });
 
@@ -790,6 +806,10 @@ await useGsap(({ gsap, scrollTrigger, splitText }) => {
 
 
 // ====================
+// promo hero
+const featuredHero = getFeaturedHero();
+
+//====================
 
 const totalMatches = getAllMatchCount().toLocaleString();
 function findHighestMatchCount() {

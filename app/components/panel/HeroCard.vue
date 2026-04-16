@@ -13,11 +13,19 @@
             height="100%"
             object-fit="cover"
         />
-        <img
+        <div
             class="hero-image"
-            :src="portrait"
-            :alt="`${name} Portrait`"
-        />
+            :style="{
+                '--hero-image': `url(${portrait})`,
+                '--hero-color': color
+            }"
+        >
+            <div class="stroke" />
+            <img
+                :src="portrait"
+                :alt="`${name} Portrait`"
+            />
+        </div>
         <Tex
             class="favourite-bg"
             image="heroCardBorder"
