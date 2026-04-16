@@ -1,5 +1,47 @@
 [
   {
+    "sha": "fbf59b9a4a7128f8162e4b54f84349e66a8440d5",
+    "node_id": "C_kwDORv7rQ9oAKGZiZjU5YjlhNGE3MTI4ZjgxNjJlNGI1NGY4NDM0OWU2NmE4NDQwZDU",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-04-15T16:39:23Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-04-15T16:39:23Z"
+      },
+      "message": "Added add-hero script to repository\nAdded LICENSE",
+      "tree": {
+        "sha": "c6e085b085c3e38121e2e9749ffe509a79236d36",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/c6e085b085c3e38121e2e9749ffe509a79236d36"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/fbf59b9a4a7128f8162e4b54f84349e66a8440d5",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/fbf59b9a4a7128f8162e4b54f84349e66a8440d5",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/fbf59b9a4a7128f8162e4b54f84349e66a8440d5",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/fbf59b9a4a7128f8162e4b54f84349e66a8440d5/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "704938b7ed1894289d11f7549122f06bca2485ac",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/704938b7ed1894289d11f7549122f06bca2485ac",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/704938b7ed1894289d11f7549122f06bca2485ac"
+      }
+    ]
+  },
+  {
     "sha": "704938b7ed1894289d11f7549122f06bca2485ac",
     "node_id": "C_kwDORv7rQ9oAKDcwNDkzOGI3ZWQxODk0Mjg5ZDExZjc1NDkxMjJmMDZiY2EyNDg1YWM",
     "commit": {

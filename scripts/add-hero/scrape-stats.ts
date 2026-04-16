@@ -1,5 +1,6 @@
 import fs from "fs"
 import { Challenge, HeroRole } from "../../app/assets/data/common";
+import { log } from "@clack/prompts";
 
 // RivalsMeta data structure for hero
 interface HeroData {
@@ -46,7 +47,9 @@ interface HeroData {
 // where to get and where to set
 const ENDPOINT = `https://rivalsmeta.com/api/hero-leaderboard/%CHARACTER_ID%?device=1&season=last`
 const STATS_FILE = './app/assets/data/average-hero-stats.json';
+const STATS_FILE_BACKUP = './app/assets/data/average-hero-stats_%DATE%.backup.json';
 const MATCHES_FILE = './app/assets/data/hero-matches.json';
+const MATCHES_FILE_BACKUP = './app/assets/data/hero-matches_%DATE%.backup.json';
 
 // to automatically convert from RivalsMeta structure to our own structure
 type MissionMap = Partial<Record<Challenge['type'], string[]|null>>;
@@ -85,10 +88,27 @@ const FINAL_HITS_MANUAL = JSON.parse(fs.readFileSync('./scripts/stats/data/avera
 let heroMatchCount: number = 0;
 
 // scrapes data for hero from every player available -> processes it
-export async function scrapeData(internalId: string, heroId: string, role: HeroRole) {
+export async function scrapeData(internalId: string, heroId: string, role: HeroRole, logger: typeof log) {
     // request RivalsMeta API
-    const res = await fetch(ENDPOINT.replace('%CHARACTER_ID%', internalId));
-    const data: HeroData = await res.json();
+    let data: HeroData|null = null;
+    try {
+        const res = await fetch(ENDPOINT.replace('%CHARACTER_ID%', internalId));
+        data = await res.json();
+    }
+    catch (err) {
+        logger.error(err instanceof Error ? err.message : String(err));
+        if (err instanceof Error && err.stack)
+            logger.error(err.stack);
+    }
+
+    if (!data) {
+        logger.error('Data could not be processed, generic average stats are skipped.');
+        return;
+    }
+    if (!data.players?.length) {
+        logger.error('Data did not include any players, generic average stats are skipped.');
+        return;
+    }
 
     const stats: Partial<Record<Challenge['type'], [string[], number[]]>> = {};
     // map current hero role to mission stats
@@ -138,7 +158,21 @@ export async function scrapeData(internalId: string, heroId: string, role: HeroR
     setHeroMatchCountInFile(heroId, heroMatchCount);
 }
 
+function fileNameFriendlyDate(date: Date) {
+    const year = date.getUTCFullYear()
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+    const hours = date.getUTCHours()
+    const minutes = date.getUTCMinutes()
+    const seconds = date.getUTCSeconds()
+    const millis = date.getUTCMilliseconds()
+    return `${year}-${month}-${day}.${hours}-${minutes}-${seconds}-${millis}`;
+}
+
 function setHeroStatsInFile(heroId: string, newStats: Partial<Record<Challenge['type'], number>>) {
+    // make a backup in case things go south
+    fs.copyFileSync(STATS_FILE, STATS_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+
     const stats = JSON.parse(fs.readFileSync(STATS_FILE, { encoding: 'utf-8' }));
 
     stats[heroId] = newStats;
@@ -147,6 +181,9 @@ function setHeroStatsInFile(heroId: string, newStats: Partial<Record<Challenge['
 }
 
 function setHeroMatchCountInFile(heroId: string, count: number) {
+    // make a backup in case things go south
+    fs.copyFileSync(MATCHES_FILE, MATCHES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+
     const matches = JSON.parse(fs.readFileSync(MATCHES_FILE, { encoding: 'utf-8' }));
 
     matches[heroId] = count;

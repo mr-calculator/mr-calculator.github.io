@@ -1,7 +1,17 @@
 import * as p from '@clack/prompts'
+import fs from 'fs';
 import { makeHeroFile } from './make-hero-file'
 import { copyImages } from './appropriate-images'
 import { scrapeData } from './scrape-stats'
+import { HeroData, HeroRole } from '~/assets/data/common';
+
+export const HERO_FILE_PATH = `./app/assets/data/heroes/`;
+
+interface HeroIdentity {
+    name: string,
+    id: string,
+    internalId: string
+}
 
 /**
  * Adds a new hero to the calculator
@@ -30,36 +40,131 @@ import { scrapeData } from './scrape-stats'
  * the hero everywhere.
  */
 async function main() {
-    p.intro('Add a new hero')
+    p.intro('Add a new hero');
 
+    const heroIdentity: HeroIdentity = (await p.group({
+        name: () => p.text({
+            message: 'Hero name',
+            placeholder: 'e.g.: Luna Snow',
+            validate: v => !v ? 'Name is required' : undefined
+        }),
+
+        id: ({ results }) => p.text({
+            message: 'String ID (leave empty to infer)',
+            placeholder: results.name ? inferHeroId(results.name) : 'e.g.: luna-snow'
+        }),
+        internalId: ({ results }) => p.text({
+            message: 'Internal ID (leave empty to infer)',
+            placeholder: inferInternalId((results.id as string) || inferHeroId(results.name!)) ?? 'e.g.: 1031',
+            validate: v => {
+                if (!v && !inferInternalId((results.id as string) || inferHeroId(results.name!)))
+                    return 'ID is required';
+            }
+        }),
+    }, {
+        onCancel: () => {
+            p.cancel('Cancelled')
+            process.exit(0)
+        }
+    })) as HeroIdentity;
+
+    if (!heroIdentity.id)
+        heroIdentity.id = inferHeroId(heroIdentity.name);
+    if (!heroIdentity.internalId)
+        // will have been validated and confirmed to exist by now
+        heroIdentity.internalId = inferInternalId(heroIdentity.id as string) as string;
+    else {
+        // let's see if we can expand the file with the new internal id - hero id pair
+        const added = addInternalIdPair(heroIdentity.id, heroIdentity.internalId);
+        if (added)
+            p.log.info(`Added [${heroIdentity.id}]: ${heroIdentity.internalId} to the local pair collection.`);
+    }
+
+    if (fs.existsSync(`${HERO_FILE_PATH}${heroIdentity.id}.ts`)) {
+        const choice = await p.select({
+            message: 'Hero file exists, what would you like to do?',
+            options: [
+                { value: 'overwrite', label: 'Overwrite hero (Full)' },
+                { value: 'stats', label: 'Scrape stats' },
+                { value: 'images', label: 'Copy images' },
+                { value: 'cancel', label: 'Cancel' },
+            ]
+        });
+
+        const heroNameConst = heroIdentity.name.replace(/\s+/g, "");
+        const { [heroNameConst]: heroData } = await import(
+            `../../${HERO_FILE_PATH}${heroIdentity.id}.ts`
+        ) as { [key: string]: HeroData };
+
+        switch (choice) {
+            case 'overwrite':
+                await createHeroFull(heroIdentity);
+
+                break;
+
+            case 'stats':
+                const roles = Array.isArray(heroData.roles) ? heroData.roles : [heroData.roles];
+                await scrapeStats(heroIdentity.internalId, heroIdentity.id, roles);
+
+                p.outro('Hero modification successful.');
+
+                break;
+
+            case 'images':
+                const spinner = p.spinner();
+                spinner.start('Copying images...');
+                await copyImages(heroIdentity.internalId, heroIdentity.id, p.log);
+                spinner.stop('Images copied and converted');
+
+                p.outro('Hero modification successful.');
+
+                break;
+
+            case 'cancel':
+            default:
+                p.cancel('Cancelled')
+                process.exit(0)
+        }
+    }
+    else
+        await createHeroFull(heroIdentity);
+}
+
+function inferHeroId(heroName: string) {
+    return heroName
+        .replace(/\s+/g, "-")
+        .replace(/[^a-zA-Z0-9-_]/g, "")
+        .replace(/-+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .toLowerCase();
+}
+
+const HERO_ID_CONV_PATH = './scripts/add-hero/hero-id-conversion.json';
+function inferInternalId(heroId: string): string|undefined {
+    const ids = JSON.parse(fs.readFileSync(HERO_ID_CONV_PATH, { encoding: 'utf-8' }));
+
+    return ids[heroId];
+}
+
+function addInternalIdPair(heroId: string, internalId: string) {
+    const ids = JSON.parse(fs.readFileSync(HERO_ID_CONV_PATH, { encoding: 'utf-8' }));
+
+    if (ids[heroId])
+        return false;
+
+    ids[heroId] = internalId;
+
+    fs.writeFileSync(HERO_ID_CONV_PATH, JSON.stringify(ids, undefined, 4));
+
+    return true;
+}
+
+async function createHeroFull(heroIdentity: HeroIdentity) {
     const hero = await p.group(
         {
-            name: () => p.text({
-                message: 'Hero name',
-                placeholder: 'Luna Snow',
-                validate: v => !v ? 'Name is required' : undefined
-            }),
-
-            id: ({ results }) => p.text({
-                message: 'String ID (leave empty to infer)',
-                placeholder: results.name?.  replace(/\s+/g, "-")
-                                            // Remove all characters except alphanumeric, dash, and underscore
-                                            .replace(/[^a-zA-Z0-9-_]/g, "")
-                                            // Replace multiple dashes with a single dash
-                                            .replace(/-+/g, "-")
-                                            // Trim leading and trailing dashes
-                                            .replace(/^-+|-+$/g, "")
-                                            .toLowerCase(),
-            }),
-            internalId: () => p.text({
-                message: 'Internal ID',
-                placeholder: '1070',
-                validate: v => !v ? 'ID is required' : undefined
-            }),
-
             color: () => p.text({
                 message: 'Theme color (hex)',
-                placeholder: '#00aaff',
+                placeholder: 'e.g.: #00aaff',
                 validate: v => !/^#[0-9a-fA-F]{6}$/.test(v ?? '') ? 'Must be a valid hex color' : undefined
             }),
 
@@ -86,7 +191,7 @@ async function main() {
             }),
             mission1Req: () => p.text({
                 message: 'Mission 1 Requirement',
-                placeholder: '21000',
+                placeholder: 'e.g.: 21000',
                 validate: v => isNaN(parseFloat(v ?? 'NaN')) ? 'Must be a number' : undefined
             }),
             mission2: () => p.select({
@@ -103,12 +208,16 @@ async function main() {
             }),
             mission2Req: () => p.text({
                 message: 'Mission 2 Requirement',
-                placeholder: '21000',
+                placeholder: 'e.g.: 21000',
                 validate: v => isNaN(parseFloat(v ?? 'NaN')) ? 'Must be a number' : undefined
             }),
 
-            confirm: ({ results }) => p.confirm({
-                message: `Create hero "${results.name}"?`
+            scrape: () => p.confirm({
+                message: 'Scrape hero data?'
+            }),
+
+            confirm: () => p.confirm({
+                message: `Create hero "${heroIdentity.name}"?`
             })
         },
         {
@@ -124,33 +233,32 @@ async function main() {
         process.exit(0)
     }
 
-    const id = (hero.id || hero.name
-        .replace(/\s+/g, "-")
-        .replace(/[^a-zA-Z0-9-_]/g, "")
-        .replace(/-+/g, "-")
-        .replace(/^-+|-+$/g, "")
-        .toLowerCase()) as string
-
-    const spinner = p.spinner()
+    const spinner = p.spinner();
 
     spinner.start('Writing hero file...');
-    makeHeroFile({...(hero as any), id});
+    makeHeroFile({...(heroIdentity as any), ...(hero as any)}, p.log);
     spinner.stop('Wrote hero file.');
 
-
     spinner.start('Copying images...');
-    await copyImages(hero.internalId, id);
+    await copyImages(heroIdentity.internalId, heroIdentity.id, p.log);
     spinner.stop('Images copied and converted');
 
-    if (hero.roles.length == 1) {
+    if (hero.scrape)
+        await scrapeStats(heroIdentity.internalId, heroIdentity.id, hero.roles);
+
+    p.outro('Hero added successfully!');
+}
+
+async function scrapeStats(internalId: string, processedId: string, roles: HeroRole[]) {
+    const spinner = p.spinner()
+
+    if (roles.length == 1) {
         spinner.start('Scraping hero stats...');
-        await scrapeData(hero.internalId, id, hero.roles[0])
+        await scrapeData(internalId, processedId, roles[0], p.log)
         spinner.stop('Scraped hero stats, modified files');
     }
     else
         p.log.info('Cannot scrape hero stats as roles are either none or more than 1');
-
-    p.outro('Hero added successfully!');
 }
 
 try {
@@ -163,17 +271,3 @@ catch(err) {
 
     process.exit(1);
 }
-
-/**
- * Example usage:
- *  makeHeroFile({
-        id: 'white-fox',
-        name: 'White Fox',
-        roles: ['strategist'],
-        color: '#64d5e3',
-        mission1: 'heal',
-        mission1Req: '5400',
-        mission2: 'kos_assists',
-        mission2Req: '15',
-    });
- */
