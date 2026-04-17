@@ -51,10 +51,13 @@
         +media-desktop
             top: 20px
             width: fit-content
-            padding: 0 0 0 50px
+            padding: 0 30px 0 50px
 
             justify-content: start
             gap: 70px
+
+        +media-large-desktop
+            padding: 0 0 0 50px
 
         &::before
             content: ""
@@ -69,8 +72,11 @@
             background-position: bottom
 
             +media-desktop
-                transform: skew(-13deg)
-                right: 10px
+                background-position: bottom right
+
+                mask: var(--tex-barBackgroundMask) no-repeat
+                mask-size: cover
+                mask-position: bottom right
 
         > *
             z-index: 2
@@ -87,9 +93,18 @@
                 width: auto
                 justify-content: start
         .menu
-            height: 45px
+            width: 35px
+            height: 25px
 
-            +media-desktop
+            display: flex
+            justify-content: center
+            align-items: center
+
+            overflow: visible
+
+            cursor: pointer
+
+            +media-large-desktop
                 display: none
 
             .menu-icon
@@ -100,8 +115,8 @@
                 height: 100%
 
             .warning-bubble
-                top: 7px
-                right: 7px
+                top: -3px
+                right: -3px
 
         .title
             position: relative
@@ -122,6 +137,7 @@
 
                 +media-desktop
                     font-size: 36px
+                    line-height: 32px
                     text-align: left
 
             .favourite
@@ -130,13 +146,11 @@
                 right: 0
                 transform: translateX(calc(100% + 10px))
 
-                +media-desktop
-
         ul
             height: 100%
             display: none
 
-            +media-mobile
+            +media($minmax: 'max', $size: '1200px')
                 position: absolute
                 top: 65px
                 left: 0
@@ -149,15 +163,28 @@
                 background: $blue-accent var(--tex-barBackground)
                 background-position: bottom
 
-            +media-desktop
+            @media (min-width: 992px) and (max-width: 1200px)
+                top: 64.5px
+                width: calc(100% - 18.5px)
+
+            +media-large-desktop
                 display: flex !important
 
             &.visible
                 display: flex
-                
+                align-items: center
+
+                li
+                    width: fit-content
+
+                    &::after
+                        background-size: auto 100%
+
+                        z-index: 2
 
             li
                 position: relative
+                min-width: 85px
                 height: 100%
                 padding: 0 40px 0 48px
 
@@ -170,6 +197,7 @@
                 font-size: 22px
                 text-transform: uppercase
 
+                box-sizing: content-box
                 cursor: pointer
                 user-select: none
 
@@ -224,6 +252,8 @@
             display: grid
             grid-template-columns: 1fr 2fr
             grid-template-rows: 100vh
+
+            overflow: clip
 
         .hero
             position: relative
@@ -521,33 +551,6 @@
                                 span
                                     color: $light-blue-highlight
 
-                        .progress-bar
-                            position: relative
-                            width: 100%
-                            height: 6px
-                            background: $light-blue-highlight
-
-                            +media-mobile
-                                height: 12px
-
-                            .drag-area
-                                position: absolute
-                                width: 100%
-                                height: 30px
-                                left: 0
-                                top: 50%
-                                transform: translateY(-50%)
-
-                                z-index: 2
-
-                                cursor: ew-resize
-
-                            .inner
-                                width: var(--progress)
-                                height: 100%
-
-                                background: $color
-
                     .set
                         align-self: end
                         position: relative
@@ -596,6 +599,15 @@
             +media-large-desktop
                 width: 80%
                 height: calc(100% - 40px - 65px - 85px)
+
+            &.planner-wrapper,
+            &.update-stats
+                display: flex
+                justify-content: center
+                align-items: center
+
+            .update-stats-modal
+                max-height: 100%
 
             .tabbed-container
                 width: 100%

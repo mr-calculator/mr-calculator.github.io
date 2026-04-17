@@ -45,6 +45,10 @@
     +mediaIOS
         background: #121221e3
 
+    +media-mobile
+        overflow-x: hidden
+        overflow-y: auto
+
     .info-modal-content
         position: relative
         width: 100%
@@ -74,6 +78,12 @@
 
             cursor: pointer
 
+            +media-mobile
+                position: fixed
+
+                ::v-deep(img)
+                    filter: drop-shadow(0 0 10px #000000)
+
             +media-desktop
                 top: 48px
                 right: 20px
@@ -96,10 +106,11 @@
 
             padding: 0 20px
 
-            overflow-x: hidden
-            overflow-y: auto
+            +media-desktop
+                overflow-x: hidden
+                overflow-y: auto
 
-            +scrollbar($background: transparent, $thumb: $light, $active: $blue)
+                +scrollbar($background: transparent, $thumb: $light, $active: $blue)
 
             ::v-deep(p)
                 font-size: 18px

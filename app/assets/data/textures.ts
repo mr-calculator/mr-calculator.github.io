@@ -341,6 +341,9 @@ export const TEX = {
     promotionalBackgroundMask: {
         default: 'mask/promotional-bg-mask.png',
     } as Texture,
+    barBackgroundMask: {
+        default: 'mask/bar-bg-mask.webp'
+    } as Texture,
     heroCardMask: {
         default: 'mask/hero-card-mask.png'
     } as Texture,

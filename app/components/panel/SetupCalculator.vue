@@ -1,7 +1,9 @@
 <template>
-    <div class="calculator-setup">
-        <template v-if="!hasAvgStats">
-            <h2 class="rich-title">It looks like you haven't set your average stats yet</h2>
+    <div :class="{'calculator-setup': 1, headless}">
+        <template v-if="(!arcade && !hasAvgStats) || (arcade && !hasAvgArcadeStats)">
+            <h2 class="rich-title">
+                It looks like you haven't set your average {{ arcade ? 'arcade' : '' }} stats yet
+            </h2>
             <FormButton @click="$emit('openStatsMenu')">
                 <Tex
                     image="gameTime"
@@ -10,9 +12,9 @@
                     width="50px"
                     height="50px"
                 />
-                Set your stats
+                Set your {{ arcade ? 'arcade' : '' }} stats
             </FormButton>
-            <template v-if="!isUnknownHero && hasGenericAvgStats">
+            <template v-if="!arcade && !isUnknownHero && hasGenericAvgStats">
                 <p>OR</p>
                 <FormButton @click="useGenericStats">
                     Use generic stats
@@ -21,9 +23,15 @@
                     (Generic stats are gathered from hundreds of games of the top 500 players on {{ hero.name }})
                 </p>
             </template>
-            <template v-else-if="!isUnknownHero && !hasGenericAvgStats">
+            <template v-else-if="!arcade && !isUnknownHero && !hasGenericAvgStats">
                 <p class="info">
                     (Sorry! It looks like we don't have generic stats for this hero yet)
+                </p>
+            </template>
+
+            <template v-if="arcade">
+                <p class="info">
+                    (We do not have generic average stats for arcade, but you can still type in your own)
                 </p>
             </template>
         </template>
@@ -93,6 +101,9 @@
     align-items: center
     gap: 20px
 
+    &.headless
+        padding: 30px 20px
+
     .buttons
         display: flex
         flex-direction: column
@@ -121,6 +132,11 @@ const props = defineProps<{
     hasAvgStats: boolean,
     isLv1AndGoalLv1: boolean,
     isIncorrectSelection: boolean,
+
+    arcade?: boolean,
+    hasAvgArcadeStats?: boolean,
+
+    headless?: boolean
 }>()
 
 const goal = computed(() => useLevel(props.level.goal, props.hero));

@@ -217,6 +217,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '1.2.5',
             date: 'Apr 17, 2026',
             time: '4:11 PM',
+            commitSha: '658c03706959f0ef790e86ca5bae6e9ce18910d8'
         },
         title: 'Added Black Cat',
         description: `Added Black Cat to the calculator without generic stats (will add later - when averages are more accurate)
