@@ -47,10 +47,12 @@ import { TheThing } from "./heroes/the-thing";
 import { Thor } from "./heroes/thor";
 import { Venom } from "./heroes/venom";
 import { WhiteFox } from "./heroes/white-fox";
+import { BlackCat } from "./heroes/black-cat";
 
 export const HERO_LIST: HeroData[] = [
     AdamWarlock,
     Angela,
+    BlackCat,
     BlackPanther,
     BlackWidow,
     Blade,

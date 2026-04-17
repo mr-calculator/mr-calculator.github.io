@@ -433,7 +433,7 @@ const includeFavourites = ref(true);
 const includePreferences = ref(true);
 
 const dataBase: Pick<SerializableDataSegment<keyof SerializableDataMap>, 'version' | 'exportedAt'> = {
-    version: 1,
+    version: config.dataVersion,
     exportedAt: new Date().toISOString(),
 }
 function dataWithBase<T extends keyof SerializableDataMap>

@@ -201,7 +201,7 @@ import { useUnknownHeroHasPossibleMatch } from '~/composables/useUnknownHeroHasP
 
 const props = defineProps<{
     title: string,
-    message: string,
+    message?: string,
     hero: HeroData,
 
     isUnknownHero?: boolean

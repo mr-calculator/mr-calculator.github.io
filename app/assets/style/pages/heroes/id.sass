@@ -367,6 +367,29 @@
                 +media-large-desktop
                     width: 375px
 
+                > .popup
+                    position: absolute
+                    top: 0
+                    left: 20px
+                    transform: translateY(-100%)
+
+                    width: calc(100% - 10px)
+                    padding: 40px 35px 50px 35px
+
+                    +media-phone
+                        padding: 50px 35px 60px 35px
+                        height: auto
+
+                    .message
+                        p
+                            text-align: center
+                            line-height: 16px
+                            font-size: 18px
+                            margin-bottom: 6px
+
+                            span
+                                color: #c09b07
+
                 .current
                     position: relative
                     display: flex

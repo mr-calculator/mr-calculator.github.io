@@ -1,4 +1,6 @@
 const config = {
+    dataVersion: 2,
+
     githubUser: 'mr-calculator',
     githubRepo: 'mr-calculator.github.io',
     email: 'mr-calculator.estimate510@slmails.com',

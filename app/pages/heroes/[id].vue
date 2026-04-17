@@ -133,6 +133,33 @@
 
                 <ClientOnly>
                     <div class="player-level">
+                        <div
+                            v-if="showQuickEditPopup" 
+                            class="popup"
+                            :style="{
+                                backgroundImage: texUrl('popup')
+                            }"
+                        >
+                            <div class="message">
+                                <p>
+                                    <span>Change your rank</span> by pressing on the icon/name.
+                                </p>
+                                <p>
+                                    Level up by pressing on &nbsp;<span>&#708; LV{{ currentRankComp.level }}</span>
+                                </p>
+                                <p>
+                                    <span>Change your points</span> by pressing on the number or <span>dragging</span> the progress bar.
+                                </p>
+                            </div>
+
+                            <Tex
+                                class="close"
+                                image="crossBlue"
+                                color="var(--blue)"
+                                @click.stop="showQuickEditPopup = false"
+                            />
+                        </div>
+
                         <div class="current" @click="selectCurrentLevel()">
                             <div class="rank">
                                 <div class="icon">
@@ -262,7 +289,7 @@
                             v-model="selectedRank"
                         />
                     </template>
-                    <template #stats>
+                    <template v-if="stats.avgStats" #stats>
                         <div class="stats-container">
                             <h2>Generic Average Stats per 10 minutes</h2>
                             <ul class="stats with-border-decorations">
@@ -577,7 +604,7 @@ function levelUp() {
     storedLevel.value.points = 0;
 
     notify(
-        `Leveled up to LV${canLevelUp.value.level + 1}!`,
+        `Leveled up to LV${canLevelUp.value.level}!`,
         2000, 
         { image: 'levelUp', width: 20, height: 20, color: 'var(--color)' }
     );
@@ -939,7 +966,22 @@ function deleteUnknownHero(callback = () => {}, callbackOnSuccess = false) {
 }
 
 const showEditPopup = ref(false);
+const showQuickEditPopup = ref(false);
+watch(showQuickEditPopup, (value) => {
+    if (value)
+        return;
+
+    // show next popup
+    tryShowEditPopup();
+});
 function tryShowEditPopup() {
+    if (!preferences.value.sawHeroQuickEditPopup) {
+        preferences.value.sawHeroQuickEditPopup = true;
+
+        showQuickEditPopup.value = true;
+        return;
+    }
+
     if (preferences.value.sawHeroEditPopup)
         return;
 

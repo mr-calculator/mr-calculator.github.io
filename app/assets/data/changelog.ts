@@ -198,6 +198,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '1.2.4',
             date: 'Apr 15, 2026',
             time: '2:12 AM',
+            commitSha: '704938b7ed1894289d11f7549122f06bca2485ac'
         },
         title: 'Improved mobile user UI/UX and the Changelog',
         description: `Made certain modifications to the UI and UX of the app on mobile for a smoother experience across all devices
@@ -209,6 +210,36 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             'Disabled scrolling when dragging the proficiency slider on mobile',
             'The filtering tools bar now toggles when scrolling up/down in the hero list, so more heroes are visible at once',
             'Added GitHub commits between "major" versions in the changelog and assigned individual commits to a major version. Commits are fetched from GitHub or from a cache in case of rate-limiting of the user by GitHub.'
+        ]
+    },
+    {
+        version: {
+            number: '1.2.5',
+            date: 'Apr 17, 2026',
+            time: '4:11 PM',
+        },
+        title: 'Added Black Cat',
+        description: `Added Black Cat to the calculator without generic stats (will add later - when averages are more accurate)
+        Made slight optimisations and bug fixes.
+        Refreshed White Fox generic average stats with data from S7.0.
+        Added new hero promotional UI elements to help players more easily get to the new hero's page.
+        `,
+        list: [
+            'Added Black Cat',
+            'Refreshed White Fox generic average stats with data from S7.0',
+            'Modified add-hero script to allow season selection for data scrape',
+            'Added new hero promotional UI elements that show up on the landing and hero list pages',
+            'Fixed a hydration issue with the new hero promo role',
+            'Fixed hydration issues with the scrolling lord display at the bottom of the landing page',
+            'Fixed reactive components when using modals, changed to markRaw',
+            'Added a temporary popup to explain the new quick current level/proficiency points editing features on hero pages, which adds a new localStorage preference k/v',
+            'Modified import/download pages to accomodate possible version mismatches and resolve them automatically (upgrading older exported data files to the newer version by filling in with defaults)',
+            'Modified commit list caching mechanism to use an authenticated GitHub API request, since I literally just got rate limited as writing this'
+        ],
+        images: [
+            '/img/changelog/v1.2.5/black-cat.webp',
+            '/img/changelog/v1.2.5/new-hero-promo-landing.webp',
+            '/img/changelog/v1.2.5/new-hero-promo-list.webp',
         ]
     }
 ];
@@ -255,6 +286,8 @@ export function groupCommitsByVersion(commits: GitHubCommit[]):
 
     if (lastCommitIndex < reverseCommits.length - 1)
         remaining.push(...reverseCommits.slice(lastCommitIndex + 1));
+
+    remaining.reverse();
 
     Object.values(groupsByVersion).forEach(g => g.reverse());
 

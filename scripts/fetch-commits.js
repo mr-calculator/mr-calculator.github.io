@@ -1,10 +1,25 @@
 import { writeFileSync } from 'fs'
+import { config } from 'dotenv'
 
-/**
- * Fetches all commits for this repo off of github's public api.
- * This script runs as a pre-commit automation. Obviously, not included with the repo, but it shouldn't since
- * anyone cloning/forking this wouldn't need this repo's commits.
- */
-const res = await fetch(`https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits?per_page=100`)
+config({ path: '.env' })
+
+const headers = {
+    Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+    'X-GitHub-Api-Version': '2022-11-28'
+};
+
+if (!process.env.GITHUB_TOKEN)
+    headers = {};
+
+const res = await fetch(
+    `https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits?per_page=100`,
+    { headers }
+)
+
+if (!res.ok) {
+    console.warn(`GitHub API failed (${res.status}), keeping existing cache.`)
+    process.exit(0) // exit cleanly so the commit isn't blocked
+}
+
 const commits = await res.json()
 writeFileSync('./app/assets/data/commits-cache.json', JSON.stringify(commits, null, 2))

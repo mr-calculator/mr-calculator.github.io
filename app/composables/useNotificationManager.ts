@@ -41,6 +41,10 @@ export function useNotificationManager() {
             onClose
         })
 
+        // limit to 5 notifications at one time
+        if (notifications.value.length > 5)
+            notifications.value.splice(0, notifications.value.length - 5);
+
         return id
     }
 

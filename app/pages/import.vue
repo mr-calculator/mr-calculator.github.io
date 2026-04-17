@@ -590,6 +590,12 @@ const selectedRemainingHeroData = computed(() =>
 function clickHero(hero: OverwriteCheck[0], remaining = false) {
     if (hero.type == 'stats') {
         overwriteToggles.value[hero.heroId] = !overwriteToggles.value[hero.heroId];
+        
+        if (!remaining)
+            selectedHero.value = null;
+        else
+            selectedRemainingHero.value = null;
+
         return;
     }
 
@@ -758,13 +764,71 @@ function onDrop(e: DragEvent) {
 
 const fileUploadInput: Ref<HTMLInputElement|null> = ref(null);
 
+function convertDataSegmentToVersion(version: number, dataSegment: AnySerializableDataSegment) {
+    switch(version) {
+        case 1:
+            return dataSegment;
+        case 2:
+            // reset hero edit popup acknowledgement
+            // set hero quick edit popup acknowledgement to default
+            if (dataSegment.type == 'profile' && dataSegment.data.preferences) {
+                const defaultPref = DEFAULT_PREFERENCES_STORE();
+                dataSegment.data.preferences.sawHeroEditPopup = defaultPref.sawHeroEditPopup;
+                dataSegment.data.preferences.sawHeroQuickEditPopup = defaultPref.sawHeroQuickEditPopup;
+            }
+
+            return dataSegment;
+    }
+
+    return dataSegment;
+}
+
+function convertDataSegment(data: AnySerializableDataSegment) {
+    if (data.version > config.dataVersion)
+        return null;
+
+    if (data.version == config.dataVersion)
+        return data;
+
+    for (let i = data.version; i <= config.dataVersion; i++)
+        data = convertDataSegmentToVersion(i, data);
+
+    return data;
+}
+
 function processContent(content: string) {
-    const data = JSON.parse(content)
-    const result = AnySegmentSchema.safeParse(data);
+    let data = JSON.parse(content)
+    let result = AnySegmentSchema.safeParse(data);
 
-    if (!result.success)
-        throw new Error('Failed to parse imported file', { cause: result.error });
+    // validation failed, try to convert versions
+    if (!result.success) {
+        try {
+            data = convertDataSegment(data);
+        }
+        catch {
+            data  = null;
+        }
 
+        // conversion failed
+        if (data === null) {
+            notify(
+                `Failed to parse imported file, version mismatch could not be resolved. Try hard refreshing (Shift + R) the website or try again later.`,
+                5000,
+                { image: 'warning', color: '#c94f36' }
+            );
+
+            return;
+        }
+
+        // conversion didn't fail, validate again
+        result = AnySegmentSchema.safeParse(data);
+
+        // validation was still unsuccessful, throw
+        if (!result.success)
+            throw new Error('Failed to parse imported file', { cause: result.error });
+    }
+
+    // validation was finally successful, set the dataSegment in place
     dataSegment.value = result.data;
 }
 
@@ -792,7 +856,7 @@ function importFiles(files?: FileList|null) {
             }
             catch (e) {
                 notify(
-                    `The file ${file.name} is invalid`,
+                    `The file \"${file.name}\" is invalid`,
                     3000,
                     { image: 'warning', color: '#c94f36' }
                 );
@@ -838,7 +902,7 @@ onMounted(async () => {
         }
         catch (e) {
             notify(
-                `The file ${file.name} is invalid`,
+                `The file \"${file.name}\" is invalid`,
                 3000,
                 { image: 'warning', color: '#c94f36' }
             );

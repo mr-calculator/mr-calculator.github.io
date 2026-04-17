@@ -91,6 +91,17 @@ async function main() {
             ]
         });
 
+        let scrapeSeason = 'last';
+        if (choice == 'stats') {
+            scrapeSeason = await p.text({
+                message: 'Type season id (S7 = 14) for data scraping (Leave blank for last)',
+                placeholder: 'e.g.: 14'
+            }) as string;
+
+            if (!scrapeSeason)
+                scrapeSeason = 'last';
+        }
+
         const heroNameConst = heroIdentity.name.replace(/\s+/g, "");
         const { [heroNameConst]: heroData } = await import(
             `../../${HERO_FILE_PATH}${heroIdentity.id}.ts`
@@ -104,7 +115,7 @@ async function main() {
 
             case 'stats':
                 const roles = Array.isArray(heroData.roles) ? heroData.roles : [heroData.roles];
-                await scrapeStats(heroIdentity.internalId, heroIdentity.id, roles);
+                await scrapeStats(heroIdentity.internalId, heroIdentity.id, roles, scrapeSeason);
 
                 p.outro('Hero modification successful.');
 
@@ -249,12 +260,12 @@ async function createHeroFull(heroIdentity: HeroIdentity) {
     p.outro('Hero added successfully!');
 }
 
-async function scrapeStats(internalId: string, processedId: string, roles: HeroRole[]) {
+async function scrapeStats(internalId: string, processedId: string, roles: HeroRole[], season = 'last') {
     const spinner = p.spinner()
 
     if (roles.length == 1) {
         spinner.start('Scraping hero stats...');
-        await scrapeData(internalId, processedId, roles[0], p.log)
+        await scrapeData(internalId, processedId, roles[0], p.log, season);
         spinner.stop('Scraped hero stats, modified files');
     }
     else

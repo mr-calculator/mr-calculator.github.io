@@ -4,6 +4,17 @@ import fs from "fs"
 import path from "path";
 import sharp from "sharp";
 
+/**
+ * To export root directories:
+ * - HeroDetail/
+ * - HeroGallery_V3/
+ * - HeroLogo/
+ * - HeroPortrait/
+ * - Item/
+ * - Mastery/
+ * - Show/
+ */
+
 const FILES = {
     'fantastic-nameplate': 'Item/Nameplate/item_nameplate_3%HERO_ID%002',
     'uncanny-nameplate': 'Item/Nameplate/item_nameplate_3%HERO_ID%003',
@@ -11,7 +22,7 @@ const FILES = {
     'immortal-nameplate': 'Item/Nameplate/item_nameplate_3%HERO_ID%005',
 
     'bust': 'HeroPortrait/SelectHero/img_selecthero_%HERO_ID%001',
-    'bust-champion': '/Mastery/Common/%HERO_ID%/fb_mastery2%HERO_ID%020',
+    'bust-champion': 'Mastery/Common/%HERO_ID%/fb_mastery2%HERO_ID%020',
     'bust-lord': 'HeroPortrait/TransverseHeroHead/Proficiency/img_commontransverse_2%HERO_ID%020_avatar',
     'head': 'HeroPortrait/SquareHeroHead/img_squarehead_%HERO_ID%0010_avatar',
     'head-lord': 'HeroPortrait/SquareHeroHead/Proficiency/img_squarehead_2%HERO_ID%020_avatar',

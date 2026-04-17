@@ -146,8 +146,14 @@
                                         class="inner"
                                         @click="credibilityClickHero(hero.heroId)"
                                     >
-                                        <h3>{{ hero.matchCount?.toLocaleString() ?? 0 }}</h3>
-                                        <p>MATCHES</p>
+                                        <template v-if="hero.matchCount">
+                                            <h3>{{ hero.matchCount?.toLocaleString() ?? 0 }}</h3>
+                                            <p>MATCHES</p>
+                                        </template>
+                                        <template v-else>
+                                            <p>0 MATCHES</p>
+                                            <h3 class="not-yet">COMING SOON</h3>
+                                        </template>
                                     </div>
                                 </div>
 
@@ -531,7 +537,8 @@ import { AVG_COMP_MATCH_DURATION_MIN,
     type Challenge,
     type HeroData,
     type PlayerHeroStore,
-    type PreferencesStore, 
+    type PreferencesStore,
+    CHALLENGE_STATS, 
 } from '~/assets/data/common';
 import { getFeaturedHero, HERO_LIST } from '~/assets/data/heroes';
 import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
@@ -870,7 +877,7 @@ function credibilityClickHero(hero: string) {
 }
 
 
-const currentHero = ref(DEFAULT_HERO);
+const currentHero = ref(featuredHero.value ?? DEFAULT_HERO);
 const averageStatsModal = ref<InstanceType<typeof AverageStatsModal>>();
 
 const heroSelectOpen = ref(false);
@@ -943,11 +950,15 @@ const simulatedPlayerHeroStore = computed(() => {
         if (typeof avgStats[stat] !== 'undefined')
             return;
 
-        // get a random number in the range of the stat
-        // const interval = CHALLENGE_STATS[stat as Challenge['type']]?.interval ?? [0, 80000];
-        // randomAvgStats[stat] = getRandomInt(interval[0], interval[1]);
+        // get a random number in the range of the stat in case there is no generic avg
+        const interval = CHALLENGE_STATS[stat as Challenge['type']]?.interval ?? [0, 80000];
+        const genericStat = getAverageStatsForHero(currentHero.value.id)?.[stat];
+        const randomStat = !!genericStat ? 0 : getRandomInt(interval[0], interval[1]);
+        avgStats[stat] = genericStat ?? randomStat;
 
-        avgStats[stat] = getAverageStatsForHero(currentHero.value.id)[stat] ?? 0;
+        // also set the stats to be visible in the avg stats headless modal
+        if (!genericStat && averageStatsModal.value)
+            averageStatsModal.value.stats[stat] = `${randomStat}`;
     });
     
     // set random stats and goal of 50 (animated icon)
@@ -1018,7 +1029,7 @@ const timeEstimates = computed(() => {
 
 const lordIconsGridHeroes = ref<HeroData[][]>([]);
 for (let i = 0; i < 5; i++) {
-    const row = shuffleArray([...HERO_LIST]);
+    const row = shuffleArray([...HERO_LIST], i);
     lordIconsGridHeroes.value.push([...row, ...row]);
 }
 

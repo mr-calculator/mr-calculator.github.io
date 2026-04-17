@@ -1,6 +1,8 @@
+import type { Raw } from "vue"
+
 export interface ModalData {
     id: string
-    component: any
+    component: Raw<any>
     props?: Record<string, any>
     resolve?: (result: any) => void
     reject?: (reason: any) => void
@@ -29,7 +31,7 @@ export function useModalManager() {
 
         modals.value.push({
             id,
-            component,
+            component: markRaw(component),
             props,
             resolve,
             reject,

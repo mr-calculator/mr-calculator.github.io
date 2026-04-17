@@ -519,13 +519,22 @@ export function isElementInViewport(el: HTMLElement) {
     );
 }
 
-export function shuffleArray<T>(array: T[]) {
+function seededRandom(seed: number) {
+    let s = seed;
+    return () => {
+        s = (s * 1664525 + 1013904223) & 0xffffffff;
+        return (s >>> 0) / 0xffffffff;
+    };
+}
+
+export function shuffleArray<T>(array: T[], seed: number) {
+    const random = seededRandom(seed);
     let tmp: T;
     let current: number;
     let top = array.length;
 
-    if(top) while(--top) {
-        current = Math.floor(Math.random() * (top + 1));
+    if (top) while (--top) {
+        current = Math.floor(random() * (top + 1));
         tmp = array[current]!;
         array[current] = array[top]!;
         array[top] = tmp;

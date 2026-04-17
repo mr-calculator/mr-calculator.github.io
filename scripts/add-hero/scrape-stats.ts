@@ -45,7 +45,7 @@ interface HeroData {
 }
 
 // where to get and where to set
-const ENDPOINT = `https://rivalsmeta.com/api/hero-leaderboard/%CHARACTER_ID%?device=1&season=last`
+const ENDPOINT = `https://rivalsmeta.com/api/hero-leaderboard/%CHARACTER_ID%?device=1&season=`
 const STATS_FILE = './app/assets/data/average-hero-stats.json';
 const STATS_FILE_BACKUP = './app/assets/data/average-hero-stats_%DATE%.backup.json';
 const MATCHES_FILE = './app/assets/data/hero-matches.json';
@@ -88,11 +88,11 @@ const FINAL_HITS_MANUAL = JSON.parse(fs.readFileSync('./scripts/stats/data/avera
 let heroMatchCount: number = 0;
 
 // scrapes data for hero from every player available -> processes it
-export async function scrapeData(internalId: string, heroId: string, role: HeroRole, logger: typeof log) {
+export async function scrapeData(internalId: string, heroId: string, role: HeroRole, logger: typeof log, season: string) {
     // request RivalsMeta API
     let data: HeroData|null = null;
     try {
-        const res = await fetch(ENDPOINT.replace('%CHARACTER_ID%', internalId));
+        const res = await fetch(ENDPOINT.replace('%CHARACTER_ID%', internalId) + season);
         data = await res.json();
     }
     catch (err) {

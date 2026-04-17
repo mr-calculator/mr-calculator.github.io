@@ -111,8 +111,8 @@ export const CHALLENGE_STATS: Record<Challenge['type'], ChallengeStats|null> = {
     },
 }
 
-export function getAverageStatsForHero(heroId: string): Record<Challenge['type'], number> {
-    return avgHeroStats[heroId as keyof typeof avgHeroStats] as Record<Challenge['type'], number>;
+export function getAverageStatsForHero(heroId: string): Record<Challenge['type'], number>|undefined {
+    return avgHeroStats[heroId as keyof typeof avgHeroStats] as Record<Challenge['type'], number>|undefined;
 }
 
 export const CHALLENGE_PLAY_RANKS: Record<ProficiencyRank['id'], Challenge> = {
@@ -807,15 +807,18 @@ export const DEFAULT_HERO_STORE: () => PlayerHeroStore = () => ({
 });
 
 export interface PreferencesStore {
+    sawHeroQuickEditPopup: boolean,
     sawHeroEditPopup: boolean,
     plannerCalendarMeasureUnit: 'hours'|'quick_matches'|'comp_matches'
 }
 export const PreferencesStoreSchema = z.object({
+    sawHeroQuickEditPopup: z.boolean(),
     sawHeroEditPopup: z.boolean(),
     plannerCalendarMeasureUnit: z.literal(['hours', 'quick_matches', 'comp_matches'])
 })
 
 export const DEFAULT_PREFERENCES_STORE: () => PreferencesStore = () => ({
+    sawHeroQuickEditPopup: false,
     sawHeroEditPopup: false,
     plannerCalendarMeasureUnit: 'quick_matches'
 });

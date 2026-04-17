@@ -6,10 +6,11 @@
         >
             <div class="commits">
                 <div
-                    v-for="commit in groupedCommits.remaining"
+                    v-for="(commit, index) in groupedCommits.remaining"
                     class="commit"
                 >
                     <div class="meta">
+                        <div v-if="index == 0" class="tag">LATEST</div>
                         <a class="sha commit-sha" :href="commit.html_url" target="_blank">
                             {{ commit.sha.slice(0, 7) }}
                         </a>
@@ -24,7 +25,9 @@
         >
             <li class="log-entry">
                 <div class="version">
-                    <div v-if="index == 0" class="tag">LATEST</div>
+                    <div v-if="index == 0 && groupedCommits.remaining.length == 0" class="tag">
+                        LATEST
+                    </div>
                     <h3>v{{ log.version.number }}</h3>
                     <a
                         v-if="groupedCommits.versionCommits[log.version.number]"

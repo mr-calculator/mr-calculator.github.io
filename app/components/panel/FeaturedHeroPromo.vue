@@ -22,7 +22,7 @@
                 <h3 class="name">
                     {{ hero.name }}
                 </h3>
-                <p class="role">
+                <div class="role">
                     <Tex
                         v-for="role in heroRolesAsArray(hero.roles)"
                         :src="ROLE_ICONS[role]"
@@ -34,7 +34,7 @@
                     <span v-if="heroRolesAsArray(hero.roles).length == 1">
                         {{ heroRolesAsArray(hero.roles)[0] }}
                     </span>
-                </p>
+                </div>
             </div>
 
             <div class="hero-promo-cta">
