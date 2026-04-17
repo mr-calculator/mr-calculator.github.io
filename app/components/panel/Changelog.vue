@@ -38,7 +38,7 @@
                     >
                         {{ groupedCommits.versionCommits[log.version.number]!.sha.slice(0, 7) }}
                     </a>
-                    <p>{{ log.version.date }}</p>
+                    <p>{{ formatCommitDate(log.version.date +' '+ log.version.time, true) }}</p>
                 </div>
                 <div class="body">
                     <h2>{{ log.title }}</h2>
@@ -233,8 +233,8 @@ function commitMessageToHTML(message: string) {
     `
 }
 
-function formatCommitDate(dateString: string) {
-    const date = new Date(dateString);
+function formatCommitDate(dateString: string, appendUTC?: boolean) {
+    const date = new Date(dateString + (appendUTC ? ' UTC' : ''));
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
