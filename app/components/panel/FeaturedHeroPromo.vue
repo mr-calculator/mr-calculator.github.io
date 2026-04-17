@@ -1,7 +1,7 @@
 <template>
     <NuxtLink
         class="featured-hero"
-        :to="`/heroes/${hero.id}`"
+        :to="`/heroes/${hero.id}?from=/`"
     >
         <div
             class="prestige"
