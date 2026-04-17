@@ -375,6 +375,9 @@ const favourites = useLocalStorage<HeroData['id'][]>(`favourite_heroes`, []);
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 const preferences = useLocalStorage<PreferencesStore>('preferences', DEFAULT_PREFERENCES_STORE());
 
+const route = useRoute();
+const heroFromUrl = route.query?.hero;
+
 const heroesWithData = computed(() => {
     return storedHeroes.value.map(heroStore => {
         const heroes = HERO_LIST;
@@ -402,7 +405,7 @@ const heroesWithData = computed(() => {
     }).filter(h => h !== null);
 });
 
-const selectedHero = ref<string|null>(null);
+const selectedHero = ref<string|null>(heroFromUrl as string ?? null);
 const selectedHeroData = computed(() => {
     const heroData = heroesWithData.value.find(h => h.hero.id == selectedHero.value);
     if (!heroData)

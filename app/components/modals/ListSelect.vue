@@ -8,12 +8,13 @@
                 input-placeholder="Level..."
                 :number-input="{
                     step: 5,
-                    min: 0,
-                    max: Object.values(PROFICIENCY_RANKS).at(-1)?.levelEnd ?? 70
+                    min: 1,
+                    max: Object.values(PROFICIENCY_RANKS).at(-1)?.levelEnd ?? 70,
+                    hideExtraButtons: mobile
                 }"
 
                 :model-value="`${selectedLevel}`"
-                @update:model-value="selectedLevel = parseInt($event) || 0"
+                @update:model-value="modifySelectedLevelFromInput"
             />
         </div>
 
@@ -41,7 +42,16 @@
 
 <style lang="sass" scoped>
 .input-level
+    width: 100%
+    padding: 0 30px
     margin-bottom: 30px
+
+    display: flex
+    justify-content: center
+
+    .input-wrapper
+        +media($minmax: 'max', $size: '550px')
+            width: 100%
 
 .list-wrapper
     width: 100%
@@ -70,8 +80,17 @@ const props = defineProps<{
 
 const emit = defineEmits(['confirm', 'cancel'])
 
+const mobile = isMobile(550);
+
 const selectedLevel = ref(props.currentLevel ?? undefined);
-watch(selectedLevel, lvl => lvl ? scrollItemIntoView(lvl, true) : null);
+function modifySelectedLevelFromInput(level: string) {
+    const parsedLevel = parseInt(level);
+    if (!parsedLevel || isNaN(parsedLevel))
+        return;
+
+    selectedLevel.value = parseInt(level);
+    scrollItemIntoView(selectedLevel.value, true);
+}
 
 function scrollItemIntoView(level: number, smooth?: boolean) {
     const selectedItemId = `${btoa(props.title)}__level_${level}`;

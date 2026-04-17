@@ -40,9 +40,15 @@
                     class="menu warning-wrapper"
                     @click="menuOpen = !menuOpen"
                 >
-                    <img
-                        class="menu-icon"
-                        :src="menuOpen ? tex('cross') : tex('hamburger')"
+                    <Tex
+                        :image="menuOpen ? 'cross' : 'hamburger'"
+                        color="#fff"
+                        hover="color"
+                        hover-color="var(--color)"
+
+                        clickable
+                        :width="menuOpen ? 25 : 28"
+                        height="25px"
                     />
 
                     <Tex
@@ -60,9 +66,7 @@
                     />
                 </div>
             </div>
-            <!-- @click="menuOpen = !menuOpen" -->
 
-            <!-- :class="{visible: menuOpen}" -->
             <ul :class="{visible: menuOpen}">
                 <li
                     :class="{ selected: page == 'overview' }"
@@ -232,23 +236,12 @@
                                         <span>/{{ currentRankComp.rank.xpPerLevel }}</span>
                                     </p>
                                 </Tex>
-                                <div
-                                    ref="pointsSlider"
+                                <FormPointsSlider
+                                    class="slider"
+                                    :hero="hero"
 
-                                    class="progress-bar"
-                                    :style="{
-                                        '--progress': (
-                                            currentRankComp.points / currentRankComp.rank.xpPerLevel * 100
-                                        ) + '%'
-                                    }"
-                                >
-                                    <div class="drag-area"
-                                        @pointerdown="pointsDragStart"
-                                        @touchstart="pointsDragStart"
-                                    />
-
-                                    <div class="inner" />
-                                </div>
+                                    v-model="storedLevel.points"
+                                />
                             </div>
                             <div class="set warning-wrapper" @click="modifyHeroData">
                                 <Tex
@@ -276,7 +269,7 @@
                                         backgroundImage: texUrl('popupGoldDownRight')
                                     }"
                                 >
-                                    You can change your hero details from here
+                                    You can change your hero details from here too
                                     <Tex
                                         class="close"
                                         image="crossBlue"
@@ -645,9 +638,10 @@ function setPage(newPage: PageId) {
     page.value = newPage;
     menuOpen.value = false;
 
-    if (newPage == 'estimates' && !storedLevel.value.openedCalculator) {
+    if (newPage == 'estimates' && !storedLevel.value.openedCalculator)
         storedLevel.value.openedCalculator = true;
-    }
+    if (newPage == 'customize')
+        tryShowEditPopup();
 }
 
 const selectedRank = ref<ProficiencyRank['id']>(storedLevel.value.rank);
@@ -704,76 +698,6 @@ function setLevel(level: number) {
 
     selectedRank.value = storedLevel.value.rank;
 }
-
-const pointsDraggableSlider = useTemplateRef('pointsSlider');
-const pointsIsDragging = ref(false);
-const initialPoints = ref(0);
-const pointsInitialX = ref(0);
-const pointsCurrentX = ref(0);
-
-const touchDevice = isTouchDevice();
-
-function getClientX(e: PointerEvent|TouchEvent) {
-    return (e as PointerEvent).clientX ?? (e as TouchEvent).touches[0]?.clientX ?? 0;
-}
-
-function pointsDragStart(e: PointerEvent|TouchEvent) {
-    const x = getClientX(e)
-    pointsInitialX.value = x;
-    pointsIsDragging.value = true;
-    initialPoints.value = currentRankComp.value.points;
-
-    if (!touchDevice.value && pointsDraggableSlider.value) {
-        const rect = pointsDraggableSlider.value.getBoundingClientRect();
-        const sliderWidth = rect.width;
-        const dist = Math.abs(x - rect.left);
-        const percent = dist / sliderWidth;
-
-        let points = Math.floor(currentRankComp.value.rank.xpPerLevel * percent);
-
-        if (points < 0)
-            points = 0;
-        if (points > currentRankComp.value.rank.xpPerLevel)
-            points = currentRankComp.value.rank.xpPerLevel - 1;
-
-        storedLevel.value.points = points;
-        initialPoints.value = points;
-    }
-}
-
-function pointsDragMove(e: PointerEvent|TouchEvent) {
-    if (!pointsIsDragging.value || !pointsDraggableSlider.value)
-        return;
-
-    pointsCurrentX.value = getClientX(e);
-
-    const sliderWidth = pointsDraggableSlider.value.getBoundingClientRect().width;
-    const diff = pointsCurrentX.value - pointsInitialX.value;
-    const percent = diff / sliderWidth;
-    
-    let points = initialPoints.value + Math.floor(currentRankComp.value.rank.xpPerLevel * percent);
-
-    if (points < 0)
-        points = 0;
-    if (points > currentRankComp.value.rank.xpPerLevel)
-        points = currentRankComp.value.rank.xpPerLevel - 1;
-
-    storedLevel.value.points = points;
-}
-
-function pointsDragEnd() {
-    pointsIsDragging.value = false;
-}
-
-useEvent(['pointermove', 'touchmove'], pointsDragMove);
-useEvent(['pointerup', 'touchend'], pointsDragEnd);
-
-useEvent('touchmove', (e: TouchEvent) => {
-    if (pointsIsDragging.value)
-        e.preventDefault();
-    else
-        return true;
-}, undefined, { passive: false });
 
 function openWhereModal(where: string, returnToModal = true) {
     if (where == 'proficiency-points')

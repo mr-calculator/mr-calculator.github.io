@@ -102,6 +102,8 @@
 
             overflow: visible
 
+            cursor: pointer
+
             +media-large-desktop
                 display: none
 
@@ -548,33 +550,6 @@
 
                                 span
                                     color: $light-blue-highlight
-
-                        .progress-bar
-                            position: relative
-                            width: 100%
-                            height: 6px
-                            background: $light-blue-highlight
-
-                            +media-mobile
-                                height: 12px
-
-                            .drag-area
-                                position: absolute
-                                width: 100%
-                                height: 30px
-                                left: 0
-                                top: 50%
-                                transform: translateY(-50%)
-
-                                z-index: 2
-
-                                cursor: ew-resize
-
-                            .inner
-                                width: var(--progress)
-                                height: 100%
-
-                                background: $color
 
                     .set
                         align-self: end

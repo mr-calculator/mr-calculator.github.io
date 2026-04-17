@@ -77,6 +77,21 @@
                 </div>
                 <h3>Your Goal</h3>
             </li>
+            <li v-if="!headless" @click="exportHero">
+                <div class="icon-wrapper">
+                    <Tex
+                        image="download"
+                        state="hover"
+                        color="var(--color)"
+
+                        width="50px"
+                        height="50px"
+                        object-fit="contain"
+                    />
+                </div>
+                <h3>Export hero</h3>
+            </li>
+
             <li v-if="isUnknownHero" class="list-separator" />
             <li v-if="isUnknownHero" @click="$emit('confirm', 'edit-unknown-hero')">
                 <div class="icon-wrapper">
@@ -228,12 +243,21 @@ const props = defineProps<{
     isUnknownHero?: boolean,
 
     headless?: boolean,
-}>()
+}>();
+
+const emit = defineEmits(['confirm', 'cancel']);
+
+const router = useRouter();
 
 const storedLevel = useLocalStorage<PlayerHeroStore>(`hero_${props.hero.id}`, DEFAULT_HERO_STORE());
 const hasAvgStats = useHasAvgStats(() => props.hero);
 const isLv1AndGoalLv1 = computed(() => storedLevel.value.level == 1 && storedLevel.value.goal == 1);
 
 const unknownHeroHasPossibleMatch = useUnknownHeroHasPossibleMatch(props.hero).value.length;
+
+function exportHero() {
+    emit('cancel');
+    router.push({ path: '/download', query: { hero: props.hero.id } });
+}
 
 </script>
