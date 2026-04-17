@@ -553,7 +553,7 @@ export async function setClipboard(text: any) {
 }
 
 export function hasTouch() {
-  return (('ontouchstart' in window) ||
+  return window && (('ontouchstart' in window) ||
       (navigator.maxTouchPoints > 0) ||
       ((navigator as any).msMaxTouchPoints > 0))
 }

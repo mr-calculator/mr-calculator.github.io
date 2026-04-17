@@ -192,6 +192,18 @@ function add(number: number, e: Event) {
     if (isNaN(numberVal))
         numberVal = 0;
 
+    if (typeof props.numberInput?.min !== 'undefined')
+        if (numberVal + number < props.numberInput.min) {
+            inputModel.value = props.numberInput.min + '';
+            return;
+        }
+
+    if (typeof props.numberInput?.max !== 'undefined')
+        if (numberVal + number > props.numberInput.max) {
+            inputModel.value = props.numberInput.max + '';
+            return;
+        }
+
     inputModel.value = (numberVal + number) + '';
 }
 

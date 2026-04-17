@@ -1,11 +1,8 @@
-export const isMobile = () => {
-    const mobile = ref(false);
+export const isMobile = (width = 992) => {
+    const mobile = ref(window.innerWidth < width);
 
     function checkMobile() {
-        if (window.innerWidth < 992)
-            mobile.value = true;
-        else
-            mobile.value = false;
+        mobile.value = window.innerWidth < width;
     }
 
     onMounted(() => {

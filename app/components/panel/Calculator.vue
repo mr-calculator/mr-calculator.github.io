@@ -54,7 +54,8 @@
             </span>
             <span class="level">LV{{ totalTitleRanks.nextRank?.level }}</span>.
         </div>
-        <div :class="{total: 1, 'single-game-type': selectedGameType != 'normal'}">
+        <!-- <div :class="{total: 1, 'single-game-type': selectedGameType != 'normal'}"> -->
+        <div :class="{total: 1, 'single-game-type': selectedGameType == 'arcade'}">
             <div class="column">
                 <div :class="{title: 1, arcade: selectedGameType == 'arcade'}">
                     <Tex
@@ -76,7 +77,7 @@
                         object-fit="contain"
                     />
                     <h3>Time</h3>
-                    <h4 v-if="selectedGameType == 'arcade'">(ARCADE)</h4>
+                    <!-- <h4 v-if="selectedGameType == 'arcade'">(ARCADE)</h4> -->
                 </div>
                 <div class="time conservative">
                     <p class="desc">Conservative</p>
@@ -163,14 +164,14 @@
                     </div>
                 </div>
             </div>
-            <div v-if="selectedGameType == 'normal' || selectedGameType == 'quickmatch'" class="column">
+            <!-- <div v-if="selectedGameType == 'normal' || selectedGameType == 'quickmatch'" class="column"> -->
+            <div v-if="selectedGameType != 'arcade'" class="column">
                 <div class="title">
-                    <PanelCalculatorGameTypeSwitcher
+                    <!-- <PanelCalculatorGameTypeSwitcher
                         v-if="selectedGameType != 'normal'"
                         v-model="selectedGameTypeRaw"
-                    />
+                    /> -->
                     <Tex
-                        v-else
                         image="quickMatchIcon"
 
                         width="35px"
@@ -234,14 +235,14 @@
                     </div>
                 </div>
             </div>
-            <div v-if="selectedGameType == 'normal' || selectedGameType == 'competitive'" class="column">
+            <!-- <div v-if="selectedGameType == 'normal' || selectedGameType == 'competitive'" class="column"> -->
+            <div v-if="selectedGameType != 'arcade'" class="column">
                 <div class="title">
-                    <PanelCalculatorGameTypeSwitcher
+                    <!-- <PanelCalculatorGameTypeSwitcher
                         v-if="selectedGameType != 'normal'"
                         v-model="selectedGameTypeRaw"
-                    />
+                    /> -->
                     <Tex
-                        v-else
                         image="competitiveIcon"
 
                         width="35px"
@@ -307,8 +308,16 @@
             </div>
             <div v-if="displayTimeNumbers.games.arcade && selectedGameType == 'arcade'" class="column">
                 <div class="title">
-                    <PanelCalculatorGameTypeSwitcher
+                    <!-- <PanelCalculatorGameTypeSwitcher
                         v-model="selectedGameTypeRaw"
+                    /> -->
+
+                    <Tex
+                        image="arcadeIcon"
+
+                        width="35px"
+                        height="35px"
+                        object-fit="contain"
                     />
                     <h3>ARCADE</h3>
                 </div>
@@ -488,14 +497,18 @@ import HorizontalScrollContainer from './HorizontalScrollContainer.vue'
 import { AVG_ARCADE_MATCH_DURATION_MIN, AVG_COMP_MATCH_DURATION_MIN, AVG_QUICK_MATCH_DURATION_MIN, levelToRank, PROFICIENCY_RANKS, type HeroData, type PlayerHeroStore, type ProficiencyRank, type Rank, type Reward } from '~/assets/data/common';
 import { type PersonalRankTimeEstimate } from '~/services/calculator';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     hero: HeroData,
     level: PlayerHeroStore,
     timeEstimates: PersonalRankTimeEstimate[],
     timeEstimatesArcade?: PersonalRankTimeEstimate[],
     animate?: boolean,
-    haltAnimation?: boolean
-}>();
+    haltAnimation?: boolean,
+
+    selectedGameType?: GameType
+}>(), {
+    selectedGameType: 'normal'
+});
 
 const emit = defineEmits<{
     finishedAnimation: []
@@ -515,13 +528,13 @@ const timeTableScrollable = ref<InstanceType<typeof HorizontalScrollContainer>>(
 const rankRefs = ref<Record<string, Element|ComponentPublicInstance|null>>({});
 
 type GameType = 'normal'|'quickmatch'|'competitive'|'arcade'; // normal is qm and comp
-const selectedGameTypeRaw = ref<GameType>('quickmatch');
-const selectedGameType = computed<GameType>(() => {
-    if (!props.timeEstimatesArcade)
-        return 'normal';
+// const selectedGameTypeRaw = ref<GameType>('quickmatch');
+// const selectedGameType = computed<GameType>(() => {
+//     if (!props.timeEstimatesArcade)
+//         return 'normal';
 
-    return selectedGameTypeRaw.value;
-});
+//     return selectedGameTypeRaw.value;
+// });
 
 watch(props, () => {
     setTimeout(() => timeTableScrollable.value?.updateBounds(), 100);
@@ -647,7 +660,8 @@ const times = computed(() => {
         if (calculatedRank) {
             let [ rankId, time, points, levelCount ] = calculatedRank;
 
-            if (selectedGameType.value == 'arcade' && calculatedRankArcade)
+            // if (selectedGameType.value == 'arcade' && calculatedRankArcade)
+            if (props.selectedGameType == 'arcade' && calculatedRankArcade)
                 time = calculatedRankArcade[1];
 
             const showLevel = currentLevelRank?.id == rankId ? 
