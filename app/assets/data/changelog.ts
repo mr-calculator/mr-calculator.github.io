@@ -217,6 +217,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '1.2.5',
             date: 'Apr 17, 2026',
             time: '4:11 PM',
+            commitSha: '658c03706959f0ef790e86ca5bae6e9ce18910d8'
         },
         title: 'Added Black Cat',
         description: `Added Black Cat to the calculator without generic stats (will add later - when averages are more accurate)
@@ -240,6 +241,24 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v1.2.5/black-cat.webp',
             '/img/changelog/v1.2.5/new-hero-promo-landing.webp',
             '/img/changelog/v1.2.5/new-hero-promo-list.webp',
+        ]
+    },
+    {
+        version: {
+            number: '1.2.6',
+            date: 'Apr 17, 2026',
+            time: '11:12 PM',
+        },
+        title: 'Hero Page UI/UX Improvements',
+        description: `Reworked the Hero page to have better UX and be less confusing, using more tabs and less hidden menus.`,
+        list: [
+            'Changed navigation to Overview, Customize, Estimates, Planner',
+            'Changed calculator panel to have 2 different states (normal & arcade) for less confusion',
+            'Customize page now features everything in the hero settings modal',
+            'Added Export Hero button'
+        ],
+        images: [
+            '/img/changelog/v1.2.6/hero-page.webp',
         ]
     }
 ];
