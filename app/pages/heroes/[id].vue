@@ -38,15 +38,21 @@
 
                 <div
                     class="menu warning-wrapper"
-                    @click="setPage(page == 'overview' ? 'calculator' : 'overview')"
+                    @click="menuOpen = !menuOpen"
                 >
                     <img
                         class="menu-icon"
-                        :src="page == 'overview' ? tex('calculator') : tex('hamburger')"
+                        :src="menuOpen ? tex('cross') : tex('hamburger')"
                     />
 
                     <Tex
-                        v-if="!storedLevel.openedCalculator"
+                        v-if="(
+                                !storedLevel.openedCalculator
+                             || !(hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection)
+                            )
+                            &&
+                            !menuOpen
+                        "
                         class="warning-bubble"
                         image="redDotExcl"
 
@@ -57,7 +63,7 @@
             <!-- @click="menuOpen = !menuOpen" -->
 
             <!-- :class="{visible: menuOpen}" -->
-            <ul>
+            <ul :class="{visible: menuOpen}">
                 <li
                     :class="{ selected: page == 'overview' }"
                     @click="setPage('overview')"
@@ -65,10 +71,26 @@
                     Overview
                 </li>
                 <li
-                    :class="{ 'warning-wrapper': 1, selected: page == 'calculator' }"
-                    @click="setPage('calculator')"
+                    :class="{ 'warning-wrapper': 1, selected: page == 'customize' }"
+                    @click="setPage('customize')"
                 >
-                    Calculator
+                    Customize
+
+                    <ClientOnly>
+                        <Tex
+                            v-if="!(hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection)"
+                            class="warning-bubble"
+                            image="redDotExcl"
+
+                            object-fit="contain"
+                        />
+                    </ClientOnly>
+                </li>
+                <li
+                    :class="{ 'warning-wrapper': 1, selected: page == 'estimates' }"
+                    @click="setPage('estimates')"
+                >
+                    Estimates
 
                     <ClientOnly>
                         <Tex
@@ -79,6 +101,12 @@
                             object-fit="contain"
                         />
                     </ClientOnly>
+                </li>
+                <li
+                    :class="{ selected: page == 'planner' }"
+                    @click="setPage('planner')"
+                >
+                    Planner
                 </li>
             </ul>
         </nav>
@@ -279,7 +307,7 @@
 
                         <p>(You can select your goal by clicking on an item)</p>
 
-                        <FormButton color-scheme="yellow" size="small" @click="setPage('calculator')">
+                        <FormButton color-scheme="yellow" size="small" @click="setPage('estimates')">
                             SEE YOUR ESTIMATES
                         </FormButton>
                     </template>
@@ -344,11 +372,31 @@
                 </PanelTabbedContainer>
             </div>
             <div
-                v-else-if="page == 'calculator'"
+                v-else-if="page == 'customize'"
+                class="content update-stats"
+            >
+                <ModifyHeroData
+                    class="update-stats-modal"
+                    :hero="hero"
+                    :is-unknown-hero="isUnknownHero"
+
+                    headless
+                    @confirm="openWhereModal($event, false)"
+                />
+            </div>
+            <div
+                v-else-if="page == 'estimates'"
                 class="content"
             >
-                <PanelTabbedContainer class="tabbed-container" container-class="tab-container">
-                    <template #estimates>
+                <PanelTabbedContainer
+                    class="tabbed-container"
+                    container-class="tab-container"
+
+                    :slot-labels="{
+                        normal: 'QUICK/COMP'
+                    }"
+                >
+                    <template #normal>
                         <PanelCalculator
                             v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
 
@@ -375,15 +423,22 @@
                             @open-level-menu="selectCurrentLevel()"
                         />
                     </template>
-                    <template #planner>
-                        <PanelPlanner
-                            v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+                    <template #arcade>
+                        <PanelCalculator
+                            v-if="hasAvgArcadeStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
 
                             :hero="hero"
-                            v-model="storedLevel"
+                            :level="storedLevel"
                             :time-estimates="timeEstimates.normal"
                             :time-estimates-arcade="timeEstimates.arcade"
+                            selected-game-type="arcade"
+
+                            :animate="!finishedAnimation"
+
+                            @finished-animation="finishedAnimation = true"
                         />
+
+                        <!-- ARCADE SETUP -->
                         <PanelSetupCalculator
                             v-else
                             :hero="hero"
@@ -392,12 +447,42 @@
                             :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
                             :is-incorrect-selection="isIncorrectSelection"
 
-                            @open-stats-menu="editAvgStats()"
+                            arcade
+                            :has-avg-arcade-stats="hasAvgArcadeStats"
+
+                            @open-stats-menu="editAvgStats(undefined, undefined, true)"
                             @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
                             @open-level-menu="selectCurrentLevel()"
                         />
                     </template>
                 </PanelTabbedContainer>
+            </div>
+
+            <div
+                v-else-if="page == 'planner'"
+                class="content planner-wrapper"
+            >
+                <PanelPlanner
+                    v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+
+                    :hero="hero"
+                    v-model="storedLevel"
+                    :time-estimates="timeEstimates.normal"
+                    :time-estimates-arcade="timeEstimates.arcade"
+                />
+                <PanelSetupCalculator
+                    v-else
+                    :hero="hero"
+                    :level="storedLevel"
+                    :has-avg-stats="hasAvgStats"
+                    :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
+                    :is-incorrect-selection="isIncorrectSelection"
+                    headless
+
+                    @open-stats-menu="editAvgStats()"
+                    @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
+                    @open-level-menu="selectCurrentLevel()"
+                />
             </div>
         </main>
     </div>
@@ -406,11 +491,10 @@
 <style src="@/assets/style/pages/heroes/id.sass" scoped></style>
 
 <script setup lang="ts">
-import { isMobile, useModalManager } from '#imports';
+import { useModalManager } from '#imports';
 import { CHALLENGE_ICONS, CHALLENGE_NAMES, DEFAULT_HERO_STORE, DEFAULT_PREFERENCES_STORE, getAverageStatsForHero, getHeroMatchCount, levelToRank, PROFICIENCY_RANKS, replaceRewardPlaceholders, type Challenge, type PlayerHeroStore, type PreferencesStore, type ProficiencyRank, type Reward } from '~/assets/data/common';
 import { createHero, deleteHero, editHero, HERO_LIST, UNKNOWN_HERO } from '~/assets/data/heroes';
 import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
-import InputModal from '~/components/modals/InputModal.vue';
 import ListSelect from '~/components/modals/ListSelect.vue';
 import ModifyHeroData from '~/components/modals/ModifyHeroData.vue';
 import { changeColor } from '~/utils/util';
@@ -421,6 +505,7 @@ import ConfigureHeroModal from '~/components/modals/ConfigureHeroModal.vue';
 import ConfirmModal from '~/components/modals/ConfirmModal.vue';
 import { useAbsoluteUrl } from '~/composables/config';
 import ConvertUnknownHeroModal from '~/components/modals/ConvertUnknownHeroModal.vue';
+import ProficiencyPointsModal from '~/components/modals/ProficiencyPointsModal.vue';
 
 const { openModal } = useModalManager();
 const { notify } = useNotificationManager();
@@ -554,12 +639,13 @@ const isLv1AndGoalLv1 = computed(() => storedLevel.value.level == 1 && storedLev
 const unknownHeroHasPossibleMatch = useUnknownHeroHasPossibleMatch(hero.value).value.length;
 const isIncorrectSelection = computed(() => storedLevel.value.goal <= storedLevel.value.level);
 
-const page = ref<'overview'|'calculator'>('overview');
-function setPage(newPage: 'overview'|'calculator') {
+type PageId = 'overview'|'customize'|'estimates'|'planner';
+const page = ref<PageId>('overview');
+function setPage(newPage: PageId) {
     page.value = newPage;
     menuOpen.value = false;
 
-    if (newPage == 'calculator' && !storedLevel.value.openedCalculator) {
+    if (newPage == 'estimates' && !storedLevel.value.openedCalculator) {
         storedLevel.value.openedCalculator = true;
     }
 }
@@ -689,6 +775,23 @@ useEvent('touchmove', (e: TouchEvent) => {
         return true;
 }, undefined, { passive: false });
 
+function openWhereModal(where: string, returnToModal = true) {
+    if (where == 'proficiency-points')
+        editProficiencyPoints(returnToModal ? modifyHeroData : undefined);
+    else if (where == 'level')
+        selectCurrentLevel(returnToModal ? modifyHeroData : undefined);
+    else if (where == 'stats')
+        editAvgStats(returnToModal ? modifyHeroData : undefined);
+    else if (where == 'goal')
+        selectLevelGoal(returnToModal ? modifyHeroData : undefined);
+    else if (where == 'edit-unknown-hero')
+        editUnknownHero(returnToModal ? modifyHeroData : undefined);
+    else if (where == 'convert-unknown-hero')
+        convertUnknownHero(returnToModal ? modifyHeroData : undefined);
+    else if (where == 'delete-unknown-hero')
+        deleteUnknownHero(returnToModal ? modifyHeroData : undefined);
+}
+
 function modifyHeroData() {
     openModal(ModifyHeroData, {
         title: 'Update your stats',
@@ -696,22 +799,7 @@ function modifyHeroData() {
         isUnknownHero: isUnknownHero.value
     })
     .promise
-    .then(where => {
-        if (where == 'proficiency-points')
-            editProficiencyPoints(modifyHeroData);
-        else if (where == 'level')
-            selectCurrentLevel(modifyHeroData);
-        else if (where == 'stats')
-            editAvgStats(modifyHeroData);
-        else if (where == 'goal')
-            selectLevelGoal(modifyHeroData);
-        else if (where == 'edit-unknown-hero')
-            editUnknownHero(modifyHeroData);
-        else if (where == 'convert-unknown-hero')
-            convertUnknownHero(modifyHeroData);
-        else if (where == 'delete-unknown-hero')
-            deleteUnknownHero(modifyHeroData);
-    })
+    .then(openWhereModal)
     .catch(() => null)
 }
 
@@ -739,7 +827,7 @@ function selectCurrentLevel(callback = () => {}, callbackOnSuccess = false) {
 }
 
 function editProficiencyPoints(callback = () => {}, callbackOnSuccess = false) {
-    openModal(InputModal, {
+    openModal(ProficiencyPointsModal, {
         title: 'Edit your proficiency points',
         inputPlaceholder: 'Type your points...',
         inputValue: storedLevel.value.points,
@@ -747,7 +835,9 @@ function editProficiencyPoints(callback = () => {}, callbackOnSuccess = false) {
             step: 50,
             min: 0,
             max: currentRankComp.value.rank.xpPerLevel - 1
-        }
+        },
+
+        hero
     })
     .promise
     .then((points: number) => {
@@ -772,11 +862,12 @@ function editProficiencyPoints(callback = () => {}, callbackOnSuccess = false) {
     .catch(callback);
 }
 
-function editAvgStats(callback = () => {}, callbackOnSuccess = false) {
+function editAvgStats(callback = () => {}, callbackOnSuccess = false, arcade = false) {
     openModal<{stats: Record<string, string>, statsArcade: Record<string, string>}>(AverageStatsModal, {
         title: 'Set your average stats',
         message: 'Input your Avg/10 Mins stats to get accurate time spans to get your desired rewards!',
         hero: hero.value,
+        tab: arcade ? 'arcade' : undefined,
 
         stats: storedLevel.value.averageStats,
         arcadeStats: storedLevel.value.averageStatsArcade

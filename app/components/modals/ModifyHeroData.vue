@@ -1,8 +1,8 @@
 <template>
-    <div class="modal">
+    <div :class="{modal: 1, 'headless-modal': headless}">
         <h2 v-if="title" v-html="title"/>
         <p v-if="message" class="modal-subtitle" v-html="message" />
-        <UiSeparator class="separator" />
+        <UiSeparator v-if="!headless" class="separator" />
     
         <ul class="options">
             <li @click="$emit('confirm', 'level')">
@@ -77,6 +77,7 @@
                 </div>
                 <h3>Your Goal</h3>
             </li>
+            <li v-if="isUnknownHero" class="list-separator" />
             <li v-if="isUnknownHero" @click="$emit('confirm', 'edit-unknown-hero')">
                 <div class="icon-wrapper">
                     <Tex
@@ -134,13 +135,26 @@
             </li>
         </ul>
 
-        <div class="buttons">
+        <div v-if="!headless" class="buttons">
             <FormButton size="small" color-scheme="white" @click="$emit('cancel')">Back</FormButton>
         </div>
     </div>
 </template>
 
 <style lang="sass" scoped>
+.headless-modal
+    h2
+        margin-bottom: 40px
+    .options
+        max-width: (150px + 25px) * 4 + 40px
+
+        +media-desktop
+            max-width: (150px + 25px) * 4 + 120px
+            padding: 0 60px
+
+        li.list-separator
+            display: none
+
 .options
     padding: 0 20px
 
@@ -153,8 +167,6 @@
     user-select: none
 
     li
-        width: 100%
-
         display: flex
         flex-direction: column
         gap: 10px
@@ -167,6 +179,16 @@
                 border: 4px solid $color
                 .texture
                     transform: scale(1.1)
+
+        &.list-separator
+            display: none
+            width: 2px
+            height: 120px
+            background: $light-blue
+            margin-bottom: 50px
+
+            +media-desktop
+                display: block
         
         .icon-wrapper
             width: 100%
@@ -185,13 +207,12 @@
                 transition: transform .1s ease
 
         h3
-            height: 40px
+            min-height: 50px
             font-size: 20px
             font-family: RefrigeratorDeluxeBold
             font-weight: normal
             text-transform: uppercase
             text-align: center
-            line-height: 20px
 
 </style>
 
@@ -200,11 +221,13 @@ import { DEFAULT_HERO_STORE, type HeroData, type PlayerHeroStore } from '~/asset
 import { useUnknownHeroHasPossibleMatch } from '~/composables/useUnknownHeroHasPossibleMatch';
 
 const props = defineProps<{
-    title: string,
+    title?: string,
     message?: string,
     hero: HeroData,
 
-    isUnknownHero?: boolean
+    isUnknownHero?: boolean,
+
+    headless?: boolean,
 }>()
 
 const storedLevel = useLocalStorage<PlayerHeroStore>(`hero_${props.hero.id}`, DEFAULT_HERO_STORE());

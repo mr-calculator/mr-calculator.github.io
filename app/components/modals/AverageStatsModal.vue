@@ -391,16 +391,20 @@
 <script setup lang="ts">
 import { CHALLENGE_ICONS, CHALLENGE_NAMES, CHALLENGE_STATS, getAverageStatsForHero, type Challenge, type ChallengeStats, type HeroData, type PlayerHeroStore } from '~/assets/data/common';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     title?: string,
     message?: string,
     hero: HeroData,
     stats: PlayerHeroStore['averageStats'],
     arcadeStats?: PlayerHeroStore['averageStatsArcade'],
 
+    tab?: 'normal'|'arcade'
+
     headless?: boolean,
     hideGenericStats?: Partial<Record<Challenge['type'], boolean>>
-}>()
+}>(), {
+    tab: 'normal'
+})
 
 const emit = defineEmits<{
     confirm: [value: { stats: Record<string, string>, statsArcade: Record<string, string> }],
@@ -452,7 +456,7 @@ const genericStatsUsed = computed(() => {
 });
 const genericStatsExpanded = ref(false);
 
-const statsType = ref<'normal'|'arcade'>('normal');
+const statsType = ref<'normal'|'arcade'>(props.tab);
 const models = ref<Record<string, string>>({});
 const modelsArcade = ref<Record<string, string>>({});
 

@@ -3,6 +3,20 @@
         <h2 v-if="title" v-html="title"/>
         <UiSeparator class="separator" />
         
+        <div class="input-level">
+            <FormAdvancedInput
+                input-placeholder="Level..."
+                :number-input="{
+                    step: 5,
+                    min: 0,
+                    max: Object.values(PROFICIENCY_RANKS).at(-1)?.levelEnd ?? 70
+                }"
+
+                :model-value="`${selectedLevel}`"
+                @update:model-value="selectedLevel = parseInt($event) || 0"
+            />
+        </div>
+
         <div ref="listWrapper" class="list-wrapper">
             <PanelHeroProficiencyRewardList
                 :hero="hero"
@@ -26,6 +40,9 @@
 </template>
 
 <style lang="sass" scoped>
+.input-level
+    margin-bottom: 30px
+
 .list-wrapper
     width: 100%
     max-width: 920px
@@ -42,7 +59,7 @@
 </style>
 
 <script setup lang="ts">
-import type { HeroData } from '~/assets/data/common';
+import { PROFICIENCY_RANKS, type HeroData } from '~/assets/data/common';
 
 const props = defineProps<{
     title: string,
@@ -54,12 +71,25 @@ const props = defineProps<{
 const emit = defineEmits(['confirm', 'cancel'])
 
 const selectedLevel = ref(props.currentLevel ?? undefined);
+watch(selectedLevel, lvl => lvl ? scrollItemIntoView(lvl, true) : null);
+
+function scrollItemIntoView(level: number, smooth?: boolean) {
+    const selectedItemId = `${btoa(props.title)}__level_${level}`;
+    const selectedItem = document.getElementById(selectedItemId);
+    selectedItem?.scrollIntoView({
+        behavior: smooth ? 'smooth' : 'instant'
+    });
+}
 
 onMounted(() => {
+    if (!selectedLevel.value)
+        return;
+
     setTimeout(() => {
-        const selectedItemId = `${btoa(props.title)}__level_${selectedLevel.value}`;
-        const selectedItem = document.getElementById(selectedItemId);
-        selectedItem?.scrollIntoView();
+        if (!selectedLevel.value)
+            return;
+
+        scrollItemIntoView(selectedLevel.value);
     }, 100);
 });
 
