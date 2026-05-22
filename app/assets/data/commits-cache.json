@@ -1,5 +1,47 @@
 [
   {
+    "sha": "10ad8ef47b8adaf2e7beb872894c2bbc632db5e3",
+    "node_id": "C_kwDORv7rQ9oAKDEwYWQ4ZWY0N2I4YWRhZjJlN2JlYjg3Mjg5NGMyYmJjNjMyZGI1ZTM",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-16T12:38:58Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-16T12:38:58Z"
+      },
+      "message": "Added generic average stats for Devil Dinosaur\nFixed small issue with saving internal ids on new hero creation in add-hero script\nFixed a styling issue pertaining to the width of the name of a hero in the hero list featured hero section\nMade featured hero show up at the beginning of the hero data list in the landing page (with an additional NEW badge unde the hero spray)\nRemoved previous \"Allow build scripts\" steps from the deployment workflow, since it's no longer needed with the pnpm version downgrade (and wasn't working anyways due to github global pnpm config)",
+      "tree": {
+        "sha": "8d933ef977a32589c8ba9778eb8e8b0a71cd29f1",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/8d933ef977a32589c8ba9778eb8e8b0a71cd29f1"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/10ad8ef47b8adaf2e7beb872894c2bbc632db5e3",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/10ad8ef47b8adaf2e7beb872894c2bbc632db5e3",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/10ad8ef47b8adaf2e7beb872894c2bbc632db5e3",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/10ad8ef47b8adaf2e7beb872894c2bbc632db5e3/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "2289bad29a879f138af49fa9fff0963cea60067e",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/2289bad29a879f138af49fa9fff0963cea60067e",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/2289bad29a879f138af49fa9fff0963cea60067e"
+      }
+    ]
+  },
+  {
     "sha": "2289bad29a879f138af49fa9fff0963cea60067e",
     "node_id": "C_kwDORv7rQ9oAKDIyODliYWQyOWE4NzlmMTM4YWY0OWZhOWZmZjA5NjNjZWE2MDA2N2U",
     "commit": {
