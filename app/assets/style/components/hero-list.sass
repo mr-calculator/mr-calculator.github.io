@@ -14,56 +14,38 @@
         position: relative
 
         display: flex
-        justify-content: center
+        justify-content: end
 
-
-        &::before
-            content: ""
-            position: absolute
-            top: 0
-            left: 0
-            width: 157px
-            height: 100%
-
-            z-index: 1
-
-        &::after
-            content: ""
-            position: absolute
-            top: 0
-            right: 0
-            width: 75px
-            height: 100%
-
-            z-index: 1
+        +media-mobile
+            justify-content: center
 
         ul
             display: flex
             z-index: 2
 
             li
-                height: 60px
-                padding: 0 30px
+                padding: 0 0 0 30px
 
-                font-size: 26px
+                font-size: 24px
                 font-family: MarvelRivalsBold
                 color: $light
 
-                text-align: center
-                line-height: 60px
+                display: flex
+                justify-content: center
+                align-items: center
+                gap: 7px
 
                 user-select: none
                 cursor: pointer
 
-                @media only screen and (max-width: 325px)
+                +media($size: 325px, $minmax: 'max')
                     .view-label
                         display: none
 
-                +media-desktop
-                    padding: 0 60px
-
                 &:not(:last-of-type)
                     position: relative
+
+                    padding: 0 30px 0 0
 
                     &::after
                         content: ""
@@ -72,6 +54,7 @@
                         right: 0
                         width: 9px
                         height: 100%
+                        transform: translateX(50%)
 
                         background: var(--tex-panelTabSeparator) no-repeat
                         background-size: contain
@@ -480,3 +463,396 @@
             justify-content: center
             flex-wrap: wrap
             align-items: start
+
+    .table-wrapper
+        width: 100%
+        overflow-x: auto
+        +scrollbar($background: transparent, $thumb: $light-blue, $active: $color)
+
+        table
+            border-collapse: collapse
+            width: 100%
+
+            thead
+                border-collapse: collapse
+                position: sticky
+                top: 0
+                z-index: 2
+
+                th
+                    padding: 14px 20px
+                    background: $blue
+                    border-bottom: 2px solid $color
+                    
+                    font-family: MarvelRivalsBold
+                    font-weight: normal
+                    font-size: 20px
+
+                    text-align: left
+                    text-transform: uppercase
+                    color: $light
+                    white-space: nowrap
+
+                    &.num
+                        text-align: right
+
+                    &.center
+                        text-align: center
+
+                    &.sortable
+                        cursor: pointer
+                        user-select: none
+
+                        &:hover
+                            color: #fff
+
+                    &.no-left-pad
+                        padding-left: 0
+
+                    .caret
+                        font-size: 12px
+                        margin-left: 6px
+
+            .hero-row
+                background-color: rgb(0 0 0 / 25%)
+
+                border-left: 4px solid var(--rank-color)
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06)
+                
+                cursor: pointer
+                transition: background 0.1s
+
+                &.favourite
+                    background-color: rgb(255 255 0 / 5%)
+
+                &:hover
+                    background: rgba(255, 255, 255, 0.06)
+
+                    .name-cell:hover
+                        a
+                            color: $color
+                            // text-decoration: underline
+
+                td
+                    padding: 0 20px 0 0
+                    vertical-align: middle
+
+                td.role-cell,
+                td.rank-cell,
+                td.num-cell
+                    padding: 0 20px
+
+            .name-cell
+                position: relative
+                min-width: 220px
+
+                display: flex
+                align-items: center
+                gap: 16px
+
+                .favourite-check
+                    position: absolute
+                    left: 0
+                    top: 0
+
+                    z-index: 2
+
+                .portrait
+                    flex-shrink: 0
+                    height: 80px
+                    width: auto
+                    transform: scaleX(-1)
+
+                    object-fit: contain
+                    mask-image: linear-gradient(to bottom left, black 20%, transparent 95%)
+
+                a
+                    font-family: MarvelRivalsBold
+                    font-size: 24px
+                    color: $light
+                    text-decoration: none
+                    text-transform: uppercase
+
+                    &:hover
+                        color: $color
+                        // text-decoration: underline
+
+            .role-cell
+                div
+                    height: 100%
+
+                    display: flex
+                    justify-content: center
+                    align-items: center
+
+                .role-icon
+                    width: 44px
+                    height: 44px
+
+                    object-fit: contain
+                    filter: brightness(0) invert(1)
+
+            .rank-cell
+                div
+                    height: 100%
+
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    gap: 0
+
+                    white-space: nowrap
+
+                .rank-icon
+                    width: 56px
+                    height: 56px
+
+                    object-fit: contain
+                    filter: brightness(1.4)
+
+                span
+                    font-family: MarvelRivalsBold
+                    font-size: 20px
+                    text-transform: uppercase
+                    color: color-mix(in srgb, var(--rank-color), white 60%)
+
+            .num-cell
+                font-family: MarvelRivalsBold
+                font-size: 26px
+                color: color-mix(in srgb, var(--rank-color), white 60%)
+                text-align: center
+                white-space: nowrap
+
+                &.xp
+                    font-family: MRBody
+                    font-size: 20px
+                    color: color-mix(in srgb, var(--rank-color), white 20%)
+                    text-align: right
+
+            .progress-cell
+                width: 25%
+
+                .progress-bar
+                    position: relative
+                    width: 100%
+                    height: 30px
+                    background: rgba(255, 255, 255, 0.1)
+
+                    .fill
+                        position: absolute
+                        top: 0
+                        left: 0
+                        height: 100%
+
+                        background: var(--rank-color)
+                        filter: saturate(1.2) brightness(1)
+
+                    .xp-label
+                        position: absolute
+                        top: 50%
+                        left: 50%
+                        transform: translate(-50%, -50%)
+
+                        font-family: MRBody
+                        font-size: 12px
+                        color: #fff
+                        white-space: nowrap
+
+                        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8)
+                        opacity: 1
+                        transition: opacity 0.15s
+
+            .hero-row:hover .progress-cell .xp-label
+                opacity: 1
+
+            +media($size: 1150px, $minmax: 'max')
+                display: none
+
+    .hero-cards
+        display: none
+        width: 100%
+
+        +media($size: 1150px, $minmax: 'max')
+            display: flex
+            flex-direction: column
+            gap: 4px
+
+        .cards-controls
+            display: flex
+            flex-direction: column
+            gap: 6px
+
+            .sort-label
+                font-family: MarvelRivalsBold
+                font-size: 24px
+                color: $light
+
+            .sort-row
+                display: flex
+                align-items: center
+                gap: 10px
+
+                :deep(.dropdown)
+                    flex: 1
+
+            .dir-toggle
+                align-self: stretch
+                flex-shrink: 0
+
+                padding: 0 16px
+                background: transparent
+
+                border: 3px solid $light-blue-highlight
+                outline: none
+
+                font-size: 18px
+                font-family: MRBody
+                color: $light
+                white-space: nowrap
+
+                cursor: pointer
+
+                &:hover
+                    background: rgba(255, 255, 255, 0.06)
+                    color: #fff
+
+        .hero-card
+            padding: 10px 12px
+            background-color: rgb(0 0 0 / 25%)
+
+            border-left: 4px solid var(--rank-color)
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06)
+            
+            cursor: pointer
+            transition: background 0.1s
+
+            &.favourite
+                background-color: rgb(255 255 0 / 5%)
+
+            &:hover
+                background: rgba(255, 255, 255, 0.06)
+
+            .card-top
+                display: flex
+                align-items: center
+                gap: 10px
+
+                margin-bottom: 8px
+
+                .portrait
+                    height: 52px
+                    width: 56px
+                    object-fit: cover
+                    object-position: 75%
+                    flex-shrink: 0
+
+                .card-identity
+                    flex: 1
+                    display: flex
+                    flex-direction: column
+                    gap: 2px
+
+                    a
+                        font-family: MarvelRivalsBold
+                        font-size: 18px
+                        color: $light
+                        text-decoration: none
+                        text-transform: uppercase
+
+                        &:hover
+                            color: $color
+                            // text-decoration: underline
+
+                    .card-role
+                        display: flex
+                        align-items: center
+
+                        .role-icon
+                            width: 28px
+                            height: 28px
+                            object-fit: contain
+                            filter: brightness(0) invert(1)
+
+                .card-rank
+                    display: flex
+                    align-items: center
+
+                    .rank-icon
+                        width: 52px
+                        height: 52px
+                        object-fit: contain
+                        filter: brightness(1.4)
+
+                        +media-phone
+                            width: 32px
+                            height: 32px
+
+                    span
+                        font-family: MarvelRivalsBold
+                        font-size: 16px
+                        text-transform: uppercase
+                        color: color-mix(in srgb, var(--rank-color), white 60%)
+
+                        +media-phone
+                            font-size: 13px
+
+            .progress-bar
+                position: relative
+                width: 100%
+                height: 22px
+
+                background: rgba(255, 255, 255, 0.1)
+                margin-bottom: 6px
+
+                .fill
+                    position: absolute
+                    top: 0
+                    left: 0
+                    height: 100%
+
+                    background: var(--rank-color)
+                    filter: saturate(1.2) brightness(1)
+
+                .xp-label
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    transform: translate(-50%, -50%)
+                    
+                    font-family: MRBody
+                    font-size: 11px
+                    color: #fff
+                    white-space: nowrap
+                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8)
+
+            .card-stats
+                display: flex
+                justify-content: space-between
+
+                .level
+                    font-family: MarvelRivalsBold
+                    font-size: 15px
+                    color: color-mix(in srgb, var(--rank-color), white 60%)
+
+                .xp
+                    font-family: MRBody
+                    font-size: 13px
+                    color: color-mix(in srgb, var(--rank-color), white 20%)
+
+    .no-results
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 20px
+
+        padding-top: 80px
+
+        +mediaIOS
+            padding-bottom: env(safe-area-inset-bottom)
+
+        p
+            font-family: MarvelRivalsHeavy
+            font-size: 20px
+            text-transform: uppercase
+            color: $light

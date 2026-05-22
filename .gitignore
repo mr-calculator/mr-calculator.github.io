@@ -26,6 +26,7 @@ logs
 # Other
 scripts/*
 !scripts/fetch-commits.js
+!scripts/appropriate.ts
 !scripts/add-hero
 !scripts/add-hero/*
 !scripts/parse-achievements-table

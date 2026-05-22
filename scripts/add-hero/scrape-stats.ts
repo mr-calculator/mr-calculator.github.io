@@ -158,7 +158,7 @@ export async function scrapeData(internalId: string, heroId: string, role: HeroR
     setHeroMatchCountInFile(heroId, heroMatchCount);
 }
 
-function fileNameFriendlyDate(date: Date) {
+export function fileNameFriendlyDate(date: Date) {
     const year = date.getUTCFullYear()
     const month = date.getUTCMonth() + 1;
     const day = date.getUTCDate();

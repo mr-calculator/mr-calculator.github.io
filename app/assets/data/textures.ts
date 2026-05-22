@@ -38,6 +38,9 @@ export const TEX = {
     favouriteCorner: {
         default: 'ui/favourite-corner.png',
     } as Texture,
+    favouriteCornerLeft: {
+        default: 'ui/favourite-corner-left.png',
+    } as Texture,
     checkCorner: {
         default: 'ui/check-corner.png',
     } as Texture,
