@@ -37,7 +37,13 @@
 
         <div class="details-panel">
             <img class="hero-badge" :src="`/img/heroes/data/${heroId}/logo.webp`" alt="" />
-                <h2>{{ costume.name }}</h2>
+                <h2>
+                    {{ costume.name }}
+                    <FormCheckbox
+                        :model-value="ownedCostumes.includes(costume.id)"
+                        @update:model-value="toggleCostumeOwned"
+                    />
+                </h2>
                 <UiSeparator class="title-divider" />
                 <div class="details">
                     <div v-if="costume.customizable" class="detail">
@@ -128,8 +134,6 @@
     // Only phones stack
     +media-max-tablet
         min-height: unset
-        overflow-x: hidden !important
-        overflow-y: auto !important
 
     &.rarity-rare,
     &.rarity-epic,
@@ -168,7 +172,7 @@
 
     .scroll-container
         width: 100%
-        height: 100%
+        height: auto
 
         max-width: 1000px
         min-height: 500px
@@ -183,6 +187,7 @@
         overflow-y: auto
 
         +media-max-tablet
+            min-height: 100%
             flex-direction: column
 
 .close-btn
@@ -256,6 +261,9 @@
             object-position: center
             position: relative
             z-index: 1
+
+            user-select: none
+            -webkit-user-drag: none
 
             +media-max-tablet
                 object-fit: contain
@@ -348,6 +356,11 @@
         text-align: center !important
         padding: 0 !important
 
+        display: flex
+        justify-content: space-evenly
+        align-items: center
+        gap: 10px
+
     .title-divider
         width: 100%
         margin-bottom: 4px
@@ -418,6 +431,15 @@ const props = withDefaults(defineProps<{
 });
 
 defineEmits<{ cancel: [] }>();
+
+const ownedCostumes = useLocalStorage<string[]>(`cosmetics_owned_${props.heroId}`, []);
+function toggleCostumeOwned() {
+    const index = ownedCostumes.value.indexOf(props.costume.id);
+    if (index === -1)
+        ownedCostumes.value.push(props.costume.id);
+    else
+        ownedCostumes.value.splice(index, 1);
+}
 
 const RARITY_MAP: Partial<Record<CostumeRarity, TextureKey>> = {
     legendary: 'rarityLegendary',

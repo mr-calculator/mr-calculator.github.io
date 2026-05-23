@@ -481,21 +481,7 @@ const viewStore = useLocalStorage<'gallery'|'list'>('heroes_view', 'gallery');
 const view = ref(props.listViewDisabled ? 'gallery' : viewStore.value);
 watch(view, view => viewStore.value = view);
 
-function getScrollParent(element: HTMLElement|null) {
-    if (!element)
-        return window;
 
-    let parent = element.parentElement;
-    while (parent) {
-        const { overflow, overflowY } = getComputedStyle(parent);
-        if (/(auto|scroll)/.test(overflow + overflowY))
-            return parent;
-
-        parent = parent.parentElement;
-    }
-
-    return window; // fallback to viewport
-}
 const scroller = ref<Window|HTMLElement>();
 
 await useGsap(({ scrollTrigger }) => {

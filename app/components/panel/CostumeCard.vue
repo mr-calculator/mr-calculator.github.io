@@ -41,12 +41,14 @@
             <div class="name">
                 <h3>{{ name }}</h3>
             </div>
-            <FormCheckbox
-                small
-                :model-value="owned"
-                @update:model-value="$emit('toggle')"
-                @click.stop
-            />
+            <ClientOnly>
+                <FormCheckbox
+                    small
+                    :model-value="owned"
+                    @update:model-value="$emit('toggle')"
+                    @click.stop
+                />
+            </ClientOnly>
         </div>
     </div>
 </template>

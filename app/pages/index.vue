@@ -457,6 +457,39 @@
                 </div>
             </section>
 
+            <section class="achievements titled">
+                <div class="title">
+                    <h2 class="animate-text">Track your hero <span>achievements</span></h2>
+                    <h3 class="animate-text"><span>{{ heroPossesiveName }}</span> achievements</h3>
+                </div>
+
+                <div class="panel-wrapper with-corner-decorations">
+                    <UiCorners />
+                    <PanelAchievements
+                        :category="selectedAchievementsCategory"
+                        :achievements="achievementList"
+                    />
+                </div>
+            </section>
+
+            <section class="costumes titled double reverse separator">
+                <div class="showcase with-border-decorations with-corner-decorations">
+                    <UiCorners />
+                    <PanelCostumeList
+                        :hero="currentHero"
+                    />
+                </div>
+
+                <div class="title">
+                    <h2 class="animate-text">
+                        Check out all heroes' <span>costumes</span>
+                    </h2>
+                    <h3>
+                        Track which costumes you <span>own</span>!
+                    </h3>
+                </div>
+            </section>
+
             <section class="changelog titled">
                 <div class="title">
                     <h2>Recent changes</h2>
@@ -581,6 +614,7 @@ import { Calculator } from '~/services/calculator';
 import type HorizontalScrollContainer from '~/components/panel/HorizontalScrollContainer.vue';
 import FeaturedHeroPromo from '~/components/panel/FeaturedHeroPromo.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
+import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements';
 
 useSeoMeta({
     title: 'Marvel Rivals Proficiency Calculator',
@@ -1081,6 +1115,15 @@ const timeEstimates = computed(() => {
 
     return { normal: calculator.totalTimes(), arcade };
 });
+
+// ==== ACHIEVEMENTS =====
+const selectedAchievementsCategory = ref<AchievementTypeCategory>('heroic-journey');
+const achievementList = computed(() => getAchievements(selectedAchievementsCategory.value, currentHero.value.id));
+
+const heroPossesiveName = computed(() =>
+    currentHero.value.name + (currentHero.value.name.endsWith('s') ? '\'' : '\'s')
+);
+
 
 const lordIconsGridHeroes = ref<HeroData[][]>([]);
 for (let i = 0; i < 5; i++) {

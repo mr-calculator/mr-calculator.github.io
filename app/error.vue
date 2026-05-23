@@ -45,4 +45,6 @@ import { injectTexturesCss } from './assets/data/textures';
 injectTexturesCss(true);
 
 const props = defineProps<{ error: NuxtError }>();
+
+console.error(props.error);
 </script>

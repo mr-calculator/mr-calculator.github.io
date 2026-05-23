@@ -386,7 +386,8 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         version: {
             number: '1.8.0',
             date: 'May 23, 2026',
-            time: '3:51 PM'
+            time: '3:51 PM',
+            commitSha: 'b03d371fbaf34b3f9483bc1d23e17a9f685ee938'
         },
         title: 'Costumes list and checklist',
         description: `Adds costume tracking to the individual hero pages. Clicking on individual costumes brings up some information about that costume. You can mark costumes as "owned" to track their collection. This data is saved to local storage.

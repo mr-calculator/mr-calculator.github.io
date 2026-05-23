@@ -1,7 +1,17 @@
 <template>
     <div class="modal achievement-rewards">
         <div class="container">
-            <h2>REWARDS PREVIEW</h2>
+            <h3>REWARDS PREVIEW</h3>
+            <h2>
+                <Tex
+                    :image="category.icon()"
+                    color="var(--text-color)"
+
+                    width="60px"
+                    height="60px"
+                />
+                {{ category.name}}
+            </h2>
             <UiSeparator class="separator" />
             <br/>
             
@@ -101,6 +111,15 @@
 
         +media-desktop
             mask-size: 100% calc(100% + 85px + 20px + 10px)
+
+        h2
+            display: flex
+            align-items: center
+            gap: 0px
+
+        h3
+            font-size: 24px
+            color: $blue-gray
     
     .scroll-container
         max-width: 870px
@@ -241,8 +260,10 @@ const totalAchievementPoints = computed(() =>
     categoryAchievements.reduce((sum, c) => sum + c.reward, 0)
 );
 
+const category = computed(() => ACHIEVEMENT_CATEGORIES.find(c => c.id == props.category)!)
+
 const rewards = computed(() =>
-    ACHIEVEMENT_CATEGORIES.find(c => c.id == props.category)!.rewards.map(r => ({
+    category.value.rewards.map(r => ({
         ...r,
         completed: currentAchievementPoints.value >= r.requirement
     }))

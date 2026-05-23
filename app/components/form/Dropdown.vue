@@ -13,7 +13,7 @@
                 :key="option.value ?? randomId()"
             >
                 <div
-                    v-if="!option.separator"
+                    v-if="typeof option.separator === 'undefined'"
                     :class="{ option: 1, selected: isSelected(option) }"
                     @click="optionClick(option)"
                 >
@@ -23,7 +23,7 @@
                         :style="{'--img': texUrl('dropdownCheck')}"
                     />
                 </div>
-                <div v-else class="separator">
+                <div v-else-if="option.separator === true" class="separator">
                     <span v-if="option.label">
                         {{ option.label }}
                     </span>

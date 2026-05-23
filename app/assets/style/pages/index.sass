@@ -1270,6 +1270,77 @@
                     h2, h3
                         text-align: center
 
+            &.achievements
+                padding: 100px 20px 60px 20px
+
+                .panel-wrapper
+                    color: $text-color
+
+            &.costumes
+                display: flex
+
+                padding: 120px 0 100px 0
+
+                +media-large-desktop
+                    padding: 100px 60px 100px 60px
+
+                +media-ml-desktop
+                    display: grid
+                    grid-template-columns: 1.5fr 1fr
+                
+                .showcase
+                    ::v-deep(.costume-list)
+                        overflow: visible
+                        height: fit-content
+
+                        .cosmetics-controls
+                            position: relative !important
+                            top: unset !important
+                            background: transparent !important
+                            transform: none !important
+
+                            padding: 20px !important
+                            padding-left: 28px !important
+
+                            z-index: 3 !important
+
+                            .owned-count
+                                font-size: 22px !important
+
+                                +media-phone
+                                    font-size: 18px !important
+
+                                +media-tablet
+                                    margin-right: auto !important
+                                    font-size: 24px !important
+
+                .title
+                    padding: 20px
+
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+
+                    +media-ml-desktop
+                        align-items: end
+
+                    h2, h3
+                        text-align: center
+
+                        +media-ml-desktop
+                            text-align: end
+
+                    h3
+                        width: 70%
+                        text-transform: none
+
+                    h4
+                        max-width: 400px
+                        text-align: center
+
+                        +media-ml-desktop
+                            text-align: right
+
             &.changelog
                 padding: 60px 20px 60px 20px
 

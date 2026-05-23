@@ -5,43 +5,55 @@ const state: Record<string, Ref<any>> = {};
 const watchers: Record<string, WatchHandle> = {};
 
 export function useLocalStorage<T>(
-    key: string,
+    key: string | Ref<string> | (() => string),
     defaultValue: T,
     schema?: z.ZodType<T>
 ) {
-    // const state = ref(defaultValue) as Ref<T>
-
     if (!import.meta.client) {
         return ref(defaultValue) as Ref<T>;
     }
 
-    if (!state[key]) {
-        const saved = localStorage.getItem(key)
-        if (saved) {
-            const parsed = JSON.parse(saved);
-            // merge saved data with defaults for any missing keys
-            state[key] = ref(schema ? schema.parse(parsed) : parsed);
+    const resolvedKey = isRef(key) ? key : typeof key === 'function' ? computed(key) : ref(key);
+
+    function ensureKey(k: string) {
+        if (!state[k]) {
+            const saved = localStorage.getItem(k);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                state[k] = ref(schema ? schema.parse(parsed) : parsed);
+            } else {
+                state[k] = ref(defaultValue);
+            }
+
+            watchers[k]?.stop();
+            watchers[k] = watch(state[k]!, (val) => {
+                localStorage.setItem(k, JSON.stringify(extractRawValue(val)));
+            }, { deep: true });
         }
-        else
-            state[key] = ref(defaultValue);
     }
 
-    watchers[key]?.stop();
-    watchers[key] = watch(state[key], (val) => {
-        localStorage.setItem(key, JSON.stringify(extractRawValue(val)))
-    }, { deep: true })
+    ensureKey(resolvedKey.value);
 
-    return state[key] as Ref<T>;
+    const result = computed({
+        get: () => state[resolvedKey.value]!.value as T,
+        set: (val) => {
+            ensureKey(resolvedKey.value);
+            state[resolvedKey.value]!.value = val;
+        }
+    });
+
+    watch(resolvedKey, (newKey) => {
+        ensureKey(newKey);
+    });
+
+    return result as unknown as Ref<T>;
 }
 
 export function resetLocalStorageCache() {
     Object.entries(state).forEach(([key, _ref]) => {
-        const saved = localStorage.getItem(key)
+        const saved = localStorage.getItem(key);
         if (saved)
             state[key]!.value = JSON.parse(saved);
-
-        // if it wasn't saved, it means the default value was never modified,
-        // ergo we don't need to do anything
     });
 }
 
@@ -55,14 +67,14 @@ export function changeLocalStorageKey(currentKey: string, newKey: string) {
     const currentRef = state[currentKey];
     delete state[currentKey];
 
-    state[newKey] = currentRef;
-    
+    state[newKey] = currentRef!;
+
     localStorage.removeItem(currentKey);
     localStorage.setItem(newKey, JSON.stringify(extractRawValue(currentRef)));
 
-    watchers[newKey] = watch(state[newKey], (val) => {
-        localStorage.setItem(newKey, JSON.stringify(extractRawValue(val)))
-    }, { deep: true })
+    watchers[newKey] = watch(state[newKey]!, (val) => {
+        localStorage.setItem(newKey, JSON.stringify(extractRawValue(val)));
+    }, { deep: true });
 }
 
 export function deleteFromLocalStorage(key: string) {

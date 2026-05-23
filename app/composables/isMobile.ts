@@ -1,8 +1,8 @@
 export const isMobile = (width = 992) => {
-    const mobile = ref(window.innerWidth < width);
+    const mobile = ref((window?.innerWidth ?? 993) < width);
 
     function checkMobile() {
-        mobile.value = window.innerWidth < width;
+        mobile.value = (window?.innerWidth ?? 993) < width;
     }
 
     const instance = getCurrentInstance();

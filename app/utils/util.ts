@@ -558,3 +558,19 @@ export function hasTouch() {
       (navigator.maxTouchPoints > 0) ||
       ((navigator as any).msMaxTouchPoints > 0))
 }
+
+export function getScrollParent(element: HTMLElement|null) {
+    if (!element)
+        return window;
+
+    let parent = element.parentElement;
+    while (parent) {
+        const { overflow, overflowY } = getComputedStyle(parent);
+        if (/(auto|scroll)/.test(overflow + overflowY))
+            return parent;
+
+        parent = parent.parentElement;
+    }
+
+    return window; // fallback to viewport
+}
