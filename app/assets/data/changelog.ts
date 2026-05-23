@@ -363,6 +363,27 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
     },
     {
         version: {
+            number: '1.7.0',
+            date: 'May 22, 2026',
+            time: '4:36 PM',
+            commitSha: 'ab54247178467336103d4cb04c97af6cc121552d'
+        },
+        title: 'List View Feature for heroes',
+        description: `Adds a new way to view your proficiencies all at once. On the Heroes page, there's now an option to toggle between "Gallery View" and "List View". Gallery View shows the hero cards as before. List View shows all of your heroes and their proficiency data as a table.
+        <br>
+        <br>
+        Thanks to <a href="https://github.com/oceanhillman">oceanhillman</a> for making this feature!`,
+        listTitle: 'Features',
+        list: [
+            'Switch between Gallery View and List View on the Heroes Page',
+            'Sort by: Name, Role, Rank, Level, Current/Total Points; (asc/desc)'
+        ],
+        images: [
+            '/img/changelog/v1.7.0/hero-list.webp',
+        ]
+    },
+    {
+        version: {
             number: '1.8.0',
             date: 'May 23, 2026',
             time: '3:51 PM'

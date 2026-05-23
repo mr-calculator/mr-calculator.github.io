@@ -16,7 +16,7 @@ import sharp from "sharp";
  * - Show/
  */
 
-const FILES = {
+export const FILES = {
     'fantastic-nameplate': 'Item/Nameplate/item_nameplate_3%HERO_ID%002',
     'uncanny-nameplate': 'Item/Nameplate/item_nameplate_3%HERO_ID%003',
     'amazing-nameplate': 'Item/Nameplate/item_nameplate_3%HERO_ID%004',
@@ -34,9 +34,15 @@ const FILES = {
     'logo': 'HeroLogo/img_herologo_%HERO_ID%_logo',
     'portrait': 'Show/Skin/OriginalSkin/img_heroportrait_%HERO_ID%0010_portrait',
     'prestige': 'HeroGallery_V3/HeroDetail/Prestige/HeroPrestige/img_prestige_%HERO_ID%0010_hero',
+    'story': [
+        'HeroGallery_V3/HeroDetail/Story/Dynamic/img_herostory_%HERO_ID%01_hover',
+        'HeroGallery_V3/HeroDetail/Story/Dynamic/img_herostory_%HERO_ID%11_hover', // hulk
+    ],
     'silhouette': 'HeroDetail/img_herogallery_silhouette_%HERO_ID%_bg',
     'spray': 'Show/Spray/img_spray_4%HERO_ID%002'
 };
+
+export type ResourceId = keyof typeof FILES;
 
 /**
  * With FModel: `Path/to/FModel/Output/Exports/Marvel/Content/Marvel/UI/Textures`
@@ -50,29 +56,58 @@ const GAME_FILES_DIRECTORY = process.env.GAME_FILES_DIRECTORY!;
  * @param internalId Marvel Game ID (e.g.: 1031)
  * @param heroId kebab-case id of hero
  */
-export async function copyImages(internalId: string, heroId: string, logger: typeof log) {
+export async function copyImages(
+    internalId: string,
+    heroId: string,
+    logger: typeof log,
+    resources?: ResourceId[]
+) {
     const heroDir = `./public/img/heroes/data/${heroId}/`;
     if (!fs.existsSync(heroDir))
         fs.mkdirSync(heroDir)
 
     for (const [result, resourcePathAny] of Object.entries(FILES)) {
-        const resourcePath = resourcePathAny.replaceAll('%HERO_ID%', internalId);
-        const resourceFullPath = path.join(GAME_FILES_DIRECTORY, resourcePath) + '.png';
-
-        if (!fs.existsSync(resourceFullPath)) {
-            logger.error(`Couldn\'t find resource [${resourcePath}], skipping.`);
+        if (resources?.length && !resources.includes(result as ResourceId))
             continue;
+
+        let resPathAny1 = Array.isArray(resourcePathAny) ? resourcePathAny[0] : resourcePathAny;
+
+        const resourcePath = () => resPathAny1.replaceAll('%HERO_ID%', internalId);
+        const resourceFullPath = () => path.join(GAME_FILES_DIRECTORY, resourcePath()) + '.png';
+
+        let exists = false;
+        const checkExists = (iteration = 0) => {
+            let hasNext = false;
+            if (Array.isArray(resourcePathAny) && iteration < resourcePathAny.length - 1)
+                hasNext = true;
+
+            if (!fs.existsSync(resourceFullPath())) {
+                logger.error(`Couldn\'t find resource [${resourcePath()}] for [${heroId}], ${hasNext ?
+                    'attempting other path' : 'skipping'
+                }`);
+
+                if (hasNext) {
+                    resPathAny1 = resourcePathAny[++iteration];
+                    checkExists(iteration);
+                }
+            }
+            else
+                exists = true;
         }
+
+        checkExists();
+        if (!exists)
+            continue;
 
         // cut portrait above the knees
         if (result == 'portrait') {
-            await sharp(resourceFullPath)
+            await sharp(resourceFullPath())
                 .extract({ left: 201, top: 41, width: 295, height: 556 })
                 .webp({ quality: 85 })
                 .toFile(path.join(heroDir, result) + '.webp')
         }
         else {
-            await sharp(resourceFullPath)
+            await sharp(resourceFullPath())
                 .webp({ quality: 85 })
                 .toFile(path.join(heroDir, result) + '.webp')
         }

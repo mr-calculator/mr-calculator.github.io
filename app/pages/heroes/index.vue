@@ -21,7 +21,11 @@
             <ClientOnly>
                 <PanelHeroList
                     back-button="/"
-                />
+                >
+                    <template #list-view>
+                        
+                    </template>
+                </PanelHeroList>
             </ClientOnly>
         </div>
     </main>
@@ -30,19 +34,22 @@
 <style src="@/assets/style/pages/heroes/index.sass" scoped></style>
 
 <script setup lang="ts">
+import { DEFAULT_HERO_STORE, PlayerHeroStoreSchema, PROFICIENCY_RANKS, ROLE_ICONS, type HeroData, type HeroRole, type PlayerHeroStore } from '~/assets/data/common';
+import { HERO_LIST, heroRolesAsArray } from '~/assets/data/heroes';
 import { useAbsoluteUrl } from '~/composables/config';
+import type { TooltipBinding } from '~/directives/tooltip';
 
 useSeoMeta({
     title: 'Heroes | MR Proficiency Calculator',
     description: 'Browse all Marvel Rivals heroes and calculate proficiency rewards.',
-    
+
     ogTitle: 'Heroes | MR Proficiency Calculator',
     ogUrl: useCanonicalUrl('heroes'),
     ogImage: useAbsoluteUrl('/img/seo/og-image-heroes.webp'),
     ogImageWidth: '1200',
     ogImageHeight: '630',
     ogImageAlt: 'Heroes | Marvel Rivals Proficiency Calculator - Calculate how long it takes to unlock every proficiency reward for any hero',
-    
+
     twitterTitle: 'Heroes | MR Proficiency Calculator',
     twitterDescription: 'Browse all Marvel Rivals heroes and calculate proficiency rewards.',
     twitterImage: useAbsoluteUrl('/img/seo/og-image-heroes.webp'),

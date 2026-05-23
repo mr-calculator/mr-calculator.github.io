@@ -11,6 +11,8 @@
                 :add-hero-enabled="false"
                 :show-unknown-heroes="false"
 
+                list-view-disabled
+
                 @click-hero="clickHero"
             />
             <br/><br/>

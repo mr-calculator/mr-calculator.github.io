@@ -57,6 +57,8 @@
                 :show-unknown-heroes="false"
                 :sort-heroes="sortHeroes"
 
+                list-view-disabled
+
                 @click-hero="clickHero"
             />
             <br/>
