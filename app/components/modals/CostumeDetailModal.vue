@@ -3,14 +3,22 @@
         <Tex
             class="close-btn"
             image="cross"
+
+            color="#fff"
+            hover="color"
+            hover-color="var(--blue)"
             clickable
+
             width="36px"
             height="36px"
             object-fit="contain"
+
             title="Close"
+
             @click="$emit('cancel')"
         />
-        <div class="costume-image-panel" :style="{ '--hero-color': heroColor, '--hero-image': `url(${src})` }">
+        <div class="scroll-container">
+            <div class="costume-image-panel" :style="{ '--hero-color': heroColor, '--hero-image': `url(${src})` }">
             <div
                 :class="['hero-image', costume.rarity ? `rarity-${costume.rarity}` : '']"
                 :style="{
@@ -29,30 +37,69 @@
 
         <div class="details-panel">
             <img class="hero-badge" :src="`/img/heroes/data/${heroId}/logo.webp`" alt="" />
-            <h2>{{ costume.name }}</h2>
-            <UiSeparator class="title-divider" />
-            <div class="details">
-                <p class="detail">
-                    <span class="label">Rarity</span>
-                    {{ costume.rarity.charAt(0).toUpperCase() + costume.rarity.slice(1) }}
-                </p>
-                <p v-if="costume.source" class="detail">
-                    <span class="label">Source</span>
-                    {{ costume.source }}
-                </p>
-                <p v-if="costume.skinType" class="detail">
-                    <span class="label">Type</span>
-                    {{ costume.skinType }}
-                </p>
-                <p v-if="costume.theme" class="detail">
-                    <span class="label">Theme</span>
-                    {{ costume.theme }}
-                </p>
-                <p v-if="formattedDate" class="detail">
-                    <span class="label">Released</span>
-                    {{ formattedDate }}
-                </p>
+                <h2>{{ costume.name }}</h2>
+                <UiSeparator class="title-divider" />
+                <div class="details">
+                    <div v-if="costume.customizable" class="detail">
+                        <div class="label">
+                            <div class="with-icon">
+                                <Tex
+                                    image="costumeCustomizable"
 
+                                    width="20px"
+                                    height="20px"
+                                />
+                                Customizable
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail">
+                        <span class="label">Rarity</span>
+                        <div class="with-icon">
+                            <Tex
+                                :image="RARITY_MAP[costume.rarity]"
+
+                                width="20px"
+                                height="20px"
+                            />
+                            {{ costume.rarity.charAt(0).toUpperCase() + costume.rarity.slice(1) }}
+                        </div>
+                    </div>
+                    
+                    <div class="spacer" />
+
+                    <p class="detail">
+                        <span class="label">Category</span>
+                        {{ costume.category }}
+                    </p>
+                    <p v-if="costume.source" class="detail">
+                        <span class="label">Source</span>
+                        {{ costume.source }}
+                    </p>
+                    <div v-if="costume.theme" class="detail">
+                        <span class="label">Theme</span>
+                        <div class="with-icon">
+                            <Tex
+                                :src="`/img/heroes/costume-themes/${toKebabCase(costume.theme)}.webp`"
+                                color="var(--blue)"
+
+                                width="23px"
+                                height="23px"
+                            />
+
+                            {{ costume.theme }}
+                        </div>
+                    </div>
+
+                    <div class="spacer" />
+
+                    <p v-if="formattedDate" class="detail">
+                        <span class="label">Release Date</span>
+                        {{ formattedDate }}
+                    </p>
+
+                </div>
             </div>
         </div>
     </div>
@@ -66,12 +113,10 @@
 
 .costume-detail-modal
     position: relative
-    flex-direction: row !important
-    align-items: stretch !important
-    gap: 0 !important
     padding: 0px
     max-width: 1000px
     min-height: 500px
+
     overflow: hidden !important
 
     // Compressed side-by-side for tablet
@@ -82,7 +127,6 @@
 
     // Only phones stack
     +media-max-tablet
-        flex-direction: column !important
         min-height: unset
         overflow-x: hidden !important
         overflow-y: auto !important
@@ -122,16 +166,30 @@
         &::before, &::after
             background: #FFA72E
 
+    .scroll-container
+        width: 100%
+        height: 100%
+
+        max-width: 1000px
+        min-height: 500px
+
+        display: flex
+        flex-direction: row
+        align-items: stretch
+        gap: 0
+
+        overscroll-behavior: contain
+        overflow-x: hidden
+        overflow-y: auto
+
+        +media-max-tablet
+            flex-direction: column
+
 .close-btn
     position: absolute
     top: 36px
     right: 36px
     z-index: 20
-    opacity: 0.8
-    transition: opacity 0.15s
-
-    &:hover
-        opacity: 1
 
 .costume-image-panel
     background-color: color-mix(in srgb, var(--hero-color) 40%, transparent)
@@ -249,7 +307,7 @@
     gap: 16px
     padding: 36px 36px
     padding-right: 140px !important
-    overflow: hidden
+    // overflow: hidden
 
     // Tablet — same direction, tighter
     +media-mobile
@@ -311,6 +369,14 @@
             margin-left: 0
             gap: 10px
 
+    .spacer
+        width: 100%
+        height: 10px
+
+    div.detail
+        +media-mobile
+            padding: 0 20px
+
     .detail
         display: flex
         flex-direction: column
@@ -325,17 +391,22 @@
 
         .label
             font-size: 0.7em
-            opacity: 0.5
             text-transform: uppercase
             letter-spacing: 0.08em
+            color: $blue-gray
+
+        .with-icon
+            display: flex
+            align-items: center
+            gap: 5px
 </style>
 
 <script setup lang="ts">
-import type { CostumeEntry } from '~/assets/data/costumeData';
-import { skinSlug } from '~/assets/data/costumeData';
+import type { Costume, CostumeRarity } from '~/assets/data/costumes';
+import type { TextureKey } from '~/assets/data/textures';
 
 const props = withDefaults(defineProps<{
-    costume: CostumeEntry;
+    costume: Costume;
     heroId: string;
     heroColor?: string;
     imageScale?: number;
@@ -348,10 +419,23 @@ const props = withDefaults(defineProps<{
 
 defineEmits<{ cancel: [] }>();
 
-const src = computed(() => `/img/heroes/cosmetics/${props.heroId}/${skinSlug(props.costume.name)}.png`);
+const RARITY_MAP: Partial<Record<CostumeRarity, TextureKey>> = {
+    legendary: 'rarityLegendary',
+    epic: 'rarityEpic',
+    rare: 'rarityRare',
+}
+
+const src = computed(() => `/img/heroes/data/${props.heroId}/costumes/${props.costume.id}.webp`);
 
 const formattedDate = computed(() => {
-    if (!props.costume.releaseDate) return null;
-    return new Date(props.costume.releaseDate + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    if (!props.costume.releaseDate)
+        return null;
+
+    let formatted = new Date(props.costume.releaseDate + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    if (formatted === 'Invalid Date')
+        formatted = props.costume.releaseDate;
+
+    return formatted
 });
 </script>

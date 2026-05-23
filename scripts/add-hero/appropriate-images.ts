@@ -5,7 +5,7 @@ import path from "path";
 import sharp from "sharp";
 
 /**
- * From pak: pakchunkHQ-Windows.utoc
+ * From pak: `pakchunkHQ-Windows.utoc`
  * To export root directories:
  * - HeroDetail/
  * - HeroGallery_V3/
@@ -39,8 +39,9 @@ const FILES = {
 };
 
 /**
- * With FModel: Path/to/FModel/Output/Exports/Marvel/Content/Marvel/UI/Textures
- * PAK path: Marvel/Content/Marvel/UI/Textures
+ * With FModel: `Path/to/FModel/Output/Exports/Marvel/Content/Marvel/UI/Textures`
+ * 
+ * PAK path: `Marvel/Content/Marvel/UI/Textures`
  */
 const GAME_FILES_DIRECTORY = process.env.GAME_FILES_DIRECTORY!;
 

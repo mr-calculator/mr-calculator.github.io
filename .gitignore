@@ -30,4 +30,6 @@ scripts/*
 !scripts/add-hero/*
 !scripts/parse-achievements-table
 !scripts/parse-achievements-table/*
+!scripts/parse-costumes
+!scripts/parse-costumes/*
 !scripts/tsconfig.json

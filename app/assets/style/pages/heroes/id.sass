@@ -33,6 +33,8 @@
         
 
     nav
+        $breakpoint: 1560px
+
         position: fixed
         top: 0
         
@@ -56,7 +58,7 @@
             justify-content: start
             gap: 70px
 
-        +media($minmax: 'min', $size: '1349px')
+        +media($minmax: 'min', $size: $breakpoint)
             padding: 0 0 0 50px
 
         &::before
@@ -104,7 +106,7 @@
 
             cursor: pointer
 
-            +media($minmax: 'min', $size: '1349px')
+            +media($minmax: 'min', $size: $breakpoint)
                 display: none
 
             .menu-icon
@@ -150,24 +152,24 @@
             height: 100%
             display: none
 
-            +media($minmax: 'max', $size: '1350px')
+            +media($minmax: 'max', $size: $breakpoint)
                 position: absolute
                 top: 65px
                 left: 0
 
                 width: 100%
-                height: 200px
+                height: 300px
 
                 flex-direction: column
 
                 background: $blue-accent var(--tex-barBackground)
                 background-position: bottom
 
-            @media (min-width: 992px) and (max-width: 1350px)
+            @media (min-width: 992px) and (max-width: #{$breakpoint})
                 top: 64.5px
                 width: calc(100% - 18.5px)
 
-            +media($minmax: 'min', $size: '1350px')
+            +media($minmax: 'min', $size: $breakpoint)
                 display: flex !important
 
             &.visible
@@ -218,18 +220,18 @@
                     transform: skew(-15deg)
 
                 &:first-of-type::after
-                    +media($minmax: 'min', $size: '1350px')
+                    +media($minmax: 'min', $size: $breakpoint)
                         left: 0
                 &:last-of-type::after
-                    +media($minmax: 'min', $size: '1350px')
+                    +media($minmax: 'min', $size: $breakpoint)
                         right: 9px
 
                 &:last-of-type
-                    +media($minmax: 'min', $size: '1350px')
+                    +media($minmax: 'min', $size: $breakpoint)
                         padding-left: 39px
                         padding-right: 50px
                 &.new::after
-                    +media($minmax: 'max', $size: '1350px')
+                    +media($minmax: 'max', $size: $breakpoint)
                         background-size: 90% 100%
                         background-position: 80%
 
@@ -732,9 +734,13 @@
                 .cosmetics-controls
                     display: grid
                     grid-template-columns: 1fr 1fr
+                    justify-items: center
                     align-items: center
                     gap: 10px
                     margin-bottom: 20px
+
+                    +media($size: 460px, $minmax: 'max')
+                        grid-template-columns: 1fr
 
                     +media-tablet
                         display: flex
@@ -742,10 +748,17 @@
                         gap: 20px
 
                     > *:not(.owned-count)
-                        width: 100%
+                        width: 200px
+
+                        +media($size: 460px, $minmax: 'min')
+                            width: 100%
+                            max-width: 300px
 
                         +media-tablet
                             width: 200px
+
+                        +media-ml-desktop
+                            width: 250px
 
                     .owned-count
                         grid-column: 1 / -1
@@ -761,10 +774,9 @@
                             margin-right: auto
                             font-size: 28px
 
-                        
-
                 .list
                     width: 100%
+
                     display: flex
                     flex-direction: column
                     flex-wrap: nowrap
@@ -775,6 +787,25 @@
                         display: grid
                         grid-template-columns: repeat(auto-fill, 200px)
                         justify-content: center
+
+                .no-results
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    gap: 25px
+
+                    padding-top: 20px
+
+                    +media-mobile
+                        min-height: 80vh
+
+                    p
+                        font-family: MarvelRivalsHeavy
+                        font-size: 22px
+                        text-transform: uppercase
+                        text-align: center
+                        color: $blue
 
             .update-stats-modal
                 max-height: 100%

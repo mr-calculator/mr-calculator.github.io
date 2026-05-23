@@ -724,6 +724,7 @@ export const PreferencesStoreSchema = z.object({
     sawHeroQuickEditPopup: z.boolean().default(false),
     sawHeroEditPopup: z.boolean().default(false),
     sawAchievementsTab: z.boolean().default(false),
+    sawCosmeticsTab: z.boolean().default(false),
     plannerCalendarMeasureUnit: z.enum(['hours', 'quick_matches', 'comp_matches']).default('quick_matches')
 })
 export type PreferencesStore = z.infer<typeof PreferencesStoreSchema>;

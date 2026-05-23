@@ -124,6 +124,16 @@
                                 <h4 v-else>Include this hero's achievements progress</h4>
                             </FormCheckbox>
                         </li>
+                        <li>
+                            <FormCheckbox
+                                v-model="includeCostumes"
+
+                                small
+                            >
+                                <h4 v-if="!selectedHero">Include owned costumes</h4>
+                                <h4 v-else>Include this hero's owned costumes</h4>
+                            </FormCheckbox>
+                        </li>
                         <li v-if="!selectedHero">
                             <FormCheckbox
                                 v-model="includePreferences"
@@ -305,11 +315,13 @@
             top: 0
 
 .options
+    max-width: 900px
     margin-top: 20px
 
     display: flex
     justify-content: center
     align-items: center
+    flex-wrap: wrap
     gap: 20px
 
     +media-mobile
@@ -396,17 +408,26 @@ const { openModal } = useModalManager();
 const { notify } = useNotificationManager();
 
 const storedHeroes = ref(Object.entries(localStorage ?? {})
-                           .filter(([key]) => key.startsWith('hero_'))
-                           .map(([key, v]) => {
-                                return {
-                                    id: key.substring(5),
-                                    ...JSON.parse(v)
-                                }
-                           }) as ({id: string} & PlayerHeroStore)[]);
+                               .filter(([key]) => key.startsWith('hero_'))
+                               .map(([key, v]) => {
+                                    return {
+                                        id: key.substring(5),
+                                        ...JSON.parse(v)
+                                    }
+                               }) as ({id: string} & PlayerHeroStore)[]);
 const favourites = useLocalStorage<HeroData['id'][]>(`favourite_heroes`, []);
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 const preferences = useLocalStorage<PreferencesStore>('preferences', DEFAULT_PREFERENCES_STORE(), PreferencesStoreSchema);
 const achievementsStore = useLocalStorage<Achievement[]>('achievements', []);
+const ownedCostumes: Record<string, string[]> = {};
+Object.entries(localStorage ?? {})
+      .filter(([key]) => key.startsWith('cosmetics_owned_'))
+      .map(([key, v]) => {
+          const heroId = key.substring('cosmetics_owned_'.length);
+          const owned = JSON.parse(v) as string[];
+          if (owned.length)
+              ownedCostumes[heroId] = owned;
+      });
 
 const route = useRoute();
 const heroFromUrl = route.query?.hero;
@@ -437,8 +458,9 @@ const heroesWithData = computed(() => {
             hero: heroData,
             stored: store,
             rank: levelToRank(heroStore.level),
-            achievements: filteredAchievements,
-            isFavourite: includeFavourites ? favourites.value.includes(heroStore.id) : undefined,
+            achievements: includeAchievements.value ? filteredAchievements : undefined,
+            costumes: includeCostumes.value ? ownedCostumes[heroData.id] : undefined,
+            isFavourite: includeFavourites.value ? favourites.value.includes(heroStore.id) : undefined,
             isUnknownHero
         }
     }).filter(h => h !== null);
@@ -474,6 +496,7 @@ const includeUnknownHeroes = ref(true);
 const includeFavourites = ref(true);
 const includePreferences = ref(true);
 const includeAchievements = ref(true);
+const includeCostumes = ref(true);
 
 const dataBase: Pick<SerializableDataSegment<keyof SerializableDataMap>, 'version' | 'exportedAt'> = {
     version: config.dataVersion,
@@ -489,23 +512,13 @@ function dataWithBase<T extends keyof SerializableDataMap>
 }
 
 const allData = computed<AnySerializableDataSegment>(() => {
-    const ownedCostumesMap: Record<string, string[]> = {};
-    Object.entries(localStorage ?? {})
-        .filter(([key]) => key.startsWith('cosmetics_owned_'))
-        .forEach(([key, v]) => {
-            const heroId = key.substring('cosmetics_owned_'.length);
-            const owned = JSON.parse(v) as string[];
-            if (owned.length)
-                ownedCostumesMap[heroId] = owned;
-        });
-
     const data = {
         storedHeroes: storedHeroes.value,
         favourites: includeFavourites.value ? favourites.value : undefined,
         achievements: includeAchievements.value ? achievementsStore.value : undefined,
         unknownHeroes: includeUnknownHeroes.value ? unknownHeroes.value : undefined,
         preferences: includePreferences.value ? preferences.value : undefined,
-        ownedCostumes: ownedCostumesMap
+        ownedCostumes: includeCostumes.value ? ownedCostumes : undefined
     }
 
     return dataWithBase('profile', data);
@@ -516,9 +529,6 @@ const heroData = computed<AnySerializableDataSegment>(() => {
     if (!selectedHero.value || !heroData)
         return allData.value;
 
-    const rawOwned = localStorage.getItem(`cosmetics_owned_${heroData.hero.id}`);
-    const ownedCostumes = rawOwned ? JSON.parse(rawOwned) as string[] : undefined;
-
     if (heroData.isUnknownHero)
         return dataWithBase('hero', {
             __unknownHero: true,
@@ -527,7 +537,7 @@ const heroData = computed<AnySerializableDataSegment>(() => {
             stored: heroData.stored,
             achievements: heroData.achievements,
             isFavourite: heroData.isFavourite,
-            ownedCostumes: ownedCostumes?.length ? ownedCostumes : undefined
+            ownedCostumes: heroData.costumes
         })
 
     return dataWithBase('hero', {
@@ -535,7 +545,7 @@ const heroData = computed<AnySerializableDataSegment>(() => {
         stored: heroData.stored,
         achievements: heroData.achievements,
         isFavourite: heroData.isFavourite,
-        ownedCostumes: ownedCostumes?.length ? ownedCostumes : undefined
+        ownedCostumes: heroData.costumes
     });
 })
 

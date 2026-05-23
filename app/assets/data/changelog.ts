@@ -360,6 +360,30 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         images: [
             '/img/changelog/v1.6.1/devil-dinosaur.webp',
         ]
+    },
+    {
+        version: {
+            number: '1.8.0',
+            date: 'May 23, 2026',
+            time: '3:51 PM'
+        },
+        title: 'Costumes list and checklist',
+        description: `Adds costume tracking to the individual hero pages. Clicking on individual costumes brings up some information about that costume. You can mark costumes as "owned" to track their collection. This data is saved to local storage.
+        <br>
+        <br>
+        Thanks to <a href="https://github.com/oceanhillman">oceanhillman</a> for making this feature!`,
+        listTitle: 'Features',
+        list: [
+            'View all costumes for every hero',
+            'Filter costumes by Rarity, Category, Source and Theme',
+            'Sort costumes by rarity or release date',
+            'Mark costumes as owned',
+            'See costume details like: name, rarity, is it customizable, category, source, theme and release date'
+        ],
+        images: [
+            '/img/changelog/v1.8.0/costume-page.webp',
+            '/img/changelog/v1.8.0/costume-modal.webp',
+        ]
     }
 ];
 

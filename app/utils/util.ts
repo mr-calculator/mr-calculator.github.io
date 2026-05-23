@@ -33,11 +33,12 @@ export const MathUtil = {
     }
 }
 
-export function toKebabCase(str: string) {
-    return str
-        .replace(/([a-z0-9])([A-Z])/g, '$1-$2') // insert - between lowercase and uppercase
-        .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2') // handle PascalCase like "HTMLParser"
-        .toLowerCase();
+export function toKebabCase(string: string) {
+	return string.replace(/\s+/g, '-')
+				.replace(/[^a-zA-Z0-9-_]/g, '')
+				.replace(/-+/g, '-')
+				.replace(/^-+|-+$/g, '')
+				.toLowerCase();
 }
 
 /**

@@ -122,19 +122,19 @@
                 </li>
                 <li
                     v-if="achievementList?.length"
-                    :class="{
-                        // new: !preferences.sawAchievementsTab,
-                        selected: page == 'achievements'
-                    }"
+                    :class="{ selected: page == 'achievements' }"
                     @click="setPage('achievements')"
                 >
-                    <!-- <span v-if="!preferences.sawAchievementsTab" class="new">NEW</span> -->
                     Achievements
                 </li>
                 <li
-                    :class="{ selected: page == 'cosmetics' }"
+                    :class="{
+                        new: !preferences.sawCosmeticsTab,
+                        selected: page == 'cosmetics'
+                    }"
                     @click="setPage('cosmetics')"
                 >
+                    <span v-if="!preferences.sawCosmeticsTab" class="new">NEW</span>
                     Cosmetics
                 </li>
             </ul>
@@ -468,20 +468,29 @@
                         small
                     />
                 </div>
-                <div class="list">
+                <div v-if="sortedCostumes.length" class="list">
                     <PanelCostumeCard
                         v-for="costume in sortedCostumes"
-                        :key="skinSlug(costume.name)"
+                        :key="costume.id"
+
                         :name="costume.name"
-                        :src="`/img/heroes/cosmetics/${heroId}/${skinSlug(costume.name)}.png`"
+                        :src="`/img/heroes/data/${heroId}/costumes/${costume.id}.webp`"
                         :rarity="costume.rarity"
-                        :owned="ownedCostumes.includes(skinSlug(costume.name))"
+                        :owned="ownedCostumes.includes(costume.id)"
                         :color="hero.color"
-                        :image-scale="costumeImageScale"
-                        :image-origin="costumeImageOrigin"
-                        @toggle="toggleCostumeOwned(skinSlug(costume.name))"
+
+                        @toggle="toggleCostumeOwned(costume.id)"
                         @click="openCostumeDetail(costume)"
                     />
+                </div>
+                <div v-else class="no-results">
+                    <p>No costumes match your filters</p>
+                    <FormButton
+                        size="tiny"
+                        @click="activeFilters = []"
+                    >
+                        Reset filters
+                    </FormButton>
                 </div>
             </div>
             <div
@@ -632,8 +641,9 @@ import ConvertUnknownHeroModal from '~/components/modals/ConvertUnknownHeroModal
 import ProficiencyPointsModal from '~/components/modals/ProficiencyPointsModal.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
 import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements';
-import { skinSlug, HERO_COSMETICS, type CostumeEntry } from '~/assets/data/costumeData';
+// import { skinSlug, HERO_COSMETICS, type CostumeEntry } from '~/assets/data/costumeData';
 import CostumeDetailModal from '~/components/modals/CostumeDetailModal.vue';
+import { getAllCategories, getAllSources, getAllThemes, getHeroCostumes, type Costume } from '~/assets/data/costumes';
 
 type PageId = 'overview'|'customize'|'estimates'|'planner'|'achievements'|'cosmetics';
 const PAGE_IDS = ['overview', 'customize', 'estimates', 'planner', 'achievements', 'cosmetics'];
@@ -656,7 +666,7 @@ const pageFromUrl = computed<PageId>(() => {
     return slug as PageId;
 });
 
-const heroId = route.params.id;
+const heroId = route.params.id as string;
 const unknownHero = unknownHeroes.value.find(h => h.id === heroId);
 const hero = ref<HeroData>(HERO_LIST.find(h => h.id === heroId) ?? unknownHero!);
 
@@ -838,13 +848,18 @@ function setPage(newPage: PageId) {
     page.value = newPage;
     menuOpen.value = false;
 
-    if (newPage == 'estimates' && !storedLevel.value.openedCalculator)
-        storedLevel.value.openedCalculator = true;
-    if (newPage == 'customize')
-        tryShowEditPopup();
-    if (newPage == 'achievements')
-        preferences.value.sawAchievementsTab = true;
+    setPreferences(newPage);
 }
+
+function setPreferences(page: string) {
+    if (page == 'estimates' && !storedLevel.value.openedCalculator)
+        storedLevel.value.openedCalculator = true;
+    if (page == 'customize')
+        tryShowEditPopup();
+    if (page == 'cosmetics')
+        preferences.value.sawCosmeticsTab = true;
+}
+setPreferences(page.value);
 
 const selectedRank = ref<ProficiencyRank['id']>(storedLevel.value.rank);
 
@@ -1252,28 +1267,49 @@ const availableAchievementCategories = computed(() => {
 
 // ==== COSMETICS =====
 const ownedCostumes = useLocalStorage<string[]>(`cosmetics_owned_${heroId}`, []);
-const cosmeticsTotal = computed(() => HERO_COSMETICS[heroId as string]?.length ?? 0);
-
-type CostumeHeroConfig = { scale?: number; origin?: string };
-const COSTUME_HERO_CONFIG: Record<string, CostumeHeroConfig> = {
-    'jeff-the-land-shark': { scale: 1.75, origin: 'center 8%' },
-    'devil-dinosaur':      { scale: 1.6,  origin: 'center -10%' },
-};
-const costumeConfig = COSTUME_HERO_CONFIG[heroId as string] ?? {};
-const costumeImageScale = costumeConfig.scale ?? 1;
-const costumeImageOrigin = costumeConfig.origin ?? 'center center';
+const heroCostumes = getHeroCostumes(heroId);
+const cosmeticsTotal = computed(() => heroCostumes.length);
 
 const activeFilters = ref<string[]>([]);
 const costumeSort = ref('rarity');
 
+const FILTER_RARITY_OPTS = [
+    {
+        label: `<div class="icon" style="--img-bg:var(--tex-rarityLegendary); --width:20px"></div> LEGENDARY`,
+        value: 'legendary'
+    },
+    {
+        label: `<div class="icon" style="--img-bg:var(--tex-rarityEpic); --width:20px"></div> EPIC`,
+        value: 'epic'
+    },
+    {
+        label: `<div class="icon" style="--img-bg:var(--tex-rarityRare); --width:20px"></div> RARE`,
+        value: 'rare'
+    },
+]
+
+const HERO_COSTUME_CATEGORIES = getAllCategories(heroId);
+const HERO_COSTUME_SOURCES = getAllSources(heroId);
+const HERO_COSTUME_THEMES = getAllThemes(heroId);
+
 const filterOptions = [
-    { value: 'legendary', label: 'LEGENDARY' },
-    { value: 'epic',      label: 'EPIC' },
-    { value: 'rare',      label: 'RARE' },
-    { value: 'shop',       label: 'SHOP' },
-    { value: 'battlepass', label: 'BATTLEPASS' },
-    { value: 'event',      label: 'EVENT' },
-    { value: 'other',      label: 'OTHER' },
+    { label: 'Rarity', separator: true },
+    ...FILTER_RARITY_OPTS,
+    { label: 'Categories', separator: true },
+    ...HERO_COSTUME_CATEGORIES.map(c => ({
+        value: c,
+        label: c
+    })),
+    { label: 'Sources', separator: true },
+    ...HERO_COSTUME_SOURCES.map(s => ({
+        value: s,
+        label: s
+    })),
+    { label: 'Themes', separator: true },
+    ...HERO_COSTUME_THEMES.map(t => ({
+        value: t,
+        label: `<div class="icon" style="--img-bg:url('${`/img/heroes/costume-themes/${toKebabCase(t)}.webp`}'); --width:23px"></div> ${t}`,
+    })),
 ];
 const sortDropdownOptions = [
     { value: 'rarity',    label: 'SORT BY RARITY' },
@@ -1282,24 +1318,30 @@ const sortDropdownOptions = [
 ];
 
 const RARITY_VALUES = new Set(['legendary', 'epic', 'rare']);
-const CATEGORY_VALUES = new Set(['shop', 'battlepass', 'event', 'other']);
 
 const RARITY_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2 };
 const sortedCostumes = computed(() => {
-    let list = (HERO_COSMETICS[heroId as string] ?? []).slice();
+    let list = heroCostumes.slice();
 
     const rarityFilters = activeFilters.value.filter(f => RARITY_VALUES.has(f));
-    const categoryFilters = activeFilters.value.filter(f => CATEGORY_VALUES.has(f));
+    const categoryFilters = activeFilters.value.filter(f => HERO_COSTUME_CATEGORIES.includes(f));
+    const sourceFilters = activeFilters.value.filter(f => HERO_COSTUME_SOURCES.includes(f));
+    const themeFilters = activeFilters.value.filter(f => HERO_COSTUME_THEMES.includes(f));
 
     if (rarityFilters.length)
         list = list.filter(c => rarityFilters.includes(c.rarity));
     if (categoryFilters.length)
         list = list.filter(c => categoryFilters.includes(c.category));
+    if (sourceFilters.length)
+        list = list.filter(c => sourceFilters.includes(c.source ?? ''));
+    if (themeFilters.length)
+        list = list.filter(c => themeFilters.includes(c.theme ?? ''));
 
     list.sort((a, b) => {
         if (costumeSort.value === 'rarity') {
             return (RARITY_ORDER[a.rarity] ?? 3) - (RARITY_ORDER[b.rarity] ?? 3);
         }
+
         const da = a.releaseDate ?? '';
         const db = b.releaseDate ?? '';
         return costumeSort.value === 'date-asc' ? da.localeCompare(db) : db.localeCompare(da);
@@ -1316,14 +1358,16 @@ function toggleCostumeOwned(slug: string) {
         ownedCostumes.value.splice(index, 1);
 }
 
-function openCostumeDetail(costume: CostumeEntry) {
+function openCostumeDetail(costume: Costume) {
     openModal(CostumeDetailModal, {
         costume,
         heroId: heroId as string,
         heroColor: hero.value.color,
-        imageScale: costumeImageScale,
-        imageOrigin: costumeImageOrigin,
-    });
+        // imageScale: costumeImageScale,
+        // imageOrigin: costumeImageOrigin,
+    })
+    .promise
+    .catch(() => null);
 }
 
 // ==== CALCULATOR =====
