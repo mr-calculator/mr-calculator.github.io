@@ -259,7 +259,7 @@ const HERO_COSTUME_CATEGORIES = computed(() => getAllCategories(props.hero.id));
 const HERO_COSTUME_SOURCES = computed(() => getAllSources(props.hero.id));
 const HERO_COSTUME_THEMES = computed(() => getAllThemes(props.hero.id));
 
-const filterOptions = [
+const filterOptions = computed(() => [
     { label: 'Rarity', separator: true },
     ...FILTER_RARITY_OPTS,
     { label: 'Categories', separator: true },
@@ -277,7 +277,7 @@ const filterOptions = [
         value: t,
         label: `<div class="icon" style="--img-bg:url('${`/img/heroes/costume-themes/${toKebabCase(t)}.webp`}'); --width:23px"></div> ${t}`,
     })),
-];
+]);
 const sortDropdownOptions = [
     { value: 'rarity',    label: 'SORT BY RARITY' },
     { value: 'date-desc', label: 'SORT BY NEWEST' },

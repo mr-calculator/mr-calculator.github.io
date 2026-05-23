@@ -1,5 +1,47 @@
 [
   {
+    "sha": "94aafc31ad22b526952dd2f7e13b2f45ff61d764",
+    "node_id": "C_kwDORv7rQ9oAKDk0YWFmYzMxYWQyMmI1MjY5NTJkZDJmN2UxM2IyZjQ1ZmY2MWQ3NjQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-23T21:35:13Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-23T21:35:13Z"
+      },
+      "message": "Fixed exclamation mark not disappearing after seeing costumes page\nFixed dropdown going out of page on iOS with bars showing (using dvh instead of vh now)\nFixed landing page looking odd when it comes to costumes (now container fills viewport width for mobile)\nAdded change hero button at the costumes section for ease of use",
+      "tree": {
+        "sha": "2a8d035f80617cd205aeb2ca079942e4471d6e03",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/2a8d035f80617cd205aeb2ca079942e4471d6e03"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/94aafc31ad22b526952dd2f7e13b2f45ff61d764",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/94aafc31ad22b526952dd2f7e13b2f45ff61d764",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/94aafc31ad22b526952dd2f7e13b2f45ff61d764",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/94aafc31ad22b526952dd2f7e13b2f45ff61d764/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad"
+      }
+    ]
+  },
+  {
     "sha": "1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad",
     "node_id": "C_kwDORv7rQ9oAKDFkYzRjN2UzNTg2MzUxNGE0YmY3NDBmZmM4ZTZiMWNjYzdlYzMxYWQ",
     "commit": {
