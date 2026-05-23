@@ -8,18 +8,27 @@
             />
         </div>
         <div v-if="expanded" class="options">
-            <div
+            <template
                 v-for="option in options"
-                :key="option.value"
-                :class="{ option: 1, selected: isSelected(option) }"
-                @click="optionClick(option)"
+                :key="option.value ?? randomId()"
             >
-                <div class="option-content" v-html="option.label"/>
                 <div
-                    class="icon checkmark"
-                    :style="{'--img': texUrl('dropdownCheck')}"
-                />
-            </div>
+                    v-if="!option.separator"
+                    :class="{ option: 1, selected: isSelected(option) }"
+                    @click="optionClick(option)"
+                >
+                    <div class="option-content" v-html="option.label"/>
+                    <div
+                        class="icon checkmark"
+                        :style="{'--img': texUrl('dropdownCheck')}"
+                    />
+                </div>
+                <div v-else class="separator">
+                    <span v-if="option.label">
+                        {{ option.label }}
+                    </span>
+                </div>
+            </template>
         </div>
     </div>
 </template>
@@ -61,15 +70,28 @@
         left: 0
 
         width: 100%
+        max-height: 75vh
         background: $gray
 
         display: flex
         flex-direction: column
 
+        overflow-x: hidden
+        overflow-y: auto
+
         z-index: 15
 
+        +scrollbar(5px, $gray, $light-blue, $blue)
+
+        +media-desktop
+            max-height: 600px
+
         .option
+            flex-shrink: 0
+
             position: relative
+            height: auto !important
+            min-height: 60px
 
             &:hover
                 background: var(--tex-dropdownHover) no-repeat
@@ -82,10 +104,44 @@
             bottom: 0
 
             transform: translate(-50%, 1px)
-            width: 90%
-            height: 2px
-            background: $light-blue-highlight
-        
+            width: calc(100% - 20px)
+            height: 0
+            border: 2px solid $light-blue-highlight
+
+            +media-desktop
+                width: calc(100% - 40px)
+
+        .separator
+            flex-shrink: 0
+
+            position: relative
+            width: 100%
+            min-height: 15px
+
+            padding: 5px 10px
+
+            cursor: default
+
+            +media-desktop
+                padding: 10px 20px
+
+            &:not(:first-of-type)
+                padding-top: 20px
+
+            &::before
+                content: ""
+                position: absolute
+                left: 50%
+                bottom: 0
+
+                transform: translate(-50%, 1px)
+                width: 100%
+                height: 0
+                border: 2px solid $light-blue-highlight
+
+            span
+                font-size: 16px
+                color: $light-blue-highlight
 
     .option
         width: 100%
@@ -109,7 +165,7 @@
 
             .icon,
             ::v-deep(.icon)
-                background: $color
+                background: var(--img-bg, #{$color})
 
                 img
                     display: none
@@ -138,16 +194,22 @@
 
         .icon,
         ::v-deep(.icon)
-            width: 40px
-            height: 40px
+            flex-shrink: 0
+            
+            width: var(--width, 40px)
+            height: var(--height, var(--width, 40px))
 
             mask: var(--img) no-repeat
             mask-size: 100%
             mask-position: center
 
-            background: #fff
+            background: var(--img-bg, #fff)
+            background-size: 100%
+            background-position: center
 
         .checkmark
+            flex-shrink: 0
+
             display: none
 
             width: 30px
@@ -158,9 +220,11 @@
 
 <script lang="ts">
 export interface Option {
-    label: string,
-    value: string,
-    whenCurrentLabel?: string
+    label?: string,
+    value?: string,
+    whenCurrentLabel?: string,
+
+    separator?: boolean
 }
 </script>
 
@@ -171,7 +235,8 @@ import { texUrl } from '~/assets/data/textures';
 const props = defineProps<{
     small?: boolean,
     options: Option[],
-    multi?: boolean
+    multi?: boolean,
+    placeholder?: string,
 }>()
 
 const model = defineModel<string|string[]>();
@@ -181,10 +246,13 @@ const currentOptionLabel = computed(() => {
         return option?.whenCurrentLabel ?? option?.label ?? option?.value ?? '<unknown>';
     }
 
-    return props.options
-            .filter(o => model.value?.includes(o.value))
-            .map(o => o.whenCurrentLabel ?? o.label ?? o.value ?? '<unknown>')
-            .join('&bull;');
+    const selected = props.options.filter(o => (model.value as string[])?.includes(o.value!));
+    if (selected.length === 0)
+        return props.placeholder ?? 'ALL';
+    if (selected.length === 1)
+        return selected[0]!.whenCurrentLabel ?? selected[0]!.label;
+
+    return `${selected.length} SELECTED`;
 });
 
 const expanded = ref(false);
@@ -196,29 +264,28 @@ function isSelected(option: Option) {
     if (!props.multi && !Array.isArray(model.value))
         return model.value == option.value;
     else if (props.multi && Array.isArray(model.value)) {
-        return model.value.includes(option.value)
+        return model.value.includes(option.value!)
     }
 
     return false;
 }
 
 function optionClick(option: Option) {
-    if (!props.multi && !Array.isArray(model.value))
+    if (!props.multi && !Array.isArray(model.value)) {
         model.value = option.value;
-    else if (props.multi && Array.isArray(model.value)) {
-        if (!model.value)
-            model.value = [];
-
-        const optIndex = model.value?.indexOf(option.value) ?? -1;
-        if (optIndex == -1) {
-            model.value.push(option.value);
-        }
-        else {
-            model.value.splice(optIndex, 1);
-        }
+        expanded.value = false;
     }
+    else if (props.multi && Array.isArray(model.value)) {
+        const next = [...model.value];
+        const optIndex = next.indexOf(option.value!);
 
-    expanded.value = false;
+        if (optIndex == -1)
+            next.push(option.value!);
+        else
+            next.splice(optIndex, 1);
+
+        model.value = next;
+    }
 }
 
 </script>

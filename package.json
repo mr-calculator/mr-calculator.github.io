@@ -17,6 +17,9 @@
     "convert-images": "npx tsx ./scripts/convert-images.ts",
     "add-hero": "npx tsx ./scripts/add-hero/index.ts",
     "parse-achievements-table": "npx tsx ./scripts/parse-achievements-table/index.ts",
+    "parse-costumes": "npx tsx ./scripts/parse-costumes/index.ts",
+    "parse-costumes-export": "npx tsx ./scripts/parse-costumes/export.ts",
+    "parse-costumes-create-conversion-map": "npx tsx ./scripts/parse-costumes/old-system-converter/create-conversion-map.ts",
     "fetch-commits": "node scripts/fetch-commits.js"
   },
   "devDependencies": {

@@ -51,6 +51,29 @@
                     <div v-if="overwriteCheck" class="overwrite-check">
                         <template v-if="overwriteCheck.remaining.length">
                             <h2>
+                                You are about to import the following data:
+                            </h2>
+                            <template v-if="dataSegment?.type == 'hero'">
+                                <ul class="import-list">
+                                    <li v-if="dataSegment.data.stored">Hero Proficiency progress</li>
+                                    <li v-if="dataSegment.data.__unknownHero">Added hero info</li>
+                                    <li v-if="dataSegment.data.isFavourite">Hero favourite status</li>
+                                    <li v-if="dataSegment.data.achievements">Hero achievements</li>
+                                    <li v-if="dataSegment.data.ownedCostumes">Hero owned costumes</li>
+                                </ul>
+                            </template>
+                            <template v-else-if="dataSegment?.type == 'profile'">
+                                <ul class="import-list">
+                                    <li v-if="dataSegment.data.storedHeroes">Proficiency progress</li>
+                                    <li v-if="dataSegment.data.unknownHeroes">Added heroes info</li>
+                                    <li v-if="dataSegment.data.favourites">Favourites</li>
+                                    <li v-if="dataSegment.data.achievements">Achievements</li>
+                                    <li v-if="dataSegment.data.ownedCostumes">Owned costumes</li>
+                                    <li v-if="dataSegment.data.preferences">Preferences</li>
+                                </ul>
+                            </template>
+
+                            <h2>
                                 You will import the data of the following heroes
                             </h2>
                             <ul class="heroes">
@@ -276,6 +299,14 @@
                     </div>
 
                     <p>
+                        <i>
+                            You can also import data from the <a href="https://oceanhillman.github.io/download" target="blank">oceanhillman fork</a> (the one with the costumes).
+                            <br/>
+                            Your owned costumes will be automatically converted so you don't lose anything!
+                        </i>
+                    </p>
+
+                    <p>
                         You can download your data from other devices
                         <NuxtLink to="/download">here</NuxtLink>.
                     </p>
@@ -383,6 +414,9 @@
             object-fit: cover
 
             user-select: none
+
+    .import-list
+        list-style: disc
 
     .heroes
         width: 100%
@@ -537,6 +571,7 @@ import {
     type PreferencesStore,
     type ProficiencyRank
 } from '~/assets/data/common';
+import { convertCostumeId } from '~/assets/data/costumes';
 import { HERO_LIST } from '~/assets/data/heroes';
 
 useSeoMeta({
@@ -807,6 +842,51 @@ function convertDataSegmentToVersion(version: number, dataSegment: AnySerializab
     return dataSegment;
 }
 
+function convertOHMCostumeIdsToMRCostumeIds(dataSegment: AnySerializableDataSegment) {
+    // convert costume ids from oceanhillman's ids to mr ids
+    if (
+        dataSegment.type === 'profile'
+        && dataSegment.data.ownedCostumes
+        // check to see if any costumes have text names instead of numeric ids
+        && Object.values(dataSegment.data.ownedCostumes).some(costumes => costumes.some(cId => /([^0-9])/g.test(cId)))
+    ) {
+        const newMap: Record<string, string[]> = {};
+        Object.entries(dataSegment.data.ownedCostumes).forEach(([heroId, costumeIds]) => {
+            if (!newMap[heroId])
+                newMap[heroId] = [];
+
+            newMap[heroId].push(
+                ...costumeIds.map(cId => {
+                    if (!(/([^0-9])/g.test(cId)))
+                        return cId;
+
+                    return convertCostumeId(cId);
+                })
+                .filter(Boolean) as string[]
+            );
+        });
+
+        dataSegment.data.ownedCostumes = newMap;
+    }
+
+    if (
+        dataSegment.type === 'hero'
+     && dataSegment.data.ownedCostumes
+     // check to see if any costumes have text names instead of numeric ids
+     && dataSegment.data.ownedCostumes.some(cId => /([^0-9])/g.test(cId))
+    ) {
+        dataSegment.data.ownedCostumes = dataSegment.data.ownedCostumes.map(cId => {
+            if (!(/([^0-9])/g.test(cId)))
+                return null;
+
+            return convertCostumeId(cId);
+        })
+        .filter(Boolean) as string[];
+    }
+
+    return dataSegment;
+}
+
 function convertDataSegment(data: AnySerializableDataSegment) {
     if (data.version > config.dataVersion)
         return null;
@@ -853,7 +933,8 @@ function processContent(content: string) {
     }
 
     // validation was finally successful, set the dataSegment in place
-    dataSegment.value = result.data;
+    // convert costume ids in case needed
+    dataSegment.value = convertOHMCostumeIdsToMRCostumeIds(result.data);
 }
 
 function importFiles(files?: FileList|null) {
@@ -973,6 +1054,9 @@ function importData() {
                     achievementsStore.value.push(a);
             });
         }
+
+        if (dataSegment.value.data.ownedCostumes)
+            localStorage.setItem(`cosmetics_owned_${id}`, JSON.stringify(dataSegment.value.data.ownedCostumes));
     }
     else if (dataSegment.value.type == 'profile') {
         if (dataSegment.value.data.unknownHeroes) {
@@ -1009,6 +1093,15 @@ function importData() {
                 else
                     achievementsStore.value.push(a);
             });
+        }
+
+        if (dataSegment.value.data.ownedCostumes !== undefined) {
+            Object.keys(localStorage)
+                .filter(key => key.startsWith('cosmetics_owned_'))
+                .forEach(key => localStorage.removeItem(key));
+
+            for (const [heroId, ownedList] of Object.entries(dataSegment.value.data.ownedCostumes))
+                localStorage.setItem(`cosmetics_owned_${heroId}`, JSON.stringify(ownedList));
         }
     }
 

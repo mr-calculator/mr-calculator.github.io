@@ -293,6 +293,18 @@ export const TEX = {
     upload: {
         default: 'icon/upload.png'
     } as Texture,
+    rarityLegendary: {
+        default: 'icon/rarity-legendary.webp'
+    } as Texture,
+    rarityEpic: {
+        default: 'icon/rarity-epic.webp'
+    } as Texture,
+    rarityRare: {
+        default: 'icon/rarity-rare.webp'
+    } as Texture,
+    costumeCustomizable: {
+        default: 'icon/costume-customize.webp'
+    } as Texture,
     achievementPoint: {
         default: 'icon/achievement-point.png'
     } as Texture,

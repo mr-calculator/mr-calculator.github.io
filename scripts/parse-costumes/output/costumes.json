@@ -1,0 +1,4797 @@
+{
+    "venom": [
+        {
+            "heroId": "venom",
+            "id": "1035300",
+            "name": "SNOW SYMBIOTE",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday",
+            "releaseDate": "2024-12-27"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035501",
+            "name": "SPACE KNIGHT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035100",
+            "name": "CYAN CLASH",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Closed Beta Test",
+            "source": "Closed Beta Test",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035101",
+            "name": "ANTI-VENOM",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035302",
+            "name": "GUMMY SURPRISE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Rivals' Day 2025",
+            "releaseDate": "2025-11-28"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035301",
+            "name": "REBORN KING IN BLACK",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Ancient Powers Awaken",
+            "theme": "Abyssal Flame",
+            "releaseDate": "2025-08-21"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035103",
+            "name": "PINK BUBBLE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Venom's Bubble Pop",
+            "releaseDate": "2025-06-19"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035102",
+            "name": "HYPER ORANGE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Pick-Up Bundle Exclusive",
+            "source": "Pick-Up Bundle",
+            "releaseDate": "2025-03-28"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035500",
+            "name": "LINGERING IMPRINT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-03-07"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035502",
+            "name": "WAR OF THE REALMS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-05-08"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035303",
+            "name": "SPACE CORSAIR",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "New Marauders",
+            "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035800",
+            "name": "MARVEL COSMIC INVASION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "magik": [
+        {
+            "heroId": "magik",
+            "id": "1029301",
+            "name": "FROZEN DEMON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday",
+            "releaseDate": "2024-12-27"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029500",
+            "name": "ELDRITCH ARMOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029100",
+            "name": "AMETHYST ARMOR",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029303",
+            "name": "NEW MILLENNIA MIGHT",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2025-11-21"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029502",
+            "name": "PHOENIX DEMON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-08-01"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-06-19"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029501",
+            "name": "RETRO X-UNIFORM",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029300",
+            "name": "PUNKCHILD",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Punk Society",
+            "releaseDate": "2025-02-28"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029503",
+            "name": "NETHERWORLD NOBLE",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Hellfire Gala 2026",
+            "releaseDate": "2026-04-24"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029304",
+            "name": "INFERNAL IDOL",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "FLIGHT MODE! World Tour Merch Vol.2",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-03-26"
+        }
+    ],
+    "rocket-raccoon": [
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023301",
+            "name": "WILD WINTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday",
+            "releaseDate": "2024-12-20"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023801",
+            "name": "GUARDIANS OF THE GALAXY VOL. 3",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023100",
+            "name": "ROCKY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023305",
+            "name": "ROCKET OF THE RAFTERS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Thieves Guild",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-09-25"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023500",
+            "name": "SYMBIOTE RACCOON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023302",
+            "name": "SUNSHINE RACCOON",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Krakoa Resort",
+            "releaseDate": "2025-05-09"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023300",
+            "name": "BOUNTY HUNTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "theme": "1872",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023307",
+            "name": "ROCKY: THE TRANSFER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023306",
+            "name": "GIANT PANDA",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Citizenship of Monster Kingdom",
+            "theme": "Animal Party",
+            "releaseDate": "2026-02-13"
+        }
+    ],
+    "groot": [
+        {
+            "heroId": "groot",
+            "id": "1027302",
+            "name": "HOLIDAY HAPPINESS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday",
+            "releaseDate": "2024-12-20"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027800",
+            "name": "GUARDIANS OF THE GALAXY VOL. 3",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027100",
+            "name": "ABIES ALGAE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027502",
+            "name": "BIG BUDDY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027501",
+            "name": "SYMBIOTE FLORA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027301",
+            "name": "YGGROOT",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027500",
+            "name": "CARVED TRAVELER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "1872",
+            "releaseDate": "2025-02-21"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027303",
+            "name": "MECHA-FLORA",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-02-06"
+        }
+    ],
+    "jeff-the-land-shark": [
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047300",
+            "name": "CUDDLY FUZZLEFIN",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "theme": "Winter Holiday",
+            "releaseDate": "2024-12-20"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047500",
+            "name": "INCOGNITO DOLPHIN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047100",
+            "name": "ADOPTED AVENGER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047502",
+            "name": "BUSINESS SHARK",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "source": "Jeff's Break Time",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2025-11-27"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047302",
+            "name": "JEFF O'LANTERN",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Voyage to Astonish",
+            "releaseDate": "2025-10-24"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047501",
+            "name": "DEVOURING DUO",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047301",
+            "name": "SUNSHINE LAND SHARK",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Krakoa Resort",
+            "releaseDate": "2025-06-06"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047309",
+            "name": "DEVIL LANDSHARK",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "theme": "Savage Land",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047308",
+            "name": "MAID TO CHOMP",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Black, White and Broom",
+            "releaseDate": "2026-04-10"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047307",
+            "name": "DUCK DEFENDER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Citizenship of Monster Kingdom",
+            "theme": "Animal Party",
+            "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047800",
+            "name": "8-BIT BASH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "thor": [
+        {
+            "heroId": "thor",
+            "id": "1039800",
+            "name": "THOR: LOVE AND THUNDER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-13"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039500",
+            "name": "HERALD OF THUNDER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039100",
+            "name": "MIDGARD UMBER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039303",
+            "name": "GOD OF WINTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "releaseDate": "2025-12-26"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039301",
+            "name": "LIGHTNING FAST",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Formula R",
+            "releaseDate": "2025-10-17"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039300",
+            "name": "WORTHY WAVES",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "source": "Summer Special",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-07-17"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039503",
+            "name": "MAJESTIC RAIMENT",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Hellfire Gala 2025",
+            "releaseDate": "2025-06-27"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039502",
+            "name": "LORD OF ASGARD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-04-04"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039501",
+            "name": "REBORN FROM RAGNAROK",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039506",
+            "name": "UNWORTHY THOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039505",
+            "name": "LOW-KEY THOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039504",
+            "name": "BOOGIE BOLT",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-01-23"
+        }
+    ],
+    "star-lord": [
+        {
+            "heroId": "star-lord",
+            "id": "1043500",
+            "name": "MASTER OF THE SUN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-13"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043800",
+            "name": "GUARDIANS OF THE GALAXY VOL. 3",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043100",
+            "name": "JOVIAL STAR",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Achievements",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043301",
+            "name": "STARCRACKER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday 2025",
+            "releaseDate": "2025-12-19"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043502",
+            "name": "STARLIT OUTLAW",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043102",
+            "name": "IGNITE STAR-LORD (2025)",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-08-10"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043501",
+            "name": "KING OF SPARTAX",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043300",
+            "name": "LION'S MANE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Clashing Lions",
+            "releaseDate": "2025-01-23"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043303",
+            "name": "GLORY GUNNER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "theme": "Corporate Raiders",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043302",
+            "name": "GROOVY GUARDIAN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "FLIGHT MODE! World Tour Merch Vol.2",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-03-26"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043103",
+            "name": "LUMINOUS LEGEND",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "mantis": [
+        {
+            "heroId": "mantis",
+            "id": "1020300",
+            "name": "GALACTIC WINGS",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Chronovium (BattlePass)",
+            "theme": "Imperial Protocol",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020800",
+            "name": "GUARDIANS OF THE GALAXY VOL. 3",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020100",
+            "name": "KNOWHERE CORP",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020302",
+            "name": "OCEANIC HARMONY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Summer Special Vol.2",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-09-18"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-08-08"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020500",
+            "name": "FLORA MAIDEN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020301",
+            "name": "JADE MAIDEN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Immortal Dragon",
+            "releaseDate": "2025-01-17"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020501",
+            "name": "STARLIT MADONNA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "theme": "Space Outlaws",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020102",
+            "name": "BLACK & GOLD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "ESU Open Day",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020305",
+            "name": "GALACTIC GLADIATOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "The Collector's Collection",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "spider-man": [
+        {
+            "heroId": "spider-man",
+            "id": "1036800",
+            "name": "SPIDER-MAN: NO WAY HOME",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036501",
+            "name": "BAG-MAN BEYOND",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036100",
+            "name": "SCARLET SPIDER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "PlayStation Exclusive",
+            "source": "PlayStation Exclusive Costumes",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036101",
+            "name": "CHASM",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036508",
+            "name": "IRON SPIDER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036505",
+            "name": "MAN-SPIDER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "The Collector's Collection",
+            "releaseDate": "2025-10-31"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036102",
+            "name": "BLACK & GOLD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Jade Scrolls of K'un-Lun",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036502",
+            "name": "BLACK SUIT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036504",
+            "name": "FUTURE FOUNDATION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-07-04"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036300",
+            "name": "SPIDER-ONI",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "theme": "Peach Momoko's Demon Days",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036500",
+            "name": "SPIDER-PUNK 2099",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Punk Society",
+            "releaseDate": "2025-03-21"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036503",
+            "name": "MARVEL'S SPIDER-MAN 2",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-01-30"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036510",
+            "name": "PETER PARKER: THE PHOTOGRAPHER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036509",
+            "name": "GROOVY SWING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "FLIGHT MODE! World Tour Merch",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-01-29"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036801",
+            "name": "MARVEL COSMIC INVASION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "ironman": [
+        {
+            "heroId": "ironman",
+            "id": "1034800",
+            "name": "AVENGERS: ENDGAME",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034501",
+            "name": "SUPERIOR IRON MAN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034100",
+            "name": "ARMOR MODEL 42",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Code Redeemable",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034504",
+            "name": "MARK I",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Seeds of the Gardener",
+            "theme": "Year One",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034503",
+            "name": "BIG SHOT",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-10-31"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034502",
+            "name": "EXTREMBIOTE ARMOR",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-08-22"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034500",
+            "name": "STEAM POWER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "1872",
+            "releaseDate": "2025-03-21"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034300",
+            "name": "BLOOD EDGE ARMOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "theme": "Gothic Return",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034801",
+            "name": "THE AVENGERS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-05-01"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034301",
+            "name": "IRON MARINER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "New Marauders",
+            "releaseDate": "2026-02-20"
+        }
+    ],
+    "bruce-banner": [
+        {
+            "heroId": "bruce-banner",
+            "id": "1011501",
+            "name": "GREEN SCAR",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "bruce-banner",
+            "id": "1011100",
+            "name": "MIGHTY G-BOMB",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "bruce-banner",
+            "id": "1011300",
+            "name": "MAESTRO",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Wastelanders",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "bruce-banner",
+            "id": "1011502",
+            "name": "JOE FIXIT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "theme": "Hellfire Gala 2025",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "bruce-banner",
+            "id": "1011500",
+            "name": "PUNK RAGE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Punk Society",
+            "releaseDate": "2025-02-28"
+        },
+        {
+            "heroId": "bruce-banner",
+            "id": "1011800",
+            "name": "INFINITY HULK",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-05-15"
+        }
+    ],
+    "hela": [
+        {
+            "heroId": "hela",
+            "id": "1024301",
+            "name": "EMPRESS OF THE COSMOS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Chronovium (BattlePass)",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024500",
+            "name": "GODDESS OF DEATH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024100",
+            "name": "ULTIMATE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024800",
+            "name": "MERCIFUL QUEEN",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024304",
+            "name": "THE GRIM LADY",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "1872",
+            "releaseDate": "2025-09-26"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024303",
+            "name": "QUEEN IN BLACK",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Queen's Codex",
+            "releaseDate": "2025-08-08"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024302",
+            "name": "YAMI NO KARASU",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Peach Momoko's Demon Days",
+            "releaseDate": "2025-04-25"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024307",
+            "name": "SAVAGE MONARCH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Savage Adventure",
+            "theme": "Savage Land",
+            "releaseDate": "2026-05-21"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024306",
+            "name": "HELEN ANGERBODA: THE REBEL",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024305",
+            "name": "DISCO OF THE DEAD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "FLIGHT MODE! World Tour Merch",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-01-29"
+        }
+    ],
+    "doctor-strange": [
+        {
+            "heroId": "doctor-strange",
+            "id": "1018500",
+            "name": "GOD OF MAGIC",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Chronovium (BattlePass)",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018501",
+            "name": "SORCERER SUPREME OF THE GALAXY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018100",
+            "name": "MASTER OF BLACK MAGIC",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018302",
+            "name": "BLEEKER STREET STRUT",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2025-11-21"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018101",
+            "name": "ASTRAL WANDERER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018301",
+            "name": "OLD MAN STRANGE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Ancient Powers Awaken",
+            "theme": "Wastelanders",
+            "releaseDate": "2025-08-21"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018800",
+            "name": "DOCTOR STRANGE IN THE MULTIVERSE OF MADNESS",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-04-18"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018300",
+            "name": "SORCERER IMMORTAL",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Immortal Dragon",
+            "releaseDate": "2025-01-17"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018304",
+            "name": "STEPHEN SANDERS: THE DOCTOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "theme": "ESU Showdown",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018303",
+            "name": "PHANTOM SORCERER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Twisted Nightmare",
+            "releaseDate": "2026-02-19"
+        }
+    ],
+    "black-panther": [
+        {
+            "heroId": "black-panther",
+            "id": "1026300",
+            "name": "GALACTIC CLAW",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Chronovium (BattlePass)",
+            "theme": "Imperial Protocol",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026500",
+            "name": "BAST'S CHOSEN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026100",
+            "name": "ORISHA BLOOD",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026302",
+            "name": "PHOENIX PANTHER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-08-01"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026101",
+            "name": "GOLDEN PANTHER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026501",
+            "name": "DAMISA-SARKI",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Hellfire Gala 2025",
+            "releaseDate": "2025-05-02"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026301",
+            "name": "THRICE-CURSED KING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Gothic Return",
+            "releaseDate": "2025-03-28"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026502",
+            "name": "KING OF WAKANDA",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "Old Flames",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "hawkeye": [
+        {
+            "heroId": "hawkeye",
+            "id": "1021300",
+            "name": "GALACTIC FANGS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Imperial Protocol",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021501",
+            "name": "FREEFALL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021100",
+            "name": "TIGER'S EYE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021301",
+            "name": "OLD MAN HAWKEYE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "theme": "Wastelanders",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021502",
+            "name": "BINARY ARROW",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Ultron Virus",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021500",
+            "name": "RONIN",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-04-04"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021102",
+            "name": "ARGENT ARCHER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "releaseDate": "2026-03-20"
+        }
+    ],
+    "captain-america": [
+        {
+            "heroId": "captain-america",
+            "id": "1022300",
+            "name": "GALACTIC TALON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Imperial Protocol",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022500",
+            "name": "CAPTAIN GLADIATOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022100",
+            "name": "CAPTAIN A.I.M.ERICA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022504",
+            "name": "CAPWOLF",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Seeds of the Gardener",
+            "theme": "The Collector's Collection",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022503",
+            "name": "GOLDEN AGE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022502",
+            "name": "CAPTAIN KLYNTAR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-07-04"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022501",
+            "name": "STAR SPANGLED STYLE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "theme": "Hellfire Gala 2025",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022801",
+            "name": "AVENGERS: INFINITY WAR",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-02-07"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022505",
+            "name": "PRIMAL PATRIOT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "theme": "Savage Land",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022302",
+            "name": "BRETT HENDRICK: THE STAR",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "ESU Showdown",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022301",
+            "name": "CURSED CAPTAIN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Twisted Nightmare",
+            "releaseDate": "2026-03-06"
+        }
+    ],
+    "wolverine": [
+        {
+            "heroId": "wolverine",
+            "id": "1049800",
+            "name": "DEADPOOL & WOLVERINE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049100",
+            "name": "LONE WOLF",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049301",
+            "name": "DOG BROTHER X",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Immortal Weapon",
+            "releaseDate": "2025-11-07"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049502",
+            "name": "WEAPON PHOENIX",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049501",
+            "name": "WEAPON X",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-06-06"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049500",
+            "name": "PATCH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Hellfire Gala 2025",
+            "releaseDate": "2025-05-02"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049300",
+            "name": "BLOOD BERSERKER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "theme": "Gothic Return",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049503",
+            "name": "WINTER SOLDIER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "loki": [
+        {
+            "heroId": "loki",
+            "id": "1016800",
+            "name": "LOKI SEASON 2",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016100",
+            "name": "FROST GIANT",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016101",
+            "name": "IGNITE LOKI (2025)",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-11-02"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016302",
+            "name": "CRANE DECEIVER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "theme": "Immortal Weapon",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016301",
+            "name": "ROBE OF RELAXATION",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-07-18"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016300",
+            "name": "SHIN SAGI-SHI",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Peach Momoko's Demon Days",
+            "releaseDate": "2025-04-25"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016500",
+            "name": "PRESIDENTIAL ATTIRE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-03-14"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016501",
+            "name": "ALL-BUTCHER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016801",
+            "name": "THE AVENGERS",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-05-01"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016503",
+            "name": "LOW-KEY LOKI",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016502",
+            "name": "LADY LOKI",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "The Collector's Collection",
+            "releaseDate": "2026-01-02"
+        }
+    ],
+    "adam-warlock": [
+        {
+            "heroId": "adam-warlock",
+            "id": "1046800",
+            "name": "GUARDIANS OF THE GALAXY VOL. 3",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046100",
+            "name": "COSMIC JADE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046500",
+            "name": "MAGUS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046102",
+            "name": "KING IN WHITE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046300",
+            "name": "IMMORTAL AVATAR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Immortal Dragon",
+            "releaseDate": "2025-05-23"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-03-14"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046301",
+            "name": "BLOOD SOUL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "theme": "Gothic Return",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046501",
+            "name": "LIVING TRIBUNAL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046302",
+            "name": "COSMIC WARLOCK",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-01-09"
+        }
+    ],
+    "namor": [
+        {
+            "heroId": "namor",
+            "id": "1045800",
+            "name": "BLACK PANTHER: WAKANDA FOREVER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045100",
+            "name": "MAUVE SUB-MARINER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045301",
+            "name": "MONSTRO KING",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "The Collector's Collection",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045300",
+            "name": "PHANTOM TIDE",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Voyage to Astonish",
+            "releaseDate": "2025-10-24"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045502",
+            "name": "PHOENIX KING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045501",
+            "name": "RETRO X-UNIFORM",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-05-16"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045500",
+            "name": "SAVAGE SUB-MARINER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045302",
+            "name": "SEA SAMBA",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "FLIGHT MODE! World Tour Merch Vol.2",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-03-26"
+        }
+    ],
+    "scarlet-witch": [
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038800",
+            "name": "DOCTOR STRANGE IN THE MULTIVERSE OF MADNESS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038100",
+            "name": "WHITE WITCH",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Closed Alpha Test",
+            "source": "Closed Alpha Test",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038101",
+            "name": "NYX WEAVER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038502",
+            "name": "WITCH OF THE EVIL EYE",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038801",
+            "name": "THE QUEEN OF THE DEAD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-10-31"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038301",
+            "name": "PHOENIX CHAOS",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-08-29"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038300",
+            "name": "IMMORTAL SOVEREIGN",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Immortal Dragon",
+            "releaseDate": "2025-05-23"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038500",
+            "name": "CHAOS GOWN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038501",
+            "name": "EMPORIUM MATRON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038102",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038304",
+            "name": "TWISTED CONJURER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Twisted Nightmare (Event)",
+            "theme": "Twisted Nightmare",
+            "releaseDate": "2026-02-19"
+        }
+    ],
+    "black-widow": [
+        {
+            "heroId": "black-widow",
+            "id": "1033800",
+            "name": "WHITE SUIT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "black-widow",
+            "id": "1033100",
+            "name": "LETHAL TOXICITY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "black-widow",
+            "id": "1033503",
+            "name": "MIDNIGHT SUSPENSE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "black-widow",
+            "id": "1033502",
+            "name": "PHOENIX WIDOW",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Queen's Codex",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-08-08"
+        },
+        {
+            "heroId": "black-widow",
+            "id": "1033500",
+            "name": "RED RUNWAY VEIL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "theme": "Hellfire Gala 2025",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "black-widow",
+            "id": "1033501",
+            "name": "MRS. BARNES",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "1872",
+            "releaseDate": "2025-03-07"
+        },
+        {
+            "heroId": "black-widow",
+            "id": "1033300",
+            "name": "LION'S HEARTBEAT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Clashing Lions",
+            "releaseDate": "2025-01-23"
+        }
+    ],
+    "winter-soldier": [
+        {
+            "heroId": "winter-soldier",
+            "id": "1041500",
+            "name": "REVOLUTION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041100",
+            "name": "NAVY TROOPER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041502",
+            "name": "WINTER BUCKAROO",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Gone Nutty For Gifts",
+            "theme": "Winter Holiday 2025",
+            "releaseDate": "2025-12-18"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041501",
+            "name": "WINTER'S VEIL",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041301",
+            "name": "POLARITY SOLDIER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Abyssal Flame",
+            "releaseDate": "2025-08-15"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041800",
+            "name": "THUNDERBOLTS*",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-05-02"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041300",
+            "name": "BLOOD SOLDIER",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Gothic Return",
+            "releaseDate": "2025-01-31"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041304",
+            "name": "STARLIT GUNSLINGER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Space Outlaws",
+            "releaseDate": "2026-05-08"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041503",
+            "name": "BUCKY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "the-punisher": [
+        {
+            "heroId": "the-punisher",
+            "id": "1014501",
+            "name": "PUNISHER 2099",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014500",
+            "name": "THUNDERBOLTS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Chronovium (BattlePass)",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014100",
+            "name": "CAMO",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014503",
+            "name": "FRANKEN-CASTLE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "The Collector's Collection",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014502",
+            "name": "AQUA ARSENAL",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-09-19"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014800",
+            "name": "DAREDEVIL: BORN AGAIN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-06-27"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014300",
+            "name": "DANGAN RONIN",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Peach Momoko's Demon Days",
+            "releaseDate": "2025-05-16"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014301",
+            "name": "MARAUDER MARKSMAN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "New Marauders",
+            "releaseDate": "2026-03-20"
+        }
+    ],
+    "storm": [
+        {
+            "heroId": "storm",
+            "id": "1015500",
+            "name": "MOHAWK ROCK",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Punk Society",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015100",
+            "name": "IVORY BREEZE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Achievements",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015300",
+            "name": "QUEEN OF ORPHANS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Jade Scrolls of K'un-Lun",
+            "theme": "Immortal Weapon",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015503",
+            "name": "SYMBIOTE STORM",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015501",
+            "name": "ULTIMATE WIND-RIDER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Combat Chest",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015502",
+            "name": "GODDESS OF THUNDER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-03-14"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015504",
+            "name": "QUEEN OF WAKANDA",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "Old Flames",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "squirrel-girl": [
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032500",
+            "name": "URBAN HUNTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032100",
+            "name": "ARCTIC LEMMUS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032304",
+            "name": "TINSEL TAIL",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Gone Nutty For Gifts",
+            "theme": "Winter Holiday 2025",
+            "releaseDate": "2025-12-18"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032303",
+            "name": "TURBO TAILWIND",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Formula R",
+            "releaseDate": "2025-10-17"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032501",
+            "name": "SYMBIOTE SQUIRREL",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032302",
+            "name": "SUNSHINE SQUIRREL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Krakoa Resort",
+            "releaseDate": "2025-05-09"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032300",
+            "name": "NUT ROCKER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "theme": "Punk Society",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032301",
+            "name": "CHEERFUL DRAGONESS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Immortal Dragon",
+            "releaseDate": "2025-01-03"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032306",
+            "name": "MAUREEN ALLENE: THE PROGRAMMER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "ESU Open Day",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032305",
+            "name": "RED PANDA",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Citizenship of Monster Kingdom",
+            "theme": "Animal Party",
+            "releaseDate": "2026-02-13"
+        }
+    ],
+    "psylocke": [
+        {
+            "heroId": "psylocke",
+            "id": "1048500",
+            "name": "VENGEANCE",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048100",
+            "name": "KIRISAKI SAKURA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048302",
+            "name": "DARING DAIFUKU",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "theme": "Rivals' Day 2025",
+            "releaseDate": "2025-12-04"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048301",
+            "name": "FLEETING BUTTERFLY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Jade Scrolls of K'un-Lun",
+            "theme": "Formula R",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048502",
+            "name": "BREEZY BUTTERFLY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-07-18"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048501",
+            "name": "RETRO X-UNIFORM",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048300",
+            "name": "BLOOD KARIUDO",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Gothic Return",
+            "releaseDate": "2025-01-31"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048309",
+            "name": "CHOUKO TAKAHASHI: THE PRODIGY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "ESU Open Day",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048303",
+            "name": "ONCE-CAPTIVE CORSAIR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "New Marauders",
+            "releaseDate": "2026-03-06"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048304",
+            "name": "PSYCHEDELIC PULSE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "FLIGHT MODE! World Tour Merch",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-01-29"
+        }
+    ],
+    "peni-parker": [
+        {
+            "heroId": "peni-parker",
+            "id": "1042500",
+            "name": "VEN#M",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042100",
+            "name": "OLIVE SKIMMER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042303",
+            "name": "SNOW-SP//DR",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday 2025",
+            "releaseDate": "2025-12-19"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042302",
+            "name": "FLORAL FRIGHTS",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Voyage to Astonish",
+            "theme": "Voyage to Astonish",
+            "releaseDate": "2025-10-23"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042301",
+            "name": "WASTELAND MECH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Wastelanders",
+            "releaseDate": "2025-09-05"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042300",
+            "name": "YATSUKAHAGI",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Peach Momoko's Demon Days",
+            "releaseDate": "2025-04-18"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042101",
+            "name": "BLUE TARANTULA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042306",
+            "name": "PENI PARKER: THE FRESHMAN",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-05-22"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042305",
+            "name": "BADLANDS LULLABY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "theme": "Twisted Nightmare",
+            "releaseDate": "2026-03-20"
+        }
+    ],
+    "moon-knight": [
+        {
+            "heroId": "moon-knight",
+            "id": "1030500",
+            "name": "MISTER KNIGHT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030100",
+            "name": "GOLDEN MOONLIGHT",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030801",
+            "name": "MOON KNIGHT MECH",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030501",
+            "name": "PHOENIX KNIGHT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-06-20"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030800",
+            "name": "FIST OF VENGEANCE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-03-28"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030101",
+            "name": "BLOOD MOON KNIGHT",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "theme": "Gothic Return",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030300",
+            "name": "LUNAR GENERAL",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Immortal Dragon",
+            "releaseDate": "2025-01-03"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030502",
+            "name": "SUAVE SPECTOR",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Hellfire Gala 2026",
+            "theme": "Hellfire Gala 2026",
+            "releaseDate": "2026-04-23"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030302",
+            "name": "ECLIPSE KNIGHT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Twisted Nightmare",
+            "releaseDate": "2026-02-27"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030301",
+            "name": "KING OF CLUBS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "Trumps of The Grandmaster",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "magneto": [
+        {
+            "heroId": "magneto",
+            "id": "1037500",
+            "name": "MASTER OF MAGNETISM",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037100",
+            "name": "UNCANNY BLACKSTEEL",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037102",
+            "name": "BLACK & GOLD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Gone Nutty For Gifts",
+            "releaseDate": "2025-12-18"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037301",
+            "name": "TEMPORAL TYRANT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "2099",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037302",
+            "name": "THE TRIAL OF MAGNETO",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037300",
+            "name": "BINARY SWORD",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Combat Chest",
+            "theme": "Ultron Virus",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037501",
+            "name": "KING MAGNUS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Darkhold (BattlePass)",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037503",
+            "name": "UNTAMED OVERLORD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "theme": "Savage Land",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037502",
+            "name": "SEAT OF AUTUMN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Quiet Council of Krakoa",
+            "releaseDate": "2026-02-06"
+        }
+    ],
+    "luna-snow": [
+        {
+            "heroId": "luna-snow",
+            "id": "1031300",
+            "name": "SHINING STAR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031100",
+            "name": "MINTY BEATS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031308",
+            "name": "CHERRY DELIGHT",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Rivals' Day 2025",
+            "releaseDate": "2025-12-05"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031305",
+            "name": "ABYSSAL GLOW",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "theme": "Abyssal Flame",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031303",
+            "name": "COOL SUMMER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Summer Special",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-07-17"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031302",
+            "name": "NOLAEHANEUN MANYEO",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "theme": "Peach Momoko's Demon Days",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031301",
+            "name": "MIRAE 2099",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "2099",
+            "releaseDate": "2025-02-07"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031313",
+            "name": "SONIC TRAILBLAZER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Savage Adventure",
+            "theme": "Formula R",
+            "releaseDate": "2026-05-21"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031312",
+            "name": "PARK SUN-YOUNG: THE DANCER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "theme": "ESU Showdown",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031309",
+            "name": "DISCO POP",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-01-23"
+        }
+    ],
+    "iron-fist": [
+        {
+            "heroId": "iron-fist",
+            "id": "1052500",
+            "name": "SWORD MASTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052100",
+            "name": "MARTIAL ARTS SAVANT",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052302",
+            "name": "SHENLOONG CHAMPION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Seeds of the Gardener",
+            "theme": "Immortal Weapon",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052502",
+            "name": "PHOENIX FIST",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Ancient Powers Awaken",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-08-21"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052301",
+            "name": "BINARY FIST",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Ultron Virus",
+            "releaseDate": "2025-06-20"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052501",
+            "name": "IMMORTAL WEAPON OF AGAMOTTO",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052300",
+            "name": "LION'S GAZE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Clashing Lions",
+            "releaseDate": "2025-01-23"
+        },
+        {
+            "heroId": "iron-fist",
+            "id": "1052303",
+            "name": "LIN SHAO: THE KNOCKOUT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "ESU Showdown",
+            "releaseDate": "2026-04-10"
+        }
+    ],
+    "cloak-and-dagger": [
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025500",
+            "name": "GROWTH & DECAY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025100",
+            "name": "LEMON LIME",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2024-12-06"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025303",
+            "name": "ICE PAS DE DEUX",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday 2025",
+            "releaseDate": "2025-12-26"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025302",
+            "name": "POLARITY BOND",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Abyssal Flame",
+            "releaseDate": "2025-08-15"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025300",
+            "name": "DANCE PARTNER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Flower Of Krakoa (BattlePass)",
+            "theme": "Hellfire Gala 2025",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025301",
+            "name": "TWILIGHT DUO",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-03-07"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025304",
+            "name": "DARING DUO",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Thieves Guild",
+            "releaseDate": "2026-03-27"
+        }
+    ],
+    "daredevil": [
+        {
+            "heroId": "daredevil",
+            "id": "1055501",
+            "name": "NOT DAREDEVIL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Winter Holiday 2025",
+            "releaseDate": "2025-12-19"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055500",
+            "name": "DEVIL 2099",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "2099",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055101",
+            "name": "SHENLOONG'S CREED",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055102",
+            "name": "TWILIGHT AURORA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Disney+ Exclusive",
+            "source": "Disney+ Exclusive Costumes",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055100",
+            "name": "FEARLESS ORIGIN",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055502",
+            "name": "SHADOWED START",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "theme": "Year One",
+            "releaseDate": "2026-05-22"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055103",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055800",
+            "name": "DAREDEVIL: BORN AGAIN SEASON 2",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-03-13"
+        }
+    ],
+    "rogue": [
+        {
+            "heroId": "rogue",
+            "id": "1065300",
+            "name": "SAVAGE SOUTH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Savage Land",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065100",
+            "name": "QUEEN'S DEFENSE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065101",
+            "name": "SEARING HEART",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-12-12"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065500",
+            "name": "STARLIT REBEL",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "theme": "Space Outlaws",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065102",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065301",
+            "name": "MRS. X",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "theme": "Mr. & Mrs. X",
+            "releaseDate": "2026-02-13"
+        }
+    ],
+    "blade": [
+        {
+            "heroId": "blade",
+            "id": "1044500",
+            "name": "RESTFUL RECOVERY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2025-11-28"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044800",
+            "name": "BLADE KNIGHT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Voyage to Astonish",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-10-23"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044300",
+            "name": "POLARITY EDGE",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Abyssal Flame",
+            "releaseDate": "2025-08-08"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044102",
+            "name": "EMERALD BLADE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-08-08"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044100",
+            "name": "DAYBREAK",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-08-08"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044302",
+            "name": "STARLIT SHADOW",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Space Outlaws",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044301",
+            "name": "VAMPIRE SLAYER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "invisible-woman": [
+        {
+            "heroId": "invisible-woman",
+            "id": "1050301",
+            "name": "DISAPPEARING DESSERT",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Jeff's Break Time",
+            "theme": "Rivals' Day 2025",
+            "releaseDate": "2025-11-27"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050502",
+            "name": "AZURE SHADE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-09-19"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050800",
+            "name": "THE FANTASTIC FOUR: FIRST STEPS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-07-25"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050501",
+            "name": "FUTURE FOUNDATION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-06-13"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050300",
+            "name": "THE LIFE FANTASTIC",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "60th Wedding Anniversary",
+            "releaseDate": "2025-02-14"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050500",
+            "name": "MALICE",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050101",
+            "name": "BLOOD SHIELD",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050100",
+            "name": "FIRST FAMILY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050305",
+            "name": "RIANN LANDAU: THE DEBATER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "ESU Showdown",
+            "releaseDate": "2026-04-03"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050302",
+            "name": "PRISM PARADE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "Museum Ticket (BattlePass)",
+            "theme": "Disco Revolution",
+            "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050103",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "mister-fantastic": [
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040301",
+            "name": "DAD-TASTIC REED",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Jeff's Break Time",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2025-11-27"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-10-10"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040800",
+            "name": "THE FANTASTIC FOUR: FIRST STEPS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-07-25"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040501",
+            "name": "FUTURE FOUNDATION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Combat Chest",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040300",
+            "name": "THE LIFE FANTASTIC",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "60th Wedding Anniversary",
+            "releaseDate": "2025-02-14"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040500",
+            "name": "THE MAKER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040100",
+            "name": "FIRST FAMILY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-01-10"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040302",
+            "name": "DANUM KET: THE PROFESSOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-04-03"
+        }
+    ],
+    "ultron": [
+        {
+            "heroId": "ultron",
+            "id": "1028800",
+            "name": "INFINITY ULTRON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028300",
+            "name": "WASTELAND ROBOT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Wastelanders",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028500",
+            "name": "X-TRON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028101",
+            "name": "GOLDEN ULTRON",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028100",
+            "name": "MECHANICAL PHANTOM",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028302",
+            "name": "CYBERNETIC DRIP",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Savage Adventure",
+            "releaseDate": "2026-05-21"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028502",
+            "name": "ODINFORCE ULTRON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028102",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2026-02-13"
+        }
+    ],
+    "angela": [
+        {
+            "heroId": "angela",
+            "id": "1056501",
+            "name": "ODIN'S BEAUTIFUL DAUGHTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "theme": "Immortal Weapon",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "angela",
+            "id": "1056500",
+            "name": "SKULD 2099",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "2099",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "angela",
+            "id": "1056101",
+            "name": "SIRIANA'S SILVER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "angela",
+            "id": "1056100",
+            "name": "CERULEAN LIGHTBRINGER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "angela",
+            "id": "1056502",
+            "name": "DOOM ANGEL",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Tablet of Life and Time (BattlePass)",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "angela",
+            "id": "1056300",
+            "name": "ACE OF SPADES",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Trumps of The Grandmaster",
+            "releaseDate": "2026-01-30"
+        }
+    ],
+    "gambit": [
+        {
+            "heroId": "gambit",
+            "id": "1058300",
+            "name": "THIEVES GUILDMASTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Thieves Guild",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058101",
+            "name": "SACRIFICIAL PAWN",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058100",
+            "name": "CRIMSON HEART",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058500",
+            "name": "BARRIER BUSTER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "theme": "Corporate Raiders",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058303",
+            "name": "ALLURING ACE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "theme": "Hellfire Gala 2026",
+            "releaseDate": "2026-04-24"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058102",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2026-04-19"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058302",
+            "name": "MR. X",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "theme": "Mr. & Mrs. X",
+            "releaseDate": "2026-02-13"
+        }
+    ],
+    "the-thing": [
+        {
+            "heroId": "the-thing",
+            "id": "1051102",
+            "name": "BLUE THING",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "Grand Garden Adventure (BattlePass)",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051300",
+            "name": "ROCKY TIDE",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "source": "Summer Special Vol.2",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-09-18"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051502",
+            "name": "SYMBIOTE-THING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Queen's Codex",
+            "theme": "Klyntar Warriors",
+            "releaseDate": "2025-08-08"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051800",
+            "name": "THE FANTASTIC FOUR: FIRST STEPS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-07-25"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051301",
+            "name": "SUNSHINE THING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Summer Special",
+            "theme": "Krakoa Resort",
+            "releaseDate": "2025-07-17"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051501",
+            "name": "FUTURE FOUNDATION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-06-13"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051101",
+            "name": "THE UNLIMITED",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-04-18"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051500",
+            "name": "TRENCH COAT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-02-21"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051100",
+            "name": "FIRST FAMILY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-02-21"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051505",
+            "name": "INFINITY THING",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051504",
+            "name": "FEAR ITSELF",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-03-13"
+        }
+    ],
+    "phoenix": [
+        {
+            "heroId": "phoenix",
+            "id": "1054102",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-11-14"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054500",
+            "name": "DARK PHOENIX",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Fruit of Immortality (BattlePass)",
+            "releaseDate": "2025-09-12"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054300",
+            "name": "CHAOS PHOENIX",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054101",
+            "name": "EMERALD FLAMES",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054100",
+            "name": "THE RETURN OF JEAN GREY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054502",
+            "name": "VERDANT VOGUE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Hellfire Gala 2026",
+            "theme": "Hellfire Gala 2026",
+            "releaseDate": "2026-04-23"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054501",
+            "name": "SEAT OF SPRING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Quiet Council of Krakoa",
+            "releaseDate": "2026-02-27"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054301",
+            "name": "ICE PHOENIX",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Winter Holiday 2025",
+            "releaseDate": "2026-01-09"
+        }
+    ],
+    "emma-frost": [
+        {
+            "heroId": "emma-frost",
+            "id": "1053300",
+            "name": "HELLFIRE PROTOCOL",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "2099",
+            "releaseDate": "2025-10-03"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053501",
+            "name": "PHOENIX DIAMOND",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Power of The Phoenix (BattlePass)",
+            "theme": "Phoenix Force",
+            "releaseDate": "2025-07-11"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053101",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "releaseDate": "2025-05-30"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053500",
+            "name": "X-REVOLUTION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053102",
+            "name": "GOLDEN DIAMOND",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053100",
+            "name": "BLUE SAPPHIRE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-04-11"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053304",
+            "name": "GALA GLAM",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "source": "Hellfire Gala 2026",
+            "theme": "Hellfire Gala 2026",
+            "releaseDate": "2026-04-23"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053502",
+            "name": "BLACK QUEEN OF THE MARAUDERS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "New Marauders",
+            "releaseDate": "2026-02-20"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053301",
+            "name": "QUEEN OF DIAMONDS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Trumps of The Grandmaster",
+            "releaseDate": "2026-01-30"
+        }
+    ],
+    "human-torch": [
+        {
+            "heroId": "human-torch",
+            "id": "1017502",
+            "name": "SUNNY SIZZLER",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Summer Special Vol.2",
+            "theme": "Marvel Rivals Swimsuit Special",
+            "releaseDate": "2025-09-18"
+        },
+        {
+            "heroId": "human-torch",
+            "id": "1017800",
+            "name": "THE FANTASTIC FOUR: FIRST STEPS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2025-07-25"
+        },
+        {
+            "heroId": "human-torch",
+            "id": "1017501",
+            "name": "FUTURE FOUNDATION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Venom's Bubble Pop",
+            "releaseDate": "2025-06-19"
+        },
+        {
+            "heroId": "human-torch",
+            "id": "1017500",
+            "name": "NEGATIVE ZONE GLADIATOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-02-21"
+        },
+        {
+            "heroId": "human-torch",
+            "id": "1017101",
+            "name": "BLOOD BLAZE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2025-02-21"
+        },
+        {
+            "heroId": "human-torch",
+            "id": "1017100",
+            "name": "FIRST FAMILY",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2025-02-21"
+        },
+        {
+            "heroId": "human-torch",
+            "id": "1017102",
+            "name": "SILVER SPARK",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "Project Heroic Age (BattlePass)",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "human-torch",
+            "id": "1017300",
+            "name": "JACK OF HEARTS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Trumps of The Grandmaster",
+            "releaseDate": "2026-01-02"
+        }
+    ],
+    "devil-dinosaur": [
+        {
+            "heroId": "devil-dinosaur",
+            "id": "1062500",
+            "name": "CHRONO-ARMOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "devil-dinosaur",
+            "id": "1062101",
+            "name": "CORPORATE CRUNCHER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "devil-dinosaur",
+            "id": "1062100",
+            "name": "TROPICAL BEAST",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-05-15"
+        }
+    ],
+    "deadpool": [
+        {
+            "heroId": "deadpool",
+            "id": "1057301",
+            "name": "MONSTER KING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057500",
+            "name": "MAID-POOL",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "theme": "Black, White and Broom",
+            "releaseDate": "2026-04-10"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057102",
+            "name": "VIRTUS.PRO (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057106",
+            "name": "TSM (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057107",
+            "name": "TEAM HERETICS (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057104",
+            "name": "SPACESTATION GAMING (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057109",
+            "name": "SENTINELS (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057108",
+            "name": "REJECT (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057103",
+            "name": "NRG SHOCK (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057105",
+            "name": "NAVI (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057111",
+            "name": "LIQUID CITADEL (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057110",
+            "name": "GEN.G (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057112",
+            "name": "FLYQUEST (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057113",
+            "name": "100 THIEVES (IGNITE SERIES 2026)",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Esports",
+            "source": "Esports Costumes",
+            "theme": "IGNITE 2026",
+            "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057800",
+            "name": "WADE WILSON: THE SPIRIT SQUAD",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057300",
+            "name": "CAPTAIN POOL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "New Marauders",
+            "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057101",
+            "name": "WORKWEAR WOES",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057100",
+            "name": "X-FORCE?",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-01-16"
+        }
+    ],
+    "elsa-bloodstone": [
+        {
+            "heroId": "elsa-bloodstone",
+            "id": "1059500",
+            "name": "BLOODY BUTLER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Black, White and Broom",
+            "releaseDate": "2026-05-01"
+        },
+        {
+            "heroId": "elsa-bloodstone",
+            "id": "1059300",
+            "name": "YOUNG BLOOD",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "Year One",
+            "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "elsa-bloodstone",
+            "id": "1059100",
+            "name": "APEX HUNTRESS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "elsa-bloodstone",
+            "id": "1059101",
+            "name": "ICY EDGE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-02-13"
+        }
+    ],
+    "black-cat": [
+        {
+            "heroId": "black-cat",
+            "id": "1061300",
+            "name": "URBAN PREDATOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "black-cat",
+            "id": "1061101",
+            "name": "BEGUILING BLUE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "black-cat",
+            "id": "1061100",
+            "name": "GILDED SHADOW",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-04-17"
+        }
+    ],
+    "white-fox": [
+        {
+            "heroId": "white-fox",
+            "id": "1060500",
+            "name": "YOON JI-WOO: THE LEADER",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "theme": "ESU College Life",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "white-fox",
+            "id": "1060101",
+            "name": "SECRET AGENT",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "white-fox",
+            "id": "1060100",
+            "name": "ROSY RECON",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "releaseDate": "2026-03-20"
+        }
+    ]
+}

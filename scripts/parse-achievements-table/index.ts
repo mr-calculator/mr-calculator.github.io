@@ -77,7 +77,7 @@ function parseAchievements(html: string, category: AchievementTypeCategory) {
 async function main() {
 	p.intro('Parse a table from MR Wiki/Achievements to extract bulk data.')
 	p.log.info(
-		'This expects the tables to exist in `./scripts/parse-achievements-table/tables/` with the id names.'
+		'This expects the tables to exist in `./scripts/parse-achievements-table/tables/` with the id names. (only <tr> elements of the <tbody>)'
 	);
 
 	const category = await p.select({

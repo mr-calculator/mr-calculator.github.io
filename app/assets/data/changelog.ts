@@ -365,7 +365,8 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         version: {
             number: '1.7.0',
             date: 'May 22, 2026',
-            time: '4:36 PM'
+            time: '4:36 PM',
+            commitSha: 'ab54247178467336103d4cb04c97af6cc121552d'
         },
         title: 'List View Feature for heroes',
         description: `Adds a new way to view your proficiencies all at once. On the Heroes page, there's now an option to toggle between "Gallery View" and "List View". Gallery View shows the hero cards as before. List View shows all of your heroes and their proficiency data as a table.
@@ -379,6 +380,30 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         ],
         images: [
             '/img/changelog/v1.7.0/hero-list.webp',
+        ]
+    },
+    {
+        version: {
+            number: '1.8.0',
+            date: 'May 23, 2026',
+            time: '3:51 PM'
+        },
+        title: 'Costumes list and checklist',
+        description: `Adds costume tracking to the individual hero pages. Clicking on individual costumes brings up some information about that costume. You can mark costumes as "owned" to track their collection. This data is saved to local storage.
+        <br>
+        <br>
+        Thanks to <a href="https://github.com/oceanhillman">oceanhillman</a> for making this feature!`,
+        listTitle: 'Features',
+        list: [
+            'View all costumes for every hero',
+            'Filter costumes by Rarity, Category, Source and Theme',
+            'Sort costumes by rarity or release date',
+            'Mark costumes as owned',
+            'See costume details like: name, rarity, is it customizable, category, source, theme and release date'
+        ],
+        images: [
+            '/img/changelog/v1.8.0/costume-page.webp',
+            '/img/changelog/v1.8.0/costume-modal.webp',
         ]
     }
 ];
