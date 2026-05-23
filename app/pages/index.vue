@@ -487,6 +487,20 @@
                     <h3>
                         Track which costumes you <span>own</span>!
                     </h3>
+
+                    <div class="hero-swap">
+                        <div class="name" @click="heroSelectOpen = true">
+                            <span>{{ currentHero.name }}</span>
+                            <Tex
+                                image="swap"
+                                color="var(--dark)"
+
+                                width="20px"
+                                height="20px"
+                                object-fit="contain"
+                            />
+                        </div>
+                    </div>
                 </div>
             </section>
 

@@ -10,6 +10,8 @@
                 </ClientOnly>
             </p>
             <FormDropdown
+                ref="filter-dropdown"
+
                 :options="filterOptions"
                 v-model="activeFilters"
                 placeholder="FILTER"
@@ -17,6 +19,8 @@
                 small
             />
             <FormDropdown
+                ref="sort-dropdown"
+
                 :options="sortDropdownOptions"
                 v-model="costumeSort"
                 small
@@ -142,15 +146,14 @@
         padding-bottom: 45px
 
         display: flex
-        flex-direction: column
-        flex-wrap: nowrap
+        justify-content: center
         align-items: center
+        flex-wrap: wrap
         gap: 20px
 
         +media-tablet
             display: grid
             grid-template-columns: repeat(auto-fill, 200px)
-            justify-content: center
 
     .no-results
         display: flex
@@ -185,6 +188,8 @@ const { openModal } = useModalManager();
 
 const cosmeticsControls = useTemplateRef('cosmeticsControls');
 const scroller = ref<Window|HTMLElement>();
+const filterDropdown = useTemplateRef('filter-dropdown');
+const sortDropdown = useTemplateRef('sort-dropdown');
 const mobile = isMobile();
 
 function findScroller() {
@@ -192,7 +197,6 @@ function findScroller() {
     if ((scroller.value as HTMLElement).tagName === 'BODY')
         scroller.value = window;
 }
-
 await useGsap(({ scrollTrigger }) => {
     nextTick(() => {
         findScroller();
@@ -216,8 +220,14 @@ await useGsap(({ scrollTrigger }) => {
         lastKnownScrollY = scrollY;
 
         // scrolling down
-        if (deltaY > 0)
+        if (deltaY > 0) {
             cosmeticsControls.value?.classList.remove('sticky-mobile-show');
+
+            if (cosmeticsControls.value?.classList.contains('sticky')) {
+                filterDropdown.value?.setExpanded(false);
+                sortDropdown.value?.setExpanded(false);
+            }
+        }
         else
             cosmeticsControls.value?.classList.add('sticky-mobile-show');
     }, scroller.value);

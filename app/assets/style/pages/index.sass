@@ -334,6 +334,45 @@
                 background: var(--tex-whiteBackground) no-repeat
                 background-size: 100% 100%
 
+            .hero-swap
+                display: flex
+                justify-content: center
+
+                margin-top: 40px
+
+                +media-desktop
+                    justify-content: start
+
+                .name
+                    padding: 20px 40px
+
+                    background: var(--tex-top500Element)
+                    background-size: 100% 100%
+
+                    font-size: 20px
+                    font-family: MarvelRivalsHeavy
+                    text-transform: uppercase
+                    color: $dark
+
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    gap: 10px
+
+                    user-select: none
+
+                    cursor: pointer
+
+                    +media-desktop
+                        font-size: 30px
+
+                    &:hover
+                        background-image: var(--tex-top500Element-hover)
+                        color: $blue
+
+                        .texture
+                            --tex-color: #{$blue} !important
+
             &.hero
                 position: relative
                 padding-top: 80px
@@ -910,45 +949,6 @@
 
             &.showcase-rewards
 
-                .hero-swap
-                    display: flex
-                    justify-content: center
-
-                    margin-top: 40px
-
-                    +media-desktop
-                        justify-content: start
-
-                    .name
-                        padding: 20px 40px
-
-                        background: var(--tex-top500Element)
-                        background-size: 100% 100%
-
-                        font-size: 20px
-                        font-family: MarvelRivalsHeavy
-                        text-transform: uppercase
-                        color: $dark
-
-                        display: flex
-                        justify-content: center
-                        align-items: center
-                        gap: 10px
-
-                        user-select: none
-
-                        cursor: pointer
-
-                        +media-desktop
-                            font-size: 30px
-
-                        &:hover
-                            background-image: var(--tex-top500Element-hover)
-                            color: $blue
-
-                            .texture
-                                --tex-color: #{$blue} !important
-
                 .rewards-showcase
                     position: relative
                     justify-self: center
@@ -1271,7 +1271,10 @@
                         text-align: center
 
             &.achievements
-                padding: 100px 20px 60px 20px
+                padding: 120px 0 60px 0
+
+                +media-desktop
+                    padding: 100px 20px 60px 20px
 
                 .panel-wrapper
                     color: $text-color
@@ -1289,6 +1292,9 @@
                     grid-template-columns: 1.5fr 1fr
                 
                 .showcase
+                    width: 100%
+                    max-width: 1000px
+
                     ::v-deep(.costume-list)
                         overflow: visible
                         height: fit-content
@@ -1306,6 +1312,7 @@
 
                             .owned-count
                                 font-size: 22px !important
+                                color: $light-blue-highlight !important
 
                                 +media-phone
                                     font-size: 18px !important

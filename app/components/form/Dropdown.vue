@@ -70,7 +70,7 @@
         left: 0
 
         width: 100%
-        max-height: 75vh
+        max-height: 70vh
         background: $gray
 
         display: flex
@@ -80,6 +80,9 @@
         overflow-y: auto
 
         z-index: 15
+
+        @supports (height: 100dvh)
+            max-height: 70dvh
 
         +scrollbar(5px, $gray, $light-blue, $blue)
 
@@ -287,5 +290,11 @@ function optionClick(option: Option) {
         model.value = next;
     }
 }
+
+defineExpose({
+    setExpanded(toggle: boolean) {
+        expanded.value = toggle;
+    }
+});
 
 </script>

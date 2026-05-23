@@ -1,5 +1,47 @@
 [
   {
+    "sha": "1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad",
+    "node_id": "C_kwDORv7rQ9oAKDFkYzRjN2UzNTg2MzUxNGE0YmY3NDBmZmM4ZTZiMWNjYzdlYzMxYWQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-23T18:53:13Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-23T18:53:13Z"
+      },
+      "message": "Fixed fatal error with SSR on loading certain hero subpages\nMade small improvements to the new costumes feature (both UI/UX and code)\nAdded showcases on the landing page for achievements and costumes\nRenamed cosmetics tab to costumes (since it only covers the latter)\nUpdated Devil Dinosaur's generic average stats",
+      "tree": {
+        "sha": "7bfc06a36bdb63c3afabefb9f34f53b948b5c6d7",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/7bfc06a36bdb63c3afabefb9f34f53b948b5c6d7"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1dc4c7e35863514a4bf740ffc8e6b1ccc7ec31ad/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "b03d371fbaf34b3f9483bc1d23e17a9f685ee938",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/b03d371fbaf34b3f9483bc1d23e17a9f685ee938",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/b03d371fbaf34b3f9483bc1d23e17a9f685ee938"
+      }
+    ]
+  },
+  {
     "sha": "b03d371fbaf34b3f9483bc1d23e17a9f685ee938",
     "node_id": "C_kwDORv7rQ9oAKGIwM2QzNzFmYmFmMzRiM2Y5NDgzYmMxZDIzZTE3YTlmNjg1ZWU5Mzg",
     "commit": {

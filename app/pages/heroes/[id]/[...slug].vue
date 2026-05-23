@@ -63,6 +63,7 @@
                         v-if="(
                                 !storedLevel.openedCalculator
                              || !(hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection)
+                             || !preferences.sawCosmeticsTab
                             )
                             &&
                             !menuOpen
@@ -844,12 +845,12 @@ function tryShowEditPopup() {
     , 5000);
 }
 
-function setPreferences(page: string) {
+function setPreferences(page: PageId) {
     if (page == 'estimates' && !storedLevel.value.openedCalculator)
         storedLevel.value.openedCalculator = true;
     if (page == 'customize')
         tryShowEditPopup();
-    if (page == 'cosmetics')
+    if (page == 'costumes')
         preferences.value.sawCosmeticsTab = true;
 }
 setPreferences(page.value);
