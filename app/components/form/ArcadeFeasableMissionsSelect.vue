@@ -107,7 +107,7 @@
                     padding-right: 5px + 2px
 
 
-            &:hover
+            +hover
                 background: color-mix(in srgb, $light-blue-highlight 70%, $blue)
 
             img

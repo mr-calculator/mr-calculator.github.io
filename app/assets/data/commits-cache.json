@@ -1,5 +1,47 @@
 [
   {
+    "sha": "1b87db579444f62e60b58dea40681e93e2155401",
+    "node_id": "C_kwDORv7rQ9oAKDFiODdkYjU3OTQ0NGY2MmU2MGI1OGRlYTQwNjgxZTkzZTIxNTU0MDE",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-23T21:49:17Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-23T21:49:17Z"
+      },
+      "message": "Fixed filter dropdown not updating when changing hero in the landing page",
+      "tree": {
+        "sha": "7560ec35c4d2851be96b0075eb986d9832864d46",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/7560ec35c4d2851be96b0075eb986d9832864d46"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/1b87db579444f62e60b58dea40681e93e2155401",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1b87db579444f62e60b58dea40681e93e2155401",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/1b87db579444f62e60b58dea40681e93e2155401",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1b87db579444f62e60b58dea40681e93e2155401/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "94aafc31ad22b526952dd2f7e13b2f45ff61d764",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/94aafc31ad22b526952dd2f7e13b2f45ff61d764",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/94aafc31ad22b526952dd2f7e13b2f45ff61d764"
+      }
+    ]
+  },
+  {
     "sha": "94aafc31ad22b526952dd2f7e13b2f45ff61d764",
     "node_id": "C_kwDORv7rQ9oAKDk0YWFmYzMxYWQyMmI1MjY5NTJkZDJmN2UxM2IyZjQ1ZmY2MWQ3NjQ",
     "commit": {

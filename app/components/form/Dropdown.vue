@@ -1,5 +1,8 @@
 <template>
-    <div ref="dropdown" :class="{dropdown: 1, small}">
+    <div
+        ref="dropdown"
+        :class="{dropdown: 1, small}"
+    >
         <div class="option current" @click="expanded = !expanded">
             <div class="option-content" v-html="currentOptionLabel ?? ''"/>
             <div
@@ -7,10 +10,16 @@
                 :style="{'--img': texUrl('dropdownCaret')}"
             />
         </div>
-        <div v-if="expanded" class="options">
+        <div
+            v-if="expanded"
+            class="options"
+            :style="{
+                maxHeight: modifiedHeight ? modifiedHeight + 'px' : undefined,
+            }"
+        >
             <template
                 v-for="option in options"
-                :key="option.value ?? randomId()"
+                :key="option.value"
             >
                 <div
                     v-if="typeof option.separator === 'undefined'"
@@ -48,7 +57,7 @@
         width: 350px
         height: 60px
 
-    &:hover
+    +hover
         background: $light-blue-highlight
 
     &.small
@@ -96,7 +105,7 @@
             height: auto !important
             min-height: 60px
 
-            &:hover
+            +hover
                 background: var(--tex-dropdownHover) no-repeat
                 background-size: 100% 100%
 
@@ -169,6 +178,8 @@
             .icon,
             ::v-deep(.icon)
                 background: var(--img-bg, #{$color})
+                background-size: 100%
+                background-position: center
 
                 img
                     display: none
@@ -296,5 +307,70 @@ defineExpose({
         expanded.value = toggle;
     }
 });
+
+const mobile = isMobile();
+const modifiedHeight = ref<number>();
+
+function getClippingParent(element: HTMLElement) {
+    let parent = element.parentElement;
+    while (parent) {
+        const { overflow, overflowY } = getComputedStyle(parent);
+        if (/(hidden|clip|auto|scroll)/.test(overflow + overflowY))
+            return parent;
+
+        parent = parent.parentElement;
+    }
+
+    return null;
+}
+function getFixedParent(element: HTMLElement) {
+    let parent = element.parentElement;
+    while (parent) {
+        const { position } = getComputedStyle(parent);
+        if (/(fixed|sticky)/.test(position))
+            return parent;
+
+        parent = parent.parentElement;
+    }
+
+    return null;
+}
+
+function calculateHeightLimit() {
+    if (!dropdown.value)
+        return;
+
+    const clippingParent = getClippingParent(dropdown.value);
+
+    // clipping parent doesn't exist or element isn't mounted, ignore
+    if (!clippingParent) {
+        modifiedHeight.value = undefined;
+        return;
+    }
+
+    let parentHeight = clippingParent.clientHeight;
+
+    // check if there is a fixed parent
+    const fixedParent = getFixedParent(dropdown.value);
+
+    const { overflow, overflowY } = getComputedStyle(clippingParent);
+    if (!fixedParent && /(auto|scroll)/.test(overflow + overflowY)) {
+        parentHeight = clippingParent.scrollHeight;
+    }
+
+    const dropdownHeight = dropdown.value?.clientHeight;
+    const dropdownPositionInParent = dropdown.value?.offsetTop;
+    const offsetTop = dropdownPositionInParent + dropdownHeight;
+
+    const intrinsicHeight = mobile.value ? 600 : window.innerHeight * 0.7;
+    if (parentHeight - offsetTop < intrinsicHeight)
+        modifiedHeight.value = parentHeight - offsetTop - 20;
+    else
+        modifiedHeight.value = undefined;
+}
+
+onMounted(calculateHeightLimit);
+onUpdated(calculateHeightLimit);
+useEvent('resize', calculateHeightLimit);
 
 </script>

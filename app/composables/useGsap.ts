@@ -30,4 +30,9 @@ export async function useGsap(callback: Callback) {
     }
     else
         setup();
+
+    useEvent('resize', () => {
+        destroy();
+        setup();
+    });
 }

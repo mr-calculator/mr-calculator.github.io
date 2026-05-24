@@ -53,7 +53,7 @@
     cursor: pointer
     user-select: none
 
-    &:hover
+    +hover
         background: #c3cbed
         border: 3px solid #cdd4ea
         outline: 3px solid #e6eaf4

@@ -28,6 +28,7 @@ async function parseTable(costumes: Costume[], table: string, themesIconSources:
 
         const customizable = !!cells[3].querySelector('span[typeof="mw:File"] span img');
         const name = innerText(cells[5].querySelector('font span b a'));
+        const link = cells[5].querySelector('font span b a')?.getAttribute('href');
         
         const rarity: CostumeRarity = COSTUME_RARITIES[cells[6].getAttribute('data-sort-value') ?? '02 - Common'];
         const internalId = cells[7].querySelector('span font')?.textContent;
@@ -38,6 +39,8 @@ async function parseTable(costumes: Costume[], table: string, themesIconSources:
         const source = cells[8].querySelector('font span span a')?.getAttribute('title')?.replaceAll('Category:', '')
                                                                                          .replaceAll('Costumes/Limited-Time Costumes', 'Shop/Limited-Time Costumes')
                                                                                          .replaceAll('Permanent Costumes', 'Shop') ?? undefined;
+
+        const sourceLink = cells[8].querySelector('font span span a')?.getAttribute('href');
         const heroId = WIKI_HERO_ID_MAP[cells[9].querySelector('div span[typeof="mw:File"] span')?.getAttribute('title') ?? 'unknown'];
         const releaseDate = cells[10].querySelector('span font')?.textContent?.replace(/([^0-9-])/g, '');
 
@@ -51,12 +54,14 @@ async function parseTable(costumes: Costume[], table: string, themesIconSources:
             heroId,
 
             id: internalId!,
+            wikiLink: link ?? undefined,
             name: name!,
             rarity: rarity,
             customizable: customizable,
 
             category,
             source,
+            sourceLink: sourceLink ?? undefined,
             theme,
 
             releaseDate,

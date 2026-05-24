@@ -86,3 +86,15 @@
 
     &::-webkit-scrollbar-thumb:window-inactive
         background: $thumb
+
+@mixin hover($additional-selector: null)
+    @media (hover: hover) and (pointer: fine)
+        &:hover
+            @content
+    @media (hover: none)
+        &:active
+            @content
+
+    @if $additional-selector != null
+        #{$additional-selector}
+            @content

@@ -366,7 +366,7 @@
                     +media-desktop
                         font-size: 30px
 
-                    &:hover
+                    +hover
                         background-image: var(--tex-top500Element-hover)
                         color: $blue
 
@@ -595,8 +595,7 @@
                                 +media-large-desktop
                                     width: 140px
 
-                                &:hover,
-                                &.selected
+                                +hover('&.selected')
                                     .bar
                                         .inner
                                             background: var(--hero-color-light)
@@ -1523,7 +1522,7 @@
                 a
                     text-decoration: underline
 
-                    &:hover
+                    +hover
                         color: $color
 
         .pages
@@ -1543,7 +1542,7 @@
             > *
                 cursor: pointer
 
-                &:hover
+                +hover
                     color: $color
 
         .links
@@ -1560,5 +1559,5 @@
 
                 cursor: pointer
 
-                &:hover
+                +hover
                     color: $color

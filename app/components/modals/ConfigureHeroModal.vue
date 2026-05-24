@@ -300,7 +300,7 @@
                 u
                     cursor: pointer
 
-                    &:hover
+                    +hover
                         color: $blue
 
         ::v-deep(input)
@@ -334,7 +334,7 @@
             cursor: pointer
             user-select: none
 
-            &:hover
+            +hover
                 border: 3px solid #fff
 
                 .title

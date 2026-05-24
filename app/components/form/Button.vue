@@ -51,7 +51,7 @@
         background: var(--tex-button) no-repeat
         background-size: 100% 100%
 
-        &:hover
+        +hover
             background: var(--tex-button-hover) no-repeat
             background-size: 100% 100%
 
@@ -59,7 +59,7 @@
         background: var(--tex-buttonWhite) no-repeat
         background-size: 100% 100%
 
-        &:hover
+        +hover
             background: var(--tex-buttonWhite-hover) no-repeat
             background-size: 100% 100%
 

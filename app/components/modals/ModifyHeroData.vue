@@ -189,7 +189,7 @@
 
         cursor: pointer
 
-        &:hover
+        +hover
             .icon-wrapper
                 border: 4px solid $color
                 .texture

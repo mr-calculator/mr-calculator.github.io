@@ -190,7 +190,60 @@
                     </div>
                 </div>
 
-                <div v-if="page != 'achievements'" class="player-level">
+                <div v-if="page == 'achievements'" class="categories-list">
+                    <div
+                        v-for="category in availableAchievementCategories"
+                        :class="{category: 1, selected: selectedAchievementsCategory == category.id}"
+
+                        @click="selectedAchievementsCategory = category.id"
+                    >
+                        <div class="icon">
+                            <Tex
+                                :image="category.icon()"
+                                :color="selectedAchievementsCategory == category.id ?
+                                    '#000'
+                                    :
+                                    '#fff'
+                                "
+
+                                width="64px"
+                                height="64px"
+                            />
+                        </div>
+                        <div class="name">
+                            <h4>
+                                {{ category.name }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="page == 'costumes'" class="categories-list">
+                    <div
+                        v-for="category in costumeCategories"
+                        :class="{
+                            category: 1,
+                            selected: selectedCostumesCategories.includes(`__category_${category}`)
+                        }"
+
+                        @click="toggleArrayItem(selectedCostumesCategories, `__category_${category}`)"
+                    >
+                        <div class="icon">
+                            <Tex
+                                class="icon-tex"
+                                :src="getCategoryIcon(category)"
+
+                                width="55px"
+                                height="55px"
+                            />
+                        </div>
+                        <div class="name">
+                            <h4>
+                                {{ category }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="player-level">
                     <ClientOnly>
                         <div
                             v-if="showQuickEditPopup" 
@@ -332,38 +385,12 @@
                         </div>
                     </ClientOnly>
                 </div>
-                <div v-else class="achievements-categories">
-                    <div
-                        v-for="category in availableAchievementCategories"
-                        :class="{category: 1, selected: selectedAchievementsCategory == category.id}"
-
-                        @click="selectedAchievementsCategory = category.id"
-                    >
-                        <div class="icon">
-                            <Tex
-                                :image="category.icon()"
-                                :color="selectedAchievementsCategory == category.id ?
-                                    '#000'
-                                    :
-                                    '#fff'
-                                "
-
-                                width="64px"
-                                height="64px"
-                            />
-                        </div>
-                        <div class="name">
-                            <h4>
-                                {{ category.name }}
-                            </h4>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div
                 v-if="page == 'overview'"
                 class="content"
+                ref="content"
             >
                 <PanelTabbedContainer class="tabbed-container" container-class="tab-container">
                     <template #rewards>
@@ -450,14 +477,17 @@
             <div
                 v-else-if="page == 'costumes' && !isUnknownHero"
                 class="content cosmetics-wrapper"
+                ref="content"
             >
                 <PanelCostumeList
                     :hero="hero"
+                    v-model="selectedCostumesCategories"
                 />
             </div>
             <div
                 v-else-if="page == 'customize'"
                 class="content update-stats"
+                ref="content"
             >
                 <ModifyHeroData
                     class="update-stats-modal"
@@ -546,6 +576,7 @@
             <div
                 v-else-if="page == 'planner'"
                 class="content planner-wrapper"
+                ref="content"
             >
                 <PanelPlanner
                     v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
@@ -574,6 +605,7 @@
             <div
                 v-else-if="page == 'achievements' && !isUnknownHero"
                 class="content achievements-wrapper"
+                ref="content"
             >
                 <PanelAchievements
                     :category="selectedAchievementsCategory"
@@ -603,6 +635,7 @@ import ConvertUnknownHeroModal from '~/components/modals/ConvertUnknownHeroModal
 import ProficiencyPointsModal from '~/components/modals/ProficiencyPointsModal.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
 import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements';
+import { getAllCategories, getCategoryIcon, KNOWN_COSTUME_CATEGORY_ICONS } from '~/assets/data/costumes';
 
 type PageId = 'overview'|'customize'|'estimates'|'planner'|'achievements'|'costumes';
 const PAGE_IDS = ['overview', 'customize', 'estimates', 'planner', 'achievements', 'costumes'];
@@ -799,10 +832,20 @@ const isIncorrectSelection = computed(() => storedLevel.value.goal <= storedLeve
 
 
 const page = ref<PageId>(pageFromUrl.value);
+const contentDiv = useTemplateRef('content');
 function setPage(newPage: PageId) {
     const query = route.query?.from ? `?from=${backLink.value}` : '';
     const newUrl = `/heroes/${heroId}/${newPage}${query}`;
     history.pushState(null, '', newUrl);
+
+    const contentDivAABB = contentDiv.value?.getBoundingClientRect();
+    let scrollTo = (window?.scrollY ?? 0) + (contentDivAABB?.top ?? 0);
+    if (scrollTo > 65)
+        scrollTo -= 65;
+
+    setTimeout(() => {
+        window.scrollTo({ top: scrollTo, behavior: 'instant' });
+    }, 100);
 
     page.value = newPage;
     menuOpen.value = false;
@@ -1232,7 +1275,8 @@ const availableAchievementCategories = computed(() => {
 });
 
 // ==== COSMETICS =====
-
+const selectedCostumesCategories = ref<string[]>([]);
+const costumeCategories = computed(() => getAllCategories(hero.value.id).toSorted());
 
 // ==== CALCULATOR =====
 const timeEstimates = computed(() => {

@@ -207,8 +207,7 @@
         position: relative
         cursor: pointer
 
-        &:hover,
-        &.selected
+        +hover('&.selected')
             .icon
                 border: 3px solid $color
 
@@ -273,8 +272,7 @@
     +media-mobile
         width: 100%
 
-    &:hover,
-    &.active
+    +hover('&.active')
         color: $light-blue
         border: 3px solid $light-blue-highlight
         background: color-mix(in srgb, $light-blue-highlight 40%, white)
@@ -363,7 +361,7 @@ p
         text-decoration: underline
         cursor: pointer
 
-        &:hover
+        +hover
             color: $blue
 </style>
 

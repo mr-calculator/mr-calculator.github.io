@@ -54,7 +54,7 @@
 
     border: 5px solid transparent
 
-    &:hover
+    +hover
         background: $light
         outline: 3px solid $light-blue-highlight
 

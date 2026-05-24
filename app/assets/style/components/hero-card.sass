@@ -8,12 +8,12 @@
 
     display: grid
     grid-template-columns: 100%
-    grid-template-rows: 250px 50px
+    grid-template-rows: 1fr min-content
 
     will-change: transform
     transition: transform .1s ease-out
 
-    &:hover
+    +hover
         transform: scale(1.1) translate3d(0,0,0)
 
         z-index: 2
@@ -162,6 +162,7 @@
 
     .info
         width: 100%
+        min-height: 50px
         background: $dark
         color: $light
 
@@ -169,7 +170,7 @@
         justify-content: space-between
         align-items: center
 
-        padding: 0 8px
+        padding: 5px 8px
 
         z-index: 2
 

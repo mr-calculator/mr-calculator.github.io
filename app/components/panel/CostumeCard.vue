@@ -47,6 +47,11 @@
                     :model-value="owned"
                     @update:model-value="$emit('toggle')"
                     @click.stop
+
+                    v-tooltip="({
+                        text: 'Mark costume as <b>owned</b>',
+                        icon: 'mouseLeft'
+                    } satisfies TooltipBinding)"
                 />
             </ClientOnly>
         </div>
@@ -59,7 +64,7 @@
 .hero-card
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45)
 
-    &:hover
+    +hover
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65)
 
     .check-corner
@@ -99,6 +104,8 @@
 </style>
 
 <script setup lang="ts">
+import type { TooltipBinding } from '~/directives/tooltip';
+
 const props = withDefaults(defineProps<{
     name: string;
     src: string;

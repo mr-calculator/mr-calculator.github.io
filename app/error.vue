@@ -24,14 +24,18 @@
 
 <style lang="sass" scoped>
 .common-page .content
+    h1
+        padding: 0 20px
     p, a
+        padding: 0 20px
         font-size: 18px
         color: $light-blue
+        text-align: center
 
     a
         text-decoration: underline
 
-        &:hover
+        +hover
             color: $blue
 </style>
 

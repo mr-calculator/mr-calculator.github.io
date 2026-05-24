@@ -380,7 +380,7 @@
             +media-mobile
                 font-size: 16px
 
-            &:hover
+            +hover
                 color: $light-blue
                 background: color-mix(in srgb, $light-blue-highlight 20%, white)
 
@@ -436,8 +436,7 @@
             position: relative
             cursor: pointer
 
-            &:hover,
-            &.selected
+            +hover('&.selected')
                 .icon
                     border: 3px solid $color !important
 
@@ -502,7 +501,7 @@
             flex-direction: column
             gap: 25px
 
-        // &:hover
+        // +hover
         //     color: $light-blue
         //     border: 3px solid $light-blue-highlight
         //     background: color-mix(in srgb, $light-blue-highlight 40%, white)
@@ -550,7 +549,7 @@ p
     a
         text-decoration: underline
 
-        &:hover
+        +hover
             color: $blue
 
 #file-upload

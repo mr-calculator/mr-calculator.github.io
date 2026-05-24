@@ -84,6 +84,7 @@
 
         +media($size: 460px, $minmax: 'max')
             grid-template-columns: 1fr
+            padding-left: 20px
 
         +media-tablet
             display: flex
@@ -177,12 +178,14 @@
 
 <script setup lang="ts">
 import type { HeroData } from '~/assets/data/common';
-import { getAllCategories, getAllSources, getAllThemes, getHeroCostumes, type Costume } from '~/assets/data/costumes';
+import { getAllCategories, getAllSources, getAllThemes, getCategoryIcon, getHeroCostumes, type Costume } from '~/assets/data/costumes';
 import CostumeDetailModal from '../modals/CostumeDetailModal.vue';
 
 const props = defineProps<{
-    hero: HeroData
+    hero: HeroData,
 }>();
+
+const activeFilters = defineModel<string[]>({ required: true });
 
 const { openModal } = useModalManager();
 
@@ -200,11 +203,12 @@ function findScroller() {
 await useGsap(({ scrollTrigger }) => {
     nextTick(() => {
         findScroller();
+        scroller.value?.scrollTo({ top: 0, behavior: 'instant' });
 
         scrollTrigger.create({
             trigger: cosmeticsControls.value,
             scroller: scroller.value,
-            start: 'top 0%',
+            start: `${mobile.value ? '-65px' : 'top'} 0%`,
             onEnter: () => cosmeticsControls.value?.classList.add('sticky'),
             onLeaveBack: () => cosmeticsControls.value?.classList.remove('sticky'),
         });
@@ -237,24 +241,22 @@ const ownedCostumes = useLocalStorage<string[]>(() => `cosmetics_owned_${props.h
 const heroCostumes = computed(() => getHeroCostumes(props.hero.id));
 const cosmeticsTotal = computed(() => heroCostumes.value.length);
 
-const activeFilters = ref<string[]>([]);
 const costumeSort = ref('rarity');
 
 const FILTER_RARITY_OPTS = [
     {
         label: `<div class="icon" style="--img-bg:var(--tex-rarityLegendary); --width:20px"></div> LEGENDARY`,
-        value: 'legendary'
+        value: '__rarity_legendary'
     },
     {
         label: `<div class="icon" style="--img-bg:var(--tex-rarityEpic); --width:20px"></div> EPIC`,
-        value: 'epic'
+        value: '__rarity_epic'
     },
     {
         label: `<div class="icon" style="--img-bg:var(--tex-rarityRare); --width:20px"></div> RARE`,
-        value: 'rare'
+        value: '__rarity_rare'
     },
-]
-
+];
 const HERO_COSTUME_CATEGORIES = computed(() => getAllCategories(props.hero.id));
 const HERO_COSTUME_SOURCES = computed(() => getAllSources(props.hero.id));
 const HERO_COSTUME_THEMES = computed(() => getAllThemes(props.hero.id));
@@ -264,17 +266,17 @@ const filterOptions = computed(() => [
     ...FILTER_RARITY_OPTS,
     { label: 'Categories', separator: true },
     ...HERO_COSTUME_CATEGORIES.value.map(c => ({
-        value: c,
-        label: c
+        value: `__category_${c}`,
+        label: `<div class="icon" style="--img-bg:url('${getCategoryIcon(c)}'); --width:30px"></div> ${c}`,
     })),
     { label: 'Sources', separator: !!HERO_COSTUME_SOURCES.value.length },
     ...HERO_COSTUME_SOURCES.value.map(s => ({
-        value: s,
+        value: `__source_${s}`,
         label: s
     })),
     { label: 'Themes', separator: !!HERO_COSTUME_THEMES.value.length },
     ...HERO_COSTUME_THEMES.value.map(t => ({
-        value: t,
+        value: `__theme_${t}`,
         label: `<div class="icon" style="--img-bg:url('${`/img/heroes/costume-themes/${toKebabCase(t)}.webp`}'); --width:23px"></div> ${t}`,
     })),
 ]);
@@ -284,16 +286,18 @@ const sortDropdownOptions = [
     { value: 'date-asc',  label: 'SORT BY OLDEST' },
 ];
 
-const RARITY_VALUES = new Set(['legendary', 'epic', 'rare']);
-
 const RARITY_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2 };
 const sortedCostumes = computed(() => {
     let list = heroCostumes.value.slice();
 
-    const rarityFilters = activeFilters.value.filter(f => RARITY_VALUES.has(f));
-    const categoryFilters = activeFilters.value.filter(f => HERO_COSTUME_CATEGORIES.value.includes(f));
-    const sourceFilters = activeFilters.value.filter(f => HERO_COSTUME_SOURCES.value.includes(f));
-    const themeFilters = activeFilters.value.filter(f => HERO_COSTUME_THEMES.value.includes(f));
+    const rarityFilters = activeFilters.value.filter(f => f.startsWith('__rarity_'))
+                                            .map(f => f.substring('__rarity_'.length));
+    const categoryFilters = activeFilters.value.filter(f => f.startsWith('__category_'))
+                                            .map(f => f.substring('__category_'.length));
+    const sourceFilters = activeFilters.value.filter(f => f.startsWith('__source_'))
+                                            .map(f => f.substring('__source_'.length));
+    const themeFilters = activeFilters.value.filter(f => f.startsWith('__theme_'))
+                                            .map(f => f.substring('__theme_'.length));
 
     if (rarityFilters.length)
         list = list.filter(c => rarityFilters.includes(c.rarity));

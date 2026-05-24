@@ -82,8 +82,9 @@
             +media-tablet
                 width: 100px
 
-            &:hover::after
-                display: block
+            +hover
+                &::after
+                    display: block
 
             &::before
                 content: ""
@@ -149,7 +150,7 @@
                 grid-template-columns: 120px auto 120px
                 align-items: center
 
-            &:hover
+            +hover
                 background: #fff
             &.completed
                 background: #cfd6ea

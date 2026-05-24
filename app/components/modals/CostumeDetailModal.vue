@@ -38,11 +38,37 @@
         <div class="details-panel">
             <img class="hero-badge" :src="`/img/heroes/data/${heroId}/logo.webp`" alt="" />
                 <h2>
-                    {{ costume.name }}
                     <FormCheckbox
                         :model-value="ownedCostumes.includes(costume.id)"
                         @update:model-value="toggleCostumeOwned"
+
+                        v-tooltip="({
+                            text: 'Mark costume as <b>owned</b>',
+                            icon: 'mouseLeft'
+                        } satisfies TooltipBinding)"
                     />
+                    <a
+                        v-if="costume.wikiLink"
+                        :href="toWikiLink(costume.wikiLink)"
+                        target="_blank"
+
+                        v-tooltip="({
+                            text: 'Open the <b>wiki page</b>',
+                            icon: 'mouseLeft'
+                        } satisfies TooltipBinding)"
+                    >
+                        {{ costume.name }}
+                        <Tex
+                            image="arrowBox"
+                            color="var(--text-color)"
+
+                            width="30px"
+                            height="30px"
+                        />
+                    </a>
+                    <template v-else>
+                        {{ costume.name }}
+                    </template>
                 </h2>
                 <UiSeparator class="title-divider" />
                 <div class="details">
@@ -81,7 +107,28 @@
                     </p>
                     <p v-if="costume.source" class="detail">
                         <span class="label">Source</span>
-                        {{ costume.source }}
+                        <a
+                            v-if="costume.sourceLink"
+                            :href="toWikiLink(costume.sourceLink)"
+                            target="_blank"
+
+                            v-tooltip="({
+                                text: 'Open the <b>wiki page</b>',
+                                icon: 'mouseLeft'
+                            } satisfies TooltipBinding)"
+                        >
+                            {{ costume.source }}
+                            <Tex
+                                image="arrowBox"
+                                color="var(--text-color)"
+
+                                width="18px"
+                                height="18px"
+                            />
+                        </a>
+                        <template v-else>
+                            {{ costume.source }}
+                        </template>
                     </p>
                     <div v-if="costume.theme" class="detail">
                         <span class="label">Theme</span>
@@ -118,10 +165,13 @@
 //   phone   (≤768px):  stacked
 
 .costume-detail-modal
+    $max-width: 1100px
+    $max-height: 500px
+
     position: relative
     padding: 0px
-    max-width: 1000px
-    min-height: 500px
+    max-width: $max-width
+    min-height: $max-height
 
     overflow: hidden !important
 
@@ -174,8 +224,8 @@
         width: 100%
         height: auto
 
-        max-width: 1000px
-        min-height: 500px
+        max-width: $max-width
+        min-height: $max-height
 
         display: flex
         flex-direction: row
@@ -361,6 +411,25 @@
         align-items: center
         gap: 10px
 
+        a
+            display: inline-flex
+            align-items: center
+            gap: 12px
+
+            +media-max-tablet
+                .texture ::v-deep(.tex-image)
+                    width: 20px !important
+                    height: 20px !important
+
+            +hover
+                color: $blue
+
+                .texture
+                    --tex-color: #{$blue} !important
+
+            > *
+                flex-shrink: 0
+
     .title-divider
         width: 100%
         margin-bottom: 4px
@@ -408,6 +477,20 @@
             letter-spacing: 0.08em
             color: $blue-gray
 
+        a
+            width: fit-content
+            text-decoration: underline
+
+            display: inline-flex
+            align-items: center
+            gap: 4px
+            
+            +hover
+                color: $blue
+
+                .texture
+                    --tex-color: #{$blue} !important
+
         .with-icon
             display: flex
             align-items: center
@@ -417,6 +500,7 @@
 <script setup lang="ts">
 import type { Costume, CostumeRarity } from '~/assets/data/costumes';
 import type { TextureKey } from '~/assets/data/textures';
+import type { TooltipBinding } from '~/directives/tooltip';
 
 const props = withDefaults(defineProps<{
     costume: Costume;
@@ -446,6 +530,8 @@ const RARITY_MAP: Partial<Record<CostumeRarity, TextureKey>> = {
     epic: 'rarityEpic',
     rare: 'rarityRare',
 }
+
+const toWikiLink = (id: string) => `https://marvelrivals.fandom.com${id}`;
 
 const src = computed(() => `/img/heroes/data/${props.heroId}/costumes/${props.costume.id}.webp`);
 

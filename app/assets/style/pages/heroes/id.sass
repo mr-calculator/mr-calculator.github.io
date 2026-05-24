@@ -235,7 +235,7 @@
                         background-size: 90% 100%
                         background-position: 80%
 
-                &:hover
+                +hover
                     color: #fff
 
                 &:active
@@ -393,7 +393,7 @@
                 z-index: 2
 
             .player-level,
-            .achievements-categories
+            .categories-list
                 position: absolute
                 bottom: 25px
                 right: 50%
@@ -464,7 +464,7 @@
 
                     cursor: pointer
 
-                    &:hover
+                    +hover
                         &::before
                             content: ""
                             position: absolute
@@ -550,12 +550,13 @@
                         +media-phone
                             gap: 0
 
-                        &.can-level-up:hover
-                            color: #ebb72a
+                        &.can-level-up
+                            +hover
+                                color: #ebb72a
 
-                            .texture
-                                ::v-deep(.tex-image)
-                                        background: #ebb72a
+                                .texture
+                                    ::v-deep(.tex-image)
+                                            background: #ebb72a
 
                 .bottom
                     align-self: end
@@ -615,12 +616,16 @@
 
                                 transform: translate(90px, -100%)
 
-            .achievements-categories
+            .categories-list
                 height: fit-content
                 
                 display: flex
                 flex-direction: column
                 gap: 5px
+
+                max-height: 400px
+                overflow-x: clip
+                overflow-y: auto
 
                 .category
                     position: relative
@@ -633,15 +638,16 @@
 
                     background: #f0f4fc
 
-                    &:not(.selected):hover
-                        .icon
-                            background: var(--tex-listItemIconHover) no-repeat
-                            background-size: 100% 100%
-                            border: 3px solid #fff
+                    &:not(.selected)
+                        +hover
+                            .icon
+                                background: var(--tex-listItemIconHover) no-repeat
+                                background-size: 100% 100%
+                                border: 3px solid #fff
 
-                        .name
-                            background: var(--tex-listItemHover) no-repeat
-                            background-size: 100% 100%
+                            .name
+                                background: var(--tex-listItemHover) no-repeat
+                                background-size: 100% 100%
 
 
                     &.selected
@@ -683,7 +689,12 @@
                         align-items: center
 
                     .icon
+                        position: relative
                         background: #909dc1
+
+                        display: flex
+                        justify-content: center
+                        align-items: center
 
                         border: 3px solid transparent
                         border-right: none !important

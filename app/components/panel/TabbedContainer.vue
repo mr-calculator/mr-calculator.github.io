@@ -110,7 +110,7 @@
                 background-size: contain
                 background-position: center
 
-        &:hover
+        +hover
             color: #fff
 
         &.selected

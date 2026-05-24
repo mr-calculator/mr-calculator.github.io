@@ -88,7 +88,7 @@ h3
 
     cursor: pointer
 
-    &:hover
+    +hover
         border: 3px solid color-mix(in srgb, #{$light-blue} 70%, white)
         background: color-mix(in srgb, #{$light-blue-highlight} 70%, white)
 

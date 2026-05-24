@@ -477,6 +477,7 @@
                     <UiCorners />
                     <PanelCostumeList
                         :hero="currentHero"
+                        v-model="costumeFilters"
                     />
                 </div>
 
@@ -1138,13 +1139,19 @@ const heroPossesiveName = computed(() =>
     currentHero.value.name + (currentHero.value.name.endsWith('s') ? '\'' : '\'s')
 );
 
+// ==== COSTUMES =====
+const costumeFilters = ref<string[]>([]);
+watch(currentHero, () => costumeFilters.value = []);
 
+
+// ==== FINAL CTA =====
 const lordIconsGridHeroes = ref<HeroData[][]>([]);
 for (let i = 0; i < 5; i++) {
     const row = shuffleArray([...HERO_LIST], i);
     lordIconsGridHeroes.value.push([...row, ...row]);
 }
 
+// ==== SCROLL RETENTION =====
 
 const { save, restore } = useScrollPosition();
 onMounted(restore);

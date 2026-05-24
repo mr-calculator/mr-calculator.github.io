@@ -50,12 +50,14 @@ export type Costume = {
     heroId: string,
 
     id: string,
+    wikiLink?: string,
     name: string,
     rarity: CostumeRarity,
     customizable: boolean,
 
     category: string,
     source?: string,
+    sourceLink?: string,
     theme?: string,
 
     releaseDate?: string,

@@ -574,3 +574,16 @@ export function getScrollParent(element: HTMLElement|null) {
 
     return window; // fallback to viewport
 }
+
+export function toggleSetItem<T>(set: Set<T>, item: T) {
+    if (set.has(item))
+        set.delete(item);
+    else
+        set.add(item);
+}
+export function toggleArrayItem<T>(array: T[], item: T) {
+    if (array.includes(item))
+        array.splice(array.indexOf(item), 1);
+    else
+        array.push(item);
+}

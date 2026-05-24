@@ -60,7 +60,7 @@
                         background-size: contain
                         background-position: center
 
-                &:hover
+                +hover
                     color: #fff
 
                 &.selected
@@ -198,7 +198,7 @@
             mask-size: var(--width) 180px
             mask-position: $position
 
-        &:hover
+        +hover
             transform: scale(1.05) translate3d(0, -20px, 0)
 
             &::after
@@ -503,7 +503,7 @@
                         cursor: pointer
                         user-select: none
 
-                        &:hover
+                        +hover
                             color: #fff
 
                     &.no-left-pad
@@ -525,13 +525,14 @@
                 &.favourite
                     background-color: rgb(255 255 0 / 5%)
 
-                &:hover
+                +hover
                     background: rgba(255, 255, 255, 0.06)
 
-                    .name-cell:hover
-                        a
-                            color: $color
-                            // text-decoration: underline
+                    .name-cell
+                        +hover
+                            a
+                                color: $color
+                                // text-decoration: underline
 
                 td
                     padding: 0 20px 0 0
@@ -573,7 +574,7 @@
                     text-decoration: none
                     text-transform: uppercase
 
-                    &:hover
+                    +hover
                         color: $color
                         // text-decoration: underline
 
@@ -662,8 +663,10 @@
                         opacity: 1
                         transition: opacity 0.15s
 
-            .hero-row:hover .progress-cell .xp-label
-                opacity: 1
+            .hero-row
+                +hover
+                    .progress-cell .xp-label
+                        opacity: 1
 
             +media($size: 1150px, $minmax: 'max')
                 display: none
@@ -712,7 +715,7 @@
 
                 cursor: pointer
 
-                &:hover
+                +hover
                     background: rgba(255, 255, 255, 0.06)
                     color: #fff
 
@@ -729,7 +732,7 @@
             &.favourite
                 background-color: rgb(255 255 0 / 5%)
 
-            &:hover
+            +hover
                 background: rgba(255, 255, 255, 0.06)
 
             .card-top
@@ -759,7 +762,7 @@
                         text-decoration: none
                         text-transform: uppercase
 
-                        &:hover
+                        +hover
                             color: $color
                             // text-decoration: underline
 

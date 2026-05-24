@@ -55,7 +55,7 @@
 .featured-hero
     position: relative
 
-    &:hover
+    +hover
         .prestige
             .stroke
                 left: -16px

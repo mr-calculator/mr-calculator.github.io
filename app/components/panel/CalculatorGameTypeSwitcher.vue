@@ -56,8 +56,7 @@
             .texture ::v-deep(img)
                 filter: grayscale(0.8)
 
-        &:hover,
-        &.selected
+        +hover('&.selected')
             .texture ::v-deep(img)
                 filter: grayscale(0)
 

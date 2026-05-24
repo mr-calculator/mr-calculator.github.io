@@ -243,7 +243,7 @@
 
             padding: 0 !important
 
-            &:hover
+            +hover
                 color: $blue
 
     .uses-generic
@@ -262,14 +262,16 @@
 
         cursor: pointer
 
-        &:not(.open):hover,
+        &:not(.open)
+            +hover
+                background: $blue
         &.open
             background: $blue
 
         &.blue
             background: $blue
 
-            &:hover
+            +hover
                 background: #f1b70c
 
         &.open

@@ -11,27 +11,38 @@
     justify-content: center
     gap: var(--gap)
 
-    &:not(.no-clicking).contrast .level-rewards:hover,
-    &.contrast .level-rewards.selected
+    =level-title-hover
         .level-title
             background: $blue !important
 
             h3
                 color: #fff !important
 
+    &:not(.no-clicking).contrast .level-rewards
+        +hover
+            +level-title-hover
+    &.contrast .level-rewards.selected
+        +level-title-hover
+
     &:not(.no-clicking)
         .level-rewards
-            &:hover,
-            &.checked:hover,
-            &.selected
+            =level-title-hover-bg
                 .level-title
                     background: #fff
+
+            +hover
+                +level-title-hover-bg
+            &.checked
+                +hover
+                    +level-title-hover-bg
+            &.selected
+                +level-title-hover-bg
 
             .reward-list
                 .reward
                     cursor: pointer
 
-                    &:hover
+                    +hover
                         .image
                             img
                                 transform: scale(1.05)

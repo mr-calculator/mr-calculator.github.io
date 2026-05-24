@@ -144,6 +144,9 @@ export const TEX = {
     arrowRight: {
         default: 'icon/arrow-right.png'
     } as Texture,
+    arrowBox: {
+        default: 'icon/arrow-box.png'
+    } as Texture,
     close: {
         default: 'icon/close.png'
     } as Texture,

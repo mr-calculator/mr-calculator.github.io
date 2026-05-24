@@ -8,8 +8,10 @@
             'tex-square': square,
             'tex-inline': inline
         }"
-        @mouseenter="onHover"
-        @mouseleave="onUnhover"
+        @mouseenter="onHover()"
+        @mouseleave="onUnhover()"
+
+        @touchstart="onHover(true)"
 
         :style="{
             '--tex-color': color,
@@ -144,6 +146,8 @@ const props = withDefaults(defineProps<TexProps>(), {
     height: '100%',
 });
 
+const mobile = isMobile();
+
 const mode = computed(() => props.hover == 'color' || props.color ? 'mask' : 'image')
 const image = computed(() => !props.src ? TEX[props.image!] : { default: props.src });
 const imgSrcRel = ref(image.value[props.state] ?? image.value.default);
@@ -169,8 +173,11 @@ watch(() => props.state, (state) => {
     imgSrcRel.value = image.value[state] ?? image.value.default;
 })
 
-function onHover() {
+function onHover(mobileEvent = false) {
     if (!props.hover)
+        return;
+
+    if (!mobileEvent && mobile.value)
         return;
 
     if (props.hover != 'color') {
@@ -184,8 +191,11 @@ function onHover() {
 
     isHovering.value = true;
 }
-function onUnhover() {
+function onUnhover(mobileEvent = false) {
     if (!props.hover)
+        return;
+
+    if (!mobileEvent && mobile.value)
         return;
 
     if (props.hover != 'color')
@@ -193,4 +203,6 @@ function onUnhover() {
 
     isHovering.value = false;
 }
+
+useEvent(['touchend', 'touchcancel'], () => onUnhover(true));
 </script>
