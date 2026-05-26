@@ -1,5 +1,47 @@
 [
   {
+    "sha": "d7dadaaeddd89505a592399f35807472e8311c57",
+    "node_id": "C_kwDORv7rQ9oAKGQ3ZGFkYWFlZGRkODk1MDVhNTkyMzk5ZjM1ODA3NDcyZTgzMTFjNTc",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-26T03:11:33Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-26T03:11:33Z"
+      },
+      "message": "Made minor improvements\nAdded \"x\" button to search\nAdded ability to press enter to go to the first search result in /heroes\nMade spacing in the nav of the hero pages smaller to accommodate for the increased number of tabs\nFixed swap button background in landing page getting stretched and creating contrast issues with the hero name and swap icon\nAdded custom seo images for all heroes (generated automatically at deploy)",
+      "tree": {
+        "sha": "0c6ba42ba2923e2359dbb8efc294905bef6a6c77",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/0c6ba42ba2923e2359dbb8efc294905bef6a6c77"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/d7dadaaeddd89505a592399f35807472e8311c57",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/d7dadaaeddd89505a592399f35807472e8311c57",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/d7dadaaeddd89505a592399f35807472e8311c57",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/d7dadaaeddd89505a592399f35807472e8311c57/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "7d82888b0b8936ed858a81c29ab61efef8a0ce8d",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/7d82888b0b8936ed858a81c29ab61efef8a0ce8d",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/7d82888b0b8936ed858a81c29ab61efef8a0ce8d"
+      }
+    ]
+  },
+  {
     "sha": "7d82888b0b8936ed858a81c29ab61efef8a0ce8d",
     "node_id": "C_kwDORv7rQ9oAKDdkODI4ODhiMGI4OTM2ZWQ4NThhODFjMjlhYjYxZWZlZjhhMGNlOGQ",
     "commit": {

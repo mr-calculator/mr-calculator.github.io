@@ -2,8 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import satori from 'satori'
 import sharp from 'sharp'
-import { HERO_LIST } from '@/assets/data/heroes';
-import { changeColor, objectEntries } from '~/utils/util';
+import { HERO_LIST } from '../../app/assets/data/heroes';
+import { changeColor, objectEntries } from '../../app/utils/util';
+
+export const SEO_DEST_DIR = './public/img/seo/heroes/';
 
 const FONTS = {
     // MarvelRivals: 'https://db.onlinewebfonts.com/t/deff549f5c443598a8380e1f91055c01.ttf',
@@ -146,31 +148,22 @@ async function maskImage(base: Buffer, mask: Buffer) {
     return maskedBuffer;
 }
 
-export default defineEventHandler(async (event) => {
-    // capture the whole segment, e.g., "luna-snow.webp"
-    const rawId = getRouterParam(event, 'id'); 
-
-    // must end in .webp
-    if (!rawId?.endsWith('.webp'))
-        throw createError({ statusCode: 404, message: 'Image not found' });
-
-    // strip the .webp extension to get the actual hero ID
-    const id = rawId.replace(/\.webp$/, '');
-    const hero = HERO_LIST.find(h => h.id == id);
+export async function generateSeoImage(heroId: string) {
+    const hero = HERO_LIST.find(h => h.id == heroId);
 
     if (!hero)
-        throw createError({ statusCode: 404, message: `Hero [${id}] not found`, fatal: true });
+        throw new Error(`Hero [${heroId}] not found`);
 
     const bgImage = getLocalAssetAsBase64('/img/seo/og-image-heroes-empty.png', 'image/png');
 
     const prestigeBg = await createPrestigeBackground(hero.color, hero.dataDir + 'logo.webp');
     if (!prestigeBg)
-        throw createError({ statusCode: 500, message: `Could not generate prestige background`, fatal: true });
+        throw new Error(`Could not generate prestige background`);
     const prestigeBgBase64 = getLocalAssetAsBase64(prestigeBg, 'image/png');
 
     const prestigeImage = await createPrestigeHeroImage(hero.dataDir + 'prestige.webp');
     if (!prestigeImage)
-        throw createError({ statusCode: 500, message: `Could not generate prestige image`, fatal: true });
+        throw new Error(`Could not generate prestige image`);
 
     const prestigeMask = getLocalAssetAsBuffer('/img/tex/mask/hero-prestige-seo.png');
     const maskedPrestigeImage = await maskImage(prestigeImage, prestigeMask);
@@ -186,7 +179,7 @@ export default defineEventHandler(async (event) => {
             return [name, await res.arrayBuffer()] as const; 
         }
         catch {
-            throw createError({ statusCode: 403, message: `Font acquisition failed for ${name}`, fatal: true });
+            throw new Error(`Font acquisition failed for ${name}`);
         }
     });
 
@@ -327,6 +320,5 @@ export default defineEventHandler(async (event) => {
 
     const webp = await sharp(Buffer.from(svg)).webp({ quality: 85 }).toBuffer();
 
-    setHeader(event, 'Content-Type', 'image/webp');
     return webp;
-})
+}

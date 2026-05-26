@@ -3,6 +3,7 @@ import { log } from "@clack/prompts";
 import fs from "fs"
 import path from "path";
 import sharp from "sharp";
+import { generateSeoImage, SEO_DEST_DIR } from '../generate-hero-seo-image/generator';
 
 /**
  * From pak: `pakchunkHQ-Windows.utoc`
@@ -111,5 +112,15 @@ export async function copyImages(
                 .webp({ quality: 85 })
                 .toFile(path.join(heroDir, result) + '.webp')
         }
+    }
+
+
+    logger.info(`Generating SEO image for ${heroId}`);
+    try {
+        const image = await generateSeoImage(heroId);
+        fs.writeFileSync(path.join(SEO_DEST_DIR, `${heroId}.webp`), image);
+    }
+    catch (e) {
+        logger.error(`Failed to generate image for [${heroId}] due to: "${e}"`);
     }
 }

@@ -33,4 +33,6 @@ scripts/*
 !scripts/parse-achievements-table/*
 !scripts/parse-costumes
 !scripts/parse-costumes/*
+!scripts/generate-hero-seo-image
+!scripts/generate-hero-seo-image/*
 !scripts/tsconfig.json
