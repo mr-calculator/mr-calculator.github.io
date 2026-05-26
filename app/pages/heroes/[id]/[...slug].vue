@@ -635,7 +635,7 @@ import ConvertUnknownHeroModal from '~/components/modals/ConvertUnknownHeroModal
 import ProficiencyPointsModal from '~/components/modals/ProficiencyPointsModal.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
 import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements';
-import { getAllCategories, getCategoryIcon, KNOWN_COSTUME_CATEGORY_ICONS } from '~/assets/data/costumes';
+import { getAllCategories, getCategoryIcon } from '~/assets/data/costumes';
 
 type PageId = 'overview'|'customize'|'estimates'|'planner'|'achievements'|'costumes';
 const PAGE_IDS = ['overview', 'customize', 'estimates', 'planner', 'achievements', 'costumes'];
@@ -763,14 +763,14 @@ useSeoMeta({
 
     ogTitle: `${hero.value.name} | MR Proficiency Calculator`,
     ogUrl: url,
-    ogImage: useAbsoluteUrl('/img/seo/og-image-heroes.webp'),
+    ogImage: useAbsoluteUrl(`/img/seo/heroes/${hero.value.id}.webp`),
     ogImageWidth: '1200',
     ogImageHeight: '630',
     ogImageAlt: 'Heroes | Marvel Rivals Proficiency Calculator - Calculate how long it takes to unlock every proficiency reward for any hero',
 
     twitterTitle: `${hero.value.name} | MR Proficiency Calculator`,
     twitterDescription: description,
-    twitterImage: useAbsoluteUrl('/img/seo/og-image-heroes.webp'),
+    twitterImage: useAbsoluteUrl(`/img/seo/heroes/${hero.value.id}.webp`),
     twitterImageAlt: 'Heroes | Marvel Rivals Proficiency Calculator - Calculate how long it takes to unlock every proficiency reward for any hero',
 });
 
@@ -1276,7 +1276,7 @@ const availableAchievementCategories = computed(() => {
 
 // ==== COSMETICS =====
 const selectedCostumesCategories = ref<string[]>([]);
-const costumeCategories = computed(() => getAllCategories(hero.value.id).toSorted());
+const costumeCategories = computed(() => getAllCategories(hero.value.id));
 
 // ==== CALCULATOR =====
 const timeEstimates = computed(() => {

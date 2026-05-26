@@ -344,15 +344,8 @@
                     justify-content: start
 
                 .name
+                    position: relative
                     padding: 20px 40px
-
-                    background: var(--tex-top500Element)
-                    background-size: 100% 100%
-
-                    font-size: 20px
-                    font-family: MarvelRivalsHeavy
-                    text-transform: uppercase
-                    color: $dark
 
                     display: flex
                     justify-content: center
@@ -360,18 +353,81 @@
                     gap: 10px
 
                     user-select: none
-
                     cursor: pointer
 
-                    +media-desktop
-                        font-size: 30px
-
                     +hover
-                        background-image: var(--tex-top500Element-hover)
-                        color: $blue
+                        .background
+                            background-image: var(--tex-swapBgStretch-hover)
+
+                            &::before,
+                            &::after
+                                background-image: var(--tex-swapBg-hover)
+
+                            .details
+                                background-image: var(--tex-swapBgDetails-hover)
+
+                        span
+                            color: $blue
 
                         .texture
                             --tex-color: #{$blue} !important
+
+                    .background
+                        position: absolute
+                        left: 0
+                        top: 0
+                        right: 0
+                        bottom: 0
+                        
+                        background: var(--tex-swapBgStretch) no-repeat
+                        background-size: calc(100% - 35px * 2) 100%
+                        background-position: center
+
+                        display: grid
+                        grid-template-columns: 35px auto 35px
+
+                        user-select: none
+                        pointer-events: none
+
+                        &::before
+                            content: ""
+                            position: relative
+                            width: 100%
+                            height: 100%
+
+                            background: var(--tex-swapBg) no-repeat
+                            background-size: 228px 100%
+                            background-position: 0 50%
+
+                        .details
+                            position: relative
+                            width: 100%
+                            height: 100%
+
+                            background: var(--tex-swapBgDetails) no-repeat
+                            background-size: 228px 100%
+                            background-position: 50%
+
+                        &::after
+                            content: ""
+                            position: relative
+                            width: 100%
+                            height: 100%
+
+                            background: var(--tex-swapBg) no-repeat
+                            background-size: 228px 100%
+                            background-position: -193px 50%
+                            
+
+                    span
+                        position: relative
+                        font-size: 20px
+                        font-family: MarvelRivalsHeavy
+                        text-transform: uppercase
+                        color: $dark
+
+                        +media-desktop
+                            font-size: 30px
 
             &.hero
                 position: relative
@@ -1157,6 +1213,8 @@
 
                         user-select: none
                         -webkit-user-drag: none
+
+                        transform: scale(-1, 1)
 
 
             &.custom-estimates.double.reverse

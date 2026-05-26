@@ -49,7 +49,7 @@
                     @click.stop
 
                     v-tooltip="({
-                        text: 'Mark costume as <b>owned</b>',
+                        text: `${owned ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
                         icon: 'mouseLeft'
                     } satisfies TooltipBinding)"
                 />

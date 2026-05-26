@@ -167,11 +167,10 @@ const squareButton = TEX.squareButton;
 
 watch(() => props.image, () => {
     imgSrcRel.value = image.value[props.state] ?? image.value.default;
-})
-
+});
 watch(() => props.state, (state) => {
     imgSrcRel.value = image.value[state] ?? image.value.default;
-})
+});
 
 function onHover(mobileEvent = false) {
     if (!props.hover)

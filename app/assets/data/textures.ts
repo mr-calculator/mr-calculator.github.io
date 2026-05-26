@@ -93,9 +93,17 @@ export const TEX = {
         default: 'ui/border-bottom.png',
     } as Texture,
 
-    top500Element: {
-        default: 'ui/top500-element.png',
-        hover: 'ui/top500-element-hover.png'
+    swapBg: {
+        default: 'ui/swap-bg.png',
+        hover: 'ui/swap-bg-hover.png'
+    } as Texture,
+    swapBgStretch: {
+        default: 'ui/swap-bg-stretch.png',
+        hover: 'ui/swap-bg-stretch-hover.png'
+    } as Texture,
+    swapBgDetails: {
+        default: 'ui/swap-bg-details.png',
+        hover: 'ui/swap-bg-details-hover.png'
     } as Texture,
 
     tab: {
@@ -152,6 +160,9 @@ export const TEX = {
     } as Texture,
     edit: {
         default: 'icon/edit.png'
+    } as Texture,
+    more: {
+        default: 'icon/more.png'
     } as Texture,
     time: {
         default: 'icon/time.png'

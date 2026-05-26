@@ -26,7 +26,8 @@ export default defineNuxtConfig({
             routes: [
                 '/',
                 '/heroes',
-                ...HERO_LIST.map(h => `/heroes/${h.id}`)
+                ...HERO_LIST.map(h => `/heroes/${h.id}`),
+                ...HERO_LIST.map(h => `/img/seo/heroes/${h.id}.webp`)
             ]
         },
     },

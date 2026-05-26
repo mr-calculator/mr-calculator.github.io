@@ -1,5 +1,47 @@
 [
   {
+    "sha": "7d82888b0b8936ed858a81c29ab61efef8a0ce8d",
+    "node_id": "C_kwDORv7rQ9oAKDdkODI4ODhiMGI4OTM2ZWQ4NThhODFjMjlhYjYxZWZlZjhhMGNlOGQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-24T23:33:54Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-05-24T23:33:54Z"
+      },
+      "message": "Fixed a few issues\nAdded costume categories on the left (just like achievements)\nAdded wiki links to the costumes and sources\nFixed hover states across the app on mobile (should no longer remain stuck on hover when scrolling or tapping)\nAdded textures to all current categories",
+      "tree": {
+        "sha": "59c62fd93f81e628572d5b68e2c303baf8d157fc",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/59c62fd93f81e628572d5b68e2c303baf8d157fc"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/7d82888b0b8936ed858a81c29ab61efef8a0ce8d",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/7d82888b0b8936ed858a81c29ab61efef8a0ce8d",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/7d82888b0b8936ed858a81c29ab61efef8a0ce8d",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/7d82888b0b8936ed858a81c29ab61efef8a0ce8d/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "1b87db579444f62e60b58dea40681e93e2155401",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1b87db579444f62e60b58dea40681e93e2155401",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/1b87db579444f62e60b58dea40681e93e2155401"
+      }
+    ]
+  },
+  {
     "sha": "1b87db579444f62e60b58dea40681e93e2155401",
     "node_id": "C_kwDORv7rQ9oAKDFiODdkYjU3OTQ0NGY2MmU2MGI1OGRlYTQwNjgxZTkzZTIxNTU0MDE",
     "commit": {

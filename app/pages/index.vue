@@ -249,6 +249,10 @@
 
                     <div class="hero-swap">
                         <div class="name" @click="heroSelectOpen = true">
+                            <div class="background">
+                                <div class="details" />
+                            </div>
+
                             <span>{{ currentHero.name }}</span>
                             <Tex
                                 image="swap"
@@ -343,8 +347,8 @@
                 <div class="hero-skin">
                     <img
                         v-if="currentHero.id != 'black-panther'"
-                        src="/img/tex/promo/luna-snow-cool-summer.webp"
-                        alt="Luna Snow Cool Summer"
+                        :src="`/img/heroes/data/${currentHero.id}/costumes/${randomHeroCostume.id}.webp`"
+                        :alt="randomHeroCostume.name"
                     />
                     <img
                         v-else
@@ -491,6 +495,10 @@
 
                     <div class="hero-swap">
                         <div class="name" @click="heroSelectOpen = true">
+                            <div class="background">
+                                <div class="details" />
+                            </div>
+
                             <span>{{ currentHero.name }}</span>
                             <Tex
                                 image="swap"
@@ -630,6 +638,7 @@ import type HorizontalScrollContainer from '~/components/panel/HorizontalScrollC
 import FeaturedHeroPromo from '~/components/panel/FeaturedHeroPromo.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
 import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements';
+import { getHeroCostumes, RARITY_ORDER, type Costume, type CostumeRarity } from '~/assets/data/costumes';
 
 useSeoMeta({
     title: 'Marvel Rivals Proficiency Calculator',
@@ -1143,6 +1152,53 @@ const heroPossesiveName = computed(() =>
 const costumeFilters = ref<string[]>([]);
 watch(currentHero, () => costumeFilters.value = []);
 
+const currentHeroCostumes = computed(() => getHeroCostumes(currentHero.value.id));
+const randomHeroCostume = computed(() => {
+    const defaultCostume: Costume = {
+        heroId: "luna-snow",
+        id: "1031303",
+        name: "COOL SUMMER",
+        rarity: "legendary",
+        customizable: true,
+        category: "Premium Event Reward",
+    };
+
+    if (!currentHeroCostumes.value.length)
+        return defaultCostume;
+
+    function getHighestRarityCostumes(rarity?: CostumeRarity) {
+        if (!currentHeroCostumes.value.length)
+            return [];
+
+        if (!rarity)
+            rarity = 'legendary';
+
+        const filtered = currentHeroCostumes.value.filter(c => c.rarity == rarity);
+
+        const nextRarityIdx = RARITY_ORDER.indexOf(rarity) + 1;
+        if (nextRarityIdx <= 0 || nextRarityIdx >= RARITY_ORDER.length)
+            return filtered.length ? filtered : [];
+
+        const nextRarity = RARITY_ORDER[nextRarityIdx]!;
+        if (filtered.length < 3)
+            filtered.push(...currentHeroCostumes.value.filter(c => c.rarity == nextRarity))
+
+        if (filtered.length)
+            return filtered;
+
+        return getHighestRarityCostumes(nextRarity);
+    }
+
+    const highestRarityCostumes = getHighestRarityCostumes();
+
+    if (!highestRarityCostumes.length)
+        return defaultCostume;
+
+    const randIdx = getRandomInt(0, highestRarityCostumes.length - 1);
+    return highestRarityCostumes[randIdx]!;
+});
+
+// SEO IMAGE FOR HERO PAGES!!
 
 // ==== FINAL CTA =====
 const lordIconsGridHeroes = ref<HeroData[][]>([]);

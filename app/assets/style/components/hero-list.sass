@@ -141,11 +141,23 @@
                 &:focus
                     border: 3px solid #fff
 
-            .texture
+            .search-icon-wrapper
                 position: absolute
-                top: 50%
-                right: 20px
-                transform: translateY(-50%)
+                top: 0
+                right: 0
+                width: 60px
+                height: 60px
+
+                display: flex
+                justify-content: center
+                align-items: center
+
+                &.hoverable
+                    cursor: pointer
+
+                    +hover
+                        .texture
+                            --tex-color: #{$blue} !important
 
 
         .filters

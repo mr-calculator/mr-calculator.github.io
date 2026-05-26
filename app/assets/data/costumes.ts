@@ -2,6 +2,12 @@ import COSTUMES_DATA from "./costumes.json";
 import OCEANHILLMAN_CONVERSION_MAP from './ohm-costume-conversion-map.json';
 
 export type CostumeRarity = 'legendary'|'epic'|'rare'|'common';
+export const RARITY_ORDER: CostumeRarity[] = [
+    'legendary',
+    'epic',
+    'rare',
+    'common',
+];
 export type Costume = {
     heroId: string,
 
@@ -54,13 +60,48 @@ export function getCategoryIcon(category: string) {
     return `/img/heroes/costume-categories/${icon}`;
 }
 
+export const COSTUME_CATEGORY_ORDER: string[] = [
+    'Permanent',
+    'Limited Time',
+    'Lucky Draw',
+    'Achievements',
+    'Code Redeemable',
+    'Limited Time',
+    'Free Event Reward',
+    'Premium Event Reward',
+    'Free Battle Pass',
+    'Luxury Battle Pass',
+    'Closed Alpha Test',
+    'Closed Beta Test',
+    'Twitch Drop',
+    'PlayStation Exclusive',
+    'Ranked Reward',
+    'Pick-Up Bundle Exclusive',
+    'Disney+ Exclusive',
+    'Esports'
+];
+
 export function getAllCategories(heroId?: string) {
     const categories = new Set<string>();
     Object.entries(COSTUMES()).filter(([hId]) => heroId ? hId == heroId : true).forEach(([_, costumes]) =>
         costumes.forEach(c => categories.add(c.category))
     );
 
-    return Array.from(categories);
+    const array = Array.from(categories);
+    array.sort((a, b) => {
+        let indexA = COSTUME_CATEGORY_ORDER.indexOf(a);
+        let indexB = COSTUME_CATEGORY_ORDER.indexOf(b);
+        if (indexA == -1 && indexB != -1)
+            return 1;
+        if (indexB == -1 && indexA != -1)
+            return -1;
+        if (indexA == -1 && indexB == -1)
+            return 0;
+
+        return indexA - indexB;
+    });
+
+    return array;
 }
 
 export function getAllSources(heroId?: string) {

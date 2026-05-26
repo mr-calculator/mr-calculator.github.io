@@ -178,7 +178,7 @@
 
 <script setup lang="ts">
 import type { HeroData } from '~/assets/data/common';
-import { getAllCategories, getAllSources, getAllThemes, getCategoryIcon, getHeroCostumes, type Costume } from '~/assets/data/costumes';
+import { getAllCategories, getAllSources, getAllThemes, getCategoryIcon, getHeroCostumes, RARITY_ORDER, type Costume } from '~/assets/data/costumes';
 import CostumeDetailModal from '../modals/CostumeDetailModal.vue';
 
 const props = defineProps<{
@@ -286,7 +286,6 @@ const sortDropdownOptions = [
     { value: 'date-asc',  label: 'SORT BY OLDEST' },
 ];
 
-const RARITY_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2 };
 const sortedCostumes = computed(() => {
     let list = heroCostumes.value.slice();
 
@@ -310,7 +309,7 @@ const sortedCostumes = computed(() => {
 
     list.sort((a, b) => {
         if (costumeSort.value === 'rarity') {
-            return (RARITY_ORDER[a.rarity] ?? 3) - (RARITY_ORDER[b.rarity] ?? 3);
+            return (RARITY_ORDER.indexOf(a.rarity) ?? 3) - (RARITY_ORDER.indexOf(b.rarity) ?? 3);
         }
 
         const da = a.releaseDate ?? '';

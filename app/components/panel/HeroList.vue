@@ -41,14 +41,19 @@
 
                     v-model="searchText"
                 />
-                <Tex
-                    image="search"
-                    color="var(--light-blue-highlight)"
+                <div
+                    :class="{'search-icon-wrapper': 1, hoverable: searchText != ''}"
+                    @click="searchText = ''"
+                >
+                    <Tex
+                        :image="searchText == '' ? 'search' : 'close'"
+                        color="var(--light-blue-highlight)"
 
-                    width="25px"
-                    height="25px"
-                    object-fit="contain"
-                />
+                        width="25px"
+                        height="25px"
+                        object-fit="contain"
+                    />
+                </div>
             </div>
             <div class="filters">
                 <FormCheckbox v-model="filterFavourites">
@@ -406,7 +411,16 @@
             </li>
         </ul>
 
-        <div v-if="!sortedHeroData.length || !heroList.length" class="no-results">
+        <div
+            v-if="(
+                    view == 'gallery'
+                 && !heroList.length
+                 && !featuredHero
+                )
+                || !sortedHeroData.length
+            "
+            class="no-results"
+        >
             <p>No results</p>
             <FormButton size="tiny" color-scheme="white" @click="searchText = ''">
                 Reset search
@@ -607,16 +621,6 @@ function favouriteHero(heroId: string) {
 // List view — summary table logic
 const router = useRouter();
 
-// const STORY_PNG_HEROES = new Set(['Iron Fist', 'Loki', 'Venom']);
-// const KNOWN_HERO_NAMES = new Set(HERO_LIST.map(h => h.name));
-// function storyImageSrc(name: string): string {
-//     if (!KNOWN_HERO_NAMES.has(name))
-//         return '/img/heroes/story/Unknown Hero Story.webp';
-//     const ext = STORY_PNG_HEROES.has(name) ? 'png' : 'webp';
-
-//     return `/img/heroes/story/${name.replace(/&/g, '%26')} Story.${ext}`;
-// }
-
 const RANK_ORDER = Object.keys(PROFICIENCY_RANKS);
 
 function calcTotalXp(level: number, points: number): number {
@@ -729,10 +733,41 @@ function setSort(key: SortKey) {
     }
 }
 
-// listen for key a-z key presses to automatically focus the search bar
 useEvent('keydown', (e: KeyboardEvent) => {
+    // listen for key a-z key presses to automatically focus the search bar
     if (e.key.match(/[a-zA-Z]{1}/g)?.length === 1)
         searchInput.value?.focus();
+
+    // listen for enter key to automatically go to the first result
+    if (e.code === 'Enter' && !(e.shiftKey || e.ctrlKey || e.altKey)) {
+        if (document.activeElement !== searchInput.value)
+            return;
+
+        if ((
+                view.value == 'list'
+            && !heroList.value.length
+            )
+            ||
+            (
+                view.value == 'gallery'
+            && !sortedHeroData.value.length
+            )
+        )
+            return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (view.value == 'list')
+            router.push({
+                path: `/heroes/${sortedHeroData.value[0]!.hero.id}`
+            });
+
+        if (view.value == 'gallery')
+            router.push({
+                path: `/heroes/${heroList.value[0]!.hero.id}`
+            });
+    }
 });
 
 defineExpose({ searchText, filterByRole, filterFavourites });

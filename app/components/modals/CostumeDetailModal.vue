@@ -43,7 +43,7 @@
                         @update:model-value="toggleCostumeOwned"
 
                         v-tooltip="({
-                            text: 'Mark costume as <b>owned</b>',
+                            text: `${ownedCostumes.includes(costume.id) ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
                             icon: 'mouseLeft'
                         } satisfies TooltipBinding)"
                     />

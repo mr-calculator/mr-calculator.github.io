@@ -587,3 +587,14 @@ export function toggleArrayItem<T>(array: T[], item: T) {
     else
         array.push(item);
 }
+
+export type Entries<T> = (
+    {
+        [K in keyof T]-?: readonly [K, T[K]];
+    }[keyof T]
+)[];
+
+type ObjectType<T> = { [s: string]: T; } | ArrayLike<T>;
+export function objectEntries<T extends ObjectType<unknown>>(o: T): Entries<T> {
+    return Object.entries(o) as Entries<T>;
+}
