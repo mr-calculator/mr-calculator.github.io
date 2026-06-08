@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const Gambit: HeroData = {
+    internalId: '1058',
     id: 'gambit',
     name: 'Gambit',
     aliases: [

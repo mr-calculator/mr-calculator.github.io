@@ -1,0 +1,123 @@
+.cosmetics-list-page
+    padding: 65px + 20px 0 40px 0
+    
+    +media-desktop
+        padding: 40px 0 40px 20px
+
+    +media-large-desktop
+        padding-right: 20px
+
+    main
+        width: 100%
+        padding: 55px 0 0 0
+        min-height: calc(var(--u100vh) - 80px)
+
+        display: flex
+        justify-content: stretch
+        align-items: start
+        
+        gap: 20px
+
+        overflow-x: clip
+
+        +media-desktop
+            padding-top: 145px
+            height: calc(var(--u100vh) - 80px)
+
+            display: grid
+            grid-template-columns: 538px 1fr
+            grid-template-rows: 100%
+            justify-content: stretch
+
+        +media-large-desktop
+            padding: 145px 20px 20px 20px
+            gap: 60px
+
+        +media-xl-desktop
+            gap: 0px
+            padding: 145px 60px 60px 60px
+
+        .selected-wrapper
+            width: 100%
+            height: 100%
+
+            padding: 0 40px
+
+            display: none
+            grid-template-columns: 1fr
+            grid-template-rows: min-content auto
+            justify-content: center
+            gap: 40px
+
+            &.show-mobile
+                display: grid
+
+            +media-desktop
+                display: grid
+                padding: 0 20px 0 0
+
+                overflow-x: clip
+                overflow-y: auto
+
+                +scrollbar($thickness: 8px, $background: transparent, $thumb: $light-blue, $active: $color)
+
+            +media-large-desktop
+                padding-right: 0
+
+            +media-xl-desktop
+                grid-template-columns: 1fr 400px
+                justify-content: stretch
+                grid-template-rows: 100%
+                gap: 0
+
+            .back
+                width: fit-content
+                height: fit-content
+                padding: 5px 5px
+                background: #dadfe6
+
+                display: flex
+                align-items: center
+                gap: 5px
+
+                font-family: $font-bold
+                font-size: 20px
+                color: $light-blue
+
+                border: 3px solid #8695bb
+                outline-offset: 2px
+
+                cursor: pointer
+
+                +hover
+                    background: #edf5ff
+                    border-color: #5d74b2
+                    color: #5d74b2
+                    outline: 1px solid rgba(255,255,255,0.6)
+
+                    .texture
+                        --tex-color: #5d74b2 !important
+
+                +media-desktop
+                    display: none
+
+        .showcase-wrapper
+            position: relative
+            width: 100%
+            height: fit-content
+
+            display: flex
+            justify-content: center
+            align-items: center
+
+            +media-desktop
+                margin-top: 56px
+
+            +media-height($minmax: 'max', $size: 880px)
+                margin-top: 0
+
+            +media-xl-desktop
+                height: 100%
+                padding-bottom: 100px
+                margin-top: 0
+

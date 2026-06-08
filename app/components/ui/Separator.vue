@@ -1,5 +1,5 @@
 <template>
-    <div class="separator">
+    <div :class="{separator: 1, dark}">
         <Tex
             image="separatorLinesLeft"
             color="#e1e5f1"
@@ -32,10 +32,25 @@
 
     user-select: none
 
+    &.dark
+        opacity: 0.7
+
+        .line
+            border-color: $blue
+
+        .texture
+            --tex-color: #{$blue} !important
+
     .line
         width: 100%
-        height: 2px
+        height: 0px
 
-        background: #e1e5f1
+        border: 2px solid #e1e5f1
 
 </style>
+
+<script setup lang="ts">
+defineProps<{
+    dark?: boolean
+}>();
+</script>

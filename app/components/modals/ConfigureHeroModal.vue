@@ -23,8 +23,10 @@
                 <label>Role(s)</label>
                 <FormDropdown
                     :options="ROLES_DROPDOWN"
-                    multi
                     v-model="heroRoles"
+                    
+                    placeholder="SELECT ROLE(S)"
+                    concatenate-selected-options
                 />
             </div>
 
@@ -126,7 +128,7 @@
                 <div v-else class="setting">
                     <label class="with-image">
                         EDITING 
-                        <img :src="mission.editingRank.icon" />
+                        <img :src="mission.editingRank.icon" draggable="false" />
                         {{ mission.editingRank.name }} RANK
                     </label>
                     <p>
@@ -143,7 +145,7 @@
                     </p>
 
                     <label class="with-image">
-                        <img :src="CHALLENGE_ICONS[mission.type] ?? ''" />
+                        <img :src="CHALLENGE_ICONS[mission.type] ?? ''" draggable="false" />
                         REQUIREMENT
                     </label>
                     <FormAdvancedInput
@@ -162,7 +164,7 @@
                         "
                     />
                     <label class="with-image small">
-                        <img :src="tex('proficiency', 'hover')" />
+                        <img :src="tex('proficiency', 'hover')" draggable="false" />
                         REWARD
                     </label>
                     <FormAdvancedInput
@@ -244,7 +246,7 @@
     h3
         color: $blue
         font-size: 26px
-        font-family: MarvelRivalsBold
+        font-family: $font-bold
         text-transform: uppercase
 
         margin-top: 20px
@@ -262,7 +264,7 @@
         label
             color: $blue
             font-size: 22px
-            font-family: MarvelRivalsBold
+            font-family: $font-bold
             text-transform: uppercase
 
             &.with-image
@@ -289,7 +291,7 @@
         p
             color: $light-blue
             font-size: 16px
-            font-family: MRBody
+            font-family: $font-body
 
             padding: 0
 
@@ -391,24 +393,40 @@ const emit = defineEmits<{
 
 const MISSION_TYPES = Object.entries(CHALLENGE_NAMES).filter(([id]) => id != 'play').map(([id, name]) => {
     return {
-        label: `<div class="icon" style="--img:url('${CHALLENGE_ICONS[id as Challenge['type']]}')"></div> ${name}`,
+        leftIcon: {
+            url: CHALLENGE_ICONS[id as Challenge['type']]!,
+        },
+
+        label: name!,
         value: id
     }
 });
 const ROLES_DROPDOWN: Option[] = [
     {
-        label: `<div class="icon" style="--img:url('/img/heroes/roles/vanguard.webp')"></div> VANGUARD`,
-        whenCurrentLabel: `<div class="icon" style="--img:url('/img/heroes/roles/vanguard.webp')"></div>`,
+        leftIcon: {
+            url: `/img/heroes/roles/vanguard.webp`,
+        },
+        whenSelected: { showOnlyLeftIcon: true },
+
+        label: `VANGUARD`,
         value: 'vanguard' 
     },
     {
-        label: `<div class="icon" style="--img:url('/img/heroes/roles/duelist.webp')"></div> DUELIST`,
-        whenCurrentLabel: `<div class="icon" style="--img:url('/img/heroes/roles/duelist.webp')"></div>`,
+        leftIcon: {
+            url: `/img/heroes/roles/duelist.webp`,
+        },
+        whenSelected: { showOnlyLeftIcon: true },
+
+        label: `DUELIST`,
         value: 'duelist' 
     },
     {
-        label: `<div class="icon" style="--img:url('/img/heroes/roles/strategist.webp')"></div> STRATEGIST`,
-        whenCurrentLabel: `<div class="icon" style="--img:url('/img/heroes/roles/strategist.webp')"></div>`,
+        leftIcon: {
+            url: `/img/heroes/roles/strategist.webp`,
+        },
+        whenSelected: { showOnlyLeftIcon: true },
+
+        label: `STRATEGIST`,
         value: 'strategist' 
     },
 ];

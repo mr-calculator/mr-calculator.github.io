@@ -6,6 +6,42 @@ const watchers: Record<string, WatchHandle> = {};
 
 const persistenceScope = effectScope(true);
 
+
+function deepMerge(target: any, source: any): any {
+    if (typeof source !== 'object' || source === null)
+        return source;
+    if (typeof target !== 'object' || target === null)
+        return source;
+
+    const result = { ...target };
+    for (const key of Object.keys(source)) {
+        result[key] = typeof source[key] === 'object'
+                   && source[key] !== null
+                   && !Array.isArray(source[key]) ?
+            deepMerge(target[key], source[key]) : source[key];
+    }
+    return result;
+}
+function loadFromStorage<T>(
+    saved: string,
+    defaultValue: T,
+    schema?: z.ZodType<T>
+): T {
+    try {
+        const parsed = JSON.parse(saved);
+        if (schema) {
+            // merge saved data over defaults so missing new fields get defaults,
+            // while existing saved values are preserved
+            const merged = deepMerge(defaultValue as object, parsed);
+            return schema.parse(merged);
+        }
+        return parsed;
+    }
+    catch {
+        return defaultValue;
+    }
+}
+
 export function useLocalStorage<T>(
     key: string | Ref<string> | (() => string),
     defaultValue: T,
@@ -20,12 +56,12 @@ export function useLocalStorage<T>(
     function ensureKey(k: string) {
         if (!storageState[k]) {
             const saved = typeof localStorage !== 'undefined' ? 
-                localStorage.getItem(k) : JSON.stringify(defaultValue);
+                localStorage.getItem(k) : null;
 
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                storageState[k] = ref(schema ? schema.parse(parsed) : parsed);
-            }
+            if (saved)
+                storageState[k] = ref(
+                    loadFromStorage(saved, defaultValue, schema)
+                );
             else
                 storageState[k] = ref(defaultValue);
 

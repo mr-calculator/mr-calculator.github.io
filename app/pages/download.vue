@@ -1,187 +1,177 @@
 <template>
-    <div class="common-page">
-        <NuxtLink to="/" class="logo-standalone">
+    <div class="common-page with-padding">
+        <h1>
+            Download your data
+        </h1>
+        <h2>You have data for the following heroes:</h2>
+        <ul class="heroes">
+            <li :class="{selected: selectedHero == null}" @click="clickHero(null)">
+                <div class="icon">
+                    <img :src="tex('allHeroesIcon')" alt="All Heroes" draggable="false" />
+                </div>
+            </li>
+            <li
+                v-for="hero in heroesWithData"
+                :class="{selected: selectedHero == hero.hero.id}"
+                :title="hero.hero.name"
+
+                @click="clickHero(hero.hero.id)"
+            >
+                <div
+                    v-if="hero.isFavourite"
+                    class="favourite"
+                >
+                    <Tex
+                        image="favouriteCorner"
+
+                        width="35px"
+                        height="35px"
+                    />
+                </div>
+                <div class="icon">
+                    <img
+                        :src="`${hero.hero.dataDir}head.webp`"
+                        :alt="`${hero.hero.name}`"
+                        draggable="false"
+                    />
+                </div>
+                <div
+                    v-if="hero.rank?.icon && hero.rank.id != 'agent'"
+                    class="badge"
+                >
+                    <img :src="hero.rank?.icon" :alt="`${hero.rank?.name} Icon`" draggable="false" />
+                </div>
+            </li>
+        </ul>
+        <div
+            :class="{expandable: 1, active: dataExpanded}"
+            @click="closeDataDisplay"
+        >
+            <h2>
+                {{ !selectedHero ?
+                    (dataExpanded ? 'Hide your raw data' : 'View your raw data')
+                    :
+                    (dataExpanded ? `Hide ${selectedHeroData?.possesiveName} raw data` : `View ${selectedHeroData?.possesiveName} raw data`)
+                }}
+            </h2>
             <Tex
-                image="logo"
+                :image="dataExpanded ? 'chevronUp' : 'chevronDown'"
+                color="var(--blue)"
 
-                width="50px"
-                height="50px"
-
+                width="18px"
+                height="18px"
                 object-fit="contain"
             />
-        </NuxtLink>
-        <main class="content masked">
-            <div class="mask-wrapper">
-                <div class="scroll-container">
-                    <h1>
-                        Download your data
-                    </h1>
-                    <h2>You have data for the following heroes:</h2>
-                    <ul class="heroes">
-                        <li :class="{selected: selectedHero == null}" @click="clickHero(null)">
-                            <div class="icon">
-                                <img :src="tex('allHeroesIcon')" />
-                            </div>
-                        </li>
-                        <li
-                            v-for="hero in heroesWithData"
-                            :class="{selected: selectedHero == hero.hero.id}"
-                            :title="hero.hero.name"
+        </div>
+        <div v-if="dataExpanded" class="data-display">
+            <Tex
+                class="copy"
+                image="copy"
+                hover="color"
+                hover-color="var(--light-blue)"
 
-                            @click="clickHero(hero.hero.id)"
-                        >
-                            <div
-                                v-if="hero.isFavourite"
-                                class="favourite"
-                            >
-                                <Tex
-                                    image="favouriteCorner"
+                width="30px"
+                height="30px"
 
-                                    width="35px"
-                                    height="35px"
-                                />
-                            </div>
-                            <div class="icon">
-                                <img :src="`${hero.hero.dataDir}head.webp`" />
-                            </div>
-                            <div
-                                v-if="hero.rank?.icon && hero.rank.id != 'agent'"
-                                class="badge"
-                            >
-                                <img :src="hero.rank?.icon" />
-                            </div>
-                        </li>
-                    </ul>
-                    <div
-                        :class="{expandable: 1, active: dataExpanded}"
-                        @click="closeDataDisplay"
-                    >
-                        <h2>
-                            {{ !selectedHero ?
-                                (dataExpanded ? 'Hide your raw data' : 'View your raw data')
-                                :
-                                (dataExpanded ? `Hide ${selectedHeroData?.possesiveName} raw data` : `View ${selectedHeroData?.possesiveName} raw data`)
-                            }}
-                        </h2>
-                        <Tex
-                            :image="dataExpanded ? 'chevronUp' : 'chevronDown'"
-                            color="var(--blue)"
+                clickable
+                square
 
-                            width="18px"
-                            height="18px"
-                            object-fit="contain"
-                        />
-                    </div>
-                    <div v-if="dataExpanded" class="data-display">
-                        <Tex
-                            class="copy"
-                            image="copy"
-                            hover="color"
-                            hover-color="var(--light-blue)"
-
-                            width="30px"
-                            height="30px"
-
-                            clickable
-                            square
-
-                            @click="copyData"
-                        />
-                        <div class="scroll-container">
-                            <PanelJSONDisplay
-                                class="json-display"
-                                :code="!!selectedHero ? heroData : allData"
-                            />
-                        </div>
-                    </div>
-                    <ul class="options">
-                        <li v-if="!selectedHero">
-                            <FormCheckbox
-                                v-model="includeUnknownHeroes"
-
-                                small
-                            >
-                                <h4>Include added heroes</h4>
-                            </FormCheckbox>
-                        </li>
-                        <li>
-                            <FormCheckbox
-                                v-model="includeFavourites"
-
-                                small
-                            >
-                                <h4 v-if="!selectedHero">Include favourite heroes</h4>
-                                <h4 v-else>Include favourite status</h4>
-                            </FormCheckbox>
-                        </li>
-                        <li>
-                            <FormCheckbox
-                                v-model="includeAchievements"
-
-                                small
-                            >
-                                <h4 v-if="!selectedHero">Include achievements progress</h4>
-                                <h4 v-else>Include this hero's achievements progress</h4>
-                            </FormCheckbox>
-                        </li>
-                        <li>
-                            <FormCheckbox
-                                v-model="includeCostumes"
-
-                                small
-                            >
-                                <h4 v-if="!selectedHero">Include owned costumes</h4>
-                                <h4 v-else>Include this hero's owned costumes</h4>
-                            </FormCheckbox>
-                        </li>
-                        <li v-if="!selectedHero">
-                            <FormCheckbox
-                                v-model="includePreferences"
-
-                                small
-                            >
-                                <h4>Include preferences</h4>
-                            </FormCheckbox>
-                        </li>
-                    </ul>
-                    <div class="buttons">
-                        <FormButton
-                            v-if="selectedHero"
-                            size="small"
-
-                            @click="downloadHeroData"
-                        >
-                            DOWNLOAD {{ selectedHeroData?.possesiveName }} DATA
-                        </FormButton>
-                        <FormButton
-                            size="small"
-
-                            @click="downloadData"
-                        >
-                            {{ !!selectedHero ? `DOWNLOAD ALL DATA` : `DOWNLOAD MY DATA` }}
-
-                            <Tex
-                                image="download"
-                                color="var(--text-color)"
-
-                                width="25px"
-                                height="25px"
-                            />
-                        </FormButton>
-                    </div>
-
-                    <p>
-                        You can import the data into the calculator on any other device
-                        <NuxtLink to="/import">here</NuxtLink>.
-                    </p>
-
-                    <br/>
-                    <p v-if="hasData">
-                        You can also <u @click="deleteData">delete your data</u>.
-                    </p>
-                </div>
+                @click="copyData"
+            />
+            <div class="scroll-container">
+                <PanelJSONDisplay
+                    class="json-display"
+                    :code="!!selectedHero ? heroData : allData"
+                />
             </div>
-        </main>
+        </div>
+        <ul class="options">
+            <li v-if="!selectedHero">
+                <FormCheckbox
+                    v-model="includeUnknownHeroes"
+
+                    size="small"
+                >
+                    <h4>Include added heroes</h4>
+                </FormCheckbox>
+            </li>
+            <li>
+                <FormCheckbox
+                    v-model="includeFavourites"
+
+                    size="small"
+                >
+                    <h4 v-if="!selectedHero">Include favourite heroes</h4>
+                    <h4 v-else>Include favourite status</h4>
+                </FormCheckbox>
+            </li>
+            <li>
+                <FormCheckbox
+                    v-model="includeAchievements"
+
+                    size="small"
+                >
+                    <h4 v-if="!selectedHero">Include achievements progress</h4>
+                    <h4 v-else>Include this hero's achievements progress</h4>
+                </FormCheckbox>
+            </li>
+            <li>
+                <FormCheckbox
+                    v-model="includeCosmetics"
+
+                    size="small"
+                >
+                    <h4 v-if="!selectedHero">Include owned cosmetics</h4>
+                    <h4 v-else>Include this hero's owned costumes</h4>
+                </FormCheckbox>
+            </li>
+            <template v-if="!selectedHero">
+                <li>
+                    <FormCheckbox
+                        v-model="includePreferences"
+
+                        size="small"
+                    >
+                        <h4>Include preferences</h4>
+                    </FormCheckbox>
+                </li>
+            </template>
+        </ul>
+        <div class="buttons">
+            <FormButton
+                v-if="selectedHero"
+                size="small"
+
+                @click="downloadHeroData"
+            >
+                DOWNLOAD {{ selectedHeroData?.possesiveName }} DATA
+            </FormButton>
+            <FormButton
+                size="small"
+
+                @click="downloadData"
+            >
+                {{ !!selectedHero ? `DOWNLOAD ALL DATA` : `DOWNLOAD MY DATA` }}
+
+                <Tex
+                    image="download"
+                    color="var(--text-color)"
+
+                    width="25px"
+                    height="25px"
+                />
+            </FormButton>
+        </div>
+
+        <p>
+            You can import the data into the calculator on any other device
+            <NuxtLink to="/import">here</NuxtLink>.
+        </p>
+
+        <br/>
+        <p v-if="hasData">
+            You can also <u @click="deleteData">delete your data</u>.
+        </p>
     </div>
 </template>
 
@@ -366,11 +356,13 @@ p
 </style>
 
 <script setup lang="ts">
-import { getAchievements, type Achievement } from '~/assets/data/achievements';
+import { getAchievements, type Achievement } from '~/assets/data/achievements/achievements';
 import {
     DEFAULT_PREFERENCES_STORE,
+    DEFAULT_PROFILE_STORE,
     levelToRank,
     PreferencesStoreSchema,
+    ProfileStoreSchema,
     type AnySerializableDataSegment,
     type HeroData,
     type PlayerHeroStore,
@@ -378,6 +370,7 @@ import {
     type SerializableDataMap,
     type SerializableDataSegment
 } from '~/assets/data/common';
+import { DEFAULT_NAMEPLATE_ID } from '~/assets/data/cosmetics/nameplates/nameplates';
 import { HERO_LIST } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import ConfirmModal from '~/components/modals/ConfirmModal.vue';
@@ -416,6 +409,8 @@ const storedHeroes = ref(Object.entries(localStorage ?? {})
 const favourites = useLocalStorage<HeroData['id'][]>(`favourite_heroes`, []);
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 const preferences = useLocalStorage<PreferencesStore>('preferences', DEFAULT_PREFERENCES_STORE(), PreferencesStoreSchema);
+const profile = useLocalStorage('profile', await DEFAULT_PROFILE_STORE(), ProfileStoreSchema);
+
 const achievementsStore = useLocalStorage<Achievement[]>('achievements', []);
 const ownedCostumes: Record<string, string[]> = {};
 Object.entries(localStorage ?? {})
@@ -426,6 +421,8 @@ Object.entries(localStorage ?? {})
           if (owned.length)
               ownedCostumes[heroId] = owned;
       });
+const ownedNameplates = useLocalStorage<string[]>('nameplates_owned', [DEFAULT_NAMEPLATE_ID]);
+const ownedFrames = useLocalStorage<string[]>('frames_owned', []);
 
 const route = useRoute();
 const heroFromUrl = route.query?.hero;
@@ -457,7 +454,7 @@ const heroesWithData = computed(() => {
             stored: store,
             rank: levelToRank(heroStore.level),
             achievements: includeAchievements.value ? filteredAchievements : undefined,
-            costumes: includeCostumes.value ? ownedCostumes[heroData.id] : undefined,
+            costumes: includeCosmetics.value ? ownedCostumes[heroData.id] : undefined,
             isFavourite: includeFavourites.value ? favourites.value.includes(heroStore.id) : undefined,
             isUnknownHero
         }
@@ -494,7 +491,7 @@ const includeUnknownHeroes = ref(true);
 const includeFavourites = ref(true);
 const includePreferences = ref(true);
 const includeAchievements = ref(true);
-const includeCostumes = ref(true);
+const includeCosmetics = ref(true);
 
 const dataBase: Pick<SerializableDataSegment<keyof SerializableDataMap>, 'version' | 'exportedAt'> = {
     version: config.dataVersion,
@@ -510,13 +507,16 @@ function dataWithBase<T extends keyof SerializableDataMap>
 }
 
 const allData = computed<AnySerializableDataSegment>(() => {
-    const data = {
+    const data: SerializableDataMap['profile'] = {
         storedHeroes: storedHeroes.value,
         favourites: includeFavourites.value ? favourites.value : undefined,
         achievements: includeAchievements.value ? achievementsStore.value : undefined,
         unknownHeroes: includeUnknownHeroes.value ? unknownHeroes.value : undefined,
         preferences: includePreferences.value ? preferences.value : undefined,
-        ownedCostumes: includeCostumes.value ? ownedCostumes : undefined
+        profile: includePreferences.value ? profile.value : undefined,
+        ownedCostumes: includeCosmetics.value ? ownedCostumes : undefined,
+        ownedNameplates: includeCosmetics.value ? ownedNameplates.value : undefined,
+        ownedFrames: includeCosmetics.value ? ownedFrames.value : undefined,
     }
 
     return dataWithBase('profile', data);

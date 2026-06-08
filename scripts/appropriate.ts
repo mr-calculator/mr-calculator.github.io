@@ -15,15 +15,20 @@ function getHeroesFile(): Record<string, string> {
 async function main() {
     p.intro('Appropriate is going to copy and convert all hero resources specified (images) from the specified game files directory.');
 
-    const selection = await p.multiselect({
-        message: 'Select which resources to copy',
-        options: Object.keys(FILES).map(key => ({
-            label: key,
-            value: key
-        }))
+    const { selection, seo } = await p.group({
+        selection: () => p.multiselect({
+            message: 'Select which resources to copy',
+            options: Object.keys(FILES).map(key => ({
+                label: key,
+                value: key
+            }))
+        }),
+        seo: () => p.confirm({
+            message: 'Generate SEO images?'
+        })
     });
 
-    if (typeof selection === 'symbol') {
+    if (typeof selection === 'symbol' || typeof seo === 'symbol') {
         p.cancel('Canceled');
         process.exit(0);
     }
@@ -45,8 +50,12 @@ async function main() {
     const heroes = getHeroesFile();
     p.log.info('Using `./add-hero/hero-id-conversion.json`');
 
-    for (const [ id, internalId ] of Object.entries(heroes))
-        await copyImages(internalId, id, p.log, selection as ResourceId[]);
+    const heroesWithoutRoleDeadpools = Object.entries(heroes).filter(([_, internal]) => 
+        internal.length == 4
+    );
+
+    for (const [ id, internalId ] of heroesWithoutRoleDeadpools)
+        await copyImages(internalId, id, p.log, selection as ResourceId[], seo);
 
     p.outro('Copied all images.');
 }

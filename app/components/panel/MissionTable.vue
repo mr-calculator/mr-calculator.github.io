@@ -10,7 +10,7 @@
 
                 @click="selectedRank = rank.id"
             >
-                <img :src="rank.icon" />
+                <img :src="rank.icon" :alt="`${rank.name} Icon`" draggable="false" />
             </li>
         </ul>
 

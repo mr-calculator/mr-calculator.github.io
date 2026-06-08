@@ -86,7 +86,7 @@
         justify-content: center
         align-items: center
 
-        font-family: MarvelRivalsBold
+        font-family: $font-bold
         font-size: 20px
         color: #48577f
         text-transform: uppercase

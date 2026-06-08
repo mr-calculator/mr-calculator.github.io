@@ -10,10 +10,10 @@ main
     background-size: 100% 100vh
     background-attachment: fixed
 
-    padding: 20px
+    padding: 40px 20px 20px 20px
 
     +media-desktop
-        padding: 50px
+        padding: 20px 50px 50px 50px
 
     +media-mobile
         background-size: cover
@@ -43,26 +43,3 @@ main
         justify-content: center
         align-items: center
         gap: 20px
-
-        .title
-            position: relative
-            width: 100%
-
-            .back
-                position: absolute
-                left: 0
-                top: 50%
-
-                transform: translateY(-50%)
-
-
-        h1
-            font-size: 45px
-            text-transform: uppercase
-            text-align: center
-            color: $light
-
-            padding: 0 60px
-
-            +media-desktop
-                font-size: 55px

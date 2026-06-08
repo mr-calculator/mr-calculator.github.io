@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const Deadpool: HeroData = {
+    internalId: '1057',
     id: 'deadpool',
     name: 'Deadpool',
     roles: ['vanguard', 'duelist', 'strategist'],

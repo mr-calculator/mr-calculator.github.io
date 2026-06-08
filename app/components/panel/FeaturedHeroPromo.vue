@@ -1,7 +1,7 @@
 <template>
     <NuxtLink
         class="featured-hero"
-        :to="`/heroes/${hero.id}?from=/`"
+        :to="`/heroes/${hero.id}`"
     >
         <div
             ref="prestige"
@@ -12,7 +12,7 @@
             }"
         >
             <div class="stroke" />
-            <img :src="`${hero.dataDir}prestige.webp`" />
+            <img :src="`${hero.dataDir}prestige.webp`" draggable="false" />
             <div ref="prestigeShadow" class="shadow" />
         </div>
         <div ref="bar" class="bar">
@@ -205,7 +205,7 @@
             justify-content: center
             align-items: center
 
-            font-family: MarvelRivalsHeavy
+            font-family: $font-heavy
             font-size: 30px
             color: $text-color
 
@@ -237,7 +237,7 @@
                 display: flex
                 align-items: center
                 gap: 10px
-                font-family: MarvelRivalsHeavy
+                font-family: $font-heavy
                 font-size: 22px
                 text-transform: uppercase
 

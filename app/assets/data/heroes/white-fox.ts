@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const WhiteFox: HeroData = {
+    internalId: '1060',
     id: 'white-fox',
     name: 'White Fox',
     aliases: [

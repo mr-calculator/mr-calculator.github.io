@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const BruceBanner: HeroData = {
+    internalId: '1011',
     id: 'bruce-banner',
     name: 'Bruce Banner',
     aliases: [

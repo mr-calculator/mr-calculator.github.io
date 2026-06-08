@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const ThePunisher: HeroData = {
+    internalId: '1014',
     id: 'the-punisher',
     name: 'The Punisher',
     aliases: [

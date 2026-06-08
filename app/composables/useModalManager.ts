@@ -22,7 +22,7 @@ export function useModalManager() {
         let resolve!: (value: T) => void
         let reject!: (reason?: any) => void
 
-        const id = randomId()
+        const id = crypto?.randomUUID?.() || randomId();
 
         const promise = new Promise<T>((res, rej) => {
             resolve = res

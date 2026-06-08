@@ -38,6 +38,7 @@
                             class="icon"
                             :src="reward.icon"
                             :alt="`${reward.name} Icon`"
+                            draggable="false"
                         />
                         <div v-else class="animated-icon-wrapper">
                             <UiAnimatedIcon
@@ -55,11 +56,17 @@
 
             <div class="level-title">
                 <div v-if="rank" class="rank-icon">
-                    <img :src="rank.icon" :alt="`${rank.name} Icon`" />
+                    <img :src="rank.icon" :alt="`${rank.name} Icon`" draggable="false" />
                 </div>
                 <h3>LV{{ level }}</h3>
             </div>
         </div>
+
+        <div
+            v-if="hasEasterEgg && hero.easterEggMessage"
+            class="easter-egg"
+            v-html="hero.easterEggMessage"
+        />
     </div>
 </template>
 
@@ -88,6 +95,53 @@ const emit = defineEmits<{
     rewardClick: [ level: number ]
 }>();
 
+// =======EASTER EGG========
+const cosmeticsKey = computed(() => `cosmetics_owned_${props.hero.id}`);
+const ownedCostumes = useLocalStorage<string[]>(cosmeticsKey, []);
+const hasEasterEgg = ref(false);
+function checkEasterEgg() {
+    if (import.meta.server) {
+        hasEasterEgg.value = false;
+        return;
+    }
+
+    if (!props.hero.easterEgg) {
+        hasEasterEgg.value = false;
+        return;
+    }
+
+    const ownsSkin = ownedCostumes.value.includes(props.hero.easterEgg);
+    if (!ownsSkin) {
+        hasEasterEgg.value = false;
+        return;
+    }
+
+    hasEasterEgg.value = true;
+}
+
+onMounted(checkEasterEgg);
+watch([() => props.hero, ownedCostumes], () => nextTick(checkEasterEgg));
+
+
+function applyEasterEgg(reward: Reward) {
+    if (!hasEasterEgg.value)
+        return;
+
+    switch (reward.name) {
+        case 'Default Avatar':
+            reward.icon = `%HERO_DATA_DIR%easter-egg/head.webp`;
+            break;
+        case '%HERO_NAME% Lord Icon':
+            reward.icon = `%HERO_DATA_DIR%easter-egg/head-lord.webp`;
+            break;
+        case '%HERO_NAME% Champion Icon':
+            reward.icon = `%HERO_DATA_DIR%easter-egg/bust-champion.webp`;
+            break;
+    }
+}
+
+// =========================
+
 const idPrefix = computed(() => props.idPrefix ? btoa(props.idPrefix) : undefined);
 
 const allRewards = computed<Reward[]>(() => {
@@ -114,10 +168,14 @@ const aggregatedRewards = computed(() => {
         if (r.level > max)
             max = r.level;
 
+        const reward = cloneObjectRefAsRaw(r) ?? r;
+        if (hasEasterEgg.value)
+            applyEasterEgg(reward);
+
         const processed: Reward = {
-            ...(cloneObjectRefAsRaw(r) ?? r),
-            name: replaceRewardPlaceholders(r.name, props.hero),
-            icon: replaceRewardPlaceholders(r.icon, props.hero)
+            ...reward,
+            name: replaceRewardPlaceholders(reward.name, props.hero),
+            icon: replaceRewardPlaceholders(reward.icon, props.hero)
         }
 
         if (processed.iconAnimation) {
@@ -132,7 +190,7 @@ const aggregatedRewards = computed(() => {
     })
 
     if (props.showAllLevels) {
-        const emptyReward: [Reward[], ProficiencyRank?] = [
+        const emptyReward: () => [Reward[], ProficiencyRank?] = () => [
             [{
                 level: 0,
                 name: 'No Reward',
@@ -142,7 +200,7 @@ const aggregatedRewards = computed(() => {
 
         for (let level = min; level <= max; level++)
             if (!aggregated.has(level))
-                aggregated.set(level, emptyReward)
+                aggregated.set(level, emptyReward())
 
         aggregated = new Map([...aggregated.entries()].sort((entry1, entry2) => entry1[0] - entry2[0]));
     }

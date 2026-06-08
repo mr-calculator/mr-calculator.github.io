@@ -21,7 +21,7 @@
 
                 @click="maxFeasableMissions = index + 1"
             >
-                <img :src="CHALLENGE_ICONS[challenge.type]!" />
+                <img :src="CHALLENGE_ICONS[challenge.type]!" draggable="false" />
             </li>
         </ul>
 
@@ -67,7 +67,7 @@
             height: 100%
 
             font-size: 16px
-            font-family: MarvelRivalsBold
+            font-family: $font-bold
             color: #b5d6ff
             
             text-align: center

@@ -7,11 +7,18 @@
             <div class="commits">
                 <div
                     v-for="(commit, index) in groupedCommits.remaining"
+                    :key="commit.sha"
+                    :id="`commit-${commit.sha}`"
                     class="commit"
                 >
                     <div class="meta">
                         <div v-if="index == 0" class="tag">LATEST</div>
-                        <a class="sha commit-sha" :href="commit.html_url" target="_blank">
+                        <a
+                            class="sha commit-sha"
+                            :href="commit.html_url"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             {{ commit.sha.slice(0, 7) }}
                         </a>
                         <p>{{ formatCommitDate(commit.commit?.author?.date ?? commit.commit?.committer?.date) }}</p>
@@ -23,7 +30,10 @@
         <template
             v-for="(log, index) in entriesFiltered"
         >
-            <li class="log-entry">
+            <li
+                :id="`v${log.version.number.replaceAll('.', '_')}`"
+                class="log-entry"
+            >
                 <div class="version">
                     <div v-if="index == 0 && groupedCommits.remaining.length == 0" class="tag">
                         LATEST
@@ -35,6 +45,7 @@
 
                         :href="groupedCommits.versionCommits[log.version.number]!.html_url"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         {{ groupedCommits.versionCommits[log.version.number]!.sha.slice(0, 7) }}
                     </a>
@@ -78,7 +89,7 @@
                     <div v-if="!changelogExpanded[log.version.number] && log.images?.length">
                         <ul class="images presentation">
                             <li @click="lightBoxedImage = log.images[0]">
-                                <img :src="log.images[0]" />
+                                <img :src="log.images[0]" draggable="false" />
                             </li>
                         </ul>
                     </div>
@@ -98,7 +109,7 @@
 
                                 @click="lightBoxedImage = image"
                             >
-                                <img :src="image" />
+                                <img :src="image" draggable="false" />
                             </li>
                         </ul>
 
@@ -106,7 +117,11 @@
                             <br v-if="log.images" />
                             <h3>
                                 Commit
-                                <a :href="groupedCommits.versionCommits[log.version.number]!.html_url" target="_blank">
+                                <a
+                                    :href="groupedCommits.versionCommits[log.version.number]!.html_url"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <Tex
                                         image="link"
                                         color="var(--blue)"
@@ -161,10 +176,17 @@
                 <div class="commits">
                     <div
                         v-for="commit in groupedCommits.groups[log.version.number]"
+                        :key="commit.sha"
+                        :id="`commit-${commit.sha}`"
                         class="commit"
                     >
                         <div class="meta">
-                            <a class="sha commit-sha" :href="commit.html_url" target="_blank">
+                            <a
+                                class="sha commit-sha"
+                                :href="commit.html_url"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 {{ commit.sha.slice(0, 7) }}
                             </a>
                             <p>{{ formatCommitDate(commit.commit?.author?.date ?? commit.commit?.committer?.date) }}</p>
@@ -177,7 +199,7 @@
 
         <Teleport to="body">
             <div v-if="lightBoxedImage" class="lightbox-wrapper" @click="lightBoxedImage = undefined">
-                <img :src="lightBoxedImage">
+                <img :src="lightBoxedImage" draggable="false">
             </div>
         </Teleport>
     </ul>
@@ -220,7 +242,7 @@ function commitMessageToHTML(message: string) {
             punctuation += punc;
             return '';
         });
-        return `<a href="${clean}" target="_blank">${clean}${punctuation}</a>`;
+        return `<a href="${clean}" target="_blank" rel="noopener noreferrer">${clean}${punctuation}</a>`;
     });
 
     let [ title, ...rest ] = message.split('\n');

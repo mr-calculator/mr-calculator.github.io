@@ -1,31 +1,16 @@
 <template>
     <main>
         <div class="container">
-            <div class="title">
-                <NuxtLink class="back" to="/">
-                    <Tex
-                        image="arrowLeft"
-                        hover="color"
-                        clickable
-
-                        width="40px"
-                        height="40px"
-                        object-fit="contain"
-                    />
-                </NuxtLink>
+            <div class="mobile-title">
                 <h1>
                     Select your hero
                 </h1>
             </div>
-            <UiSeparator />
+            <UiSeparator class="mobile-separator" />
             <ClientOnly>
                 <PanelHeroList
                     back-button="/"
-                >
-                    <template #list-view>
-                        
-                    </template>
-                </PanelHeroList>
+                />
             </ClientOnly>
         </div>
     </main>
@@ -34,10 +19,7 @@
 <style src="@/assets/style/pages/heroes/index.sass" scoped></style>
 
 <script setup lang="ts">
-import { DEFAULT_HERO_STORE, PlayerHeroStoreSchema, PROFICIENCY_RANKS, ROLE_ICONS, type HeroData, type HeroRole, type PlayerHeroStore } from '~/assets/data/common';
-import { HERO_LIST, heroRolesAsArray } from '~/assets/data/heroes';
 import { useAbsoluteUrl } from '~/composables/config';
-import type { TooltipBinding } from '~/directives/tooltip';
 
 useSeoMeta({
     title: 'Heroes | MR Proficiency Calculator',

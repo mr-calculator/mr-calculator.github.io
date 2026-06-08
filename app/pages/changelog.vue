@@ -1,35 +1,20 @@
 <template>
     <div class="common-page">
-        <NuxtLink to="/" class="logo-standalone">
-            <Tex
-                image="logo"
+        <h1>CHANGELOG</h1>
 
-                width="50px"
-                height="50px"
+        <PanelChangelog />
 
-                object-fit="contain"
-            />
-        </NuxtLink>
-        <main class="content masked">
-            <div class="mask-wrapper">
-                <div class="scroll-container">
-                    <h1>CHANGELOG</h1>
-
-                    <PanelChangelog />
-
-                    <br/>
-                    <p class="disclaimer">
-                        This is a filtered changelog that covers significant changes, for all modifications head over to our
-                        <a
-                            :href="`https://github.com/${config.githubUser}/${config.githubRepo}/commits/main/`"
-                            target="_blank"
-                        >
-                            GitHub Commits</a>.
-                    </p>
-                    <br/>
-                </div>
-            </div>
-        </main>
+        <br/>
+        <p class="disclaimer">
+            This is a filtered changelog that covers significant changes, for all modifications head over to our
+            <a
+                :href="`https://github.com/${config.githubUser}/${config.githubRepo}/commits/main/`"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub Commits</a>.
+        </p>
+        <br/>
     </div>
 </template>
 
@@ -67,4 +52,25 @@ useHead({
         }
     ]
 })
+
+onMounted(() => {
+    if (!window.location.hash)
+        return;
+
+    const targetElement = document.querySelector(window.location.hash);
+    if (!targetElement)
+        return;
+
+    setTimeout(() => {
+        const headerHeight = 65 + 40;
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerHeight;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }, 100);
+})
+
 </script>

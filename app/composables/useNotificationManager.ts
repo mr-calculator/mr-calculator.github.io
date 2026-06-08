@@ -24,7 +24,7 @@ export function useNotificationManager() {
     ) => {
         checkSsr();
 
-        const id = crypto.randomUUID()
+        const id = crypto?.randomUUID?.() || randomId();
         
         let closeTask: any = setTimeout(() => close(id), time);
 

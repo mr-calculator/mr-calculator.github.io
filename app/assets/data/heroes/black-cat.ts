@@ -5,6 +5,7 @@ export const BlackCat: HeroData = {
         releasedAt: '2026-04-17',
         featured: true
     },
+    internalId: '1061',
     id: 'black-cat',
     name: 'Black Cat',
     aliases: [

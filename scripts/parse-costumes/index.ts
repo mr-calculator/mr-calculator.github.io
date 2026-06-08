@@ -17,7 +17,11 @@ async function parseTable(costumes: Costume[], table: string, themesIconSources:
         if (!cells || cells.length != 11)
             return null;
 
-        const theme = cells[1].querySelector('span[typeof="mw:File"] span')?.getAttribute('title')?.replaceAll('Theme: ', '') ?? undefined;
+        const theme = cells[1].querySelector('span[typeof="mw:File"] span')
+                            ?.getAttribute('title')
+                            ?.replaceAll('Theme: ', '')
+                            ?.replace(/(MARVEL RIVALS)\s*/gi, '')
+                        ?? undefined;
         if (theme) {
             const themeId = toKebabCase(theme);
             const themeIconSrc = cells[1].querySelector('span[typeof="mw:File"] span img')?.getAttribute('src') ?? undefined;
@@ -120,7 +124,7 @@ async function main() {
     p.log.info(`Copying new costume images from the game files`);
     await copyCostumeImages(costumesToCopy);
 
-    p.outro('Parse finished');
+    p.outro(`Parse finished with ${costumesToCopy.length} additions.`);
 }
 
 try {

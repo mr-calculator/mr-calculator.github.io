@@ -79,7 +79,7 @@
         padding: 0 30px
 
         font-size: 20px
-        font-family: MarvelRivalsBold
+        font-family: $font-bold
         color: $light
 
         text-align: center

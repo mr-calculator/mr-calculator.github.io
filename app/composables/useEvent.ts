@@ -39,18 +39,11 @@ export const useEvent = <K extends EventKey>(
 
     // if this runs outside a component/page instance, add directly
     // also add if registered after on mounted, keeping removing functionality
-    const instance = getCurrentInstance();
-    if (instance) {
-        if (instance.isMounted && !instance.isUnmounted)
-            // already mounted, add immediately
-            addEvents();
-        else
-            onMounted(addEvents);
-
-        onUnmounted(removeEvents);
-    }
-    else
-        addEvents();
+    if (import.meta.client)
+        useDynamicInstance({
+            onMounted: addEvents,
+            onUnmounted: removeEvents
+        });
 
     return {
         remove: removeEvents,

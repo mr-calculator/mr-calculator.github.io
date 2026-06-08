@@ -1,21 +1,13 @@
 export const isMobile = (width = 992) => {
-    const mobile = ref((window?.innerWidth ?? 993) < width);
+    const mobile = ref(993 < width);
 
     function checkMobile() {
         mobile.value = (window?.innerWidth ?? 993) < width;
     }
 
-    const instance = getCurrentInstance();
-    if (instance) {
-        if (instance.isMounted && !instance.isUnmounted)
-            checkMobile();
-        else
-            onMounted(() => {
-                checkMobile();
-            });
-    }
-    else
-        checkMobile();
+    useDynamicInstance({
+        onMounted: checkMobile
+    });
 
     useEvent('resize', checkMobile);
 

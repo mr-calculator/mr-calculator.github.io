@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const RocketRaccoon: HeroData = {
+    internalId: '1023',
     id: 'rocket-raccoon',
     name: 'Rocket Raccoon',
     aliases: [

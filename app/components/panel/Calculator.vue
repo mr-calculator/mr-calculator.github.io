@@ -3,7 +3,7 @@
         <div class="rich-title">
             To get to <br/>
             <span class="icon">
-                <img :src="goal.rank?.icon" />
+                <img :src="goal.rank?.icon" draggable="false" />
             </span>
             <span class="level">LV{{ goal.level }}</span>
             <br/>
@@ -11,6 +11,7 @@
                 <img
                     v-if="!goal.reward.iconAnimation"
                     :src="goal.reward.icon"
+                    draggable="false"
                 />
                 <div v-else class="animated-icon-wrapper">
                     <UiAnimatedIcon
@@ -48,11 +49,11 @@
 
             You are viewing
             <span class="icon">
-                <img :src="totalTitleRanks.currentRank.rank.icon" />
+                <img :src="totalTitleRanks.currentRank.rank.icon" draggable="false" />
             </span>
             <span class="level">LV{{ totalTitleRanks.currentRank.level }}</span> to
             <span class="icon">
-                <img :src="totalTitleRanks.nextRank?.rank.icon" />
+                <img :src="totalTitleRanks.nextRank?.rank.icon" draggable="false" />
             </span>
             <span class="level">LV{{ totalTitleRanks.nextRank?.level }}</span>.
         </div>
@@ -455,7 +456,7 @@
                         } satisfies TooltipBinding) : undefined"
                     >
                         <div class="icon">
-                            <img :src="rank.rank.icon" />
+                            <img :src="rank.rank.icon" draggable="false" />
                             <p class="level">{{ rank.level }}</p>
                         </div>
 

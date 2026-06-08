@@ -1,9 +1,26 @@
 import type { SitemapUrlInput } from '@nuxtjs/sitemap';
 import { HERO_LIST } from './app/assets/data/heroes';
 import config from './app/composables/config'
+import { ACHIEVEMENT_CATEGORIES } from './app/assets/data/achievements/achievements';
 
-const prerenderableHeroPages: Record<string, { ssr: boolean }> = {};
-HERO_LIST.forEach(h => prerenderableHeroPages[`/heroes/${h.id}`] = { ssr: true });
+const HERO_PAGE_SUBPAGES = [
+    'customize', 'estimates', 'planner', 'achievements', 'costumes'
+];
+
+const prerenderableHeroPages = Object.fromEntries(
+    HERO_LIST.map(h =>[
+            [
+                `/heroes/${h.id}`,
+                { ssr: true }
+            ],
+            ...HERO_PAGE_SUBPAGES.map(subpage => [
+                `/heroes/${h.id}/${subpage}`,
+                { ssr: true }
+            ])
+        ]
+    ).flatMap(r => r)
+);
+
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -15,6 +32,17 @@ export default defineNuxtConfig({
         '/heroes/new': { ssr: false },
         '/heroes/**': { ssr: false },
         ...prerenderableHeroPages,
+
+        '/achievements': { ssr: true },
+        ...(Object.fromEntries(
+            ACHIEVEMENT_CATEGORIES.map(c => [`/achievements/${c.id}`, { ssr: true }]))
+        ),
+
+        '/costumes': { ssr: true },
+        '/profile': { ssr: true },
+        '/profile/**': { ssr: true },
+        '/profile/share': { ssr: false },
+
         '/download': { ssr: false },
         '/import': { ssr: false },
     },
@@ -26,7 +54,13 @@ export default defineNuxtConfig({
             routes: [
                 '/',
                 '/heroes',
-                ...HERO_LIST.map(h => `/heroes/${h.id}`),
+                ...HERO_LIST.map(h => [
+                        `/heroes/${h.id}`,
+                        ...HERO_PAGE_SUBPAGES.map(subpage => `/heroes/${h.id}/${subpage}`)
+                    ]
+                ).flatMap(r => r),
+
+                ...ACHIEVEMENT_CATEGORIES.map(c => `/achievements/${c.id}`)
             ]
         },
     },
@@ -136,7 +170,7 @@ export default defineNuxtConfig({
         },
         workbox: {
             globPatterns: ['**/*.{js,css,html,png,webp,svg,ico,json,ttf}'],
-            globIgnores: ['img/heroes/data/**/*', 'img/seo/**/*', 'img/changelog/**/*'],
+            globIgnores: ['img/heroes/data/**/*', 'img/cosmetics/items/**/*', 'img/seo/**/*', 'img/changelog/**/*'],
             navigateFallback: undefined, // to show the 404 page since this is not a SPA
             navigateFallbackDenylist: [/\/sitemap\.xml/, /\/robots\.txt/, /\/__sitemap__\/.*/]
         }
@@ -154,6 +188,12 @@ export default defineNuxtConfig({
         urls: [
             ...HERO_LIST.map(h => ({
                 loc: `/heroes/${h.id}/`,
+                changefreq: 'monthly',
+                priority: 0.7
+            } as SitemapUrlInput)),
+
+            ...ACHIEVEMENT_CATEGORIES.map(c => ({
+                loc: `/achievements/${c.id}`,
                 changefreq: 'monthly',
                 priority: 0.7
             } as SitemapUrlInput))

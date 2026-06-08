@@ -1,8 +1,13 @@
 import z from "zod";
-import { tex } from "./textures";
+import { tex, type TextureKey } from "./textures";
 import avgHeroStats from './average-hero-stats.json';
 import heroMatches from './hero-matches.json';
-import { AchievementSchema, type Achievement } from "./achievements";
+import { AchievementSchema, type Achievement } from "./achievements/achievements";
+import type { Option } from "~/components/form/Dropdown.vue";
+import { DEFAULT_NAMEPLATE_ID } from "./cosmetics/nameplates/nameplates";
+import type { ProfileSheetData } from "~/services/generate-profile-sheet";
+
+export const LATEST_SEASON_NO = '8';
 
 export type HeroRole = 'vanguard'|'duelist'|'strategist';
 export const HeroRoleSchema = z.enum(['vanguard', 'duelist', 'strategist']);
@@ -202,6 +207,89 @@ export const CHALLENGE_REWARDS_PER_RANK: Record<ProficiencyRank['id'], number> =
     champion: 80
 }
 
+export const RaritySchema = z.enum(['common', 'rare', 'epic', 'legendary', 'mythic']);
+export type Rarity = z.infer<typeof RaritySchema>;
+
+export type RarityData = {
+    id: string,
+    name: string,
+    tex: TextureKey,
+    color: string,
+    order: number
+}
+export const RARITY_DATA: Record<Rarity, RarityData> = {
+    common: {
+        id: 'common',
+        name: 'Common',
+        tex: 'rarityCommon',
+        color: '#b0c0c8',
+        order: 0
+    },
+    rare: {
+        id: 'rare',
+        name: 'Rare',
+        tex: 'rarityRare',
+        color: '#75b1dd',
+        order: 1
+    },
+    epic: {
+        id: 'epic',
+        name: 'Epic',
+        tex: 'rarityEpic',
+        color: '#c785ff',
+        order: 2
+    },
+    legendary: {
+        id: 'legendary',
+        name: 'Legendary',
+        tex: 'rarityLegendary',
+        color: '#f7a739',
+        order: 3
+    },
+    mythic: {
+        id: 'mythic',
+        name: 'Mythic',
+        tex: 'rarityMythic',
+        color: '#f75b51',
+        order: 4
+    },
+}
+export const FILTER_RARITY_OPTS: (prefix?: string) => Option[] = (prefix) => [
+    {
+        leftIcon: {
+            key: 'rarityLegendary',
+            size: 20
+        },
+
+        label: `LEGENDARY`,
+        value: `${prefix ?? ''}legendary`,
+
+        whenSelected: { showOnlyLeftIcon: true }
+    },
+    {
+        leftIcon: {
+            key: 'rarityEpic',
+            size: 20
+        },
+
+        label: `EPIC`,
+        value: `${prefix ?? ''}epic`,
+
+        whenSelected: { showOnlyLeftIcon: true }
+    },
+    {
+        leftIcon: {
+            key: 'rarityRare',
+            size: 20
+        },
+
+        label: `RARE`,
+        value: `${prefix ?? ''}rare`,
+
+        whenSelected: { showOnlyLeftIcon: true }
+    },
+];
+
 export const RewardSchema = z.object({
     level: z.number(),
     name: z.string(),
@@ -233,6 +321,20 @@ export const ProficiencyRankSchema = z.object({
 })
 export type ProficiencyRank = z.infer<typeof ProficiencyRankSchema>;
 
+export function calcTotalXp(level: number, points: number): number {
+    let total = points;
+    for (const rank of Object.values(PROFICIENCY_RANKS)) {
+        const lastCompleted = Math.min(rank.levelEnd, level - 1);
+
+        if (lastCompleted >= rank.levelStart)
+            total += (lastCompleted - rank.levelStart + 1) * rank.xpPerLevel;
+
+        if (rank.levelEnd >= level)
+            break;
+    }
+
+    return total;
+}
 
 export const RankSchema = z.object({
     type: ProficiencyRankSchema,
@@ -258,7 +360,7 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 1,
                 name: 'Default KO Prompt',
-                icon: '/img/heroes/common-rewards/default-ko-prompt.webp',
+                icon: '/img/common-rewards/default-ko-prompt.webp',
                 rarity: 'rare'
             },
             {
@@ -296,7 +398,7 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 8,
                 name: 'Fantastic %HERO_NAME%',
-                icon: '/img/heroes/common-rewards/title.webp',
+                icon: '/img/common-rewards/title.webp',
                 rarity: 'rare'
             },
         ]
@@ -322,7 +424,7 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 13,
                 name: '100 Unstable Molecules',
-                icon: '/img/heroes/common-rewards/unstable-mollecule.webp'
+                icon: '/img/common-rewards/unstable-mollecule.webp'
             },
         ]
     },
@@ -347,7 +449,7 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 18,
                 name: '100 Units',
-                icon: '/img/heroes/common-rewards/units.webp'
+                icon: '/img/common-rewards/units.webp'
             },
         ]
     },
@@ -372,7 +474,7 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 22,
                 name: '100 Unstable Molecules',
-                icon: '/img/heroes/common-rewards/unstable-mollecule.webp'
+                icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
                 level: 24,
@@ -397,18 +499,18 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 25,
                 name: 'Count Badge',
-                icon: '/img/heroes/common-rewards/count-badge.webp',
+                icon: '/img/common-rewards/count-badge.webp',
                 rarity: 'rare'
             },
             {
                 level: 27,
                 name: '100 Units',
-                icon: '/img/heroes/common-rewards/units.webp'
+                icon: '/img/common-rewards/units.webp'
             },
             {
                 level: 29,
                 name: 'Uncanny %HERO_NAME%',
-                icon: '/img/heroes/common-rewards/title.webp',
+                icon: '/img/common-rewards/title.webp',
                 rarity: 'rare'
             }
         ]
@@ -428,13 +530,13 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 30,
                 name: 'Colonel Avatar Frame',
-                icon: '/img/heroes/common-rewards/colonel-frame.webp',
+                icon: '/img/common-rewards/colonel-frame.webp',
                 rarity: 'epic'
             },
             {
                 level: 32,
                 name: '100 Unstable Molecules',
-                icon: '/img/heroes/common-rewards/unstable-mollecule.webp'
+                icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
                 level: 34,
@@ -459,18 +561,18 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 35,
                 name: 'Warrior Badge',
-                icon: '/img/heroes/common-rewards/warrior-badge.webp',
+                icon: '/img/common-rewards/warrior-badge.webp',
                 rarity: 'epic'
             },
             {
                 level: 37,
                 name: '100 Units',
-                icon: '/img/heroes/common-rewards/units.webp'
+                icon: '/img/common-rewards/units.webp'
             },
             {
                 level: 39,
                 name: 'Amazing %HERO_NAME%',
-                icon: '/img/heroes/common-rewards/title.webp',
+                icon: '/img/common-rewards/title.webp',
                 rarity: 'rare'
             }
         ]
@@ -490,18 +592,18 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 40,
                 name: 'Elite Avatar Frame',
-                icon: '/img/heroes/common-rewards/elite-frame.webp',
+                icon: '/img/common-rewards/elite-frame.webp',
                 rarity: 'legendary'
             },
             {
                 level: 42,
                 name: '100 Unstable Molecules',
-                icon: '/img/heroes/common-rewards/unstable-mollecule.webp'
+                icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
                 level: 44,
                 name: '100 Units',
-                icon: '/img/heroes/common-rewards/units.webp'
+                icon: '/img/common-rewards/units.webp'
             },
         ]
     },
@@ -520,18 +622,18 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 45,
                 name: 'Guardian Badge',
-                icon: '/img/heroes/common-rewards/guardian-badge.webp',
+                icon: '/img/common-rewards/guardian-badge.webp',
                 rarity: 'epic'
             },
             {
                 level: 47,
                 name: '100 Unstable Molecules',
-                icon: '/img/heroes/common-rewards/unstable-mollecule.webp'
+                icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
                 level: 49,
                 name: '100 Units',
-                icon: '/img/heroes/common-rewards/units.webp'
+                icon: '/img/common-rewards/units.webp'
             },
         ]
     },
@@ -562,13 +664,13 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 55,
                 name: 'Champion Badge',
-                icon: '/img/heroes/common-rewards/champion-badge.webp',
+                icon: '/img/common-rewards/champion-badge.webp',
                 rarity: 'legendary'
             },
             {
                 level: 60,
                 name: 'Immortal %HERO_NAME%',
-                icon: '/img/heroes/common-rewards/title.webp',
+                icon: '/img/common-rewards/title.webp',
                 rarity: 'epic'
             },
             {
@@ -580,12 +682,39 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
             {
                 level: 70,
                 name: 'Legendary %HERO_NAME%',
-                icon: '/img/heroes/common-rewards/title.webp',
+                icon: '/img/common-rewards/title.webp',
                 rarity: 'legendary'
             },
         ]
     },
 }
+export const PROFICIENCY_RANK_BADGES: Record<string, string> = {
+    agent: tex('rankAgent'),
+    knight: tex('rankKnight'),
+    captain: tex('rankCaptain'),
+    centurion: tex('rankCenturion'),
+    lord: tex('rankLord'),
+    count: tex('rankCount'),
+    colonel: tex('rankColonel'),
+    warrior: tex('rankWarrior'),
+    elite: tex('rankElite'),
+    guardian: tex('rankGuardian'),
+    champion: tex('rankChampion'),
+}
+export const PROFICIENCY_RANK_BADGE_BGS: Record<string, string> = {
+    agent: tex('rankAgentBg'),
+    knight: tex('rankKnightBg'),
+    captain: tex('rankCaptainBg'),
+    centurion: tex('rankCenturionBg'),
+    lord: tex('rankLordBg'),
+    count: tex('rankCountBg'),
+    colonel: tex('rankColonelBg'),
+    warrior: tex('rankWarriorBg'),
+    elite: tex('rankEliteBg'),
+    guardian: tex('rankGuardianBg'),
+    champion: tex('rankChampionBg'),
+}
+
 export function levelToRank(level: number, matchStartOnly = false) {
     if (!matchStartOnly)
         return Object.values(PROFICIENCY_RANKS).find(r => r.levelStart <= level && r.levelEnd >= level);
@@ -604,6 +733,7 @@ export const HeroDataSchema = z.object({
         featured: z.boolean().optional()
     }).optional(),
 
+    internalId: z.string().optional(),
     id: z.string(),
     name: z.string(),
     aliases: z.array(z.string()).optional(),
@@ -617,7 +747,10 @@ export const HeroDataSchema = z.object({
     iconAnimationSize: z.tuple([z.number(), z.number()]).optional(),
     iconAnimationOffset: z.tuple([z.number(), z.number()]).optional(),
     iconLargeAnimationOffset: z.tuple([z.number(), z.number()]).optional(),
-    iconLargeMask: z.string().optional()
+    iconLargeMask: z.string().optional(),
+
+    easterEgg: z.string().optional(),
+    easterEggMessage: z.string().optional(),
 });
 export type HeroData = z.infer<typeof HeroDataSchema>;
 
@@ -720,16 +853,74 @@ export const DEFAULT_HERO_STORE = (): PlayerHeroStore => PlayerHeroStoreSchema.p
 });
 
 
+export const ProfileStoreSchema = z.object({
+    name: z.string().min(3).max(50).default('Guest'),
+    nameplate: z.string().default(DEFAULT_NAMEPLATE_ID),
+    frame: z.string().optional(),
+    title: z.string().optional(),
+    level: z.number().min(1).max(100).default(1),
+
+    selectedHero: z.object({
+        id: z.string().default('luna-snow'),
+        skin: z.string().optional()
+    })
+});
+export type ProfileStore = z.infer<typeof ProfileStoreSchema>;
+export const DEFAULT_PROFILE_STORE = async (): Promise<ProfileStore> => 
+    ProfileStoreSchema.parse({
+        selectedHero: {}
+    });
+
+export async function setupProfile() {
+    if (!import.meta.client || localStorage.getItem('profile'))
+        return;
+
+    const profile = useLocalStorage('profile', await DEFAULT_PROFILE_STORE(), ProfileStoreSchema);
+
+    // random alias
+    const { HERO_LIST } = await import('./heroes');
+    const randomHeroIdx = getRandomInt(0, HERO_LIST.length - 1);
+    const randomHero = HERO_LIST[randomHeroIdx]!;
+
+    const randomAliasIdx = getRandomInt(0, (randomHero.aliases?.length ?? 1) - 1);
+    const randomAlias = randomHero.aliases?.[randomAliasIdx]!;
+
+    profile.value.name = randomAlias;
+
+    // random hero
+    profile.value.selectedHero.id = randomHero.id;
+}
+
 export const PreferencesStoreSchema = z.object({
     sawHeroQuickEditPopup: z.boolean().default(false),
     sawHeroEditPopup: z.boolean().default(false),
     sawAchievementsTab: z.boolean().default(false),
     sawCosmeticsTab: z.boolean().default(false),
-    plannerCalendarMeasureUnit: z.enum(['hours', 'quick_matches', 'comp_matches']).default('quick_matches')
+
+    sawAchievementsPage: z.boolean().default(false),
+    sawCostumesPage: z.boolean().default(false),
+    sawNameplatesPage: z.boolean().default(false),
+    sawFramesPage: z.boolean().default(false),
+
+    sawDeveloperLetter: z.string().optional(),
+
+    plannerCalendarMeasureUnit: z.enum(['hours', 'quick_matches', 'comp_matches']).default('quick_matches'),
+    heroList: z.object({
+        view: z.enum(['gallery', 'list']).default('gallery'),
+        filterRole: z.enum(
+            ['all-roles', 'vanguard', 'duelist', 'strategist', 'favourite']
+        ).default('all-roles'),
+        filterFavourites: z.boolean().default(false),
+
+        listSortKey: z.enum(['name', 'role', 'rank', 'level', 'xp', 'current-xp']).default('xp'),
+        listSortDirection: z.enum(['asc', 'desc']).default('desc')
+    })
 })
 export type PreferencesStore = z.infer<typeof PreferencesStoreSchema>;
 export const DEFAULT_PREFERENCES_STORE = (): PreferencesStore => 
-    PreferencesStoreSchema.parse({});
+    PreferencesStoreSchema.parse({
+        heroList: {}
+    });
 
 
 export const AVG_QUICK_MATCH_DURATION_MIN = 8.5;
@@ -737,6 +928,116 @@ export const AVG_COMP_MATCH_DURATION_MIN = 11.7;
 export const AVG_ARCADE_MATCH_DURATION_MIN = 4.2;
 
 // ==== SERIALIZATION ====
+
+
+export const ProfileSheetDataExportableSchema = z.object({
+    // profile
+    p: z.tuple([
+        /** 0 name */ z.string(),
+        /** 1 level */ z.number(),
+        /** 2 selectedHeroImageUrl */ z.string(),
+        /** 3 iconId */ z.string(),
+
+        /** highestRank */
+            /** 4 rankId */ z.string(),
+            /** 5 level */ z.number(),
+            /** 6 heroName */ z.string(),
+
+        /** 7 frameId */ z.string().optional(),  
+    ]),
+    // heroes
+    h: z.array(z.tuple([
+        /** 0 heroId */ z.string(),
+        /** 1 levels */ z.number(),
+        /** 2 rankName */ z.string(),
+        /** 3 unknownHeroName */ z.string().optional(),
+    ])),
+    // proficiency
+    f: z.tuple([
+        /** 0 points */ z.number(),
+        /** 1 lords */ z.number(),
+        /** 2 champions */ z.number(),
+    ]),
+    // other
+    o: z.tuple([
+        /** 0 achievements */ z.number(),
+        /** 1 costumes */ z.number(),
+    ])
+});
+export type ProfileSheetDataExportable = z.infer<typeof ProfileSheetDataExportableSchema>;
+
+export async function parseProfileSheetData(base64: string) {
+    if (!import.meta.client)
+        return false;
+
+    let data: ProfileSheetDataExportable|null = null;
+    try {
+        const result = ProfileSheetDataExportableSchema.safeParse(JSON.parse(fromBase64(base64)));
+        if (!result.success) {
+            console.error(result.error);
+            return null;
+        }
+
+        data = result.data;
+    }
+    catch(e) {
+        console.error(e);
+        return null;
+    }
+
+    if (!data)
+        return null;
+
+    try {
+        const { HERO_LIST, UNKNOWN_HERO } = await import('./heroes');
+
+        const sheetData: ProfileSheetData = {
+            profile: {
+                name: data.p[0],
+                level: data.p[1],
+                selectedHeroImageUrl: data.p[2],
+                iconUrl: `/img/cosmetics/items/icons/${data.p[3]}.webp`,
+                frameUrl: data.p[7]
+                    ? `/img/cosmetics/items/frames/icon/img_playerheadframe_${data.p[7]}.png`
+                    : undefined,
+
+                highestRank: {
+                    iconUrl: PROFICIENCY_RANK_BADGES[data.p[4]]!,
+                    iconBgUrl: PROFICIENCY_RANK_BADGE_BGS[data.p[4]]!,
+                    name: PROFICIENCY_RANKS[data.p[4]]!.name,
+                    level: data.p[5],
+                    heroName: data.p[6]
+                }
+            },
+            heroes: data.h.map(h => {
+                let hero = HERO_LIST.find(hL => hL.id == h[0]);
+                if (!hero)
+                    hero = UNKNOWN_HERO();
+
+                return {
+                    name: h[3] ?? hero.name,
+                    iconUrl: hero.dataDir + 'head.webp',
+                    levels: h[1],
+                    rankName: h[2],
+                }
+            }).filter(Boolean) as ProfileSheetData['heroes'][0][],
+            proficiency: {
+                points: data.f[0],
+                lords: data.f[1],
+                champions: data.f[2],
+            },
+            other: {
+                achievements: data.o[0],
+                costumes: data.o[1],
+            }
+        }
+
+        return sheetData;
+    }
+    catch {
+        return null;
+    }
+}
 
 export interface SerializableDataMap {
     hero: {
@@ -754,7 +1055,10 @@ export interface SerializableDataMap {
         achievements?: Achievement[],
         unknownHeroes?: HeroData[],
         preferences?: PreferencesStore,
-        ownedCostumes?: Record<string, string[]>
+        profile?: ProfileStore,
+        ownedCostumes?: Record<string, string[]>,
+        ownedNameplates?: string[],
+        ownedFrames?: string[]
     }
 }
 
@@ -796,7 +1100,10 @@ export const ProfileSegmentSchema = z.object({
         achievements: z.array(AchievementSchema).optional(),
         unknownHeroes: z.array(HeroDataSchema).optional(),
         preferences: PreferencesStoreSchema.optional(),
-        ownedCostumes: z.record(z.string(), z.array(z.string())).optional()
+        profile: ProfileStoreSchema.optional(),
+        ownedCostumes: z.record(z.string(), z.array(z.string())).optional(),
+        ownedNameplates: z.array(z.string()).optional(),
+        ownedFrames: z.array(z.string()).optional()
     })
 })
 
@@ -804,3 +1111,19 @@ export const AnySegmentSchema = z.discriminatedUnion('type', [
     HeroSegmentSchema,
     ProfileSegmentSchema
 ])
+
+export function fixUnknownHeroesImagePaths() {
+    const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
+
+    for (const hero of unknownHeroes.value) {
+        for (const rank of hero.ranks) {
+            for (const reward of rank.type.rewards) {
+                const oldPath = '/img/heroes/common-rewards/';
+                if (!reward.icon.startsWith(oldPath))
+                    continue;
+
+                reward.icon = `/img/common-rewards/` + reward.icon.slice(oldPath.length, reward.icon.length);
+            }
+        }
+    }
+}

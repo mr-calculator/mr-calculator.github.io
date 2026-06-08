@@ -701,5 +701,32 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "id": "8272a081-4259-4887-a5d1-1a4bd04af2c7_future-firesale",
+    "title": "Future Firesale",
+    "description": "Breach the defenses in Alchemax Headquarters.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "46ae4508-fc23-4bfb-9bf2-ca4f50782d9b_cute-smart-clever",
+    "title": "Cute, Smart, Clever",
+    "description": "Chat with Moon Girl in the Alchemax Headquarters Vice President's Office.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "ddacdb0c-565b-4ff1-9ebd-2a9e2c0cdbfa_alchemaxll-make-ya",
+    "title": "Alchemax'll Make Ya",
+    "description": "Jump on beat 5 times in a row while the Musical Fountain is active in Alchemax Headquarters.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

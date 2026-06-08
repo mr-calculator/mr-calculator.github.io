@@ -29,10 +29,13 @@ scripts/*
 !scripts/appropriate.ts
 !scripts/add-hero
 !scripts/add-hero/*
+!scripts/add-achievement.ts
 !scripts/parse-achievements-table
 !scripts/parse-achievements-table/*
 !scripts/parse-costumes
 !scripts/parse-costumes/*
+!scripts/parse-nameplates
+!scripts/parse-nameplates/*
 !scripts/generate-hero-seo-image
 !scripts/generate-hero-seo-image/*
 !scripts/tsconfig.json

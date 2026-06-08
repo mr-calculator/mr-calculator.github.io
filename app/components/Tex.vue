@@ -28,7 +28,7 @@
         <img
             v-if="mode == 'image'"
             :src="imgSrc"
-            :alt="title ?? altText"
+            :alt="title"
 
             :style="{
                 width: typeof width === 'number' ? `${width}px` : width,
@@ -36,6 +36,8 @@
 
                 objectFit,
             }"
+
+            draggable="false"
         />
         <div
             v-else
@@ -48,7 +50,7 @@
                 maskSize: objectFit
             }"
 
-            :title="title ?? altText"
+            :title="title"
         />
 
         <div v-if="$slots.default" class="tex-slot">
@@ -165,11 +167,8 @@ const isHovering = ref(false);
 
 const squareButton = TEX.squareButton;
 
-watch(() => props.image, () => {
+watch([() => props.image, () => props.src, () => props.state], () => {
     imgSrcRel.value = image.value[props.state] ?? image.value.default;
-});
-watch(() => props.state, (state) => {
-    imgSrcRel.value = image.value[state] ?? image.value.default;
 });
 
 function onHover(mobileEvent = false) {

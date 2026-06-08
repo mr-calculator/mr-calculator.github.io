@@ -1,0 +1,149 @@
+<template>
+    <component
+        ref="tab"
+        :is="!!link ? NuxtLink : 'li'"
+
+        :class="{
+            tabItem: 1,
+
+            'warning-wrapper': isMarkedAs('warning-bubble'),
+            new: isMarkedAs('new'),
+            selected,
+            special: isMarkedAs('special'),
+        }"
+
+        :to="link"
+        draggable="false"
+
+        v-bind="$attrs"
+    >
+        <!-- ANIMATION (SPECIAL) -->
+        <div
+            v-if="isMarkedAs('special') && !selected"
+            class="special-animation"
+        />
+
+        <!-- NEW? -->
+        <ClientOnly>
+            <span
+                v-if="isMarkedAs('new')"
+                class="new">
+                NEW
+            </span>
+        </ClientOnly>
+
+        <slot />
+
+        <!-- EXCLAMATION MARK -->
+        <ClientOnly>
+            <Tex
+                v-if="isMarkedAs('warning-bubble')"
+                class="warning-bubble"
+                image="redDotExcl"
+
+                object-fit="contain"
+            />
+        </ClientOnly>
+
+        <!-- ANIMATION (CLICK) -->
+        <div
+            v-if="(typeof animationTask !== 'undefined')"
+            class="active-animation"
+        />
+    </component>
+    <!-- SUBMENU -->
+    <div
+        v-if="selected && submenuSlots"
+        :class="{
+            [breakpointBreak ? 'navbar-submenu' : 'inner-submenu']: 1,
+            'full-width': fullWidth,
+        }"
+        :style="{
+            '--tab-left': tabLeft
+        }"
+    >
+        <Tab
+            v-for="{ slotName, slotId, selected, marks } in submenuSlots"
+            :key="slotName"
+            class="submenu-item"
+
+            :link="link ? trimLast('/', link) + '/' + slotId : undefined"
+            :marks="marks"
+            :selected="selected"
+
+            @click="$emit('submenuTabClick', slotName)"
+        >
+            <slot :name="slotName" />
+        </Tab>
+    </div>
+</template>
+
+<style src="@/assets/style/components/nav-bar.sass" scoped></style>
+
+<script setup lang="ts">
+import { NuxtLink } from '#components';
+import type { ComponentInstance } from 'vue';
+import type { BarMark, MarkType, SubmenuTab } from './Bar.vue';
+
+const props = defineProps<{
+    link?: string,
+    marks?: BarMark,
+    selected: boolean,
+
+    submenuSlots?: SubmenuTab[],
+    fullWidth?: boolean,
+    breakpointBreak?: boolean
+}>();
+
+const emits = defineEmits<{
+    submenuTabClick: [ slotName: string ]
+}>();
+
+function isMarkedAs(as: MarkType) {
+    if (!props.marks || props.marks == 'none')
+        return false;
+
+    if (Array.isArray(props.marks))
+        return props.marks.includes(as);
+
+    return props.marks == as;
+}
+
+const tab = useTemplateRef<HTMLElement|ComponentInstance<typeof NuxtLink>>('tab');
+const tabRect = ref({
+    width: 0,
+    left: 0
+});
+function getTabRect() {
+    const rect = (tab.value as HTMLElement)?.getBoundingClientRect?.()
+        || ((tab.value as ComponentInstance<typeof NuxtLink>)?.$el as HTMLElement)?.getBoundingClientRect?.();
+    return { width: rect?.width ?? 0, left: rect?.left ?? 0 };
+}
+
+onMounted(() => window?.setTimeout(() => tabRect.value = getTabRect(), 100));
+useEvent('resize', () => tabRect.value = getTabRect());
+
+const tabLeft = computed(() => {
+    let left = tabRect.value.left + tabRect.value.width / 2;
+
+    if (left < 100)
+        left = 100;
+
+    return left + 'px';
+})
+
+const animationTask = ref<number|undefined>();
+
+watch(() => props.selected, (selected, newSelected) => {
+    if (selected == newSelected || !selected)
+        return;
+
+    clearTimeout(animationTask.value);
+    animationTask.value = window?.setTimeout(() => {
+        animationTask.value = undefined;
+    }, 450);
+});
+
+onUnmounted(() => clearTimeout(animationTask.value));
+
+</script>

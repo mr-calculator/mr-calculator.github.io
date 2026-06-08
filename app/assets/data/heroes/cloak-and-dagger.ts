@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const CloakAndDagger: HeroData = {
+    internalId: '1025',
     id: 'cloak-and-dagger',
     name: 'Cloak and Dagger',
     aliases: [

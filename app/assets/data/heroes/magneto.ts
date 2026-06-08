@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const Magneto: HeroData = {
+    internalId: '1037',
     id: 'magneto',
     name: 'Magneto',
     aliases: [

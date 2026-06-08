@@ -3,8 +3,8 @@
     <div class="planner">
         <h2 class="rich-title">
             Let's plan your road to
-            <span class="icon">
-                <img :src="goal.rank?.icon" />
+            <span v-if="goal.rank" class="icon">
+                <img :src="goal.rank.icon" :alt="`${goal.rank.name} Icon`" draggable="false" />
             </span>
             <span class="level">LV{{ goal.level }}</span>!
         </h2>
@@ -146,7 +146,7 @@
                     <div class="header" @click="day.enabled = !day.enabled">
                         <FormCheckbox
                             class="checkbox"
-                            small
+                            size="small"
                             v-model="day.enabled"
                         />
                         <h3>{{ key.toUpperCase() }}</h3>
@@ -415,7 +415,7 @@
         <!-- <div class="auto-track">
             <FormCheckbox
                 class="input checkbox"
-                small
+                size="small"
                 v-model="settings.track"
             >
                 Track my progress automatically
@@ -465,14 +465,14 @@
     <!-- <div v-else class="planner">
         <div class="edit-button-wrapper">
             <div class="edit-button" @click="editMode = !editMode">
-                <img src="/img/edit_icon.png" style="filter: invert(0.8)" />
+                <img src="/img/edit_icon.png" style="filter: invert(0.8)" draggable="false" />
             </div>
         </div>
 
         <h2 class="rich-title">
             Your roadmap to
             <span class="icon">
-                <img :src="goal.rank?.icon" />
+                <img :src="goal.rank?.icon" draggable="false" />
             </span>
             <span class="level">LV{{ goal.level }}</span>
         </h2>

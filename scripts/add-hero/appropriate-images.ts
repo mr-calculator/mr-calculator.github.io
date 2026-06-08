@@ -33,7 +33,14 @@ export const FILES = {
     'ko-2': 'Item/Kill/item_kill_2%HERO_ID%13',
 
     'logo': 'HeroLogo/img_herologo_%HERO_ID%_logo',
-    'portrait': 'Show/Skin/OriginalSkin/img_heroportrait_%HERO_ID%0010_portrait',
+    'portrait': [
+        'Show/Skin/OriginalSkin/img_heroportrait_%HERO_ID%0010_portrait',
+        'Show/Skin/OriginalSkin/img_heroportrait_%HERO_ID%0010_small2' // cnd both
+    ],
+    'full-body': [
+        'Show/Skin/OriginalSkin/img_heroportrait_%HERO_ID%0010_portrait',
+        'Show/Skin/OriginalSkin/img_heroportrait_%HERO_ID%0010_small2' // cnd both
+    ],
     'prestige': 'HeroGallery_V3/HeroDetail/Prestige/HeroPrestige/img_prestige_%HERO_ID%0010_hero',
     'story': [
         'HeroGallery_V3/HeroDetail/Story/Dynamic/img_herostory_%HERO_ID%01_hover',
@@ -61,7 +68,8 @@ export async function copyImages(
     internalId: string,
     heroId: string,
     logger: typeof log,
-    resources?: ResourceId[]
+    resources?: ResourceId[],
+    generateSEOImage: boolean = true
 ) {
     const heroDir = `./public/img/heroes/data/${heroId}/`;
     if (!fs.existsSync(heroDir))
@@ -107,6 +115,22 @@ export async function copyImages(
                 .webp({ quality: 85 })
                 .toFile(path.join(heroDir, result) + '.webp')
         }
+        else if (
+            result == 'full-body'
+         && (heroId == 'devil-dinosaur' || heroId == 'jeff-the-land-shark')) {
+            if (heroId == 'devil-dinosaur') {
+                await sharp(resourceFullPath())
+                    .extract({ left: 0, top: 0, width: 530, height: 484 })
+                    .webp({ quality: 85 })
+                    .toFile(path.join(heroDir, result) + '.webp')
+            }
+            else if (heroId == 'jeff-the-land-shark') {
+                await sharp(resourceFullPath())
+                    .extract({ left: 105, top: 0, width: 560, height: 380 })
+                    .webp({ quality: 85 })
+                    .toFile(path.join(heroDir, result) + '.webp')
+            }
+        }
         else {
             await sharp(resourceFullPath())
                 .webp({ quality: 85 })
@@ -115,12 +139,14 @@ export async function copyImages(
     }
 
 
-    logger.info(`Generating SEO image for ${heroId}`);
-    try {
-        const image = await generateSeoImage(heroId);
-        fs.writeFileSync(path.join(SEO_DEST_DIR, `${heroId}.webp`), image);
-    }
-    catch (e) {
-        logger.error(`Failed to generate image for [${heroId}] due to: "${e}"`);
+    if (generateSEOImage) {
+        logger.info(`Generating SEO image for ${heroId}`);
+        try {
+            const image = await generateSeoImage(heroId);
+            fs.writeFileSync(path.join(SEO_DEST_DIR, `${heroId}.webp`), image);
+        }
+        catch (e) {
+            logger.error(`Failed to generate image for [${heroId}] due to: "${e}"`);
+        }
     }
 }

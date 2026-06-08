@@ -268,5 +268,32 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "id": "547d0541-081a-4d98-828b-89cecf90c318_sins-of-alchemax",
+    "title": "Sins of Alchemax",
+    "description": "Unlock all Sins of Alchemax gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "cb32bb08-fe07-4c56-98d7-4987e700be82_blood-hunt",
+    "title": "Blood Hunt",
+    "description": "Unlock all Blood Hunt gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "375bf8e5-9d85-4e0e-b042-0a740b43e49d_the-hunt-is-on",
+    "title": "The Hunt is On",
+    "description": "Unlock all The Hunt is On gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
   }
 ]

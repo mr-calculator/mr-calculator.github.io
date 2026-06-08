@@ -1,318 +1,316 @@
 <template>
-    <div class="common-page">
-        <NuxtLink to="/" class="logo-standalone">
+    <div class="common-page with-padding">
+        <h1>
+            Import data
+        </h1>
+        <div
+            v-if="dataSegment === null"
+
+            :class="{
+                'upload-container': 1,
+                active: uploadDragOver
+            }"
+            @dragenter.prevent="onDragEnter"
+            @dragleave.prevent="onDragLeave"
+            @dragover.prevent
+
+            @drop.prevent="onDrop"
+        >
             <Tex
-                image="logo"
+                image="upload"
 
-                width="50px"
-                height="50px"
-
-                object-fit="contain"
+                width="80px"
+                height="80px"
             />
-        </NuxtLink>
-        <main class="content masked">
-            <div class="mask-wrapper">
-                <div class="scroll-container">
-                    <h1>
-                        Import data
-                    </h1>
-                    <div
-                        v-if="dataSegment === null"
+            <p>Drag and drop your <u>.mrprof</u> file here</p>
+            <p class="or">or</p>
+            <ul>
+                <li @click="fileUploadInput?.click()">
+                    Select file
+                </li>
+                <li @click="paste">
+                    Paste from clipboard
+                </li>
+            </ul>
+        </div>
 
+        <div v-if="overwriteCheck" class="overwrite-check">
+            <template v-if="overwriteCheck.remaining.length">
+                <h2>
+                    You are about to import the following data:
+                </h2>
+                <template v-if="dataSegment?.type == 'hero'">
+                    <ul class="import-list">
+                        <li v-if="dataSegment.data.stored">Hero Proficiency progress</li>
+                        <li v-if="dataSegment.data.__unknownHero">Added hero info</li>
+                        <li v-if="dataSegment.data.isFavourite">Hero favourite status</li>
+                        <li v-if="dataSegment.data.achievements">Hero achievements</li>
+                        <li v-if="dataSegment.data.ownedCostumes">Hero owned costumes</li>
+                    </ul>
+                </template>
+                <template v-else-if="dataSegment?.type == 'profile'">
+                    <ul class="import-list">
+                        <li v-if="dataSegment.data.storedHeroes">Proficiency progress</li>
+                        <li v-if="dataSegment.data.unknownHeroes">Added heroes info</li>
+                        <li v-if="dataSegment.data.favourites">Favourites</li>
+                        <li v-if="dataSegment.data.achievements">Achievements</li>
+                        <li v-if="dataSegment.data.ownedCostumes">Owned costumes</li>
+                        <li v-if="dataSegment.data.ownedNameplates">Owned nameplates</li>
+                        <li v-if="dataSegment.data.ownedFrames">Owned frames</li>
+                        <li v-if="dataSegment.data.preferences">Preferences</li>
+                        <li v-if="dataSegment.data.preferences">Profile (name, nameplate, frame, etc.)</li>
+                    </ul>
+                </template>
+
+                <h2>
+                    You will import the data of the following heroes
+                </h2>
+                <ul class="heroes">
+                    <li
+                        v-for="hero in overwriteCheck.remaining"
                         :class="{
-                            'upload-container': 1,
-                            'with-border-decorations': 1,
-                            active: uploadDragOver
+                            checked: overwriteToggles[hero.heroId],
+                            selected: selectedRemainingHero == hero.heroId
                         }"
-                        @dragenter.prevent="onDragEnter"
-                        @dragleave.prevent="onDragLeave"
-                        @dragover.prevent
+                        :title="hero.hero.name"
 
-                        @drop.prevent="onDrop"
+                        @click="clickHero(hero, true)"
                     >
-                        <Tex
-                            image="upload"
+                        <!--
+                            :class="{selected: selectedHero == hero.heroId}"
+                            @click="clickHero(hero.heroId)"
+                        -->
+                        <div
+                            v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
+                            class="check"
+                        >
+                            <Tex
+                                image="checkCorner"
 
-                            width="80px"
-                            height="80px"
-                        />
-                        <p>Drag and drop your <u>.mrprof</u> file here</p>
-                        <p class="or">or</p>
-                        <ul>
-                            <li @click="fileUploadInput?.click()">
-                                Select file
-                            </li>
-                            <li @click="paste">
-                                Paste from clipboard
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div v-if="overwriteCheck" class="overwrite-check">
-                        <template v-if="overwriteCheck.remaining.length">
-                            <h2>
-                                You are about to import the following data:
-                            </h2>
-                            <template v-if="dataSegment?.type == 'hero'">
-                                <ul class="import-list">
-                                    <li v-if="dataSegment.data.stored">Hero Proficiency progress</li>
-                                    <li v-if="dataSegment.data.__unknownHero">Added hero info</li>
-                                    <li v-if="dataSegment.data.isFavourite">Hero favourite status</li>
-                                    <li v-if="dataSegment.data.achievements">Hero achievements</li>
-                                    <li v-if="dataSegment.data.ownedCostumes">Hero owned costumes</li>
-                                </ul>
-                            </template>
-                            <template v-else-if="dataSegment?.type == 'profile'">
-                                <ul class="import-list">
-                                    <li v-if="dataSegment.data.storedHeroes">Proficiency progress</li>
-                                    <li v-if="dataSegment.data.unknownHeroes">Added heroes info</li>
-                                    <li v-if="dataSegment.data.favourites">Favourites</li>
-                                    <li v-if="dataSegment.data.achievements">Achievements</li>
-                                    <li v-if="dataSegment.data.ownedCostumes">Owned costumes</li>
-                                    <li v-if="dataSegment.data.preferences">Preferences</li>
-                                </ul>
-                            </template>
-
-                            <h2>
-                                You will import the data of the following heroes
-                            </h2>
-                            <ul class="heroes">
-                                <li
-                                    v-for="hero in overwriteCheck.remaining"
-                                    :class="{
-                                        checked: overwriteToggles[hero.heroId],
-                                        selected: selectedRemainingHero == hero.heroId
-                                    }"
-                                    :title="hero.hero.name"
-
-                                    @click="clickHero(hero, true)"
-                                >
-                                    <!--
-                                        :class="{selected: selectedHero == hero.heroId}"
-                                        @click="clickHero(hero.heroId)"
-                                    -->
-                                    <div
-                                        v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
-                                        class="check"
-                                    >
-                                        <Tex
-                                            image="checkCorner"
-
-                                            width="35px"
-                                            height="35px"
-                                        />
-                                    </div>
-                                    <div class="icon">
-                                        <img :src="`${hero.hero.dataDir}head.webp`" />
-                                    </div>
-                                    <div
-                                        v-if="hero.rank?.icon && hero.rank.id != 'agent'"
-                                        class="badge"
-                                    >
-                                        <img :src="hero.rank?.icon" />
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <div v-if="selectedRemainingHero && selectedRemainingHeroData" class="selected-hero">
-                                <div class="hero-info">
-                                    <FormCheckbox
-                                        v-if="selectedRemainingHeroData.type == 'both'"
-                                        :model-value="overwriteToggles[selectedRemainingHeroData.heroId]! || overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!"
-                                        @update:model-value="$event => {
-                                            overwriteToggles[selectedRemainingHeroData!.heroId] = $event,
-                                            overwriteUnknownHeroToggles[selectedRemainingHeroData!.heroId] = $event
-                                        }"
-
-                                        small
-                                    />
-                                    <div class="icon">
-                                        <img :src="`${selectedRemainingHeroData.hero.dataDir}head.webp`" />
-                                    </div>
-                                    <h3>
-                                        {{ selectedRemainingHeroData.hero.name }}
-                                    </h3>
-                                </div>
-
-                                <div class="toggle">
-                                    <FormCheckbox
-                                        v-if="selectedRemainingHeroData.type == 'both' || selectedRemainingHeroData.type == 'stats'"
-                                        v-model="overwriteToggles[selectedRemainingHeroData.heroId]!"  
-
-                                        small
-                                        append-slot
-                                    >
-                                        <h4>Import stats</h4>
-                                    </FormCheckbox>
-                                    <FormCheckbox
-                                        v-if="selectedRemainingHeroData.type == 'both' || selectedRemainingHeroData.type == 'unknown'"
-                                        v-model="overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!"  
-
-                                        small
-                                        append-slot
-                                    >
-                                        <h4>Import hero info</h4>
-                                    </FormCheckbox>
-
-                                    <Tex
-                                        image="cross"
-                                        color="var(--light-blue)"
-                                        hover="color"
-                                        hover-color="var(--blue-highlight)"
-
-                                        clickable
-                                        @click="selectedRemainingHero = null"
-
-                                        width="20px"
-                                        height="20px"
-                                        title="Close"
-                                    />
-                                </div>
-                            </div>
-                        </template>
-
-                        <template v-if="heroesWithData.length && overwriteCheck.conflicting.length">
-                            <div>
-                                <h2>
-                                    We found conflicts with your current data
-                                </h2>
-                                <p>The following heroes already have data attached to them. Choose which ones to overwrite.</p>
-                            </div>
-                            <ul class="heroes">
-                                <li
-                                    v-for="hero in overwriteCheck.conflicting"
-                                    :class="{
-                                        checked: overwriteToggles[hero.heroId],
-                                        selected: selectedHero == hero.heroId
-                                    }"
-                                    :title="hero.hero.name"
-
-                                    @click="clickHero(hero)"
-                                >
-                                    <!--
-                                        :class="{selected: selectedHero == hero.heroId}"
-                                        @click="clickHero(hero.heroId)"
-                                    -->
-                                    <div
-                                        v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
-                                        class="check"
-                                    >
-                                        <Tex
-                                            image="checkCorner"
-
-                                            width="35px"
-                                            height="35px"
-                                        />
-                                    </div>
-                                    <div class="icon">
-                                        <img :src="`${hero.hero.dataDir}head.webp`" />
-                                    </div>
-                                    <div
-                                        v-if="hero.rank?.icon && hero.rank.id != 'agent'"
-                                        class="badge"
-                                    >
-                                        <img :src="hero.rank?.icon" />
-                                    </div>
-                                </li>
-                            </ul>
-                        </template>
-
-                        <div v-if="selectedHero && selectedHeroData" class="selected-hero">
-                            <div class="hero-info">
-                                <FormCheckbox
-                                    v-if="selectedHeroData.type == 'both'"
-                                    :model-value="overwriteToggles[selectedHeroData.heroId]! || overwriteUnknownHeroToggles[selectedHeroData.heroId]!"
-                                    @update:model-value="$event => {
-                                        overwriteToggles[selectedHeroData!.heroId] = $event,
-                                        overwriteUnknownHeroToggles[selectedHeroData!.heroId] = $event
-                                    }"
-
-                                    small
-                                />
-                                <div class="icon">
-                                    <img :src="`${selectedHeroData.hero.dataDir}head.webp`" />
-                                </div>
-                                <h3>
-                                    {{ selectedHeroData.hero.name }}
-                                </h3>
-                            </div>
-
-                            <div class="toggle">
-                                <FormCheckbox
-                                    v-if="selectedHeroData.type == 'both' || selectedHeroData.type == 'stats'"
-                                    v-model="overwriteToggles[selectedHeroData.heroId]!"  
-
-                                    small
-                                    append-slot
-                                >
-                                    <h4>Overwrite stats</h4>
-                                </FormCheckbox>
-                                <FormCheckbox
-                                    v-if="selectedHeroData.type == 'both' || selectedHeroData.type == 'unknown'"
-                                    v-model="overwriteUnknownHeroToggles[selectedHeroData.heroId]!"  
-
-                                    small
-                                    append-slot
-                                >
-                                    <h4>Overwrite hero info</h4>
-                                </FormCheckbox>
-
-                                <Tex
-                                    image="cross"
-                                    color="var(--light-blue)"
-                                    hover="color"
-                                    hover-color="var(--blue-highlight)"
-
-                                    clickable
-                                    @click="selectedHero = null"
-
-                                    width="20px"
-                                    height="20px"
-
-                                    title="Close"
-                                />
-                            </div>
+                                width="35px"
+                                height="35px"
+                            />
                         </div>
+                        <div class="icon">
+                            <img
+                                :src="`${hero.hero.dataDir}head.webp`"
+                                :alt="`${hero.hero.name}`"
+                                draggable="false"
+                            />
+                        </div>
+                        <div
+                            v-if="hero.rank?.icon && hero.rank.id != 'agent'"
+                            class="badge"
+                        >
+                            <img :src="hero.rank?.icon" :alt="`${hero.rank.name} Icon`" draggable="false" />
+                        </div>
+                    </li>
+                </ul>
 
-                        <p>
-                            I acknowledge that by importing the data, my current data, stats of / data of (for manually added) heroes that are checked above, preferences and favourites, will be overwritten or modified.
-                        </p>
+                <div v-if="selectedRemainingHero && selectedRemainingHeroData" class="selected-hero">
+                    <div class="hero-info">
+                        <FormCheckbox
+                            v-if="selectedRemainingHeroData.type == 'both'"
+                            :model-value="overwriteToggles[selectedRemainingHeroData.heroId]! || overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!"
+                            @update:model-value="$event => {
+                                overwriteToggles[selectedRemainingHeroData!.heroId] = $event,
+                                overwriteUnknownHeroToggles[selectedRemainingHeroData!.heroId] = $event
+                            }"
+
+                            size="small"
+                        />
+                        <div class="icon">
+                            <img
+                                :src="`${selectedRemainingHeroData.hero.dataDir}head.webp`"
+                                :alt="`${selectedRemainingHeroData.hero.name}`"
+                                draggable="false"
+                            />
+                        </div>
+                        <h3>
+                            {{ selectedRemainingHeroData.hero.name }}
+                        </h3>
                     </div>
 
-                    <div class="buttons">
-                        <FormButton
-                            v-if="dataSegment"
-                            size="small"
+                    <div class="toggle">
+                        <FormCheckbox
+                            v-if="selectedRemainingHeroData.type == 'both' || selectedRemainingHeroData.type == 'stats'"
+                            v-model="overwriteToggles[selectedRemainingHeroData.heroId]!"  
 
-                            @click="importData"
-                        >
-                            IMPORT DATA
-                        </FormButton>
-                        <FormButton
-                            v-if="dataSegment"
                             size="small"
-
-                            @click="dataSegment = null"
+                            append-slot
                         >
-                            CLEAR
-                        </FormButton>
+                            <h4>Import stats</h4>
+                        </FormCheckbox>
+                        <FormCheckbox
+                            v-if="selectedRemainingHeroData.type == 'both' || selectedRemainingHeroData.type == 'unknown'"
+                            v-model="overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!"  
+
+                            size="small"
+                            append-slot
+                        >
+                            <h4>Import hero info</h4>
+                        </FormCheckbox>
+
+                        <Tex
+                            image="cross"
+                            color="var(--light-blue)"
+                            hover="color"
+                            hover-color="var(--blue-highlight)"
+
+                            clickable
+                            @click="selectedRemainingHero = null"
+
+                            width="20px"
+                            height="20px"
+                            title="Close"
+                        />
                     </div>
+                </div>
+            </template>
 
-                    <p>
-                        <i>
-                            You can also import data from the <a href="https://oceanhillman.github.io/download" target="blank">oceanhillman fork</a> (the one with the costumes).
-                            <br/>
-                            Your owned costumes will be automatically converted so you don't lose anything!
-                        </i>
-                    </p>
+            <template v-if="heroesWithData.length && overwriteCheck.conflicting.length">
+                <div>
+                    <h2>
+                        We found conflicts with your current data
+                    </h2>
+                    <p>The following heroes already have data attached to them. Choose which ones to overwrite.</p>
+                </div>
+                <ul class="heroes">
+                    <li
+                        v-for="hero in overwriteCheck.conflicting"
+                        :class="{
+                            checked: overwriteToggles[hero.heroId],
+                            selected: selectedHero == hero.heroId
+                        }"
+                        :title="hero.hero.name"
 
-                    <p>
-                        You can download your data from other devices
-                        <NuxtLink to="/download">here</NuxtLink>.
-                    </p>
+                        @click="clickHero(hero)"
+                    >
+                        <!--
+                            :class="{selected: selectedHero == hero.heroId}"
+                            @click="clickHero(hero.heroId)"
+                        -->
+                        <div
+                            v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
+                            class="check"
+                        >
+                            <Tex
+                                image="checkCorner"
+
+                                width="35px"
+                                height="35px"
+                            />
+                        </div>
+                        <div class="icon">
+                            <img :src="`${hero.hero.dataDir}head.webp`" :alt="hero.hero.name" draggable="false" />
+                        </div>
+                        <div
+                            v-if="hero.rank?.icon && hero.rank.id != 'agent'"
+                            class="badge"
+                        >
+                            <img :src="hero.rank?.icon" :alt="`${hero.rank.name} Icon`" draggable="false" />
+                        </div>
+                    </li>
+                </ul>
+            </template>
+
+            <div v-if="selectedHero && selectedHeroData" class="selected-hero">
+                <div class="hero-info">
+                    <FormCheckbox
+                        v-if="selectedHeroData.type == 'both'"
+                        :model-value="overwriteToggles[selectedHeroData.heroId]! || overwriteUnknownHeroToggles[selectedHeroData.heroId]!"
+                        @update:model-value="$event => {
+                            overwriteToggles[selectedHeroData!.heroId] = $event,
+                            overwriteUnknownHeroToggles[selectedHeroData!.heroId] = $event
+                        }"
+
+                        size="small"
+                    />
+                    <div class="icon">
+                        <img
+                            :src="`${selectedHeroData.hero.dataDir}head.webp`"
+                            :alt="selectedHeroData.hero.name"
+                            draggable="false"
+                        />
+                    </div>
+                    <h3>
+                        {{ selectedHeroData.hero.name }}
+                    </h3>
+                </div>
+
+                <div class="toggle">
+                    <FormCheckbox
+                        v-if="selectedHeroData.type == 'both' || selectedHeroData.type == 'stats'"
+                        v-model="overwriteToggles[selectedHeroData.heroId]!"  
+
+                        size="small"
+                        append-slot
+                    >
+                        <h4>Overwrite stats</h4>
+                    </FormCheckbox>
+                    <FormCheckbox
+                        v-if="selectedHeroData.type == 'both' || selectedHeroData.type == 'unknown'"
+                        v-model="overwriteUnknownHeroToggles[selectedHeroData.heroId]!"  
+
+                        size="small"
+                        append-slot
+                    >
+                        <h4>Overwrite hero info</h4>
+                    </FormCheckbox>
+
+                    <Tex
+                        image="cross"
+                        color="var(--light-blue)"
+                        hover="color"
+                        hover-color="var(--blue-highlight)"
+
+                        clickable
+                        @click="selectedHero = null"
+
+                        width="20px"
+                        height="20px"
+
+                        title="Close"
+                    />
                 </div>
             </div>
-        </main>
+
+            <p>
+                I acknowledge that by importing the data, my current data, stats of / data of (for manually added) heroes that are checked above, preferences and favourites, will be overwritten or modified.
+            </p>
+        </div>
+
+        <div class="buttons">
+            <FormButton
+                v-if="dataSegment"
+                size="small"
+
+                @click="importData"
+            >
+                IMPORT DATA
+            </FormButton>
+            <FormButton
+                v-if="dataSegment"
+                size="small"
+
+                @click="dataSegment = null"
+            >
+                CLEAR
+            </FormButton>
+        </div>
+
+        <p>
+            <i>
+                You can also import data from the <a href="https://oceanhillman.github.io/download" target="blank" rel="noopener">oceanhillman fork</a> (the one with the costumes).
+                <br/>
+                Your owned costumes will be automatically converted so you don't lose anything!
+            </i>
+        </p>
+
+        <p>
+            You can download your data from other devices
+            <NuxtLink to="/download">here</NuxtLink>.
+        </p>
 
         <input
             ref="fileUploadInput"
@@ -557,20 +555,24 @@ p
 </style>
 
 <script setup lang="ts">
-import type { Achievement } from '~/assets/data/achievements';
+import type { Achievement } from '~/assets/data/achievements/achievements';
 import {
     AnySegmentSchema,
     DEFAULT_HERO_STORE,
     DEFAULT_PREFERENCES_STORE,
+    DEFAULT_PROFILE_STORE,
+    fixUnknownHeroesImagePaths,
     levelToRank,
     PreferencesStoreSchema,
+    ProfileStoreSchema,
     type AnySerializableDataSegment,
     type HeroData,
     type PlayerHeroStore,
     type PreferencesStore,
     type ProficiencyRank
 } from '~/assets/data/common';
-import { convertCostumeId } from '~/assets/data/costumes';
+import { convertCostumeId } from '~/assets/data/cosmetics/costumes/costumes';
+import { DEFAULT_NAMEPLATE_ID } from '~/assets/data/cosmetics/nameplates/nameplates';
 import { HERO_LIST } from '~/assets/data/heroes';
 
 useSeoMeta({
@@ -606,7 +608,10 @@ const storedHeroes = Object.entries(localStorage ?? {})
 const favourites = useLocalStorage<HeroData['id'][]>(`favourite_heroes`, []);
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 const preferences = useLocalStorage<PreferencesStore>('preferences', DEFAULT_PREFERENCES_STORE(), PreferencesStoreSchema);
+const profile = useLocalStorage('profile', await DEFAULT_PROFILE_STORE(), ProfileStoreSchema);
 const achievementsStore = useLocalStorage<Achievement[]>('achievements', []);
+const ownedNameplates = useLocalStorage<string[]>('nameplates_owned', [DEFAULT_NAMEPLATE_ID]);
+const ownedFrames = useLocalStorage<string[]>('frames_owned', []);
 
 const heroesWithData = computed(() => {
     return storedHeroes.map(heroStore => {
@@ -823,19 +828,17 @@ function onDrop(e: DragEvent) {
 const fileUploadInput: Ref<HTMLInputElement|null> = ref(null);
 
 function convertDataSegmentToVersion(version: number, dataSegment: AnySerializableDataSegment) {
-    switch(version) {
-        case 1:
-            return dataSegment;
-        case 2:
-            // reset hero edit popup acknowledgement
-            // set hero quick edit popup acknowledgement to default
-            if (dataSegment.type == 'profile' && dataSegment.data.preferences) {
-                const defaultPref = DEFAULT_PREFERENCES_STORE();
-                dataSegment.data.preferences.sawHeroEditPopup = defaultPref.sawHeroEditPopup;
-                dataSegment.data.preferences.sawHeroQuickEditPopup = defaultPref.sawHeroQuickEditPopup;
+    switch (version) {
+        // removed previous conversions as v2's reset is no longer necessary
+        // conversion of heroes_* local storage entries is not that necessary
+        // and too complex to implement
+        case 3:
+            if (dataSegment.type == 'profile') {
+                if (dataSegment.data.preferences)
+                    if (!dataSegment.data.preferences?.heroList) {
+                        dataSegment.data.preferences.heroList = DEFAULT_PREFERENCES_STORE().heroList;
+                    }
             }
-
-            return dataSegment;
     }
 
     return dataSegment;
@@ -893,7 +896,8 @@ function convertDataSegment(data: AnySerializableDataSegment) {
     if (data.version == config.dataVersion)
         return data;
 
-    for (let i = data.version; i <= config.dataVersion; i++)
+    // i starts at +1 since we dont want to convert current version to itself
+    for (let i = data.version + 1; i <= config.dataVersion; i++)
         data = convertDataSegmentToVersion(i, data);
 
     return data;
@@ -1083,6 +1087,8 @@ function importData() {
 
         if (dataSegment.value.data.preferences)
             preferences.value = dataSegment.value.data.preferences;
+        if (dataSegment.value.data.profile)
+            profile.value = dataSegment.value.data.profile;
 
         if (dataSegment.value.data.achievements) {
             dataSegment.value.data.achievements.forEach(a => {
@@ -1102,9 +1108,18 @@ function importData() {
             for (const [heroId, ownedList] of Object.entries(dataSegment.value.data.ownedCostumes))
                 localStorage.setItem(`cosmetics_owned_${heroId}`, JSON.stringify(ownedList));
         }
+
+        if (dataSegment.value.data.ownedNameplates)
+            ownedNameplates.value = dataSegment.value.data.ownedNameplates;
+        if (dataSegment.value.data.ownedFrames)
+            ownedFrames.value = dataSegment.value.data.ownedFrames;
     }
 
-    nextTick(resetLocalStorageCache);
+    nextTick(() => {
+        resetLocalStorageCache()
+
+        nextTick(fixUnknownHeroesImagePaths)
+    });
 
     dataSegment.value = null;
 

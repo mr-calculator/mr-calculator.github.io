@@ -5,6 +5,7 @@ export const DevilDinosaur: HeroData = {
         releasedAt: '2026-05-15',
         featured: true
     },
+    internalId: '1062',
     id: 'devil-dinosaur',
     name: 'Devil Dinosaur',
     aliases: [

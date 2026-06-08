@@ -15,6 +15,7 @@
                     :
                     '/img/heroes/data/unknown-hero/head.webp' 
                 "
+                draggable="false"
             >
             <div class="info">
                 <h3>{{ selectedHeroData?.name ?? `Select Hero` }}</h3>
@@ -50,6 +51,7 @@
             @close="heroSelectOpen = false"
         >
             <PanelHeroList
+                embedded
                 :selected-hero="selectedHero"
 
                 :links="false"

@@ -34,7 +34,7 @@ body
     font-size: 1.6rem
     background: $blue-accent
 
-    font-family: MRBody, -apple-system, sans-serif
+    font-family: $font-body
     color: $text-color
 
     overflow-x: hidden
@@ -93,6 +93,9 @@ a
     &.wrap
         flex-wrap: wrap
 
+section[id], div[id], li[id]
+    scroll-margin-top: 150px
+
 
 ul
     list-style: none
@@ -108,7 +111,7 @@ svg.customSvg
     
 
 h1, h2, h3
-    font-family: MarvelRivalsHeavy
+    font-family: $font-heavy
     font-weight: normal
 
 h1
@@ -134,7 +137,7 @@ h1
     outline: none
     
     font-size: 24px
-    font-family: MarvelRivalsBold
+    font-family: $font-bold
 
     display: flex
     justify-content: center
@@ -159,7 +162,7 @@ h1
     padding: 40px 20px 60px 20px
 
     font-size: 24px
-    font-family: MarvelRivalsBold
+    font-family: $font-bold
 
     display: flex
     justify-content: center
@@ -235,98 +238,336 @@ h1
         mask-image: var(--tex-borderBottom)
 
 .common-page
+    $full-height: calc(var(--u100vh) - 65px)
+
     width: 100%
-    min-height: var(--u100vh)
-    background: var(--tex-darkBackground)
-    background-size: 100% 100vh
+    min-height: $full-height
+
+    background: var(--tex-promotionalBackground) no-repeat
+    background-position: bottom
+    background-size: 100% $full-height
     background-attachment: fixed
 
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    gap: 10px
+
+    padding: 60px 0
+
+    +mediaIOS
+        background: transparent
+
+        &::before
+            content: ""
+            position: fixed
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            
+            background: var(--tex-promotionalBackground)
+            background-position: 50% calc(100% + 65px)
+            background-size: 100% calc($full-height + 65px + 65px)
+
+            z-index: -1
+            pointer-events: none
+
+    &::after
+        content: ""
+        position: fixed
+        bottom: 0
+        left: 0
+        width: 100%
+        height: $full-height
+
+        background: $blue var(--tex-promotionalBackground) no-repeat
+        background-position: bottom
+        background-size: 100% $full-height
+
+        mask: var(--tex-promotionalBackgroundMaskInverted) no-repeat
+        mask-size: 100% 100%
+        mask-mode: alpha
+
+        pointer-events: none
+
+        z-index: 2
+
+        +mediaIOS
+            display: none
+
+    &.with-padding
+        padding: 60px 20px
+
+    h1
+        font-size: 64px
+        font-family: $font-heavy
+        text-transform: uppercase
+        text-align: center
+        color: $blue
+
+        margin-bottom: 20px
+
+        +media-mobile
+            font-size: 46px
+
+.simple-page
+    position: relative
+    width: 100%
+    height: auto
+
+    display: flex
+    flex-direction: column
+    justify-content: start
+    align-items: center
+
+    padding: 40px 20px
+
+    background: $blue var(--tex-commonBackground) no-repeat
+    background-size: cover
+    background-position: center
+    background-attachment: fixed
+
+    z-index: 1
+
+    .bg-panes
+        position: fixed !important
+        top: 0
+
+        z-index: 2
+
+        &,
+        &::after,
+        &::before
+            content: ""
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100vh
+
+        &::before
+            z-index: -1
+
+            +media-tablet
+                background: var(--tex-leftPanel) no-repeat
+                background-size: auto 1200px
+                background-position: -779px 0
+
+            +media($size: 1400px)
+                background-size: auto 1200px
+                background-position: -729px 0
+
+        &::after
+            z-index: -1
+
+            +media-tablet
+                background: var(--tex-rightPanel) no-repeat
+                background-size: auto 1200px
+                background-position: calc(100% + 350px + 50px) 100%
+
+            +media($size: 1400px)
+                background-size: auto 1200px
+                background-position: calc(100% + 350px) 100%
+
+    > *
+        z-index: 3
+
     +media-desktop
-        display: flex
-        justify-content: center
+        min-height: calc(var(--u100vh) - 65px)
+
+    +mediaIOS
+        background: transparent
+
+        &::before
+            content: ""
+            position: fixed
+            top: 0
+            left: 0
+            width: 100%
+            height: var(--u100vh)
+            
+            background: var(--tex-commonBackground)
+            background-position: top
+            background-size: cover
+
+            z-index: -1
+            pointer-events: none
+
+    &.no-navbar
+        min-height: var(--u100vh)
+
+.mobile-title
+    position: relative
+    width: 100%
+
+    +media-desktop
+        display: none
+
+    &.dark
+        h1
+            color: $blue
+
+    .back
+        position: absolute
+        left: 0
+        top: 50%
+
+        transform: translateY(-50%)
+
+
+    h1
+        font-size: 45px
+        font-weight: 400
+        text-transform: uppercase
+        text-align: center
+        color: $light
+
+        padding: 0 60px
+
+        +media-desktop
+            font-size: 55px
+
+        b
+            font-weight: 400
+            color: #deb718
+
+.mobile-separator
+    max-width: 750px
+    padding: 0 20px
+
+    +media-desktop
+        display: none !important
+
+    &.with-spacing
+        margin-bottom: 20px
+
+
+.categories-list
+    height: fit-content
+    
+    display: flex
+    flex-direction: column
+    justify-content: start
+    gap: 5px
+
+    max-height: 400px
+    overflow-x: hidden
+    overflow-y: auto
+
+    padding-left: 13px
+
+    +scrollbar($thickness: 5px, $background: transparent, $thumb: $light-blue, $active: $color)
+
+    .category
+        position: relative
+        display: grid
+        grid-template-columns: 67px auto
+        grid-auto-rows: 1fr
         align-items: center
 
-    .logo-standalone
-        position: fixed
-        top: 20px
-        left: 20px
-
-        padding: 10px
-        background: $color
-        border-right: 10px solid $color
-        border-bottom: 10px solid $color
-
-        z-index: 20
         cursor: pointer
+        user-select: none
+
+        background: #f0f4fc
+
+        &:not(.selected)
+            +hover
+                .icon
+                    background: var(--tex-listItemIconHover) no-repeat
+                    background-size: 100% 100%
+                    border: 3px solid #fff
+
+                .name
+                    background: var(--tex-listItemHover) no-repeat
+                    background-size: 100% 100%
+
+
+        &.selected
+            &::before
+                display: block
+
+            .icon
+                background: var(--tex-listItemIconSelected) no-repeat
+                background-size: 100% 100%
+
+                border: 3px solid $color
+
+            .name
+                background: var(--tex-listItemSelected) no-repeat
+                background-size: 100% 100%
+
+                color: $color
 
         &::before
             content: ""
             position: absolute
-            left: 0
             top: 0
+            left: -13px
+
+            width: 10px
+            height: 100%
+
+            background: var(--tex-listItemDecorationSelected) no-repeat
+            background-size: 100% 100%
+
+            display: none
+
+        .icon,
+        .name
             width: 100%
             height: 100%
 
-            background: #32344c
+            display: flex
+            align-items: center
 
-            z-index: -1
+        .icon
+            position: relative
+            background: #909dc1
 
-        +hover
-            &::before
-                background: color-mix(in srgb, #32344c 90%, white)
+            display: flex
+            justify-content: center
+            align-items: center
 
-            img
-                filter: brightness(1.2)
+            border: 3px solid transparent
+            border-right: none !important
 
-    .content
-        width: 100%
-        min-height: 100vh
-        background: var(--tex-promotionalBackground) no-repeat
-        background-size: 100% 100%
-        background-attachment: fixed
+        .name
+            padding: 10px 10px 10px 15px
 
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        gap: 10px
+            h4
+                font-family: $font-bold
+                font-weight: 400
+                font-size: 22px
+                text-transform: uppercase
 
-        &.masked
-            min-height: 90vh
-            
-            .mask-wrapper
-                width: 100%
-                height: 100vh
+.lightbox-wrapper
+    position: fixed
+    top: 0
+    left: 0
 
-                mask: var(--tex-promotionalBackgroundMask) no-repeat
-                mask-size: 100% 100%
-                -webkit-mask-attachment: fixed
+    width: 100%
+    height: var(--u100vh)
+    
+    background: #1b172eaf
+    backdrop-filter: blur(5px)
 
-                overflow-x: hidden
-                overflow-y: auto
+    display: flex
+    justify-content: center
+    align-items: center
 
-                > .scroll-container
-                    width: 100%
+    z-index: 31
 
-                    display: flex
-                    flex-direction: column
-                    justify-content: center
-                    align-items: center
-                    gap: 10px
+    cursor: zoom-out
 
-                    padding: 60px 0
+    &.full
+        img
+            width: 100%
+            height: 100%
 
-                    +media-mobile
-                        padding: 120px 20px 110px 20px
-        
-        h1
-            font-size: 64px
-            font-family: MarvelRivalsHeavy
-            text-transform: uppercase
-            text-align: center
-            color: $blue
+    img
+        width: 90%
+        height: 90%
 
-            margin-bottom: 20px
-
-            +media-mobile
-                font-size: 46px
+        object-fit: contain

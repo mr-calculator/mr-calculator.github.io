@@ -164,7 +164,7 @@
 
                     h3
                         font-size: 16px
-                        font-family: MarvelRivalsBold
+                        font-family: $font-bold
                         font-weight: normal
                         line-height: 14px
                         color: $light-blue
@@ -204,7 +204,20 @@
 
             h3
                 font-size: 18px
-                font-family: MarvelRivalsBold
+                font-family: $font-bold
                 font-weight: normal
                 color: $light-blue-highlight
                 text-align: center
+
+    .easter-egg
+        font-family: $font-body
+        font-size: 16px
+        color: $blue
+        text-align: center
+
+        ::v-deep(b)
+            color: #c3157a
+
+        ::v-deep(a)
+            text-decoration: underline
+            text-underline-offset: 1.5px

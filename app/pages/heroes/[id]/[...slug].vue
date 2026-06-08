@@ -3,144 +3,91 @@
         class="hero-page"
         :style="{
             '--hero-silhouette': `url(${hero.dataDir}silhouette.webp)`,
+            '--hero-color': hero.color,
         }"
     >
-        <nav>
-            <div class="head">
-                <NuxtLink class="back-arrow" :href="backLink">
-                    <Tex
-                        image="chevronLeft"
-                        hover="color"
-                        clickable
+        <div class="silhouette" />
 
-                        width="23px"
-                        height="23px"
-                        object-fit="contain"
-                    />
-                </NuxtLink>
+        <UiNavBar
+            :marks="navBarMarks"
+            :breakpoint="1450"
 
-                <div class="title">
-                    <h1>{{ hero.name }}</h1>
-                    <Tex
-                        class="favourite"
-                        image="favourite"
-                        :state="isFavourite ? 'hover' : 'default'"
-                        hover="auto"
-                        clickable
+            :selected="page"
 
-                        width="45px"
-                        height="45px"
-                        object-fit="cover"
+            links
+            :link-map="{
+                overview: `/heroes/${hero.id}/overview${backLinkQuery}`,
+                customize: `/heroes/${hero.id}/customize${backLinkQuery}`,
+                estimates: `/heroes/${hero.id}/estimates${backLinkQuery}`,
+                planner: `/heroes/${hero.id}/planner${backLinkQuery}`,
+                achievements: `/heroes/${hero.id}/achievements${backLinkQuery}`,
+                costumes: `/heroes/${hero.id}/costumes${backLinkQuery}`,
+            }"
 
-                        @click="toggleFavourite"
-
-                        v-tooltip="({
-                            text: isFavourite ? 
-                                `Remove from <b>favourites</b>`
-                                :
-                                `Add to <b>favourites</b>`,
-                            icon: 'mouseLeft'
-                        } satisfies TooltipBinding)"
-                    />
-                </div>
-
-                <div
-                    class="menu warning-wrapper"
-                    @click="menuOpen = !menuOpen"
-                >
-                    <Tex
-                        :image="menuOpen ? 'cross' : 'hamburger'"
-                        color="#fff"
-                        hover="color"
-                        hover-color="var(--color)"
-
-                        clickable
-                        :width="menuOpen ? 25 : 28"
-                        height="25px"
-                    />
-
-                    <Tex
-                        v-if="(
-                                !storedLevel.openedCalculator
-                             || !(hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection)
-                             || !preferences.sawCosmeticsTab
-                            )
-                            &&
-                            !menuOpen
-                        "
-                        class="warning-bubble"
-                        image="redDotExcl"
-
-                        object-fit="contain"
-                    />
-                </div>
-            </div>
-
-            <ul :class="{visible: menuOpen}">
-                <li
-                    :class="{ selected: page == 'overview' }"
-                    @click="setPage('overview')"
-                >
-                    Overview
-                </li>
-                <li
-                    :class="{ 'warning-wrapper': 1, selected: page == 'customize' }"
-                    @click="setPage('customize')"
-                >
-                    Customize
-
-                    <ClientOnly>
+            @tab-click="setPage($event as PageId)"
+        >
+            <template #prepend>
+                <div class="head">
+                    <NuxtLink class="back-arrow" :href="backLink">
                         <Tex
-                            v-if="!(hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection)"
-                            class="warning-bubble"
-                            image="redDotExcl"
+                            image="chevronLeft"
+                            hover="color"
+                            clickable
 
+                            width="23px"
+                            height="23px"
                             object-fit="contain"
                         />
-                    </ClientOnly>
-                </li>
-                <li
-                    :class="{ 'warning-wrapper': 1, selected: page == 'estimates' }"
-                    @click="setPage('estimates')"
-                >
-                    Estimates
+                    </NuxtLink>
 
-                    <ClientOnly>
+                    <div class="title">
+                        <h1>{{ hero.name }}</h1>
                         <Tex
-                            v-if="!storedLevel.openedCalculator"
-                            class="warning-bubble"
-                            image="redDotExcl"
+                            class="favourite"
+                            image="favourite"
+                            :state="isFavourite ? 'hover' : 'default'"
+                            hover="auto"
+                            clickable
 
-                            object-fit="contain"
+                            width="45px"
+                            height="45px"
+                            object-fit="cover"
+
+                            @click="toggleFavourite"
+
+                            v-tooltip="({
+                                text: isFavourite ? 
+                                    `Remove from <b>favourites</b>`
+                                    :
+                                    `Add to <b>favourites</b>`,
+                                icon: 'mouseLeft'
+                            } satisfies TooltipBinding)"
                         />
-                    </ClientOnly>
-                </li>
-                <li
-                    :class="{ selected: page == 'planner' }"
-                    @click="setPage('planner')"
-                >
-                    Planner
-                </li>
-                <li
-                    v-if="achievementList?.length"
-                    :class="{ selected: page == 'achievements' }"
-                    @click="setPage('achievements')"
-                >
-                    Achievements
-                </li>
-                <li
-                    v-if="!isUnknownHero"
-                    :class="{
-                        new: !preferences.sawCosmeticsTab,
-                        selected: page == 'costumes'
-                    }"
-                    @click="setPage('costumes')"
-                >
-                    <span v-if="!preferences.sawCosmeticsTab" class="new">NEW</span>
-                    Costumes
-                </li>
-            </ul>
-        </nav>
+                    </div>
+
+                    <div class="mobile-spacer" />
+                </div>
+            </template>
+
+            <template #overview>
+                Overview
+            </template>
+            <template #customize>
+                Customize
+            </template>
+            <template #estimates>
+                Estimates
+            </template>
+            <template #planner>
+                Planner
+            </template>
+            <template #achievements>
+                Achievements
+            </template>
+            <template #costumes>
+                Costumes
+            </template>
+        </UiNavBar>
 
         <main>
             <div class="hero">
@@ -180,12 +127,16 @@
                     <img
                         class="logo"
                         :src="hero.dataDir + 'logo.webp'"
+                        :alt="`${hero.name} Logo`"
+                        draggable="false"
                     />
 
                     <div class="prestige-img-wrapper">
                         <img
                             class="prestige-img"
                             :src="hero.dataDir + 'prestige.webp'"
+                            :alt="`${hero.name} Prestige`"
+                            draggable="false"
                         />
                     </div>
                 </div>
@@ -283,7 +234,11 @@
                         >
                             <div class="rank">
                                 <div class="icon">
-                                    <img :src="currentRankComp.rank.icon" />
+                                    <img
+                                        :src="currentRankComp.rank.icon"
+                                        :alt="`${currentRankComp.rank.name} Icon`"
+                                        draggable="false"
+                                    />
                                 </div>
                                 <h2>{{ currentRankComp.rank.name }}</h2>
                             </div>
@@ -428,6 +383,7 @@
                                     <img
                                         :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
                                         :alt="`${CHALLENGE_ICONS[statType as Challenge['type']]!} Icon`"
+                                        draggable="false"
                                     >
                                     <p>{{ CHALLENGE_NAMES[statType as Challenge['type']]! }}</p>
                                     <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
@@ -435,14 +391,15 @@
                             </ul>
                             <h3>DATA FROM <span>{{ stats.matchCount.toLocaleString() }}</span> MATCHES</h3>
 
-                            <template v-if="hasAvgStats">
-                                <ClientOnly>
+                            <ClientOnly>
+                                <template v-if="hasAvgStatsNonGeneric">
                                     <h2>Your Average Stats per 10 minutes</h2>
                                     <ul class="stats with-border-decorations">
                                         <li v-for="[statType, statValue] in Object.entries(storedLevel.averageStats).filter(([t]) => t != 'play')">
                                             <img
                                                 :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
                                                 :alt="`${CHALLENGE_ICONS[statType as Challenge['type']]!} Icon`"
+                                                draggable="false"
                                             >
                                             <p>{{ CHALLENGE_NAMES[statType as Challenge['type']]! }}</p>
                                             <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
@@ -458,18 +415,18 @@
                                         />
                                         CHANGE YOUR STATS
                                     </FormButton>
-                                </ClientOnly>
-                            </template>
-                            <FormButton v-else size="small" @click="editAvgStats()">
-                                <Tex
-                                    image="gameTime"
-                                    color="var(--dark)"
+                                </template>
+                                <FormButton v-else size="small" @click="editAvgStats()">
+                                    <Tex
+                                        image="gameTime"
+                                        color="var(--dark)"
 
-                                    width="40px"
-                                    height="40px"
-                                />
-                                ADD YOUR OWN STATS
-                            </FormButton>
+                                        width="40px"
+                                        height="40px"
+                                    />
+                                    ADD YOUR OWN STATS
+                                </FormButton>
+                            </ClientOnly>
                         </div>
                     </template>
                 </PanelTabbedContainer>
@@ -479,98 +436,104 @@
                 class="content cosmetics-wrapper"
                 ref="content"
             >
-                <PanelCostumeList
-                    :hero="hero"
-                    v-model="selectedCostumesCategories"
-                />
+                <ClientOnly>
+                    <PanelCostumeList
+                        :hero="hero"
+                        v-model="selectedCostumesCategories"
+                    />
+                </ClientOnly>
             </div>
             <div
                 v-else-if="page == 'customize'"
                 class="content update-stats"
                 ref="content"
             >
-                <ModifyHeroData
-                    class="update-stats-modal"
-                    :hero="hero"
-                    :is-unknown-hero="isUnknownHero"
+                <ClientOnly>
+                    <ModifyHeroData
+                        class="update-stats-modal"
+                        :hero="hero"
+                        :is-unknown-hero="isUnknownHero"
 
-                    headless
-                    @confirm="openWhereModal($event, false)"
-                />
+                        headless
+                        @confirm="openWhereModal($event, false)"
+                    />
+                </ClientOnly>
             </div>
             <div
                 v-else-if="page == 'estimates'"
                 class="content"
             >
-                <PanelTabbedContainer
-                    class="tabbed-container"
-                    container-class="tab-container"
+                <ClientOnly>
+                    <PanelTabbedContainer
+                        class="tabbed-container"
+                        container-class="tab-container"
 
-                    :slot-labels="{
-                        normal: 'QUICK/COMP',
-                        arcade: 'ARCADE (18V18)'
-                    }"
-                >
-                    <template #normal>
-                        <PanelCalculator
-                            v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+                        :slot-labels="{
+                            normal: 'QUICK/COMP',
+                            arcade: 'ARCADE (18V18)'
+                        }"
+                    >
+                        <template #normal>
+                            <PanelCalculator
+                                v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
 
-                            :hero="hero"
-                            :level="storedLevel"
-                            :time-estimates="timeEstimates.normal"
-                            :time-estimates-arcade="timeEstimates.arcade"
+                                :hero="hero"
+                                :level="storedLevel"
+                                :time-estimates="timeEstimates.normal"
+                                :time-estimates-arcade="timeEstimates.arcade"
 
-                            :animate="!finishedAnimation"
+                                :animate="!finishedAnimation"
 
-                            @finished-animation="finishedAnimation = true"
-                        />
+                                @finished-animation="finishedAnimation = true"
+                            />
 
-                        <PanelSetupCalculator
-                            v-else
-                            :hero="hero"
-                            :level="storedLevel"
-                            :has-avg-stats="hasAvgStats"
-                            :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
-                            :is-incorrect-selection="isIncorrectSelection"
+                            <PanelSetupCalculator
+                                v-else
+                                :hero="hero"
+                                :level="storedLevel"
+                                :has-avg-stats="hasAvgStats"
+                                :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
+                                :is-incorrect-selection="isIncorrectSelection"
 
-                            @open-stats-menu="editAvgStats()"
-                            @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
-                            @open-level-menu="selectCurrentLevel()"
-                        />
-                    </template>
-                    <template #arcade>
-                        <PanelCalculator
-                            v-if="hasAvgArcadeStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+                                @open-stats-menu="editAvgStats()"
+                                @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
+                                @open-level-menu="selectCurrentLevel()"
+                            />
+                        </template>
+                        <template #arcade>
+                            <PanelCalculator
+                                v-if="hasAvgArcadeStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
 
-                            :hero="hero"
-                            :level="storedLevel"
-                            :time-estimates="timeEstimates.normal"
-                            :time-estimates-arcade="timeEstimates.arcade"
-                            selected-game-type="arcade"
+                                :hero="hero"
+                                :level="storedLevel"
+                                :time-estimates="timeEstimates.normal"
+                                :time-estimates-arcade="timeEstimates.arcade"
+                                selected-game-type="arcade"
 
-                            :animate="!finishedAnimation"
+                                :animate="!finishedAnimation"
 
-                            @finished-animation="finishedAnimation = true"
-                        />
+                                @finished-animation="finishedAnimation = true"
+                            />
 
-                        <!-- ARCADE SETUP -->
-                        <PanelSetupCalculator
-                            v-else
-                            :hero="hero"
-                            :level="storedLevel"
-                            :has-avg-stats="hasAvgStats"
-                            :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
-                            :is-incorrect-selection="isIncorrectSelection"
+                            <!-- ARCADE SETUP -->
+                            <PanelSetupCalculator
+                                v-else
+                                :hero="hero"
+                                :level="storedLevel"
+                                :has-avg-stats="hasAvgStats"
+                                :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
+                                :is-incorrect-selection="isIncorrectSelection"
 
-                            arcade
-                            :has-avg-arcade-stats="hasAvgArcadeStats"
+                                arcade
+                                :has-avg-arcade-stats="hasAvgArcadeStats"
 
-                            @open-stats-menu="editAvgStats(undefined, undefined, true)"
-                            @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
-                            @open-level-menu="selectCurrentLevel()"
-                        />
-                    </template>
-                </PanelTabbedContainer>
+                                @open-stats-menu="editAvgStats(undefined, undefined, true)"
+                                @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
+                                @open-level-menu="selectCurrentLevel()"
+                            />
+                        </template>
+                    </PanelTabbedContainer>
+                </ClientOnly>
             </div>
 
             <div
@@ -578,39 +541,43 @@
                 class="content planner-wrapper"
                 ref="content"
             >
-                <PanelPlanner
-                    v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+                <ClientOnly>
+                    <PanelPlanner
+                        v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
 
-                    :hero="hero"
-                    v-model="storedLevel"
-                    :time-estimates="timeEstimates.normal"
-                    :time-estimates-arcade="timeEstimates.arcade"
+                        :hero="hero"
+                        v-model="storedLevel"
+                        :time-estimates="timeEstimates.normal"
+                        :time-estimates-arcade="timeEstimates.arcade"
 
-                    @open-arcade-stats-menu="editAvgStats(undefined, undefined, true)"
-                />
-                <PanelSetupCalculator
-                    v-else
-                    :hero="hero"
-                    :level="storedLevel"
-                    :has-avg-stats="hasAvgStats"
-                    :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
-                    :is-incorrect-selection="isIncorrectSelection"
-                    headless
+                        @open-arcade-stats-menu="editAvgStats(undefined, undefined, true)"
+                    />
+                    <PanelSetupCalculator
+                        v-else
+                        :hero="hero"
+                        :level="storedLevel"
+                        :has-avg-stats="hasAvgStats"
+                        :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
+                        :is-incorrect-selection="isIncorrectSelection"
+                        headless
 
-                    @open-stats-menu="editAvgStats()"
-                    @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
-                    @open-level-menu="selectCurrentLevel()"
-                />
+                        @open-stats-menu="editAvgStats()"
+                        @open-goal-menu="selectLevelGoal(tryShowEditPopup, true)"
+                        @open-level-menu="selectCurrentLevel()"
+                    />
+                </ClientOnly>
             </div>
             <div
                 v-else-if="page == 'achievements' && !isUnknownHero"
                 class="content achievements-wrapper"
                 ref="content"
             >
-                <PanelAchievements
-                    :category="selectedAchievementsCategory"
-                    :achievements="achievementList"
-                />
+                <ClientOnly>
+                    <PanelAchievements
+                        :category="selectedAchievementsCategory"
+                        :achievements="achievementList"
+                    />
+                </ClientOnly>
             </div>
         </main>
     </div>
@@ -634,13 +601,14 @@ import { useAbsoluteUrl } from '~/composables/config';
 import ConvertUnknownHeroModal from '~/components/modals/ConvertUnknownHeroModal.vue';
 import ProficiencyPointsModal from '~/components/modals/ProficiencyPointsModal.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
-import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements';
-import { getAllCategories, getCategoryIcon } from '~/assets/data/costumes';
+import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements/achievements';
+import { getAllCategories, getCategoryIcon } from '~/assets/data/cosmetics/costumes/costumes';
+import type { NavBarMarks } from '~/components/ui/nav/Bar.vue';
 
 type PageId = 'overview'|'customize'|'estimates'|'planner'|'achievements'|'costumes';
 const PAGE_IDS = ['overview', 'customize', 'estimates', 'planner', 'achievements', 'costumes'];
 
-const { openModal } = useModalManager();
+const { openModal, cancelModal } = useModalManager();
 const { notify } = useNotificationManager();
 
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
@@ -664,7 +632,18 @@ const hero = ref<HeroData>(HERO_LIST.find(h => h.id === heroId) ?? unknownHero!)
 
 const isUnknownHero = computed(() => !!unknownHero);
 
-const backLink = computed(() => (route.query?.from as string) ?? '/heroes');
+const { back, backPath } = useBackButton({
+    currentSection: '/heroes/',
+    fallback: '/heroes'
+});
+
+const backLink = computed(() => (route.query?.from as string) ?? backPath.value);
+const backLinkQuery = computed(() => {
+    if (!route.query?.from)
+        return '';
+
+    return '?from=' + (route.query?.from as string);
+})
 
 // new hero
 if (heroId == 'new') {
@@ -679,10 +658,12 @@ if (heroId == 'new') {
         );
     }
 
-    openModal(ConfigureHeroModal, {
+    const configureHeroModal = openModal(ConfigureHeroModal, {
         title: 'Set Up Hero',
         message: 'In case this tool is no longer updated, you can add new heroes through this interface.'
     })
+
+    configureHeroModal
     .promise
     .then((hero: HeroData) => {
         if (!hero || !hero.id) {
@@ -707,13 +688,18 @@ if (heroId == 'new') {
         // success, route to new hero
         router.push('/heroes/' + hero.id);
     })
-    .catch(() => {
+    .catch(e => {
+        if (e === 'unmounted')
+            return;
+
         let backLink = '/heroes';
         if (route.query?.from)
             backLink = route.query.from as string;
 
         router.push(backLink);
     })
+
+    onUnmounted(() => cancelModal(configureHeroModal.id, 'unmounted'));
 }
 
 if (!hero.value)
@@ -781,9 +767,18 @@ useHead({
             href: url
         }
     ]
-})
+});
 
-const menuOpen = ref(false);
+definePageMeta({
+    layout: 'no-layout'
+});
+
+const navBarMarks = computed(() => ({
+    customize: !(hasAvgStats.value && !isLv1AndGoalLv1.value && !isIncorrectSelection.value) ? 
+        'warning-bubble' : 'none',
+    estimates: !storedLevel.value.openedCalculator ? 'warning-bubble' : 'none',
+    // costumes: !preferences.value.sawCosmeticsTab ? 'new' : 'none'
+} satisfies NavBarMarks))
 
 const stats = computed(() => {
     const matchCount = getHeroMatchCount(hero.value.id);
@@ -825,6 +820,7 @@ function toggleFavourite() {
 
 const storedLevel = useLocalStorage<PlayerHeroStore>(`hero_${hero.value.id}`, DEFAULT_HERO_STORE(), PlayerHeroStoreSchema);
 const hasAvgStats = useHasAvgStats(hero);
+const hasAvgStatsNonGeneric = useHasAvgStats(hero, true);
 const hasAvgArcadeStats = useHasAvgArcadeStats(hero);
 const isLv1AndGoalLv1 = computed(() => storedLevel.value.level == 1 && storedLevel.value.goal == 1);
 const unknownHeroHasPossibleMatch = useUnknownHeroHasPossibleMatch(hero.value).value.length;
@@ -832,23 +828,26 @@ const isIncorrectSelection = computed(() => storedLevel.value.goal <= storedLeve
 
 
 const page = ref<PageId>(pageFromUrl.value);
+watch(pageFromUrl, (newPage, oldPage) => {
+    if (newPage == oldPage)
+        return;
+
+    page.value = newPage;
+});
+
+
 const contentDiv = useTemplateRef('content');
 function setPage(newPage: PageId) {
-    const query = route.query?.from ? `?from=${backLink.value}` : '';
-    const newUrl = `/heroes/${heroId}/${newPage}${query}`;
-    history.pushState(null, '', newUrl);
-
     const contentDivAABB = contentDiv.value?.getBoundingClientRect();
     let scrollTo = (window?.scrollY ?? 0) + (contentDivAABB?.top ?? 0);
     if (scrollTo > 65)
         scrollTo -= 65;
 
     setTimeout(() => {
-        window.scrollTo({ top: scrollTo, behavior: 'instant' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
     }, 100);
 
     page.value = newPage;
-    menuOpen.value = false;
 
     setPreferences(newPage);
 }

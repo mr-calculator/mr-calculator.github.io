@@ -1,14 +1,14 @@
 const config = {
-    dataVersion: 2,
+    dataVersion: 3,
 
     githubUser: 'mr-calculator',
     githubRepo: 'mr-calculator.github.io',
     redditUser: 'mr-prof-calculator',
+    twitterUser: 'mr_prof_calc',
+    discordServer: 'https://discord.gg/xhZANY8nSb',
     email: 'mr-calculator.estimate510@slmails.com',
     domain: 'mr-calculator.github.io',
     domainHttp: 'https://mr-calculator.github.io'
-    // domain: 'localhost:3000',
-    // domainHttp: 'http://localhost:3000'
 };
 
 export function useAbsoluteUrl(...components: string[]) {

@@ -1,0 +1,133 @@
+import COSTUMES_DATA from "./costumes.json";
+import OCEANHILLMAN_CONVERSION_MAP from '../../ohm-costume-conversion-map.json';
+
+export type CostumeRarity = 'legendary'|'epic'|'rare'|'common';
+export const RARITY_ORDER: CostumeRarity[] = [
+    'legendary',
+    'epic',
+    'rare',
+    'common',
+];
+export type Costume = {
+    heroId: string,
+
+    id: string,
+    wikiLink?: string,
+    name: string,
+    rarity: CostumeRarity,
+    customizable: boolean,
+
+    category: string,
+    source?: string,
+    sourceLink?: string,
+    theme?: string,
+
+    releaseDate?: string,
+}
+
+export const COSTUMES = () => COSTUMES_DATA as Record<string, Costume[]>;
+
+export function getHeroCostumes(heroId: string) {
+    return COSTUMES()[heroId] ?? [];
+}
+export function getCostumesAsList() {
+    const allCostumes: Costume[] = [];
+    Object.values(COSTUMES()).forEach(c => allCostumes.push(...c));
+    
+    return allCostumes;
+}
+
+export const KNOWN_COSTUME_CATEGORY_ICONS: Record<string, string> = {
+    'Limited Time': 'limited-time.webp',
+    'Permanent': 'permanent.webp',
+    'Closed Beta Test': 'beta.webp',
+    'Premium Event Reward': 'premium-event-reward.webp',
+    'Pick-Up Bundle Exclusive': 'pick-up-bundle.webp',
+    'Luxury Battle Pass': 'luxury-battlepass.webp',
+    'Twitch Drop': 'twitch-drop.webp',
+    'Free Battle Pass': 'free-battlepass.webp',
+    'Free Event Reward': 'free-event-reward.webp',
+    'Achievements': 'achievements.webp',
+    'PlayStation Exclusive': 'playstation.webp',
+    'Code Redeemable': 'code-redeemable.webp',
+    'Closed Alpha Test': 'alpha.webp',
+    'Lucky Draw': 'lucky-draw.webp',
+    'Ranked Reward': 'ranked-reward.webp',
+    'Disney+ Exclusive': 'disney-plus.webp',
+    'Esports': 'esports.webp',
+
+    "_default": 'other.webp'
+}
+export function getCategoryIcon(category: string) {
+    let icon = KNOWN_COSTUME_CATEGORY_ICONS[category];
+    if (!icon)
+        icon = KNOWN_COSTUME_CATEGORY_ICONS._default!;
+
+    return `/img/cosmetics/categories/${icon}`;
+}
+
+export const COSTUME_CATEGORY_ORDER: string[] = [
+    'Permanent',
+    'Limited Time',
+    'Lucky Draw',
+    'Achievements',
+    'Code Redeemable',
+    'Limited Time',
+    'Free Event Reward',
+    'Premium Event Reward',
+    'Free Battle Pass',
+    'Luxury Battle Pass',
+    'Closed Alpha Test',
+    'Closed Beta Test',
+    'Twitch Drop',
+    'PlayStation Exclusive',
+    'Ranked Reward',
+    'Pick-Up Bundle Exclusive',
+    'Disney+ Exclusive',
+    'Esports'
+];
+
+export function getAllCategories(heroId?: string) {
+    const categories = new Set<string>();
+    Object.entries(COSTUMES()).filter(([hId]) => heroId ? hId == heroId : true).forEach(([_, costumes]) =>
+        costumes.forEach(c => categories.add(c.category))
+    );
+
+    const array = Array.from(categories);
+    array.sort((a, b) => {
+        let indexA = COSTUME_CATEGORY_ORDER.indexOf(a);
+        let indexB = COSTUME_CATEGORY_ORDER.indexOf(b);
+        if (indexA == -1 && indexB != -1)
+            return 1;
+        if (indexB == -1 && indexA != -1)
+            return -1;
+        if (indexA == -1 && indexB == -1)
+            return 0;
+
+        return indexA - indexB;
+    });
+
+    return array;
+}
+
+export function getAllSources(heroId?: string) {
+    const sources = new Set<string>();
+    Object.entries(COSTUMES()).filter(([hId]) => heroId ? hId == heroId : true).forEach(([_, costumes]) =>
+        costumes.forEach(c => c.source ? sources.add(c.source) : null)
+    );
+
+    return Array.from(sources);
+}
+
+export function getAllThemes(heroId?: string) {
+    const themes = new Set<string>();
+    Object.entries(COSTUMES()).filter(([hId]) => heroId ? hId == heroId : true).forEach(([_, costumes]) =>
+        costumes.forEach(c => c.theme ? themes.add(c.theme) : null)
+    );
+
+    return Array.from(themes);
+}
+
+export function convertCostumeId(oldId: string) {
+    return (OCEANHILLMAN_CONVERSION_MAP as Record<string, string>)[oldId];
+}

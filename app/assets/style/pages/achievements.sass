@@ -1,0 +1,94 @@
+.achievements-page
+
+    +media-mobile
+        padding: 40px 0
+
+    .container
+        max-width: 1600px
+        width: 100%
+        height: 100%
+
+        display: grid
+        grid-template-columns: 30% calc(70% - 60px)
+        grid-template-rows: 100%
+        gap: 60px
+
+        +media-mobile
+            grid-template-columns: 1fr
+            grid-template-rows: min-content auto
+
+        +media-ml-desktop
+            grid-template-columns: 1.5fr 4fr
+
+        aside
+            width: 100%
+            height: fit-content
+
+            display: flex
+            flex-direction: column
+            align-items: center
+            gap: 50px
+
+            +media-mobile
+                padding: 0 20px 0 20px - 13px
+
+            +media-desktop
+                position: sticky
+                top: 65px + 40px
+
+                padding-bottom: 40px
+
+                +media-height($minmax: 'max', $size: 600px)
+                    max-height: calc(var(--u100vh) - 65px - 40px)
+                    overflow-x: clip
+                    overflow-y: auto
+
+            > *:not(.categories-list)
+                padding-left: 13px
+
+            > *
+                width: 100%
+
+                +media-phone
+                    max-width: 300px
+                +media($minmax: 'max', $size: 992px)
+                    max-width: 375px
+
+            .categories-list
+                overflow: unset
+
+            .filters
+                width: 100%
+
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: start
+                gap: 20px
+                
+                .search-box
+                    width: 100%
+                    ::v-deep(input)
+                        width: 100%
+
+                .dropdowns
+                    width: 100%
+
+                    display: flex
+                    align-items: center
+                    gap: 20px
+
+                    .dropdown
+                        width: 100%
+
+        main
+            width: 100%
+            height: 100%
+
+            .achievements-panel
+                ::v-deep(.header)
+                    +media-desktop
+                        position: sticky
+                        top: 65px
+
+                        z-index: 1

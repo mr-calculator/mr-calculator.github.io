@@ -19,58 +19,75 @@
         />
         <div class="scroll-container">
             <div class="costume-image-panel" :style="{ '--hero-color': heroColor, '--hero-image': `url(${src})` }">
-            <div
-                :class="['hero-image', costume.rarity ? `rarity-${costume.rarity}` : '']"
-                :style="{
-                    '--hero-image': `url(${src})`,
-                    '--hero-color': heroColor
-                }"
-            >
-                <div class="stroke" />
-                <img
-                    :src="src"
-                    :alt="costume.name"
-                    :style="imageScale !== 1 ? { transform: `scale(${imageScale})`, transformOrigin: imageOrigin } : undefined"
-                />
-            </div>
-        </div>
-
-        <div class="details-panel">
-            <img class="hero-badge" :src="`/img/heroes/data/${heroId}/logo.webp`" alt="" />
-                <h2>
-                    <FormCheckbox
-                        :model-value="ownedCostumes.includes(costume.id)"
-                        @update:model-value="toggleCostumeOwned"
-
-                        v-tooltip="({
-                            text: `${ownedCostumes.includes(costume.id) ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
-                            icon: 'mouseLeft'
-                        } satisfies TooltipBinding)"
+                <div
+                    :class="['hero-image', costume.rarity ? `rarity-${costume.rarity}` : '']"
+                    :style="{
+                        '--hero-image': `url(${src})`,
+                        '--hero-color': heroColor
+                    }"
+                >
+                    <div class="stroke" />
+                    <img
+                        :src="src"
+                        :alt="costume.name"
+                        :style="imageScale !== 1 ? {
+                            transform: `scale(${imageScale})`,
+                            transformOrigin: imageOrigin
+                        } : undefined"
+                        draggable="false"
                     />
-                    <a
-                        v-if="costume.wikiLink"
-                        :href="toWikiLink(costume.wikiLink)"
-                        target="_blank"
+                </div>
+            </div>
 
-                        v-tooltip="({
-                            text: 'Open the <b>wiki page</b>',
-                            icon: 'mouseLeft'
-                        } satisfies TooltipBinding)"
-                    >
-                        {{ costume.name }}
-                        <Tex
-                            image="arrowBox"
-                            color="var(--text-color)"
+            <div class="details-panel">
+                <img
+                    class="hero-badge"
+                    :src="`/img/heroes/data/${heroId}/logo.webp`"
+                    alt="Hero Badge"
+                    draggable="false"
+                />
 
-                            width="30px"
-                            height="30px"
+                <div class="title-wrapper">
+                    <h2>
+                        <FormCheckbox
+                            :model-value="ownedCostumes.includes(costume.id)"
+                            @update:model-value="toggleCostumeOwned"
+
+                            v-tooltip="({
+                                text: `${ownedCostumes.includes(costume.id) ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
+                                icon: 'mouseLeft'
+                            } satisfies TooltipBinding)"
                         />
-                    </a>
-                    <template v-else>
-                        {{ costume.name }}
-                    </template>
-                </h2>
-                <UiSeparator class="title-divider" />
+                        <div class="title">
+                            {{ costume.name }}
+                            <a
+                                v-if="costume.wikiLink"
+                                class="wiki-link large"
+                                
+                                :href="toWikiLink(costume.wikiLink)"
+                                target="_blank"
+                                rel="noopener noreferrer"
+
+                                v-tooltip="({
+                                    text: 'Open the <b>wiki page</b>',
+                                    icon: 'mouseLeft'
+                                } satisfies TooltipBinding)"
+                            >
+                                Wiki
+                                <Tex
+                                    image="arrowBox"
+                                    color="var(--text-color)"
+
+                                    width="20px"
+                                    height="20px"
+                                />
+                            </a>
+                        </div>
+                    </h2>
+                    <UiSeparator class="title-divider" />    
+                </div>
+
+
                 <div class="details">
                     <div v-if="costume.customizable" class="detail">
                         <div class="label">
@@ -101,49 +118,120 @@
                     
                     <div class="spacer" />
 
-                    <p class="detail">
+                    <NuxtLink
+                        class="detail"
+                        
+                        :to="createCostumesLink(costume.category, 'category')"
+                        @click="$emit('cancel')"
+
+                        v-tooltip="({
+                            text: createCostumeTooltipLabel(costume.category),
+                            icon: 'mouseLeft'
+                        } satisfies TooltipBinding)"
+                    >
                         <span class="label">Category</span>
-                        {{ costume.category }}
-                    </p>
-                    <p v-if="costume.source" class="detail">
+                        <div class="name">
+                            {{ costume.category }}
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink
+                        v-if="costume.source"
+                        class="detail"
+
+                        :to="createCostumesLink(costume.source, 'source')"
+                        @click="$emit('cancel')"
+
+                        v-tooltip="({
+                            text: createCostumeTooltipLabel(costume.source),
+                            icon: 'mouseLeft'
+                        } satisfies TooltipBinding)"
+                    >
                         <span class="label">Source</span>
-                        <a
-                            v-if="costume.sourceLink"
-                            :href="toWikiLink(costume.sourceLink)"
-                            target="_blank"
+                        <div class="with-wiki-link">
+                            <div class="name">
+                                {{ costume.source }}
+                            </div>
+                            <a
+                                v-if="costume.sourceLink"
+                                class="wiki-link"
+                                
+                                :href="toWikiLink(costume.sourceLink)"
+                                target="_blank"
+                                rel="noopener noreferrer"
 
-                            v-tooltip="({
-                                text: 'Open the <b>wiki page</b>',
-                                icon: 'mouseLeft'
-                            } satisfies TooltipBinding)"
-                        >
-                            {{ costume.source }}
-                            <Tex
-                                image="arrowBox"
-                                color="var(--text-color)"
+                                @click="e => {
+                                    e.stopPropagation();
+                                }"
 
-                                width="18px"
-                                height="18px"
-                            />
-                        </a>
-                        <template v-else>
-                            {{ costume.source }}
-                        </template>
-                    </p>
-                    <div v-if="costume.theme" class="detail">
+                                v-tooltip="({
+                                    text: 'Open the <b>wiki page</b>',
+                                    icon: 'mouseLeft'
+                                } satisfies TooltipBinding)"
+                            >
+                                Wiki
+                                <Tex
+                                    image="arrowBox"
+                                    color="var(--text-color)"
+
+                                    width="14px"
+                                    height="14px"
+                                />
+                            </a>
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink
+                        v-if="costume.theme"
+                        class="detail"
+                        :to="createCostumesLink(costume.theme, 'theme')"
+                        @click="$emit('cancel')"
+
+                        v-tooltip="({
+                            text: createCostumeTooltipLabel(costume.theme),
+                            icon: 'mouseLeft'
+                        } satisfies TooltipBinding)"
+                    >
                         <span class="label">Theme</span>
                         <div class="with-icon">
                             <Tex
-                                :src="`/img/heroes/costume-themes/${toKebabCase(costume.theme)}.webp`"
+                                :src="`/img/cosmetics/themes/${toKebabCase(costume.theme)}.webp`"
                                 color="var(--blue)"
 
                                 width="23px"
                                 height="23px"
                             />
 
-                            {{ costume.theme }}
+                            <div class="name">
+                                {{ costume.theme }}
+                            </div>
+
+                            <a
+                                v-if="costume.theme"
+                                class="wiki-link"
+                                
+                                :href="toWikiLink(`/wiki/Themes#${costume.theme.replaceAll(' ', '_')}`)"
+                                target="_blank"
+                                rel="noopener noreferrer"
+
+                                @click="e => {
+                                    e.stopPropagation();
+                                }"
+
+                                v-tooltip="({
+                                    text: 'Open the <b>wiki page</b>',
+                                    icon: 'mouseLeft'
+                                } satisfies TooltipBinding)"
+                            >
+                                Wiki
+                                <Tex
+                                    image="arrowBox"
+                                    color="var(--text-color)"
+
+                                    width="14px"
+                                    height="14px"
+                                />
+                            </a>
                         </div>
-                    </div>
+                    </NuxtLink>
 
                     <div class="spacer" />
 
@@ -165,8 +253,9 @@
 //   phone   (≤768px):  stacked
 
 .costume-detail-modal
-    $max-width: 1100px
-    $max-height: 500px
+    $max-width: 1200px
+    $max-height: 600px
+    $max-height-tablet: 500px
 
     position: relative
     padding: 0px
@@ -180,6 +269,9 @@
         max-width: calc(100% - 24px)
         min-height: 420px
         padding-bottom: 0 !important
+
+    +media-tablet
+        min-height: $max-height-tablet
 
     // Only phones stack
     +media-max-tablet
@@ -235,6 +327,9 @@
         overscroll-behavior: contain
         overflow-x: hidden
         overflow-y: auto
+
+        +media-tablet
+            min-height: $max-height-tablet
 
         +media-max-tablet
             min-height: 100%
@@ -361,9 +456,9 @@
     display: flex
     flex-direction: column
     align-items: flex-start
-    justify-content: center
+    justify-content: start
     gap: 16px
-    padding: 36px 36px
+    padding: 55px 36px
     padding-right: 140px !important
     // overflow: hidden
 
@@ -376,8 +471,43 @@
     // Phone — stacked, content flows from top
     +media-max-tablet
         padding: 18px 18px !important
+        padding-bottom: 30px !important
         gap: 10px
         justify-content: flex-start
+
+    .wiki-link
+        flex-shrink: 0
+        flex-grow: 0
+        width: fit-content
+        height: fit-content
+
+        padding: 3px 10px
+        background: $color
+
+        font-size: 14px
+        font-family: $font-bold
+        font-weight: 400
+        color: $dark
+        text-transform: uppercase
+        font-style: normal
+
+        display: flex
+        align-items: center
+        gap: 3px
+
+        +hover
+            background: $blue
+            color: $color
+
+            .texture
+                --tex-color: #{$color} !important
+
+        &.large
+            padding: 12px 16px
+            height: 40px
+            font-size: 24px
+            gap: 10px
+            
 
     .hero-badge
         position: absolute
@@ -401,51 +531,68 @@
             height: 180px
             right: 10px
 
-    h2
-        width: 100%
-        text-align: center !important
-        padding: 0 !important
-
-        display: flex
-        justify-content: space-evenly
-        align-items: center
-        gap: 10px
-
-        a
-            display: inline-flex
-            align-items: center
-            gap: 12px
-
-            +media-max-tablet
-                .texture ::v-deep(.tex-image)
-                    width: 20px !important
-                    height: 20px !important
-
-            +hover
-                color: $blue
-
-                .texture
-                    --tex-color: #{$blue} !important
-
-            > *
-                flex-shrink: 0
-
-    .title-divider
-        width: 100%
-        margin-bottom: 4px
-
-    .details
+    .title-wrapper
         width: 100%
         display: flex
         flex-direction: column
-        gap: 14px
-        margin-left: 18px
+        align-items: stretch
+        justify-content: start
+        gap: 16px
+
+        h2
+            position: relative
+            width: 100%
+            text-align: center !important
+            padding: 0 0 0 55px !important
+
+            display: flex
+            justify-content: space-evenly
+            align-items: center
+            gap: 10px
+
+            .title
+                display: inline-flex
+                align-items: center
+                gap: 20px
+
+                +media-max-tablet
+                    .texture ::v-deep(.tex-image)
+                        width: 20px !important
+                        height: 20px !important
+
+                > *
+                    flex-shrink: 0
+
+            .checkbox
+                position: absolute
+                left: 10px
+                top: 50%
+
+                transform: translateY(-50%)
+
+        .title-divider
+            width: 100%
+            margin-bottom: 20px
+
+    .details
         position: relative
+        margin-left: 18px
+
+        width: 100%
+
+        display: flex
+        flex-direction: column
+        justify-content: center
+        gap: 14px
+
         z-index: 1
 
         +media-mobile
             gap: 12px
             margin-left: 8px
+
+        +media-tablet
+            min-height: 350px
 
         +media-max-tablet
             margin-left: 0
@@ -455,9 +602,13 @@
         width: 100%
         height: 10px
 
-    div.detail
-        +media-mobile
-            padding: 0 20px
+    a.detail
+        width: fit-content
+        .name
+            text-decoration: underline
+
+            +hover
+                color: $color-accent
 
     .detail
         display: flex
@@ -467,6 +618,7 @@
 
         +media-mobile
             font-size: 1.05em
+            padding: 0 20px
 
         +media-max-tablet
             font-size: 1em
@@ -477,7 +629,13 @@
             letter-spacing: 0.08em
             color: $blue-gray
 
-        a
+        .with-wiki-link
+            width: fit-content
+            display: inline-flex
+            align-items: center
+            gap: 10px
+
+        > a
             width: fit-content
             text-decoration: underline
 
@@ -498,7 +656,7 @@
 </style>
 
 <script setup lang="ts">
-import type { Costume, CostumeRarity } from '~/assets/data/costumes';
+import type { Costume, CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
 import type { TextureKey } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
 
@@ -546,4 +704,25 @@ const formattedDate = computed(() => {
 
     return formatted
 });
+
+function createCostumesLink(id: string, type: 'category'|'source'|'theme') {
+    let link = '/costumes?';
+    switch (type) {
+        case 'category':
+            link += 'categories=' + RouteConverter.stringArray.to([id]);
+            break;
+        case 'source':
+            link += 'sources=' + RouteConverter.stringArray.to([id]);
+            break;
+        case 'theme':
+            link += 'themes=' + RouteConverter.stringArray.to([id]);
+            break;
+    }
+
+    return link;
+}
+
+function createCostumeTooltipLabel(type: string) {
+    return `See <b>${type}</b>` + (type.toLowerCase().endsWith('costumes') ? '' : ' costumes');
+}
 </script>

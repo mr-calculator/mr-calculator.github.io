@@ -17,10 +17,13 @@
     "convert-images": "npx tsx ./scripts/convert-images.ts",
     "add-hero": "npx tsx ./scripts/add-hero/index.ts",
     "parse-achievements-table": "npx tsx ./scripts/parse-achievements-table/index.ts",
+    "add-achievement": "npx tsx ./scripts/add-achievement.ts",
     "parse-costumes": "npx tsx ./scripts/parse-costumes/index.ts",
     "parse-costumes-export": "npx tsx ./scripts/parse-costumes/export.ts",
     "parse-costumes-create-conversion-map": "npx tsx ./scripts/parse-costumes/old-system-converter/create-conversion-map.ts",
+    "parse-nameplates": "npx tsx ./scripts/parse-nameplates/index.ts",
     "generate-hero-seo-image": "npx tsx ./scripts/generate-hero-seo-image/index.ts",
+    "all-heroes-averages": "npx tsx ./scripts/all-heroes-averages.ts",
     "fetch-commits": "node scripts/fetch-commits.js"
   },
   "devDependencies": {

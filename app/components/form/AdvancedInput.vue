@@ -84,7 +84,7 @@
         outline: none
         
         font-size: 20px
-        font-family: MRBody
+        font-family: $font-body
 
         +media-desktop
             width: 650px

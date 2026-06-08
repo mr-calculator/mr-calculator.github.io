@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const Mantis: HeroData = {
+    internalId: '1020',
     id: 'mantis',
     name: 'Mantis',
     aliases: [
@@ -15,6 +16,19 @@ export const Mantis: HeroData = {
     iconAnimationSize: [2400, 2668],
     iconAnimationOffset: [-17, -12],
     iconLargeAnimationOffset: [-7, -12],
+    easterEgg: '1020307',
+    easterEggMessage: `
+    Woah! You found an <b>easter egg</b>!
+    <br/>
+    <i>
+        Check out the
+        <a href="https://www.nexusmods.com/marvelrivals/mods/9393" target="_blank" rel="noopener noreferrer">
+            Mandy Celestine The Greeter UI</a>
+        mod, or other UI mods from
+        <a href="https://www.nexusmods.com/profile/Daito/mods" target="_blank" rel="noopener noreferrer">
+            Daito on Nexus Mods</a>.
+    </i>
+    `,
 
     ranks: [
         {

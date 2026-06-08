@@ -1,38 +1,42 @@
-import type _ScrollTrigger from 'gsap/ScrollTrigger';
-import type _SplitText from 'gsap/SplitText';
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
 
-interface CallbackParams { gsap: GSAP, scrollTrigger: typeof _ScrollTrigger, splitText: typeof _SplitText };
-type Callback = (params: CallbackParams) => void;
+if (import.meta.client) {
+    gsap.registerPlugin(ScrollTrigger, SplitText)
+}
 
-export async function useGsap(callback: Callback) {
-    let scrollTrigger: typeof _ScrollTrigger;
-    async function setup() {
-        const { gsap } = await import('gsap');
-        scrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
-        const { SplitText } = await import('gsap/SplitText')
-        
-        gsap!.registerPlugin(scrollTrigger);
-        gsap!.registerPlugin(SplitText);
+type GsapTools = {
+    gsap: typeof gsap
+    scrollTrigger: typeof ScrollTrigger
+    splitText: typeof SplitText
+}
 
-        callback({ gsap, scrollTrigger, splitText: SplitText });
-    }
+export function useGsap(callback: (tools: GsapTools) => void) {
+    if (import.meta.server)
+        return;
 
-    const instance = getCurrentInstance();
-    const destroy = () => scrollTrigger?.getAll()?.forEach((t: any) => t?.kill());
-    if (instance) {
-        if (instance.isMounted && !instance.isUnmounted)
-            // already mounted, add immediately
-            setup();
-        else
-            onMounted(setup);
+    const triggers: InstanceType<typeof ScrollTrigger>[] = []
 
-        onUnmounted(destroy);
-    }
-    else
-        setup();
+    const scrollTriggerProxy = new Proxy(ScrollTrigger, {
+        get(target, prop, receiver) {
+            if (prop === 'create')
+                return (vars: Parameters<typeof ScrollTrigger.create>[0]) => {
+                    const trigger = ScrollTrigger.create(vars);
+                    triggers.push(trigger);
+                    return trigger;
+                }
 
-    // useEvent('resize', () => {
-    //     destroy();
-    //     setup();
-    // });
+            return Reflect.get(target, prop, receiver);
+        }
+    })
+
+    useDynamicInstance({
+        onMounted: () => callback({
+            gsap,
+            scrollTrigger: scrollTriggerProxy as typeof ScrollTrigger,
+            splitText: SplitText
+        }),
+        onUnmounted: () => triggers.forEach(t => t.kill()),
+    })
 }

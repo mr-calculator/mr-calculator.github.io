@@ -406,6 +406,38 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v1.8.0/costume-page.webp',
             '/img/changelog/v1.8.0/costume-modal.webp',
         ]
+    },
+    {
+        version: {
+            number: '2.0.0',
+            date: 'June 8, 2026',
+            time: '9:45 PM',
+        },
+        title: 'A fresh look',
+        description: `This major update comes with a complete navigation revamp, tons of new tracking features, and crucial fixes!
+        <br/><br/>
+        Browse, sort, search, filter, and mark as owned any and all of the in-game costumes, nameplates, and frames. 
+        <br/><br/>
+        Look through every achievement in the game and easily track your completion progress!
+        <br/><br/>
+        Check out your proficiency breakdown on your new profile page, customize your card, and share a downloadable image of your stats with your friends!
+        `,
+        listTitle: 'Features',
+        list: [
+            'All costumes in the game with advanced filtering (by hero, rarity, theme, etc.)',
+            'All achievements in the game (fully trackable by category)',
+            'All nameplates & frames cataloged with source tracking',
+            'Profile overview featuring customizable names, equippable icons, nameplates, frames, and an image-generation sharing tool',
+            'New navigation system that\'s familiar, more consistent, beautifully animated, and persistent across all pages.'
+        ],
+        images: [
+            '/img/seo/og-image-costumes.webp',
+            '/img/changelog/v2.0.0/achievements.webp',
+            '/img/changelog/v2.0.0/costumes.webp',
+            '/img/changelog/v2.0.0/nameplates.webp',
+            '/img/changelog/v2.0.0/profile.webp',
+            '/img/changelog/v2.0.0/share.webp',
+        ]
     }
 ];
 
@@ -462,3 +494,27 @@ export function groupCommitsByVersion(commits: GitHubCommit[]):
         versionCommits,
     }
 }
+
+export const DEVELOPER_LETTER = () => ({
+    validUntil: new Date('2026-08-07'),
+    title: 'A fresh look',
+    message: `
+        <p>
+            <i>"Mr. Stark, it smells like a new car in here!"</i>
+        </p>
+        <p>
+            Welcome back! As you can see, things look a little different around here. With this update, we are introducing a cleaner, more rounded UI that matches the game's energy and feels like home.
+        </p>
+        <p>
+            We've also expanded features massively. You can now view and track ownership of <b>all</b> in-game costumes, nameplates, and frames. On top of that, we've cataloged every single achievement so you can easily track your journey to completion. Want to show off? Check out the new Profile page to view your overall proficiency progress, customize your showcase card, and download a beautiful stats image to share with your friends!
+        </p>
+        <p>
+            While we know these features go a bit beyond the scope of a simple proficiency calculator, we wanted to work towards building an all-in-one companion app that you'd love using every day. We hope you enjoy the upgrade!
+        </p>
+        <p>
+            We'd love to hear what you think — come share your feedback with us on our new
+            <a href="${config.discordServer}" target="_blank" rel="noopener noreferrer">Discord server</a>!
+        </p>
+    `,
+    version: '2.0.0'
+});

@@ -27,7 +27,7 @@
                     />
                     <div
                         v-for="(reward, index) in rewards"
-                        class="reward"
+                        :class="{reward: 1, clickable: !!reward.onClick}"
 
                         :ref="el => rewardRefs[index] = el"
                     >
@@ -55,7 +55,7 @@
                                 inline
                             />
                         </div>
-                        <div class="item">
+                        <div class="item" @click="reward.onClick?.(reward)">
                             <div v-if="reward.completed" class="completed">
                                 <Tex
                                     image="checkRhombus"
@@ -64,7 +64,7 @@
                                     height="50px"
                                 />
                             </div>
-                            <img :src="reward.icon" :alt="reward.title" />
+                            <img :src="reward.icon" :alt="reward.title" draggable="false" />
                         </div>
                         <div class="title">
                             {{ reward.title }}
@@ -167,13 +167,25 @@
                 flex-direction: column
                 gap: 10px
 
+                &.clickable
+                    .item
+                        cursor: pointer
+                        overflow: clip
+
+                        +hover
+                            img
+                                transform: scale(1.1)
+
+                        img
+                            transition: .1s ease
+
                 .requirement
                     display: flex
 
                     span
                         display: block
                         font-size: 22px
-                        font-family: MRBody
+                        font-family: $font-body
                         font-weight: 700
                         color: #4a4d5a
 
@@ -211,7 +223,7 @@
                     height: 65px
 
                     font-size: 20px
-                    font-family: MarvelRivalsBold
+                    font-family: $font-bold
                     text-transform: uppercase
                     text-align: center
                     line-height: 100%
@@ -222,7 +234,7 @@
 </style>
 
 <script setup lang="ts">
-import { ACHIEVEMENT_CATEGORIES, getAchievements, type Achievement, type AchievementCategoryReward, type AchievementType, type AchievementTypeCategory } from '~/assets/data/achievements';
+import { ACHIEVEMENT_CATEGORIES, getAchievements, type Achievement, type AchievementCategoryReward, type AchievementType, type AchievementTypeCategory } from '~/assets/data/achievements/achievements';
 import HorizontalScrollContainer from '../panel/HorizontalScrollContainer.vue';
 
 const props = defineProps<{

@@ -9,6 +9,7 @@
     "reward": 5
   },
   {
+    "owner": "jeff-the-land-shark",
     "id": "a6325c31-021c-4e74-8761-0679070f5000_shark-to-shark",
     "title": "Shark to Shark",
     "description": "As Jeff the Land Shark, use 1 emote in front of the Jeff Statue in Lower Manhattan",
@@ -112,7 +113,7 @@
     "title": "Blueprints Supreme",
     "description": "Use 1 emote in front of the Palace of the Dragon King in K'un-Lun: Heart of Heaven.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -121,7 +122,7 @@
     "title": "Crouching Threat, Hidden Dragon",
     "description": "Stop the awakening of Shou-Lao in K'un-Lun: Heart of Heaven.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -130,7 +131,7 @@
     "title": "Leap of Faith",
     "description": "Use The Tablet of Iron FIst to awaken Shou-Lao in K'un-Lun: Heart of Heaven.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -139,7 +140,7 @@
     "title": "Can't Make An Omlette...",
     "description": "Destroy 30 Symbiote Eggs in Klyntar: Throne of Knull.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 30,
     "reward": 5
   },
@@ -148,7 +149,7 @@
     "title": "Whispers of Oblivion",
     "description": "Listen to Knull in Klyntar: Throne of Knull.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -157,7 +158,7 @@
     "title": "Kings in Black",
     "description": "Witness the showdown between Venom and Knull in Klyntar: Throne of Knull.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -166,7 +167,7 @@
     "title": "Darkness and Light",
     "description": "Obliterate Knull in the White Hot Room in Klyntar: Throne of Knull.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -175,7 +176,7 @@
     "title": "Echoes of the Abyss",
     "description": "Listen to All-Black's voice in Klyntar: Celestial Husk.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -184,7 +185,7 @@
     "title": "Full Heart, Can't Lose",
     "description": "Gain control of the Celestial Vault in Klyntar: Celestial Husk.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -193,7 +194,7 @@
     "title": "Celestial Pathway",
     "description": "Gain control of the Celestial Codex in Klyntar: Celestial Husk.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -202,7 +203,7 @@
     "title": "Severed Outpost",
     "description": "Gain control of the Celestial Hand in Klyntar: Celestial Husk.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -211,7 +212,7 @@
     "title": "From the Abyss",
     "description": "Witness Knull break free and reclaim the All-Black in Klyntar: Celestial Husk.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -220,7 +221,7 @@
     "title": "Blazing Rebirth",
     "description": "Hatch the Phoenix Egg in Klyntar: Celestial Husk.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -229,7 +230,7 @@
     "title": "Whispers in Pieces",
     "description": "Shatter 1 robot on the Robot Wailing Wall in Arakko.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -238,7 +239,7 @@
     "title": "Digital Ecosystem",
     "description": "Restore vegetation to the mechanical surface in Arakko.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -247,7 +248,7 @@
     "title": "Days of Future Past",
     "description": "Erase Ultron's existence from the timeline of Arakko.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -256,7 +257,7 @@
     "title": "Arakko Goes Analog",
     "description": "Purge Ultron's virus in Arakko.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -265,7 +266,7 @@
     "title": "The Hidden Womb",
     "description": "Gain control of the Cradle in Krakoa.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -274,7 +275,7 @@
     "title": "Head of the Table",
     "description": "Gain control of the Quiet Council in Krakoa.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -283,7 +284,7 @@
     "title": "Unwanted Guests",
     "description": "Gain control of the Carousel in Krakoa.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -292,7 +293,7 @@
     "title": "A Necessary Sacrifice",
     "description": "Attempt to destroy Cerebro to prevent Ultron from backing up his data in Krakoa.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -301,7 +302,7 @@
     "title": "Out of Service",
     "description": "Attempt to stop Ultron from backing up his data to Cerebro in Krakoa",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -310,8 +311,8 @@
     "title": "Door to Door",
     "description": "Use 2 different portals in a single game when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -319,7 +320,7 @@
     "title": "A Hounding Conversation",
     "description": "Talk with Bats the ghost dog when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -328,7 +329,7 @@
     "title": "No More House Call",
     "description": "Save Doctor Strange from the astral plane when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -337,7 +338,7 @@
     "title": "Ruined Idol",
     "description": "Shatter the Bloodstorm One statue when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -346,7 +347,7 @@
     "title": "Saving Rachel Oskar",
     "description": "Rescue Ratatoskr when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -355,7 +356,7 @@
     "title": "Night Travelers, Protected",
     "description": "Use the spell within Ratatoskr to eliminate all the vampires when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -364,7 +365,7 @@
     "title": "Silver Lining",
     "description": "With Ratatoskr's help, complete the first trial run of TRD when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -373,7 +374,7 @@
     "title": "Factory Setting",
     "description": "Trigger Stark Sentinel's Reverse-Destruction when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -382,7 +383,7 @@
     "title": "Papers over Digital",
     "description": "Stop H.E.R.B.I.E from scanning all pages of the Darkhold when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -391,7 +392,7 @@
     "title": "Save the Trees!",
     "description": "Scan all pages of the Darkhold with the help of H.E.R.B.I.E when Eternal Night falls on New York.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -400,7 +401,7 @@
     "title": "Spore Sport",
     "description": "Shatter 50 Symbiote Spores in Klyntar.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 50,
     "reward": 5
   },
@@ -409,7 +410,7 @@
     "title": "VENI VIDI V...?",
     "description": "Spray 1 time toward the Celestial Codex in Klyntar.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -418,7 +419,7 @@
     "title": "We Are Safe... For Now",
     "description": "Stop Knull's Essence from going underground in Klyntar.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -427,7 +428,7 @@
     "title": "Explosive Sendoff",
     "description": "Deliver Knull's Essence underground in Klyntar.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -436,7 +437,7 @@
     "title": "Shero of Wakanda",
     "description": "Listen to General Okoye's message in the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -445,7 +446,7 @@
     "title": "Mind Palace",
     "description": "Listen to Shuri's findings in the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -454,7 +455,7 @@
     "title": "Spreading Darkness",
     "description": "Stop Bast, the Panther God, from returning to her rightful place in the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -463,7 +464,7 @@
     "title": "Knowledge of Sin",
     "description": "Activate the Vibrani-Chronovium force field stabilizer in the Imperial Institute of Science of the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -472,7 +473,7 @@
     "title": "Mystical Power",
     "description": "Unleash the spiritual energy of the Heart-Shaped Herb in the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -481,7 +482,7 @@
     "title": "Scientific Strength",
     "description": "Advance the Vibrani-Chronovium research in the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -490,7 +491,7 @@
     "title": "Divine House Divided",
     "description": "Listen to the chat between K'Liluna and Bast in the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -499,7 +500,7 @@
     "title": "Wakanda Forever",
     "description": "Purify Bast, the Panther God, in the Intergalactic Empire of Wakanda.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -508,8 +509,8 @@
     "title": "Let Her Speak!",
     "description": "Chat with Spider-Zero in the Mech Lab of Tokyo 2099: Spider-Islands.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -517,8 +518,8 @@
     "title": "As You Wish",
     "description": "Help the Master Weaver repair the Web of Life and Destiny in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -526,8 +527,8 @@
     "title": "All or Nothing!",
     "description": "Help Spider-Zero repair the Web of Life and Destiny in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -535,8 +536,8 @@
     "title": "Tough Business",
     "description": "Listen to Fujikawa Mall's uniform ad broadcast in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -544,8 +545,8 @@
     "title": "Public Relations",
     "description": "Listen to Stark-Fujikawa promo broadcast in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -553,8 +554,8 @@
     "title": "Eye Witness",
     "description": "Listen to Public Eye's internal comms in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -562,8 +563,8 @@
     "title": "Whispers from the Web",
     "description": "Listen to Spider-Zero's holographic message in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -571,8 +572,8 @@
     "title": "Halfway Dropout",
     "description": "Halt Spider-Zero's advance to Budokan in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -580,8 +581,8 @@
     "title": "The Path to the Spiders' Nests",
     "description": "Escort Spider-Zero to Budokan in Tokyo 2099.",
     "category": "chronoverse-saga",
-    "rarity": "",
-    "requirement": 2099,
+    "rarity": "copper",
+    "requirement": 1,
     "reward": 5
   },
   {
@@ -589,7 +590,7 @@
     "title": "Thor's Alliance",
     "description": "Help Thor fight against Loki in Yggsgard.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -598,7 +599,7 @@
     "title": "Loki's Accomplice",
     "description": "Help Loki maintain his rule in Yggsgard.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -607,7 +608,7 @@
     "title": "Histrionic Perfection",
     "description": "Use 1 emote on the throne in Yggsgard.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -616,7 +617,7 @@
     "title": "Illusive Truth",
     "description": "Shatter the deception and unveil the mural's truth in the Throne Room of Yggsgard.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -625,7 +626,7 @@
     "title": "Tyrant Tumbles",
     "description": "Shatter the Loki statue area in Yggsgard's Bifrost Garden.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -634,7 +635,7 @@
     "title": "I Say Thee Nay!",
     "description": "Safeguard the sapping device to wither Yggdrasill in Yggsgard.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -643,7 +644,7 @@
     "title": "For Asgard!",
     "description": "Destroy the sapping device and save Yggdrasill in Yggsgard.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -652,7 +653,7 @@
     "title": "Wakey Wakey",
     "description": "Shatter 1 hibernation pod in the Super-Soldier Factory of Hydra Charteris Base.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -661,7 +662,7 @@
     "title": "Call of the Hive",
     "description": "Open the Maveth Portal in Hydra Charteris Base.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -670,7 +671,7 @@
     "title": "Cut off One Head",
     "description": "Destroy the Hydra Charteris Base.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -679,7 +680,7 @@
     "title": "Not on My Watch",
     "description": "Shut down the production line of Super-Soldier Factory in Hydra Charteris Base.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -688,7 +689,7 @@
     "title": "Wide Open",
     "description": "Blast the protective barrier of Frozen Airfield in Hydra Charteris Base.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
   },
@@ -697,8 +698,9 @@
     "title": "Enter the Hydra",
     "description": "Activate the entrance to Frozen Airfield in Hydra Charteris Base.",
     "category": "chronoverse-saga",
-    "rarity": "",
+    "rarity": "copper",
     "requirement": 1,
     "reward": 5
-  }
+  },
+  "_____new_achievements_____"
 ]

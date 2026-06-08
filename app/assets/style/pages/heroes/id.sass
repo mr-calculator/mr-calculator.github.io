@@ -10,273 +10,54 @@
     +media-desktop
         background-size: cover
 
-    &::before
-        content: ""
-        position: absolute
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
-
-        background: transparent
-        background-repeat: no-repeat
-        background-image: var(--hero-silhouette)
-        background-size: contain
-        background-position: bottom
-
-        +media-mobile
-            background-position: center
-            background-attachment: fixed
-
-    > *
-        z-index: 1
-        
-
-    nav
-        $breakpoint: 1450px
-
+    .silhouette
         position: fixed
         top: 0
-        
+        left: 0
         width: 100%
-        height: 65px
-        padding: 0 20px
-        color: $light
+        height: 100%
 
-        display: flex
-        justify-content: center
-        align-items: center
-        gap: 0px
-
-        z-index: 10
-    
-        +media-desktop
-            top: 20px
-            width: fit-content
-            padding: 0 30px 0 50px
-
-            justify-content: start
-            gap: 100px
-
-        +media($minmax: 'min', $size: $breakpoint + 1px)
-            padding: 0 0 0 50px
-
+        pointer-events: none
+        overflow: clip
+        
         &::before
             content: ""
             position: absolute
             top: 0
-            left: -10px
+            left: 50%
+            transform: translateX(-50%)
+
+            width: auto
+            height: 100%
+            aspect-ratio: 1.2 / 1
+
+            background: transparent
+            background-repeat: no-repeat
+            background-image: var(--hero-silhouette)
+            background-size: 100% 100%
+            background-position: center
+
+            +media-mobile
+                background-position: center
+                background-attachment: fixed
+
+
+    > *:not(nav)
+        z-index: 1
+        
+
+    nav
+        position: fixed
+        top: 0
+
+        +media-desktop
+            top: 20px
+
+        .head .title .favourite
+            flex-shrink: 0
+            position: absolute
             right: 0
-            height: 100%
-
-            background: $blue-accent var(--tex-barBackground) no-repeat
-            background-size: cover
-            background-position: bottom
-
-            +media-desktop
-                background-position: bottom right
-
-                mask: var(--tex-barBackgroundMask) no-repeat
-                mask-size: cover
-                mask-position: bottom right
-
-        > *
-            z-index: 2
-
-        .head
-            width: 100%
-            height: 100%
-            display: flex
-            justify-content: space-between
-            align-items: center
-            gap: 70px
-
-            +media-desktop
-                width: auto
-                justify-content: start
-        .menu
-            width: 35px
-            height: 25px
-
-            display: flex
-            justify-content: center
-            align-items: center
-
-            overflow: visible
-
-            cursor: pointer
-
-            +media($minmax: 'min', $size: $breakpoint + 1px)
-                display: none
-
-            .menu-icon
-                display: block
-                user-select: none
-                -webkit-user-drag: none
-
-                height: 100%
-
-            .warning-bubble
-                top: -3px
-                right: -3px
-
-        .title
-            position: relative
-            display: flex
-            align-items: center
-            gap: 20px
-
-            h1
-                display: inline-block
-                font-family: MarvelRivalsHeavy
-                font-weight: normal
-                font-style: italic
-                font-size: 22px
-                line-height: 22px
-                text-transform: uppercase
-
-                text-align: center
-
-                +media-desktop
-                    font-size: 36px
-                    line-height: 32px
-                    text-align: left
-
-            .favourite
-                flex-shrink: 0
-                position: absolute
-                right: 0
-                transform: translateX(calc(100% + 10px))
-
-        ul
-            height: 100%
-            display: none
-
-            +media($minmax: 'max', $size: $breakpoint + 1px)
-                position: absolute
-                top: 65px
-                left: 0
-
-                width: 100%
-                height: 300px
-
-                flex-direction: column
-
-                background: $blue-accent var(--tex-barBackground)
-                background-position: bottom
-
-            @media (min-width: 992px) and (max-width: #{$breakpoint})
-                top: 64.5px
-                width: calc(100% - 18.5px)
-
-            +media($minmax: 'min', $size: $breakpoint + 1px)
-                display: flex !important
-
-            &.visible
-                display: flex
-                align-items: center
-
-                li
-                    width: fit-content
-
-                    &::after
-                        // background-size: auto 100%
-
-                        z-index: 2
-
-            li
-                position: relative
-                min-width: 85px
-                height: 100%
-                padding: 0 25px 0 25px + 5px
-
-                display: flex
-                justify-content: center
-                align-items: center
-                gap: 20px
-
-                color: $light
-                font-family: MarvelRivalsBold
-                font-size: 22px
-                text-transform: uppercase
-
-                box-sizing: content-box
-                cursor: pointer
-                user-select: none
-
-                +media($minmax: 'max', $size: $breakpoint)
-                    padding: 0 25px 0 25px
-
-                &::after
-                    content: ""
-                    position: absolute
-                    top: 0
-                    left: -2px
-                    bottom: 0
-                    right: -2px
-
-                    display: none
-                    background: transparent var(--tex-tabStraight) no-repeat
-                    background-size: 100% 100%
-                    background-position: center
-
-                    transform: skew(-15deg)
-
-                &:first-of-type::after
-                    +media($minmax: 'min', $size: $breakpoint + 1px)
-                        left: 0
-                &:last-of-type::after
-                    +media($minmax: 'min', $size: $breakpoint + 1px)
-                        right: 9px
-
-                &:last-of-type
-                    +media($minmax: 'min', $size: $breakpoint + 1px)
-                        padding-left: 39px
-                        padding-right: 50px
-                &.new::after
-                    +media($minmax: 'max', $size: $breakpoint + 1px)
-                        background-size: 90% 100%
-                        background-position: 80%
-
-                +hover
-                    color: #fff
-
-                &:active
-                    &::after
-                        background: transparent var(--tex-tabStraight-active) no-repeat
-                        background-size: 100% 100%
-                        background-position: bottom
-
-                        display: block
-
-                &.selected
-                    color: $color
-
-                    &::after
-                        display: block
-
-                &.warning-wrapper
-                    .warning-bubble
-                        top: 50%
-                        right: -15px
-                        transform: translate(-100%, -120%)
-
-                        z-index: 2
-
-                .new
-                    display: inline-block
-                    padding: 1px 10px
-
-                    background: var(--tex-tab-active)
-                    background-size: 100% 100%
-
-                    display: flex
-                    justify-content: center
-                    align-items: center
-
-                    font-family: MarvelRivalsHeavy
-                    font-size: 16px
-                    color: $text-color
+            transform: translateX(calc(100% + 10px))
 
     main
         display: flex
@@ -512,7 +293,7 @@
                     .rank h2,
                     .level
                         font-size: 28px
-                        font-family: MarvelRivalsBold
+                        font-family: $font-bold
                         font-weight: normal
                         text-transform: uppercase
                         font-style: italic
@@ -586,7 +367,7 @@
                             gap: 5px
 
                             p
-                                font-family: MarvelRivals
+                                font-family: $font
                                 font-size: 26px
                                 color: $light
 
@@ -621,98 +402,6 @@
 
                                 transform: translate(90px, -100%)
 
-            .categories-list
-                height: fit-content
-                
-                display: flex
-                flex-direction: column
-                gap: 5px
-
-                max-height: 400px
-                overflow-x: clip
-                overflow-y: auto
-
-                .category
-                    position: relative
-                    display: grid
-                    grid-template-columns: 67px auto
-                    align-items: center
-
-                    cursor: pointer
-                    user-select: none
-
-                    background: #f0f4fc
-
-                    &:not(.selected)
-                        +hover
-                            .icon
-                                background: var(--tex-listItemIconHover) no-repeat
-                                background-size: 100% 100%
-                                border: 3px solid #fff
-
-                            .name
-                                background: var(--tex-listItemHover) no-repeat
-                                background-size: 100% 100%
-
-
-                    &.selected
-                        &::before
-                            display: block
-
-                        .icon
-                            background: var(--tex-listItemIconSelected) no-repeat
-                            background-size: 100% 100%
-
-                            border: 3px solid $color
-
-                        .name
-                            background: var(--tex-listItemSelected) no-repeat
-                            background-size: 100% 100%
-
-                            color: $color
-
-                    &::before
-                        content: ""
-                        position: absolute
-                        top: 0
-                        left: -13px
-
-                        width: 10px
-                        height: 100%
-
-                        background: var(--tex-listItemDecorationSelected) no-repeat
-                        background-size: 100% 100%
-
-                        display: none
-
-                    .icon,
-                    .name
-                        width: 100%
-                        height: 100%
-
-                        display: flex
-                        align-items: center
-
-                    .icon
-                        position: relative
-                        background: #909dc1
-
-                        display: flex
-                        justify-content: center
-                        align-items: center
-
-                        border: 3px solid transparent
-                        border-right: none !important
-
-                    .name
-                        padding: 10px 10px 10px 15px
-
-                        h4
-                            font-family: MarvelRivalsBold
-                            font-weight: 400
-                            font-size: 22px
-                            text-transform: uppercase
-
         .content
             margin: 0 0 60px 0
 
@@ -739,6 +428,10 @@
                 display: flex
                 justify-content: center
                 align-items: center
+
+            &.planner-wrapper
+                overflow-x: hidden
+                overflow-y: auto
 
             &.cosmetics-wrapper
                 padding: 0
@@ -836,7 +529,7 @@
                                     p
                                         color: $light-blue
                                         font-size: 20px
-                                        font-family: MarvelRivalsHeavy
+                                        font-family: $font-heavy
                                         text-transform: uppercase
                                         text-align: center
 

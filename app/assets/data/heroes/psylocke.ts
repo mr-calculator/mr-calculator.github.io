@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const Psylocke: HeroData = {
+    internalId: '1048',
     id: 'psylocke',
     name: 'Psylocke',
     aliases: [

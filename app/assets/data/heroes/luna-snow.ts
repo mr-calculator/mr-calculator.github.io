@@ -1,6 +1,7 @@
 import { PROFICIENCY_RANKS, type HeroData } from "../common";
 
 export const LunaSnow: HeroData = {
+    internalId: '1031',
     id: 'luna-snow',
     name: 'Luna Snow',
     aliases: [
@@ -23,6 +24,19 @@ export const LunaSnow: HeroData = {
     dataDir: '/img/heroes/data/luna-snow/',
 
     iconAnimationOffset: [-10, -35],
+    easterEgg: '1031313',
+    easterEggMessage: `
+    Woah! You found an <b>easter egg</b>!
+    <br/>
+    <i>
+        Check out the
+        <a href="https://www.nexusmods.com/marvelrivals/mods/9156" target="_blank" rel="noopener noreferrer">
+            Sonic Trailblazer UI</a>
+        mod, or other UI mods from
+        <a href="https://www.nexusmods.com/profile/Daito/mods" target="_blank" rel="noopener noreferrer">
+            Daito on Nexus Mods</a>.
+    </i>
+    `,
 
     ranks: [
         {

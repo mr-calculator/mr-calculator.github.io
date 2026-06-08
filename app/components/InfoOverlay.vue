@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
-        <div class="info-modal-wrapper">
-            <div :class="{'info-modal-content': 1, large}" v-bind="$attrs">
+        <div class="info-modal-wrapper" v-bind="$attrs">
+            <div :class="{'info-modal-content': 1, large, noOverflow}">
                 <Tex
                     class="close"
 
@@ -16,7 +16,7 @@
                 />
 
                 <h1 v-if="title" v-html="title" />
-                <div class="slot">
+                <div :class="{slot: 1, noStyle}">
                     <slot />
                 </div>
             </div>
@@ -52,6 +52,7 @@
     .info-modal-content
         position: relative
         width: 100%
+        max-height: 100%
         padding: 60px 20px 40px 20px
 
         display: flex
@@ -62,6 +63,11 @@
         +media-desktop
             width: 800px
             padding: 40px 20px + 55px
+
+        &.noOverflow
+            .slot
+                overflow-x: hidden !important
+                overflow-y: hidden !important
 
         &.large
             width: 100% !important
@@ -91,7 +97,7 @@
 
         h1
             font-size: 46px
-            font-family: MarvelRivalsHeavy
+            font-family: $font-heavy
             font-style: italic
             font-weight: normal
             text-transform: uppercase
@@ -112,33 +118,36 @@
 
                 +scrollbar($background: transparent, $thumb: $light, $active: $blue)
 
-            ::v-deep(p)
-                font-size: 18px
-                font-family: MRBody
-                text-align: justify
+            &:not(.noStyle)
+                ::v-deep(p)
+                    font-size: 18px
+                    font-family: $font-body
+                    text-align: justify
 
-                margin-bottom: 20px
+                    margin-bottom: 20px
 
-            > ::v-deep(img)
-                width: 100%
-                margin-bottom: 20px
+                > ::v-deep(img)
+                    width: 100%
+                    margin-bottom: 20px
 
-            ::v-deep(.button)
-                max-width: 100%
-                margin: 40px auto 20px auto
+                ::v-deep(.button)
+                    max-width: 100%
+                    margin: 40px auto 20px auto
 
-            ::v-deep(.monospace)
-                font-family: monospace
+                ::v-deep(.monospace)
+                    font-family: monospace
 
-                &.center
-                    display: block
-                    text-align: center
+                    &.center
+                        display: block
+                        text-align: center
 </style>
 
 <script setup lang="ts">
 defineProps<{
     title?: string,
-    large?: boolean
+    large?: boolean,
+    noOverflow?: boolean,
+    noStyle?: boolean
 }>();
 defineEmits(['close']);
 </script>

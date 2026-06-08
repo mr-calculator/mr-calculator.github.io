@@ -1,16 +1,6 @@
 <template>
-    <div class="common-page">
-        <NuxtLink to="/" class="logo-standalone">
-            <Tex
-                image="logo"
-
-                width="50px"
-                height="50px"
-
-                object-fit="contain"
-            />
-        </NuxtLink>
-        <main class="content">
+    <NuxtLayout name="default">
+        <div class="common-page">
             <h1>
                 Error {{ error.status }}
             </h1>
@@ -18,12 +8,18 @@
 
             <br/>
             <NuxtLink to="/">Go back Home</NuxtLink>
-        </main>
-    </div>
+        </div>
+        
+        <ClientOnly>
+            <UiModalsInjector />
+            <UiNotificationsInjector />
+            <UiTooltipInjector />
+        </ClientOnly>
+    </NuxtLayout>
 </template>
 
 <style lang="sass" scoped>
-.common-page .content
+.common-page
     h1
         padding: 0 20px
     p, a

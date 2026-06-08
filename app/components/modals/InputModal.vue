@@ -24,9 +24,9 @@
 <script setup lang="ts">
 const props = defineProps<{
     title: string,
-    message: string,
+    message?: string,
     inputPlaceholder: string,
-    inputValue: string,
+    inputValue?: string,
     inputProps?: any,
     numberInput?: {
         step?: number

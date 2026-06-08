@@ -224,7 +224,7 @@
         h3
             min-height: 50px
             font-size: 20px
-            font-family: MarvelRivalsBold
+            font-family: $font-bold
             font-weight: normal
             text-transform: uppercase
             text-align: center

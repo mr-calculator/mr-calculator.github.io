@@ -6,7 +6,7 @@
         >
             <p class="owned-count">
                 <ClientOnly>
-                    <span class="owned">{{ ownedCostumes.length }}</span>/<span class="total">{{ cosmeticsTotal }} OWNED</span>
+                    <span class="owned">{{ ownedCostumes.length }}</span>/<span class="total">{{ heroCostumes.length }} OWNED</span>
                 </ClientOnly>
             </p>
             <FormDropdown
@@ -14,9 +14,18 @@
 
                 :options="filterOptions"
                 v-model="activeFilters"
-                placeholder="FILTER"
-                multi
+                :placeholder="{
+                    label: 'FILTER',
+                    leftIcon: {
+                        key: 'filter',
+                        size: 35
+                    }
+                }"
                 small
+                search
+                push-checked-to-top
+                mobile-overlay
+                :concatenate-selected-options="shouldConcatenateSelectedFilters"
             />
             <FormDropdown
                 ref="sort-dropdown"
@@ -32,7 +41,7 @@
                 :key="costume.id"
 
                 :name="costume.name"
-                :src="`/img/heroes/data/${hero.id}/costumes/${costume.id}.webp`"
+                :src="`/img/heroes/data/${hero.id}/costumes/${costume.id}_200.webp`"
                 :rarity="costume.rarity"
                 :owned="ownedCostumes.includes(costume.id)"
                 :color="hero.color"
@@ -100,6 +109,9 @@
 
             padding-left: 28px // center bcs of scrollbar always on
 
+            +media($size: 460px, $minmax: 'max')
+                padding-left: 20px
+
             &.mobile
                 transform: translateY(calc(-100% - 20px))
                 transition: transform .2s ease
@@ -129,7 +141,7 @@
 
         .owned-count
             grid-column: 1 / -1
-            font-family: MarvelRivalsBold
+            font-family: $font-bold
             font-size: 22px
             text-transform: uppercase
             color: $light-blue-highlight
@@ -169,7 +181,7 @@
             min-height: 80vh
 
         p
-            font-family: MarvelRivalsHeavy
+            font-family: $font-heavy
             font-size: 22px
             text-transform: uppercase
             text-align: center
@@ -178,8 +190,9 @@
 
 <script setup lang="ts">
 import type { HeroData } from '~/assets/data/common';
-import { getAllCategories, getAllSources, getAllThemes, getCategoryIcon, getHeroCostumes, RARITY_ORDER, type Costume } from '~/assets/data/costumes';
+import { getAllCategories, getAllSources, getAllThemes, getCategoryIcon, getHeroCostumes, RARITY_ORDER, type Costume } from '~/assets/data/cosmetics/costumes/costumes';
 import CostumeDetailModal from '../modals/CostumeDetailModal.vue';
+import type { Option } from '../form/Dropdown.vue';
 
 const props = defineProps<{
     hero: HeroData,
@@ -190,96 +203,107 @@ const activeFilters = defineModel<string[]>({ required: true });
 const { openModal } = useModalManager();
 
 const cosmeticsControls = useTemplateRef('cosmeticsControls');
-const scroller = ref<Window|HTMLElement>();
 const filterDropdown = useTemplateRef('filter-dropdown');
 const sortDropdown = useTemplateRef('sort-dropdown');
 const mobile = isMobile();
 
-function findScroller() {
-    scroller.value = getScrollParent(cosmeticsControls.value);
-    if ((scroller.value as HTMLElement).tagName === 'BODY')
-        scroller.value = window;
-}
-await useGsap(({ scrollTrigger }) => {
-    nextTick(() => {
-        findScroller();
-        scroller.value?.scrollTo({ top: 0, behavior: 'instant' });
+useStickyBar(cosmeticsControls, {
+    topOffset: () => mobile.value ? -65 : 0,
+    scrollToTopOnInit: true,
+    showClass: 'sticky-mobile-show',
+    mobileOnly: true,
+    onScrollDownWhileSticky: () => {
+        if (!filterDropdown.value?.mobileOverlayEnabled)
+            filterDropdown.value?.setExpanded(false);
 
-        scrollTrigger.create({
-            trigger: cosmeticsControls.value,
-            scroller: scroller.value,
-            start: `${mobile.value ? '-65px' : 'top'} 0%`,
-            onEnter: () => cosmeticsControls.value?.classList.add('sticky'),
-            onLeaveBack: () => cosmeticsControls.value?.classList.remove('sticky'),
-        });
-    });
-
-    let lastKnownScrollY = 0;
-    useEvent('scroll', () => {
-        if (!mobile.value)
-            return;
-
-        const scrollY = (scroller.value as HTMLElement).scrollTop ?? (scroller.value as Window).scrollY;
-        const deltaY = scrollY - lastKnownScrollY;
-        lastKnownScrollY = scrollY;
-
-        // scrolling down
-        if (deltaY > 0) {
-            cosmeticsControls.value?.classList.remove('sticky-mobile-show');
-
-            if (cosmeticsControls.value?.classList.contains('sticky')) {
-                filterDropdown.value?.setExpanded(false);
-                sortDropdown.value?.setExpanded(false);
-            }
-        }
-        else
-            cosmeticsControls.value?.classList.add('sticky-mobile-show');
-    }, scroller.value);
+        sortDropdown.value?.setExpanded(false);
+    },
 });
 
 const ownedCostumes = useLocalStorage<string[]>(() => `cosmetics_owned_${props.hero.id}`, []);
 const heroCostumes = computed(() => getHeroCostumes(props.hero.id));
-const cosmeticsTotal = computed(() => heroCostumes.value.length);
 
 const costumeSort = ref('rarity');
 
-const FILTER_RARITY_OPTS = [
+const FILTER_RARITY_OPTS: Option[] = [
     {
-        label: `<div class="icon" style="--img-bg:var(--tex-rarityLegendary); --width:20px"></div> LEGENDARY`,
-        value: '__rarity_legendary'
+        leftIcon: {
+            key: 'rarityLegendary',
+            size: 20
+        },
+
+        label: `LEGENDARY`,
+        value: '__rarity_legendary',
+
+        whenSelected: { showOnlyLeftIcon: true }
     },
     {
-        label: `<div class="icon" style="--img-bg:var(--tex-rarityEpic); --width:20px"></div> EPIC`,
-        value: '__rarity_epic'
+        leftIcon: {
+            key: 'rarityEpic',
+            size: 20
+        },
+
+        label: `EPIC`,
+        value: '__rarity_epic',
+
+        whenSelected: { showOnlyLeftIcon: true }
     },
     {
-        label: `<div class="icon" style="--img-bg:var(--tex-rarityRare); --width:20px"></div> RARE`,
-        value: '__rarity_rare'
+        leftIcon: {
+            key: 'rarityRare',
+            size: 20
+        },
+
+        label: `RARE`,
+        value: '__rarity_rare',
+
+        whenSelected: { showOnlyLeftIcon: true }
     },
 ];
 const HERO_COSTUME_CATEGORIES = computed(() => getAllCategories(props.hero.id));
 const HERO_COSTUME_SOURCES = computed(() => getAllSources(props.hero.id));
 const HERO_COSTUME_THEMES = computed(() => getAllThemes(props.hero.id));
 
-const filterOptions = computed(() => [
-    { label: 'Rarity', separator: true },
+const filterOptions = computed<Option[]>(() => [
+    { label: 'Rarity', separator: true, pushCheckedToTop: false },
     ...FILTER_RARITY_OPTS,
-    { label: 'Categories', separator: true },
+    { label: 'Categories', separator: 'collapsible' },
     ...HERO_COSTUME_CATEGORIES.value.map(c => ({
+        leftIcon: {
+            url: getCategoryIcon(c),
+            size: 30
+        },
+        whenSelected: { showOnlyLeftIcon: true },
+
         value: `__category_${c}`,
-        label: `<div class="icon" style="--img-bg:url('${getCategoryIcon(c)}'); --width:30px"></div> ${c}`,
+        label: c,
     })),
-    { label: 'Sources', separator: !!HERO_COSTUME_SOURCES.value.length },
+    { label: 'Sources', separator: !!HERO_COSTUME_SOURCES.value.length ? 'collapsible' : false},
     ...HERO_COSTUME_SOURCES.value.map(s => ({
         value: `__source_${s}`,
         label: s
     })),
-    { label: 'Themes', separator: !!HERO_COSTUME_THEMES.value.length },
+    { label: 'Themes', separator: !!HERO_COSTUME_THEMES.value.length ? 'collapsible' : false },
     ...HERO_COSTUME_THEMES.value.map(t => ({
+        leftIcon: {
+            url: `/img/cosmetics/themes/${toKebabCase(t)}.webp`,
+            size: 23
+        },
+        whenSelected: { showOnlyLeftIcon: true },
+
         value: `__theme_${t}`,
-        label: `<div class="icon" style="--img-bg:url('${`/img/heroes/costume-themes/${toKebabCase(t)}.webp`}'); --width:23px"></div> ${t}`,
+        label: t,
     })),
 ]);
+function shouldConcatenateSelectedFilters(selected: Option[]) {
+    return {
+        enabled: selected.every(opt => 
+            (opt.whenSelected && (opt.whenSelected as { showOnlyLeftIcon: boolean }).showOnlyLeftIcon)
+         && opt.leftIcon),
+        max: 4
+    }
+}
+
 const sortDropdownOptions = [
     { value: 'rarity',    label: 'SORT BY RARITY' },
     { value: 'date-desc', label: 'SORT BY NEWEST' },
@@ -298,14 +322,22 @@ const sortedCostumes = computed(() => {
     const themeFilters = activeFilters.value.filter(f => f.startsWith('__theme_'))
                                             .map(f => f.substring('__theme_'.length));
 
-    if (rarityFilters.length)
-        list = list.filter(c => rarityFilters.includes(c.rarity));
-    if (categoryFilters.length)
-        list = list.filter(c => categoryFilters.includes(c.category));
-    if (sourceFilters.length)
-        list = list.filter(c => sourceFilters.includes(c.source ?? ''));
-    if (themeFilters.length)
-        list = list.filter(c => themeFilters.includes(c.theme ?? ''));
+    list = list.filter(c => {
+        const checks: (() => boolean)[] = [
+            () => rarityFilters.length ? rarityFilters.includes(c.rarity) : true,
+            () => categoryFilters.length ? categoryFilters.includes(c.category) : true,
+            () => sourceFilters.length ? sourceFilters.includes(c.source ?? '') : true,
+            () => themeFilters.length ? themeFilters.includes(c.theme ?? '') : true,
+        ]
+
+        for (const check of checks) {
+            const allowed = check();
+            if (!allowed)
+                return false;
+        }
+
+        return true;
+    });
 
     list.sort((a, b) => {
         if (costumeSort.value === 'rarity') {

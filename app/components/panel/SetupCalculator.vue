@@ -51,10 +51,10 @@
         </template>
         <template v-else-if="isIncorrectSelection">
             <h2 class="rich-title">Your current level is
-                <span class="icon"><img :src="levelToRank(level.level)?.icon" /></span>
+                <span class="icon"><img :src="levelToRank(level.level)?.icon" draggable="false" /></span>
                 <span class="level">LV{{ level.level }}</span>
                 and your goal is
-                <span class="icon"><img :src="goal.rank?.icon" /></span>
+                <span class="icon"><img :src="goal.rank?.icon" draggable="false" /></span>
                 <span class="level">LV{{ goal.level }}</span>.
                 <br/>
                 Congrats! You have passed your goal!
@@ -111,11 +111,11 @@
 
     p
         font-size: 24px
-        font-family: MarvelRivalsBold
+        font-family: $font-bold
 
         &.info
             font-size: 16px
-            font-family: MRBody
+            font-family: $font-body
             color: $light-blue
 
 </style>

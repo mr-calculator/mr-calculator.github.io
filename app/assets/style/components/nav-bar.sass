@@ -1,0 +1,452 @@
+nav
+    width: 100%
+    height: 65px
+    padding: 0 20px
+    color: $light
+
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 0px
+
+    z-index: 10
+
+    +media-desktop
+        width: fit-content
+        padding: 0 30px 0 50px
+
+        justify-content: start
+        gap: 100px
+
+    // EXISTS IN ~/assets/style/components/navbar-break.css WITH JS VARIABLES
+    // &.breakpointBreak
+    //     padding: 0 0 0 50px
+
+    //     &.fullWidth
+    //         padding: 0 30px 0 80px
+    //         +media($minmax: 'max', $size: 1400px)
+    //             padding: 0 30px 0 30px
+
+    //     .menu
+    //         display: none
+
+    //     .tabList
+    //         display: flex !important
+
+    //         > .tabItem
+    //             &:first-of-type::after,
+    //             &:first-of-type::before
+    //                 left: 0
+    //             &:last-of-type::after,
+    //             &:last-of-type::before
+    //                 right: 9px
+    //             &:last-of-type
+    //                 padding-right: 40px
+
+    //                 .active-animation::after
+    //                     width: 95%
+            
+
+    // &:not(.breakpointBreak)
+    //     .tabList
+    //         position: absolute
+    //         top: 65px
+    //         left: 0
+
+    //         width: 100%
+    //         height: auto
+    //         max-height: calc(var(--u100vh) - 65px)
+
+    //         flex-direction: column
+
+    //         background: $blue-accent var(--tex-barBackground)
+    //         background-position: bottom
+
+    //         overflow-x: hidden
+    //         overflow-y: auto
+
+    //         +media($minmax: 'min', $size: 992px)
+    //             top: 64.5px
+    //             width: calc(100% - 18.5px)
+
+    //         > .tabItem
+    //             padding: 0 25px 0 25px
+
+    //             height: 65px
+
+    //             &.new::after
+    //                 background-size: 90% 100%
+    //                 background-position: 80%
+
+    &.transparent
+        &::before
+            background-color: #2828518d
+
+        &::after
+            content: ""
+            position: absolute
+            top: 0
+            left: 0
+
+            width: 100%
+            height: 85px
+
+            backdrop-filter: blur(20px)
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.98) 20%, rgba(0, 0, 0, 0.96) 40%, rgba(0, 0, 0, 0.94) 60%, rgba(0, 0, 0, 0.15) 80%, rgba(0, 0, 0, 0) 100%)
+
+            pointer-events: none
+            user-select: none
+
+            z-index: -1
+
+    &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: -10px
+        right: 0
+        height: 100%
+
+        background: $blue var(--tex-barBackground) no-repeat
+        background-size: cover
+        background-position: 90% 100%
+
+        +media-desktop
+            background: color-mix(in srgb, $blue 60%, transparent) var(--tex-barBackground) no-repeat
+            background-size: cover
+            background-position: 90% 100%
+
+            mask: var(--tex-barBackgroundMask) no-repeat
+            mask-size: cover
+            mask-position: bottom right
+
+    &.fullWidth
+        width: 100%
+
+        &::before
+            right: -20px
+
+    &:not(.fullWidth)
+        .prepend-container
+            +media-desktop
+                width: auto
+                justify-content: start
+                gap: 70px
+
+    > *
+        z-index: 2
+
+    .prepend-container
+        width: 100%
+        height: 100%
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        ::v-deep(.head)
+            width: 100%
+            height: 100%
+            display: flex
+            justify-content: space-between
+            align-items: center
+            gap: 70px
+
+            +media-desktop
+                width: auto
+                justify-content: start
+
+            .title
+                position: relative
+                display: flex
+                align-items: center
+                gap: 20px
+
+                h1
+                    display: inline-block
+                    font-family: $font-heavy
+                    font-weight: normal
+                    font-style: italic
+                    font-size: 22px
+                    line-height: 22px
+                    text-transform: uppercase
+
+                    text-align: center
+
+                    +media-desktop
+                        font-size: 36px
+                        line-height: 32px
+                        text-align: left
+
+            .mobile-spacer
+                +media-desktop
+                    display: none
+            
+    .menu
+        width: 35px
+        height: 25px
+
+        display: flex
+        justify-content: center
+        align-items: center
+
+        overflow: visible
+
+        cursor: pointer
+
+        .menu-icon
+            display: block
+            user-select: none
+            -webkit-user-drag: none
+
+            height: 100%
+
+        .warning-bubble
+            top: -3px
+            right: -3px
+
+    .tabList
+        height: 100%
+        display: none
+
+        &.visible
+            display: flex
+            align-items: center
+
+            .tabItem
+                width: fit-content
+
+                &::after
+                    z-index: 2
+
+        .inner-submenu
+            width: 100%
+            padding: 20px 0 0 0
+
+            display: flex
+            align-items: center
+            flex-direction: column
+            gap: 5px
+
+            overflow: clip
+
+            .tabItem
+                padding: 0 20px 
+
+.tabItem
+    flex-shrink: 0
+    flex-grow: 0
+    position: relative
+    min-width: 85px
+    height: 100%
+    padding: 0 25px 0 25px + 5px
+
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 20px
+
+    color: #bcc0cd
+    font-family: $font-bold
+    font-size: 22px
+    text-transform: uppercase
+
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.9)
+
+    box-sizing: content-box
+    cursor: pointer
+    user-select: none
+    -webkit-user-drag: none
+
+    +hover
+        color: #fff
+
+        &.special::before
+            background-image: var(--tex-tabSpecial-hover)
+
+    &::after
+        content: ""
+        position: absolute
+        top: 0
+        left: -2px
+        bottom: 0
+        right: -2px
+
+        display: none
+        background: transparent var(--tex-tabStraight) no-repeat
+        background-size: 100% 100%
+        background-position: center
+
+        transform: skew(-15deg)
+
+        z-index: 3
+
+    &.special
+        font-family: $font-heavy
+        font-size: 24px
+        color: #fff
+
+        &::before
+            content: ""
+            position: absolute
+            top: 0
+            left: -2px
+            bottom: 1px
+            right: -4px
+
+            display: block
+            background: transparent var(--tex-tabSpecial) no-repeat
+            background-size: 100% 100%
+            background-position: center
+
+            transform: skew(-15deg)
+
+            clip-path: polygon(2% 0, 98% 0, 98% 100%, 2% 100%)
+
+            z-index: -2
+
+    .special-animation
+        position: absolute
+        top: 0
+        left: -9px
+        bottom: 0
+        right: -9px
+
+        background: transparent var(--tex-tabSpecialAnimated) no-repeat
+        background-size: 100% 100%
+        background-position: center
+
+        transform: skew(-3.3deg)
+        opacity: 0.4
+
+        clip-path: polygon(1% 0, 99% 0, 99% 100%, 1% 100%)
+
+        z-index: -1
+
+    .active-animation
+        position: absolute
+        top: 0
+        left: 0
+        bottom: unset
+        right: unset
+
+        width: 100%
+        height: 100%
+
+        transform: scaleX(1.2) scaleY(1.3) translate(2.5%, -2%) skew(-15deg)
+
+        z-index: 2
+
+        &::after
+            content: ""
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+
+            background: transparent var(--tex-tabActiveAnimated) no-repeat
+            background-size: 100% 100%
+            background-position: center
+
+            transform: skew(11deg)    
+
+    &:active
+        color: #{$dark} !important
+
+        &::after
+            background: transparent var(--tex-tabStraight-active) no-repeat
+            background-size: 100% 100%
+            background-position: bottom
+
+            display: block
+
+    &.selected,
+    &:focus
+        color: $color
+
+        &::after
+            display: block
+
+        &::before
+            background-image: var(--tex-tabSpecial-hover)
+
+    &.warning-wrapper
+        .warning-bubble
+            top: 55%
+            right: -20px
+            transform: translate(-100%, -100%)
+
+            z-index: 2
+
+    .new
+        display: inline-block
+        padding: 1px 10px
+
+        background: var(--tex-tab-active)
+        background-size: 100% 100%
+
+        display: flex
+        justify-content: center
+        align-items: center
+
+        font-family: $font-heavy
+        font-size: 16px
+        color: $text-color
+
+        text-shadow: none
+
+.navbar-submenu
+    position: absolute
+    top: 65px + 7px
+    left: var(--tab-left, 100px)
+
+    height: 36px
+    transform: translateX(-50%)
+
+    display: flex
+
+    z-index: 9
+
+    +hover
+        &::before
+            opacity: 0.7
+
+    &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+
+        width: 100%
+        height: 100%
+        background: #262b35
+        opacity: 0.6
+
+        clip-path: polygon(2px 0px, calc(100% - 10px) 0%, calc(100% - 10px) 100%, 2px 100%)
+        transform: skew(-14deg)
+
+        z-index: -1
+
+.navbar-submenu,
+nav .tabList .inner-submenu
+    .submenu-item
+        height: 36px
+        min-width: 0
+
+        font-size: 19px
+
+        padding-left: 30px
+        padding-right: 35px
+
+        &:first-of-type::after,
+        &:first-of-type::before
+            left: 0
+        &:last-of-type::after,
+        &:last-of-type::before
+            right: 9px
+
+        &:not(:last-of-type)
+            padding-right: 30px
+        &:last-of-type
+            .active-animation::after
+                width: 95%

@@ -1,22 +1,33 @@
 <template>
     <div>
         <NuxtLoadingIndicator color="#fbdc2c" />
-        <NuxtLayout :name="layout">
+        <NuxtLayout :name="appLayout">
             <NuxtPage />
         </NuxtLayout>
 
-        <UiModalsInjector />
-        <UiNotificationsInjector />
-        <UiTooltipInjector />
+        <ClientOnly>
+            <ModalsDevloperLetter />
+
+            <UiModalsInjector />
+            <UiNotificationsInjector />
+            <UiTooltipInjector />
+        </ClientOnly>
     </div>
 </template>
 
 <style src="@/assets/style/components/notifications.sass"></style>
 
-<script setup>
+<script setup lang="ts">
+import { fixUnknownHeroesImagePaths, setupProfile } from './assets/data/common';
 import { injectTexturesCss } from './assets/data/textures';
 
-const layout = ref('default');
+const route = useRoute();
+const appLayout = computed(() => route.meta.layout ?? 'default');
 
 injectTexturesCss();
+
+onMounted(() => {
+    setupProfile();
+    fixUnknownHeroesImagePaths();
+});
 </script>

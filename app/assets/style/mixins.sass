@@ -12,11 +12,11 @@
 
 // up to desktop
 @mixin media-mobile
-    @media only screen and (max-width: 992px)
+    @media only screen and (max-width: 991px)
         @content
 
 @mixin media-desktop
-    @media only screen and (min-width: 992px)
+    @media only screen and (min-width: 991px)
         @content
 
 @mixin media-large-desktop
@@ -89,7 +89,8 @@
 
 @mixin hover($additional-selector: null)
     @media (hover: hover) and (pointer: fine)
-        &:hover
+        &:hover,
+        &:focus
             @content
     @media (hover: none)
         &:active

@@ -14,6 +14,7 @@ export const useHasAvgStats = (heroReactive: MaybeRefOrGetter<HeroData>, ignoreG
             return true;
 
         const stats = storedLevel.value.averageStats;
+
         return neededStats.every(s => {
             if (s === 'play')
                 return true;

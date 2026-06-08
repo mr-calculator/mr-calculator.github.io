@@ -4,14 +4,14 @@
             <ul>
                 <li
                     :class="{ selected: view === 'gallery' }"
-                    @click="view = 'gallery'"
+                    @click="viewStore = 'gallery'"
                 >
                     GALLERY
                     <span class="view-label">VIEW</span>
                 </li>
                 <li
                     :class="{ selected: view === 'list' }"
-                    @click="view = 'list'"
+                    @click="viewStore = 'list'"
                 >
                     LIST
                     <span class="view-label">VIEW</span>
@@ -20,46 +20,18 @@
         </div>
         <div
             ref="tools"
-            :class="{ tools: 1, mobile }"
+            :class="{ tools: 1, embedded, mobile }"
         >
-            <NuxtLink v-if="backButton" class="back-button" :to="backButton">
-                <Tex
-                    image="arrowLeft"
-                    hover="color"
-                    clickable
-
-                    width="40px"
-                    height="40px"
-                    object-fit="contain"
-                />
-            </NuxtLink>
-            <div class="search">
-                <input
-                    ref="searchInput"
-                    type="text"
-                    placeholder="Search..."
-
-                    v-model="searchText"
-                />
-                <div
-                    :class="{'search-icon-wrapper': 1, hoverable: searchText != ''}"
-                    @click="searchText = ''"
-                >
-                    <Tex
-                        :image="searchText == '' ? 'search' : 'close'"
-                        color="var(--light-blue-highlight)"
-
-                        width="25px"
-                        height="25px"
-                        object-fit="contain"
-                    />
-                </div>
-            </div>
+            <FormSearchBox
+                ref="searchBox"
+                v-model="searchText"
+            />
             <div class="filters">
                 <FormCheckbox v-model="filterFavourites">
-                    Favourites
+                    FAVOURITES
                 </FormCheckbox>
                 <FormDropdown
+                    ref="rolesDropdown"
                     :options="roleDropdownOptions"
                     v-model="filterByRole"
                 />
@@ -159,6 +131,8 @@
                                 <img
                                     class="portrait"
                                     :src="entry.hero.dataDir + 'story.webp'"
+                                    :alt="`${entry.hero.name} Story Portrait`"
+                                    draggable="false"
                                 />
                                 <NuxtLink
                                     :to="`/heroes/${entry.hero.id}`"
@@ -175,12 +149,19 @@
 
                                         class="role-icon"
                                         :src="ROLE_ICONS[role]"
+                                        :alt="`${role} Icon`"
+                                        draggable="false"
                                     />
                                 </div>
                             </td>
                             <td class="rank-cell">
                                 <div>
-                                    <img :src="entry.rankData.icon" class="rank-icon" />
+                                    <img
+                                        :src="entry.rankData.icon"
+                                        class="rank-icon"
+                                        :alt="`${entry.rankData.name} Icon`"
+                                        draggable="false"
+                                    />
                                     <span>{{ entry.rankData.name }}</span>
                                 </div>
                             </td>
@@ -207,7 +188,10 @@
                 <div class="cards-controls">
                     <span class="sort-label">Sort by:</span>
                     <div class="sort-row">
-                        <FormDropdown :options="cardSortOptions" v-model="sortKey" />
+                        <FormDropdown
+                            :options="cardSortOptions"
+                            v-model="sortKey"
+                        />
                         <button
                             class="dir-toggle"
                             @click="sortDir = sortDir === 'asc' ? 'desc' : 'asc'"
@@ -239,6 +223,8 @@
                         <img
                             :src="entry.hero.dataDir + 'story.webp'"
                             class="portrait"
+                            :alt="`${entry.hero.name} Story Portrait`"
+                            draggable="false"
                         />
                         <div class="card-identity">
                             <NuxtLink
@@ -254,11 +240,18 @@
 
                                     class="role-icon"
                                     :src="ROLE_ICONS[role]"
+                                    :alt="`${role} Icon`"
+                                    draggable="false"
                                 />
                             </div>
                         </div>
                         <div class="card-rank">
-                            <img :src="entry.rankData.icon" class="rank-icon" />
+                            <img
+                                :src="entry.rankData.icon"
+                                class="rank-icon"
+                                :alt="`${entry.rankData.name} Icon`"
+                                draggable="false"
+                            />
                             <span>{{ entry.rankData.name }}</span>
                         </div>
                     </div>
@@ -318,7 +311,11 @@
                 }"
             >
                 <div class="stroke" />
-                <img :src="`${featuredHero.hero.dataDir}prestige.webp`" />
+                <img
+                    :src="`${featuredHero.hero.dataDir}prestige.webp`"
+                    :alt="`${featuredHero.hero.name} Prestige Image`"
+                    draggable="false"
+                />
             </div>
 
             <div class="info">
@@ -339,7 +336,12 @@
 
             <div class="bar">
                 <div class="rank-icon-wrapper">
-                    <img v-if="featuredHeroRankDetails" :src="featuredHeroRankDetails.icon" />
+                    <img
+                        v-if="featuredHeroRankDetails"
+                        :src="featuredHeroRankDetails.icon"
+                        :alt="`${featuredHeroRankDetails.name} Icon`"
+                        draggable="false"
+                    />
                 </div>
                 <p class="role">
                     <span v-if="heroRolesAsArray(featuredHero.hero.roles).length == 1">
@@ -422,7 +424,7 @@
             class="no-results"
         >
             <p>No results</p>
-            <FormButton size="tiny" color-scheme="white" @click="searchText = ''">
+            <FormButton size="tiny" color-scheme="white" @click="resetSearch">
                 Reset search
             </FormButton>
         </div>
@@ -433,12 +435,14 @@
 
 <script setup lang="ts">
 import { NuxtLink } from '#components';
-import { DEFAULT_HERO_STORE, PlayerHeroStoreSchema, PROFICIENCY_RANKS, ROLE_ICONS, type HeroData, type HeroRole, type PlayerHeroStore } from '~/assets/data/common';
+import { calcTotalXp, DEFAULT_HERO_STORE, DEFAULT_PREFERENCES_STORE, PlayerHeroStoreSchema, PreferencesStoreSchema, PROFICIENCY_RANKS, ROLE_ICONS, type HeroData, type HeroRole, type PlayerHeroStore, type PreferencesStore } from '~/assets/data/common';
 import { getFeaturedHero, HERO_LIST, heroRolesAsArray } from '~/assets/data/heroes';
 import { tex, texUrl } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
+import type { Option } from '../form/Dropdown.vue';
 
 const props = withDefaults(defineProps<{
+    embedded?: boolean,
     selectedHero?: string,
 
     backButton?: string,
@@ -462,25 +466,45 @@ const emit = defineEmits<{
     clickHero: [ heroId: string ]
 }>();
 
-const roleDropdownOptions = [
+const roleDropdownOptions: Option[] = [
     {
-        label: `<div class="icon" style="--img:url('/img/heroes/roles/all-roles.webp')"></div> ALL CLASSES`,
+        leftIcon: {
+            url: `/img/heroes/roles/all-roles.webp`,
+        },
+
+        label: `ALL ROLES`,
         value: 'all-roles' 
     },
     {
-        label: `<div class="icon" style="--img:url('/img/heroes/roles/vanguard.webp')"></div> VANGUARD`,
+        leftIcon: {
+            url: `/img/heroes/roles/vanguard.webp`,
+        },
+
+        label: `VANGUARD`,
         value: 'vanguard' 
     },
     {
-        label: `<div class="icon" style="--img:url('/img/heroes/roles/duelist.webp')"></div> DUELIST`,
+        leftIcon: {
+            url: `/img/heroes/roles/duelist.webp`,
+        },
+
+        label: `DUELIST`,
         value: 'duelist' 
     },
     {
-        label: `<div class="icon" style="--img:url('/img/heroes/roles/strategist.webp')"></div> STRATEGIST`,
+        leftIcon: {
+            url: `/img/heroes/roles/strategist.webp`,
+        },
+
+        label: `STRATEGIST`,
         value: 'strategist' 
     },
     {
-        label: `<div class="icon" style="--img:${texUrl('favourite')}"></div> FAVOURITES`,
+        leftIcon: {
+            key: 'favourite'
+        },
+
+        label: `FAVOURITES`,
         value: 'favourite'
     }
 ];
@@ -488,51 +512,34 @@ const roleDropdownOptions = [
 const mobile = isMobile();
 
 const tools = useTemplateRef('tools');
-const searchInput = useTemplateRef('searchInput');
+const searchBox = useTemplateRef('searchBox');
+const rolesDropdown = useTemplateRef('rolesDropdown');
 
-// view toggle
-const viewStore = useLocalStorage<'gallery'|'list'>('heroes_view', 'gallery');
-const view = ref(props.listViewDisabled ? 'gallery' : viewStore.value);
-watch(view, view => viewStore.value = view);
+useStickyBar(tools, {
+    showClass: 'sticky-mobile-show',
+    mobileOnly: true,
+    onScrollDownWhileSticky: () => rolesDropdown.value?.setExpanded(false),
+})
 
+// stores
+const preferences = useLocalStorage('preferences', DEFAULT_PREFERENCES_STORE(), PreferencesStoreSchema);
+const viewStore = computed({
+    get: () => preferences.value.heroList.view,
+    set: (value) => preferences.value.heroList.view = value
+});
+const view = computed(() => props.listViewDisabled ? 'gallery' : viewStore.value);
 
-const scroller = ref<Window|HTMLElement>();
-
-await useGsap(({ scrollTrigger }) => {
-    scroller.value = getScrollParent(tools.value);
-    if ((scroller.value as HTMLElement).tagName === 'BODY')
-        scroller.value = window;
-
-    scrollTrigger.create({
-        trigger: tools.value,
-        scroller: scroller.value,
-        start: 'top 0%',
-        onEnter: () => tools.value?.classList.add('sticky'),
-        onLeaveBack: () => tools.value?.classList.remove('sticky'),
-    });
-
-    let lastKnownScrollY = 0;
-    useEvent('scroll', () => {
-        if (!mobile.value)
-            return;
-
-        const scrollY = (scroller.value as HTMLElement).scrollTop ?? (scroller.value as Window).scrollY;
-        const deltaY = scrollY - lastKnownScrollY;
-        lastKnownScrollY = scrollY;
-
-        // scrolling down
-        if (deltaY > 0)
-            tools.value?.classList.remove('sticky-mobile-show');
-        else
-            tools.value?.classList.add('sticky-mobile-show');
-    }, scroller.value);
+const filterByRole = computed({
+    get: () => preferences.value.heroList.filterRole,
+    set: (value) => preferences.value.heroList.filterRole = value
+});
+const filterFavourites = computed({
+    get: () => preferences.value.heroList.filterFavourites,
+    set: (value) => preferences.value.heroList.filterFavourites = value
 });
 
+
 const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
-
-const filterByRole = useLocalStorage('heroes_filter_role', 'all-roles');
-const filterFavourites = useLocalStorage('heroes_filter_favourites', false);
-
 const favourites = useLocalStorage<HeroData['id'][]>(`favourite_heroes`, []);
 
 const searchText = ref('');
@@ -623,20 +630,7 @@ const router = useRouter();
 
 const RANK_ORDER = Object.keys(PROFICIENCY_RANKS);
 
-function calcTotalXp(level: number, points: number): number {
-    let total = points;
-    for (const rank of Object.values(PROFICIENCY_RANKS)) {
-        const lastCompleted = Math.min(rank.levelEnd, level - 1);
 
-        if (lastCompleted >= rank.levelStart)
-            total += (lastCompleted - rank.levelStart + 1) * rank.xpPerLevel;
-
-        if (rank.levelEnd >= level)
-            break;
-    }
-
-    return total;
-}
 
 const heroData = computed(() => {
     return [...HERO_LIST, ...unknownHeroes.value].map(hero => {
@@ -653,8 +647,14 @@ const heroData = computed(() => {
 });
 
 type SortKey = 'name'|'role'|'rank'|'level'|'xp'|'current-xp';
-const sortKey = useLocalStorage<SortKey>('heroes_list_sort_key', 'xp');
-const sortDir = useLocalStorage<'asc'|'desc'>('heroes_list_sort_dir', 'desc');
+const sortKey = computed({
+    get: () => preferences.value.heroList.listSortKey,
+    set: (value) => preferences.value.heroList.listSortKey = value
+});
+const sortDir = computed({
+    get: () => preferences.value.heroList.listSortDirection,
+    set: (value) => preferences.value.heroList.listSortDirection = value
+});
 
 const cardSortOptions = [
     { label: 'NAME',        value: 'name' },
@@ -733,40 +733,48 @@ function setSort(key: SortKey) {
     }
 }
 
+function resetSearch() {
+    searchText.value = '';
+    filterByRole.value = 'all-roles';
+    filterFavourites.value = false;
+}
+
 useEvent('keydown', (e: KeyboardEvent) => {
     // listen for key a-z key presses to automatically focus the search bar
     if (e.key.match(/[a-zA-Z]{1}/g)?.length === 1)
-        searchInput.value?.focus();
+        searchBox.value?.focus();
 
     // listen for enter key to automatically go to the first result
     if (e.code === 'Enter' && !(e.shiftKey || e.ctrlKey || e.altKey)) {
-        if (document.activeElement !== searchInput.value)
+        if (!(searchBox.value?.$el as HTMLElement)?.contains(document.activeElement))
             return;
 
-        if ((
-                view.value == 'list'
-            && !heroList.value.length
-            )
-            ||
-            (
-                view.value == 'gallery'
-            && !sortedHeroData.value.length
-            )
+        if (
+            (view.value == 'list' && !sortedHeroData.value.length)
+         || (view.value == 'gallery' && !heroList.value.length)
         )
             return;
 
         e.preventDefault();
         e.stopPropagation();
 
-        if (view.value == 'list')
-            router.push({
-                path: `/heroes/${sortedHeroData.value[0]!.hero.id}`
-            });
+        if (view.value == 'list') {
+            if (props.links)
+                router.push({
+                    path: `/heroes/${sortedHeroData.value[0]!.hero.id}`
+                });
+            else
+                clickHero(sortedHeroData.value[0]!.hero.id);
+        }
 
-        if (view.value == 'gallery')
-            router.push({
-                path: `/heroes/${heroList.value[0]!.hero.id}`
-            });
+        if (view.value == 'gallery') {
+            if (props.links)
+                router.push({
+                    path: `/heroes/${heroList.value[0]!.hero.id}`
+                });
+            else
+                clickHero(heroList.value[0]!.hero.id);
+        }
     }
 });
 

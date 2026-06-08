@@ -1,0 +1,153 @@
+[
+    {
+        "id": "0270001",
+        "name": "Phoenix Feathers",
+        "rarity": "rare",
+        "category": "Competitive (S3.0)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-07-11"
+    },
+    {
+        "id": "0270002",
+        "name": "Phoenix Force",
+        "rarity": "epic",
+        "category": "Competitive (S3.0)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-07-11"
+    },
+
+    {
+        "id": "0270003",
+        "name": "Symbiotic Form",
+        "rarity": "rare",
+        "category": "Competitive (S3.5)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-08-08"
+    },
+    {
+        "id": "0270004",
+        "name": "Symbiotic Power",
+        "rarity": "epic",
+        "category": "Competitive (S3.5)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-08-08"
+    },
+
+    {
+        "id": "0270005",
+        "name": "Gaze of the Dragon",
+        "rarity": "rare",
+        "category": "Competitive (S4.0)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-09-12"
+    },
+    {
+        "id": "0270006",
+        "name": "Might of the Dragon",
+        "rarity": "epic",
+        "category": "Competitive (S4.0)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-09-12"
+    },
+
+    {
+        "id": "0270007",
+        "name": "Hell Is Not Empty Yet",
+        "rarity": "rare",
+        "category": "Competitive (S4.5)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-10-10"
+    },
+    {
+        "id": "0270008",
+        "name": "Let The Devil Out!",
+        "rarity": "epic",
+        "category": "Competitive (S4.5)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-10-10"
+    },
+
+    {
+        "id": "0270009",
+        "name": "Knightly Procession",
+        "rarity": "rare",
+        "category": "Competitive (S5)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-11-14"
+    },
+    {
+        "id": "0270010",
+        "name": "Royal Stroll",
+        "rarity": "epic",
+        "category": "Competitive (S5)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2025-11-14"
+    },
+
+    {
+        "id": "0270011",
+        "name": "Standard Exhibit Pass",
+        "rarity": "rare",
+        "category": "Competitive (S6)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2026-01-16"
+    },
+    {
+        "id": "0270012",
+        "name": "Special Exhibit Pass",
+        "rarity": "epic",
+        "category": "Competitive (S6)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2026-01-16"
+    },
+
+    {
+        "id": "0270013",
+        "name": "City Stories",
+        "rarity": "rare",
+        "category": "Competitive (S7)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2026-03-20"
+    },
+    {
+        "id": "0270014",
+        "name": "Tablet Tales",
+        "rarity": "epic",
+        "category": "Competitive (S7)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2026-03-20"
+    },
+
+    {
+        "id": "0270015",
+        "name": "Shape of Punch",
+        "rarity": "rare",
+        "category": "Competitive (S8)",
+        "source": "Reach Platinum III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2026-05-15"
+    },
+    {
+        "id": "0270016",
+        "name": "Power of Punch",
+        "rarity": "epic",
+        "category": "Competitive (S8)",
+        "source": "Reach Diamond III",
+        "sourceLink": "/wiki/Competitive",
+        "releaseDate": "2026-05-15"
+    }
+]

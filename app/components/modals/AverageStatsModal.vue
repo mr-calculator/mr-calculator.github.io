@@ -35,7 +35,7 @@
                                 v-for="stat in genericStatsUsed"
                             >
                                 <div class="stat-type">
-                                    <img :src="stat.icon" />
+                                    <img :src="stat.icon" draggable="false" />
                                     <p>{{ stat.name }}:</p>
                                 </div>
                                 <p>{{ stat.value?.toFixed(1) }}</p>
@@ -75,7 +75,7 @@
                     :class="{play: type == 'play'}"
                 >
                     <div v-if="icon" class="icon">
-                        <img :src="icon" />
+                        <img :src="icon" draggable="false" />
                     </div>
                     <div v-if="type !== 'play'" class="wrapper">
                         <div v-if="warningPopup == type" class="popup">
@@ -236,7 +236,7 @@
         cursor: pointer
 
         p
-            font-family: MRBody
+            font-family: $font-body
             font-size: 17px
             line-height: 100%
             color: $light-blue
@@ -255,7 +255,7 @@
         background: #f1b70c
 
         font-size: 18px
-        font-family: MarvelRivalsBold
+        font-family: $font-bold
         line-height: 100%
         color: #fff
         text-align: right
@@ -383,7 +383,7 @@
             gap: 10px
 
             span
-                font-family: MRBody
+                font-family: $font-body
                 font-size: 19px
 
                 +media-mobile
@@ -444,7 +444,7 @@ const neededStats = computed<[string, string, string, ChallengeStats][]>(() => {
     ) ?? [];
 });
 
-const hasAvgStats = useHasAvgStats(props.hero, true);
+const hasAvgStats = useHasAvgStats(() => props.hero, true);
 const genericStatsUsed = computed(() => {
     const statsForHero = getAverageStatsForHero(props.hero.id);
 

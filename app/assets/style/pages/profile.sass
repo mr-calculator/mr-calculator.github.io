@@ -1,0 +1,841 @@
+.profile-page
+    padding-top: 65px + 20px
+    justify-content: start
+
+    background-image: var(--tex-biColorBackground)
+    background-size: 150% 100%
+    background-position: 10%
+
+    +mediaIOS
+        background: transparent
+
+        &::before
+            content: ""
+            position: fixed
+            top: 0
+            left: 0
+            width: 100%
+            height: 100vh
+            
+            background-image: var(--tex-biColorBackground)
+            background-size: 150% 100%
+            background-position: 10%
+
+            z-index: -1
+            pointer-events: none
+
+    .silhouette
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+
+        pointer-events: none
+        overflow: clip
+
+        &::before
+            content: ""
+            position: absolute
+            top: 0
+            right: 20%
+            transform: translateX(50%)
+            width: auto
+            height: 100%
+            min-height: 800px
+            aspect-ratio: 1.2 / 1
+
+            background: transparent
+            background-repeat: no-repeat
+            background-image: var(--hero-silhouette)
+            background-size: 100% 100%
+            background-position: center
+
+            +media-mobile
+                background-position: center
+                background-attachment: fixed
+
+    .change-hero
+        position: absolute
+        top: 65px + 20px
+        right: 20px
+
+        transform: skew(-18deg)
+
+        padding: 7px + 3px 9px + 3px
+
+        display: flex
+        align-items: center
+        gap: 10px
+
+        user-select: none
+
+        background: linear-gradient(90deg, #414171 50% , rgba(#414171, 0) 100%) 50% 50%/calc(100% - 6px) calc(100% - 6px) no-repeat, linear-gradient(90deg, #414171 50%, transparent 100%)
+
+        cursor: pointer
+        z-index: 3
+
+        +hover
+            background: #676a94
+
+            background: linear-gradient(90deg, #676a94 50% , rgba(#676a94, 0) 100%) 50% 50%/calc(100% - 6px) calc(100% - 6px) no-repeat, linear-gradient(90deg, #9497b0 50%, transparent 100%)
+
+            &::before
+                background: #9497b0
+
+        &::before
+            content: ""
+            position: absolute
+            left: -6px - 3px
+            top: 0
+            width: 6px
+            height: 100%
+
+            background: #414171
+
+        h3
+            font-family: $font
+            font-size: 20px
+            font-weight: 400
+            text-transform: uppercase
+            color: #fff
+
+    main
+        width: 100%
+        max-width: 1900px
+        min-height: calc(var(--u100vh) - 20px - 65px - 20px - 60px)
+        padding-top: 420px
+
+        display: grid
+        grid-template-columns: 100%
+        grid-template-rows: auto
+
+        +media($size: 1450px)
+            padding-top: 20px
+            grid-template-columns: 2fr 1.2fr
+            grid-template-rows: 100%
+
+        .profile-overview
+            width: 100%
+            // max-width: 1050px
+            height: 100%
+            display: flex
+            flex-direction: column
+            gap: 20px
+
+            .header
+                flex-shrink: 0
+                width: 100%
+                height: auto
+
+                display: flex
+                flex-direction: column
+                align-items: center
+                gap: 5px
+
+                padding: 0 10px
+
+                background: var(--tex-profileHeaderBg) no-repeat
+                background-size: 100% 70%
+                background-position: 0 100%
+
+                +media($size: 450px)
+                    flex-direction: row
+                    height: 120px
+
+                .icon-name
+                    width: 100%
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+                    gap: 5px
+
+                    +media($size: 450px)
+                        flex-direction: row
+                        height: 120px
+
+                    .profile-icon
+                        width: 90px
+                        height: 90px
+
+                    .name
+                        max-width: 100%
+                        display: flex
+                        align-items: center
+                        gap: 10px
+
+                        padding: 0 5px 2px 5px
+
+                        background: #525a6e
+                        border: 3px solid #525a6e
+
+                        cursor: pointer
+
+                        +hover
+                            background: #5d6374
+                            border: 3px solid #fff
+
+                        h2
+                            max-width: 100%
+                            font-size: 26px
+                            font-family: $font-body
+                            font-weight: 500
+                            color: #fff
+                            word-wrap: break-word
+                            text-overflow: ellipsis
+                            white-space: nowrap
+                            overflow: hidden
+
+                            +media($size: 450px)
+                                max-width: 200px
+
+                            +media($size: 850px)
+                                max-width: 600px
+
+                .share
+                    padding: 3px
+                    border: 2px solid transparent
+                    cursor: pointer
+
+                    +hover
+                        background: #525a6e
+                        border: 2px solid #fff
+
+            .overview
+                width: 100%
+                height: 100%
+
+                display: flex
+                flex-direction: column
+
+                .bar
+                    flex-shrink: 0
+                    width: 100%
+                    padding: 6px 10px
+
+                    background: #adb4d1
+
+                    font-family: $font-bold
+                    font-size: 24px
+                    text-transform: uppercase
+                    color: #454658
+
+                .panels
+                    width: 100%
+                    height: 100%
+                    display: grid
+                    grid-template-columns: 1fr
+                    grid-template-rows: auto 1fr
+                    
+
+                    +media($size: 660px)
+                        grid-template-columns: 270px 3fr
+                        grid-template-rows: 1fr
+                        gap: 15px
+
+                    .ranked
+                        width: 100%
+                        height: 400px
+
+                        background: var(--season-bg) no-repeat
+                        background-size: 100% auto
+                        background-position: center
+
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+                        align-items: center
+                        gap: 20px
+
+                        +media($size: 360px)
+                            flex-direction: row
+                            gap: 0
+
+                        +media($size: 500px)
+                            gap: 40px
+
+                        +media($size: 660px)
+                            height: 100%
+                            max-height: 650px
+                            padding-top: 80px
+
+                            background-size: 100% 100%
+
+                            flex-direction: column
+                            justify-content: start
+                            gap: 0
+
+                        .rank
+                            flex-shrink: 0
+                            position: relative
+                            width: 150px
+
+                            display: flex
+                            flex-direction: column
+                            justify-content: start
+                            align-items: center
+
+                            +media($size: 500px)
+                                width: 200px
+
+                            +media($size: 660px)
+                                width: 80%
+
+                            img
+                                user-select: none
+                                -webkit-user-drag: none
+
+                            .bg
+                                width: 80%
+                                height: auto
+
+                            img:not(.bg)
+                                position: absolute
+                                top: 50%
+                                left: 50%
+                                transform: translate(-50%, -50%)
+
+                                width: 100%
+                                height: auto
+
+                            .level
+                                position: absolute
+                                left: 50%
+                                bottom: 10px
+                                transform: translateX(-50%)
+
+                                font-family: $font-heavy
+                                font-size: 20px
+                                color: #fff
+                                text-shadow: 0 0 2px rgba(0, 0, 0, 0.9)
+
+                                +media($size: 500px)
+                                    bottom: 15px
+
+                        .details
+                            width: 150px
+
+                            display: flex
+                            flex-direction: column
+                            justify-content: start
+                            align-items: center
+
+                            +media($size: 500px)
+                                width: 200px
+
+                            +media($size: 660px)
+                                width: auto
+
+                            .level
+                                font-family: $font-heavy
+                                font-size: 28px
+                                text-transform: uppercase
+                                color: #ffffff
+                                text-align: center
+
+                            .hero
+                                margin-top: 5px
+                                font-family: $font-body
+                                font-size: 18px
+                                color: #ffffffdc
+
+                        .no-data
+                            height: 60%
+
+                            display: flex
+                            justify-content: center
+                            align-items: center
+
+                            .info
+                                padding: 3px 40px
+
+                                background: var(--tex-noRankDataBg) no-repeat
+                                background-size: 100% 100%
+
+                                font-family: $font-body
+                                font-size: 18px
+                                color: #ffffffce
+
+                    .stats
+                        display: grid
+                        grid-template-columns: 100%
+                        grid-template-rows: 3fr 1.5fr
+                        gap: 5px
+
+                        .panel
+                            position: relative
+                            background: #ffffffef
+                            
+                            padding: 20px 20px
+
+                            display: grid
+                            gap: 0px
+                            grid-template-columns: 1fr
+                            grid-auto-rows: 1fr
+
+                            +media($size: 991px)
+                                grid-template-columns: 1fr 1fr
+                                grid-template-rows: 1fr 1fr 1fr
+                                gap: 20px
+
+                                padding: 20px 20px
+
+                            +media($size: 1720px)
+                                grid-template-columns: 1fr 1fr 1fr
+                                grid-template-rows: 1fr 1fr
+
+                                padding: 40px 40px
+
+                            &.favourites
+                                padding-top: 40px + 20px
+                                grid-template-rows: 1fr
+
+                            .bar
+                                position: absolute
+                                top: 0
+
+                            .item
+                                position: relative
+                                display: grid
+                                grid-template-columns: 65px auto
+                                align-items: center
+                                gap: 30px
+
+                                padding: 10px 10px
+
+                                &:not(:last-of-type)
+                                    @media screen and (min-width: 991px) and (max-width: 1719px)
+                                        &:not(:nth-of-type(2n))
+                                            &::after
+                                                content: ""
+                                                position: absolute
+                                                top: 50%
+                                                right: -9px
+                                                transform: translateY(-50%)
+
+                                                width: 0
+                                                height: 60%
+
+                                                border: 2px solid #c7cbe3
+
+                                    +media($size: 1720px)
+                                        &:not(:nth-of-type(3n))
+                                            &::after
+                                                content: ""
+                                                position: absolute
+                                                top: 50%
+                                                right: -9px
+                                                transform: translateY(-50%)
+
+                                                width: 0
+                                                height: 60%
+
+                                                border: 2px solid #c7cbe3
+
+    
+                                img
+                                    display: block
+                                    width: 100%
+
+                                    user-select: none
+                                    -webkit-user-drag: none
+
+                                .texture
+                                    width: 100%
+                                    display: flex
+                                    justify-content: center
+                                    align-items: center
+
+                                .info
+                                    display: flex
+                                    flex-direction: column
+                                    gap: 0px
+
+                                    p
+                                        margin-top: 5px
+                                        font-family: $font-body
+                                        font-size: 18px
+                                        color: $light-blue-highlight
+                                        line-height: 1
+
+                                    h3, h4
+                                        font-family: $font-heavy
+                                        font-size: 26px
+                                        text-transform: uppercase
+                                        font-weight: 400
+                                        color: #434760
+
+                                        +media($size: 360px)
+                                            font-size: 42px
+
+                                        span
+                                            font-family: $font-bold
+                                            font-size: 22px
+
+                                    h4
+                                        font-size: 18px
+
+
+        .hero-display
+            position: relative
+            width: 100%
+            height: 100%
+            min-width: 500px
+                
+            display: flex
+            justify-content: center
+            align-items: center
+
+            +media($minmax: 'max', $size: 1450px)
+                position: absolute
+                top: 100px
+                left: 50%
+                transform: translateX(-50%)
+
+                min-width: unset
+                height: auto
+
+                z-index: -1
+                pointer-events: none
+
+            +media($minmax: 'max', $size: 500px)
+                top: 150px
+
+            .change-hero
+                position: absolute
+                right: 0
+
+            .display-image-wrapper
+                width: 100%
+                max-height: 100%
+                mask-image: var(--tex-heroDisplayMask)
+                mask-repeat: no-repeat
+                mask-size: auto 100%
+                mask-position: 50% calc(100%)
+
+                overflow: clip
+
+                +media($minmax: 'max', $size: 1450px)
+                    width: 800px
+
+                +media($minmax: 'max', $size: 800px)
+                    width: 100%
+
+                img
+                    display: block
+                    width: 100%
+                    transform: scale(-1, 1)
+
+                    user-select: none
+                    -webkit-user-drag: none
+
+
+
+.change-hero-overlay
+    width: 100%
+    height: 100%
+
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+    .select
+        width: 100%
+        height: 100%
+
+        display: grid
+        grid-template-columns: 100%
+        grid-template-rows: 100%
+        align-items: start
+        gap: 20px
+
+        overflow: hidden
+
+        +media($size: 1290px)
+            grid-template-columns: 3fr 1fr
+            grid-template-rows: 100%
+
+        .hero-select
+            width: 100%
+            height: 100%
+
+            padding: 0 20px
+
+            overflow-x: hidden
+            overflow-y: auto
+
+            +scrollbar($thickness: 8px, $background: transparent, $thumb: $light-blue, $active: $color)
+
+            ::v-deep(.tools)
+                +media($minmax: 'max', $size: 1350px)
+                    gap: 20px
+                    flex-direction: column
+                    align-items: center
+
+                    .filters
+                        justify-content: center
+
+                .search-box
+                    +media($minmax: 'max', $size: 1520px)
+                        width: 320px
+
+                        input
+                            width: 100%
+
+        .costume-select
+            position: relative
+            width: 100%
+            height: 100%
+
+            padding: 20px 30px
+
+            background: #3a3e57
+
+            +media($minmax: 'max', $size: 1290px)
+                position: absolute
+                top: 50%
+                right: 40px
+                transform: translateY(-50%)
+
+                width: 100%
+                height: 100%
+
+                max-width: 400px
+                max-height: 80%
+
+                display: none
+                flex-direction: column
+
+                z-index: 12
+
+            +media($minmax: 'max', $size: 1085px)
+                right: 50%
+                transform: translate(50%, -50%)
+
+            +media($minmax: 'max', $size: 500px)
+                max-width: 100%
+                max-height: 100%
+
+            &.mobile-open
+                display: flex
+
+            &::before
+                content: ""
+                position: absolute
+                top: 50%
+                left: 50%
+                width: calc(100% - 40px)
+                height: calc(100% - 20px)
+                transform: translate(-50%, -50%)
+
+                background: #24273a
+
+                z-index: 1
+
+            > .texture
+                position: relative
+                z-index: 2
+
+                display: flex
+                justify-content: center
+                margin: 10px 0
+
+                +media($size: 1291px)
+                    display: none
+
+            .scroll-container
+                position: relative
+                width: 100%
+                height: 100%
+
+                display: flex
+                flex-direction: column
+                gap: 1.5px
+
+                overflow-x: hidden
+                overflow-y: auto
+
+                z-index: 2
+                
+                +scrollbar($thickness: 8px, $background: transparent, $thumb: $light-blue, $active: $color)
+
+                .costume
+                    position: relative
+                    width: 100%
+
+                    padding: 14px 10px
+
+                    display: flex
+                    justify-content: space-between
+                    align-items: center
+                    gap: 10px
+
+                    user-select: none
+                    cursor: pointer
+
+                    +hover
+                        background: var(--tex-dropdownHover) no-repeat
+                        background-size: 100% 100%
+                        background-position: center
+
+                        .info h4
+                            color: #fff
+
+                    &::after
+                        content: ""
+                        position: absolute
+                        left: 0
+                        bottom: -1.5px
+
+                        width: 100%
+                        height: 0
+                        border: 1.5px solid #3a3e57
+
+                    &.checked
+                        .info h4
+                            color: $color
+
+                    .info
+                        display: flex
+                        align-items: center
+                        gap: 10px
+
+                        img
+                            width: 30px
+                            height: 30px
+
+                        h4
+                            display: block
+                            width: fit-content
+                            font-family: $font-body
+                            font-size: 20px
+                            font-weight: 400
+                            color: #b7c8da
+                            text-transform: uppercase
+
+            .confirm-button
+                display: none
+                max-width: 100%
+
+                +media-phone
+                    display: flex
+                    z-index: 2
+
+    .buttons
+        flex-grow: 0
+        flex-shrink: 0
+        display: flex
+        justify-content: center
+        
+
+.profile-sheet-overlay
+    position: fixed
+    top: 0
+    left: 0
+
+    width: 100%
+    height: var(--u100vh)
+    
+    background: #1b172eaf
+    backdrop-filter: blur(5px)
+
+    display: flex
+    justify-content: center
+    align-items: center
+
+    z-index: 30
+
+    +mediaIOS
+        background: #121221e3
+
+    .container
+        width: 100%
+        max-width: 800px
+        height: 100%
+
+        padding: 20px 0
+
+        display: grid
+        grid-template-columns: 100%
+        grid-template-rows: minmax(0, 1fr) auto
+        justify-items: center
+        gap: 20px
+
+        .image-wrapper
+            position: relative
+
+            width: min-content
+            height: 100%
+            min-height: 0
+            padding: 20px 20px 50px 50px
+
+            display: flex
+            justify-content: center
+
+            overflow: hidden
+
+            +media($minmax: 'max', $size: 600px)
+                width: 100%
+                height: 100%
+                max-height: 100%
+
+                padding: 10px 10px 50px 10px
+                
+
+            .draw
+                position: absolute
+                height: 100%
+
+                &.top-left
+                    top: 0
+                    left: 15px
+                    height: 50%
+
+                    +media($minmax: 'max', $size: 550px)
+                        display: none
+
+                &.bottom-right
+                    bottom: 30px
+                    right: 0
+                    height: 25%
+
+                    +media($minmax: 'max', $size: 480px)
+                        display: none
+
+                &.bottom-left
+                    bottom: 28px
+                    left: 28px
+                    transform: translateX(-50%)
+
+                    height: auto
+
+                    +media($minmax: 'max', $size: 480px)
+                        display: none
+
+            img
+                display: block
+                width: auto
+                height: 100%
+                max-height: 100%
+                aspect-ratio: 844 / 1128
+
+                border: 8px solid #9595a9
+
+                cursor: zoom-in
+
+                +media($minmax: 'max', $size: 600px)
+                    object-fit: contain
+                    width: 100%
+                    height: 100%
+                    max-height: 100%
+
+                    border: none
+
+        .buttons
+            display: flex
+            flex-wrap: wrap
+            justify-content: center
+            gap: 20px
+
+            .button
+                width: 250px

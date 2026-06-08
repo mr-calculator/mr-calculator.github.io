@@ -1,0 +1,322 @@
+.developer-letter-wrapper
+    position: fixed
+    top: 0
+    left: 0
+
+    width: 100%
+    height: var(--u100vh)
+    
+    background: #1b172eaf
+    backdrop-filter: blur(5px)
+
+    display: flex
+    justify-content: center
+    align-items: center
+
+    overscroll-behavior: contain
+    z-index: 20
+
+    +mediaIOS
+        background: #121221e3
+
+    .developer-letter
+        position: relative
+        width: 100%
+        height: 825px
+        max-height: 100%
+
+        background: url('/img/changelog/letter/bg.webp') no-repeat
+        background-size: 100% 100%
+        background-position: center
+
+        padding: 160px 200px 60px 800px
+
+        display: flex
+        justify-content: center
+
+        overflow: hidden
+
+        +media($minmax: 'max', $size: 2000px)
+            padding-right: 100px
+        +media($minmax: 'max', $size: 1850px)
+            padding-right: 50px
+        +media($minmax: 'max', $size: 1800px)
+            padding-right: 100px
+            padding-left: 500px
+
+        +media($minmax: 'max', $size: 1400px)
+            padding-right: 25px
+
+        +media($minmax: 'max', $size: 1250px)
+            padding-left: 300px
+
+            background-size: auto 100%
+
+        +media-mobile
+            padding-left: 25px
+
+        +media($minmax: 'max', $size: 550px)
+            padding: 160px 0 60px 0
+
+        .logo
+            position: absolute
+            top: 20px
+            left: 50%
+            transform: translateX(-50%)
+
+            width: 200px
+            height: auto
+            pointer-events: none
+
+            img
+                display: block
+                width: 100%
+                user-select: none
+
+        .separator
+            position: absolute
+            top: 20px + 100px + 20px
+            left: 50%
+            transform: translateX(-50%)
+
+            background: url('/img/changelog/letter/separator.png') no-repeat
+            background-size: 100% 100%
+            background-position: center
+
+            width: 70%
+            height: 3px
+
+        .image-left
+            position: absolute
+            top: 0
+            left: 0
+            transform: translateX(-35%)
+
+            width: auto
+            height: 100%
+            pointer-events: none
+
+            overflow: clip
+            z-index: 2
+
+            +media($minmax: 'max', $size: 1800px)
+                top: -5px
+                left: -120px
+                z-index: unset
+
+            +media($minmax: 'max', $size: 1250px)
+                // top: -300px
+                left: -110px
+                height: 100%
+
+                display: flex
+                align-items: end
+
+            +media-mobile
+                left: -70px
+                z-index: 2
+
+            +media($minmax: 'max', $size: 550px)
+                left: -50px
+                z-index: unset
+
+            img
+                display: block
+                height: 100%
+                user-select: none
+
+                +media($minmax: 'max', $size: 1800px)
+                    height: 120%
+
+                +media($minmax: 'max', $size: 1250px)
+                    height: 80%
+
+                +media-mobile
+                    height: 50%
+
+                +media($minmax: 'max', $size: 550px)
+                    height: 30%
+
+                &.mobile
+                    +media-desktop
+                        display: none
+
+                &.desktop
+                    +media-mobile
+                        display: none
+
+        .content
+            position: relative
+            height: 100%
+            max-width: 1400px
+
+            padding: 20px 55px 0 55px
+
+            display: flex
+            flex-direction: column
+
+            +media($minmax: 'max', $size: 550px)
+                padding: 20px 20px 0 20px
+
+            +media($minmax: 'max', $size: 550px)
+                padding: 20px 0 0 0
+
+            .decoration
+                position: absolute
+                top: 0
+
+                width: 100px
+                height: 100%
+
+                background-size: contain
+                background-position: 50% 0%
+                background-repeat: no-repeat
+
+                z-index: 1
+
+                +media($minmax: 'max', $size: 550px)
+                    display: none
+
+                &.left
+                    left: 10px
+                    background-image: url('/img/changelog/letter/decoration-left.png')
+
+                &.right
+                    right: 10px
+                    background-image: url('/img/changelog/letter/decoration-right.png')
+
+            .scroll-container
+                width: 100%
+                padding: 0 65px
+
+                display: flex
+                flex-direction: column
+
+                overflow-x: hidden
+                overflow-y: auto
+
+                +scrollbar($background: transparent, $thumb: #6f4b2b, $active: $color)
+
+                +media-mobile
+                    padding: 0 25px
+                    padding-bottom: 200px
+
+            h2
+                font-family: $font-heavy
+                font-size: 32px
+                text-align: center
+                color: #6f2e0b
+
+                margin-bottom: 55px
+
+                +media-mobile
+                    margin-bottom: 20px
+
+            .body
+                font-family: $font-body
+                font-size: 20px
+                color: #6c5f35
+
+                mix-blend-mode: multiply
+
+                +mediaIOS
+                    color: #443c21
+
+                ::v-deep(p)
+                    margin-bottom: 10px
+                    text-indent: 20px
+
+                    a
+                        text-decoration: underline
+
+                        +hover
+                            color: $blue
+
+            .read-more
+                margin-top: 40px
+                width: 100%
+                display: flex
+                justify-content: center
+
+                .button
+                    width: 300px
+
+                    +media($minmax: 'max', $size: 370px)
+                        width: 200px
+                        font-size: 20px
+
+        > .button
+            position: absolute
+            bottom: 0
+            left: 50%
+            transform: translateX(-50%)
+
+            width: 100%
+            height: 60px
+            background: #22202a
+
+            display: flex
+            justify-content: center
+            align-items: center
+
+            user-select: none
+            cursor: pointer
+
+            z-index: 3
+
+            .mobile
+                +media-desktop
+                    display: none
+
+            .desktop
+                display: flex
+                align-items: center
+                gap: 10px
+
+                +media-mobile
+                    display: none
+
+                +hover
+                    .key
+                        transform: translateY(2px)
+
+                    > span
+                        transform: translateY(2px)
+
+                .key
+                    position: relative
+                    padding: 1px 5px
+                    width: fit-content
+                    height: fit-content
+
+                    transition: .1s ease-out
+
+                    &::before
+                        content: ""
+                        position: absolute
+                        top: 0
+                        left: 0
+                        width: 100%
+                        height: 100%
+
+                        background: #fff
+                        transform: skew(-13.2deg)
+
+                        z-index: 1
+
+                    span
+                        position: relative
+                        display: block
+                        font-family: $font-bold
+                        font-size: 19px
+                        color: #222029
+                        text-align: center
+                        line-height: 1
+                        z-index: 2
+
+                > span
+                    font-family: $font-body
+                    font-size: 20px
+                    color: #fff
+
+                    transition: .1s ease-out

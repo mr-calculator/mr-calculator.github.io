@@ -7,6 +7,7 @@
             @close="heroSelectOpen = false"
         >
             <PanelHeroList
+                embedded
                 :links="false"
                 :add-hero-enabled="false"
                 :show-unknown-heroes="false"
@@ -35,7 +36,7 @@
             height="200px"
         />
 
-        <header>
+        <!-- <header>
             <div class="logo">
                 <Tex
                     image="logo"
@@ -68,7 +69,7 @@
                     />
                 </FormButton>
             </div>
-        </header>
+        </header> -->
         <main>
             <section id="hero" class="hero h100 separator">
                 <FeaturedHeroPromo
@@ -78,22 +79,34 @@
                     class="featured-hero-desktop"
                 />
                 <div class="right-wrapper">
-                    <div class="info">
-                        <div class="proficiency-icons-anim-wrapper">
-                            <div class="proficiency-icons-anim">
-                                <img
-                                    v-for="{ icon } in duplicateProficiencyRanks"
-                                    class="proficiency-icon"
-                                    :src="icon"
-                                />
+                    <div class="info-wrapper">
+                        <div class="info">
+                            <div class="proficiency-icons-anim-wrapper">
+                                <div class="logo-large">
+                                    <Tex
+                                        image="logoLarge"
+
+                                        width="300px"
+                                    />
+                                </div>
+
+                                <div class="proficiency-icons-anim">
+                                    <img
+                                        v-for="{ icon, name } in duplicateProficiencyRanks"
+                                        class="proficiency-icon"
+                                        :src="icon"
+                                        :alt="`${name} Proficiency Icon`"
+                                        draggable="false"
+                                    />
+                                </div>
                             </div>
+                            <h1 id="hero-title">
+                                Plan Your Path to <span id="hero-title-mastery">Mastery</span>
+                            </h1>
+                            <h2 id="hero-subtitle">
+                                Calculate exactly how long it takes to unlock every proficiency reward for any hero
+                            </h2>
                         </div>
-                        <h1 id="hero-title">
-                            Plan Your Path to <span id="hero-title-mastery">Mastery</span>
-                        </h1>
-                        <h2 id="hero-subtitle">
-                            Calculate exactly how long it takes to unlock every proficiency reward for any hero
-                        </h2>
 
                         <FormButton
                             id="hero-cta"
@@ -150,6 +163,7 @@
                                         <img
                                             :src="hero._hero.dataDir + 'spray.webp'"
                                             :alt="`${hero.heroName} Logo (Spray)`"
+                                            draggable="false"
                                         />
                                         <span v-if="hero.featured">NEW</span>
                                     </div>
@@ -209,6 +223,7 @@
                                         <img
                                             :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
                                             :alt="`${CHALLENGE_NAMES[statType as Challenge['type']]!} Icon`"
+                                            draggable="false"
                                         >
                                         <p>{{ CHALLENGE_NAMES[statType as Challenge['type']]! }}</p>
                                         <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
@@ -223,7 +238,7 @@
                             <FormButton
                                 class="go-to-hero"
                                 size="tiny"
-                                :to="`/heroes/${credibilitySelectedHeroId}?from=/`"
+                                :to="`/heroes/${credibilitySelectedHeroId}`"
                             >
                                 GO TO HERO
                                 <Tex
@@ -239,7 +254,7 @@
                 </div>
             </section>
             <section id="rewards" class="showcase-rewards double h100">
-                <div>
+                <div class="rewards-sticky-title">
                     <h2 class="animate-text lines">
                         Browse every proficiency reward for every hero
                     </h2>
@@ -311,19 +326,7 @@
                                 :style="{
                                     '--mask-url': `url('${currentHero.iconLargeMask ?? DEFAULT_ANIMATED_ICON_LARGE_MASK}')`
                                 }"
-                                :reward="{
-                                    level: 50,
-                                    name: 'Champion Icon',
-                                    icon: `${currentHero.dataDir}bust-champion.webp`,
-                                    iconAnimation: {
-                                        size: currentHero.iconAnimationSize ?? [3600, 4000],
-                                        columns: 6,
-                                        rows: 10,
-                                        fps: currentHero.ranks.find(r => r.type.id == 'champion')!.type.rewards[0]!.iconAnimation!.fps,
-                                        offset: currentHero.iconLargeAnimationOffset ?? currentHero.iconAnimationOffset
-                                    },
-                                    rarity: 'legendary'
-                                }"
+                                :reward="currentHeroAnimatedIconReward"
                                 :size="350"
                             />
                         </div>
@@ -337,10 +340,17 @@
 
                         <img
                             class="badge"
-                            src="/img/heroes/common-rewards/champion-badge.webp"
+                            src="/img/common-rewards/champion-badge.webp"
                             alt="Champion Icon"
+                            draggable="false"
                         />
-                        <img v-if="heroHasRoleIcon" class="role" :src="heroRoleIcon" alt="Hero Role Icon">
+                        <img
+                            v-if="heroHasRoleIcon"
+                            class="role"
+                            :src="heroRoleIcon"
+                            alt="Hero Role Icon"
+                            draggable="false"
+                        >
                     </div>
                 </div>
 
@@ -349,11 +359,13 @@
                         v-if="currentHero.id != 'black-panther'"
                         :src="`/img/heroes/data/${currentHero.id}/costumes/${randomHeroCostume.id}.webp`"
                         :alt="randomHeroCostume.name"
+                        draggable="false"
                     />
                     <img
                         v-else
                         src="/img/tex/promo/the-thing-cassius-thundercock.webp"
                         alt="The Thing - You speaking spanish boy?"
+                        draggable="false"
                     />
                 </div>
             </section>
@@ -448,14 +460,14 @@
 
             <section class="future-proofing double separator">
                 <div class="new-hero-image">
-                    <img src="/img/tex/promo/new-hero.webp" alt="Missing Hero Logo" />
+                    <img src="/img/tex/promo/new-hero.webp" alt="Missing Hero Logo" draggable="false" />
                 </div>
                 <div class="new-hero">
                     <h3 class="animate-text">A new hero was added to <span>MARVEL RIVALS</span>, but not here?</h3>
                     <h2 class="animate-text"><span>No problem</span>, you can still use the calculator</h2>
 
                     <br/>
-                    <FormButton id="new-hero-button" color-scheme="white" to="/heroes/new?from=/">
+                    <FormButton id="new-hero-button" color-scheme="white" to="/heroes/new">
                         JUST ADD IT YOURSELF!
                     </FormButton>
                 </div>
@@ -473,6 +485,13 @@
                         :category="selectedAchievementsCategory"
                         :achievements="achievementList"
                     />
+                </div>
+
+                <div class="all-cta">
+                    <h3>Or view and track all achievements in the game</h3>
+                    <FormButton to="/achievements">
+                        ALL ACHIEVEMENTS
+                    </FormButton>
                 </div>
             </section>
 
@@ -492,6 +511,14 @@
                     <h3>
                         Track which costumes you <span>own</span>!
                     </h3>
+
+                    <FormButton
+                        class="all-costumes"
+                        to="/costumes"
+                        size="small"
+                    >
+                        OR SEE ALL COSTUMES
+                    </FormButton>
 
                     <div class="hero-swap">
                         <div class="name" @click="heroSelectOpen = true">
@@ -554,53 +581,17 @@
                             class="lord-icon"
                         >
                             <div class="lord-icon-wrapper">
-                                <img :src="`${hero.dataDir}bust-lord.webp`" :alt="`${hero.name} Lord Icon`" />
+                                <img
+                                    :src="`${hero.dataDir}bust-lord.webp`"
+                                    :alt="`${hero.name} Lord Icon`"
+                                    draggable="false"
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
-
-        <footer>
-            <div class="info">
-                <p>
-                    This website is not affiliated with nor endorsed by NetEase Games or Marvel Entertainment.
-                    <br/><br/>
-                    All visual assets, character names, character likenesses, game logos, trademarks, and other intellectual property appearing on this site are the property of NetEase Games and/or Marvel Entertainment.
-                    <br/>
-                    Marvel Rivals™ is a trademark of NetEase Games. Marvel characters and related marks are trademarks of Marvel Entertainment, LLC. All rights reserved by their respective owners.
-                    <br/><br/>
-                    This is an unofficial fan-made tool created for the community.
-                </p>
-            </div>
-            <div class="pages">
-                <NuxtLink to="/heroes">HEROES</NuxtLink>
-                <NuxtLink to="/download">DOWNLOAD MY STATS/DATA</NuxtLink>
-                <NuxtLink to="/import">IMPORT STATS/DATA</NuxtLink>
-                <div v-if="canInstallPwa" @click="installPwa">ADD TO HOME SCREEN</div>
-                <NuxtLink to="/changelog">CHANGELOG</NuxtLink>
-                <a :href="`mailto:${appConfig.email}`" target="_blank">CONTACT</a>
-            </div>
-            <div class="links">
-                <a class="icon" :href="`https://github.com/${appConfig.githubUser}`" target="_blank">
-                    <svg height="32" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="32">
-                        <path fill="currentColor" d="M10.303 16.652c-2.837-.344-4.835-2.385-4.835-5.028 0-1.074.387-2.235 1.031-3.008-.279-.709-.236-2.214.086-2.837.86-.107 2.02.344 2.708.967.816-.258 1.676-.386 2.728-.386 1.053 0 1.913.128 2.686.365.666-.602 1.848-1.053 2.708-.946.3.581.344 2.085.064 2.815.688.817 1.053 1.913 1.053 3.03 0 2.643-1.998 4.641-4.877 5.006.73.473 1.224 1.504 1.224 2.686v2.235c0 .644.537 1.01 1.182.752 3.889-1.483 6.94-5.372 6.94-10.185 0-6.081-4.942-11.044-11.022-11.044-6.081 0-10.98 4.963-10.98 11.044a10.84 10.84 0 0 0 7.112 10.206c.58.215 1.139-.172 1.139-.752v-1.719a2.768 2.768 0 0 1-1.032.215c-1.418 0-2.256-.773-2.857-2.213-.237-.58-.495-.924-.989-.988-.258-.022-.344-.129-.344-.258 0-.258.43-.451.86-.451.623 0 1.16.386 1.719 1.181.43.623.881.903 1.418.903.537 0 .881-.194 1.375-.688.365-.365.645-.687.903-.902Z"></path>
-                    </svg>
-                </a>
-                <a class="icon" :href="`https://www.reddit.com/user/${appConfig.redditUser}/`" target="_blank">
-                    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-                        <defs>
-                            <mask id="reddit-mask">
-                                <circle cx="400" cy="400" r="400" fill="white"/>
-                                <path d="M666.8 400c.08 5.48-.6 10.95-2.04 16.24s-3.62 10.36-6.48 15.04c-2.85 4.68-6.35 8.94-10.39 12.65s-8.58 6.83-13.49 9.27c.11 1.46.2 2.93.25 4.4a107.268 107.268 0 0 1 0 8.8c-.05 1.47-.14 2.94-.25 4.4 0 89.6-104.4 162.4-233.2 162.4S168 560.4 168 470.8c-.11-1.46-.2-2.93-.25-4.4a107.268 107.268 0 0 1 0-8.8c.05-1.47.14-2.94.25-4.4a58.438 58.438 0 0 1-31.85-37.28 58.41 58.41 0 0 1 7.8-48.42 58.354 58.354 0 0 1 41.93-25.4 58.4 58.4 0 0 1 46.52 15.5 286.795 286.795 0 0 1 35.89-20.71c12.45-6.02 25.32-11.14 38.51-15.3s26.67-7.35 40.32-9.56 27.45-3.42 41.28-3.63L418 169.6c.33-1.61.98-3.13 1.91-4.49.92-1.35 2.11-2.51 3.48-3.4 1.38-.89 2.92-1.5 4.54-1.8 1.61-.29 3.27-.26 4.87.09l98 19.6c9.89-16.99 30.65-24.27 48.98-17.19s28.81 26.43 24.71 45.65c-4.09 19.22-21.55 32.62-41.17 31.61-19.63-1.01-35.62-16.13-37.72-35.67L440 186l-26 124.8c13.66.29 27.29 1.57 40.77 3.82a284.358 284.358 0 0 1 77.8 24.86A284.412 284.412 0 0 1 568 360a58.345 58.345 0 0 1 29.4-15.21 58.361 58.361 0 0 1 32.95 3.21 58.384 58.384 0 0 1 25.91 20.61A58.384 58.384 0 0 1 666.8 400zm-396.96 55.31c2.02 4.85 4.96 9.26 8.68 12.97 3.71 3.72 8.12 6.66 12.97 8.68A40.049 40.049 0 0 0 306.8 480c16.18 0 30.76-9.75 36.96-24.69 6.19-14.95 2.76-32.15-8.68-43.59s-28.64-14.87-43.59-8.68c-14.94 6.2-24.69 20.78-24.69 36.96 0 5.25 1.03 10.45 3.04 15.31zm229.1 96.02c2.05-2 3.22-4.73 3.26-7.59.04-2.87-1.07-5.63-3.07-7.68s-4.73-3.22-7.59-3.26c-2.87-.04-5.63 1.07-7.94 2.8a131.06 131.06 0 0 1-19.04 11.35 131.53 131.53 0 0 1-20.68 7.99c-7.1 2.07-14.37 3.54-21.72 4.39-7.36.85-14.77 1.07-22.16.67-7.38.33-14.78.03-22.11-.89a129.01 129.01 0 0 1-21.64-4.6c-7.08-2.14-13.95-4.88-20.56-8.18s-12.93-7.16-18.89-11.53c-2.07-1.7-4.7-2.57-7.38-2.44s-5.21 1.26-7.11 3.15c-1.89 1.9-3.02 4.43-3.15 7.11s.74 5.31 2.44 7.38c7.03 5.3 14.5 9.98 22.33 14s16 7.35 24.4 9.97 17.01 4.51 25.74 5.66c8.73 1.14 17.54 1.53 26.33 1.17 8.79.36 17.6-.03 26.33-1.17A153.961 153.961 0 0 0 476.87 564c7.83-4.02 15.3-8.7 22.33-14zm-7.34-68.13c5.42.06 10.8-.99 15.81-3.07 5.01-2.09 9.54-5.17 13.32-9.06s6.72-8.51 8.66-13.58A39.882 39.882 0 0 0 532 441.6c0-16.18-9.75-30.76-24.69-36.96-14.95-6.19-32.15-2.76-43.59 8.68s-14.87 28.64-8.68 43.59c6.2 14.94 20.78 24.69 36.96 24.69z" fill="black"/>
-                            </mask>
-                        </defs>
-                        <circle cx="400" cy="400" r="400" fill="currentColor" mask="url(#reddit-mask)"/>
-                    </svg>
-                </a>
-            </div>
-        </footer>
     </div>
 </template>
 
@@ -627,18 +618,18 @@ import { AVG_COMP_MATCH_DURATION_MIN,
     type PlayerHeroStore,
     type PreferencesStore,
     CHALLENGE_STATS,
-    PreferencesStoreSchema, 
+    PreferencesStoreSchema,
+    type Reward, 
 } from '~/assets/data/common';
 import { getFeaturedHero, HERO_LIST } from '~/assets/data/heroes';
 import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
 import {default as CalculatorPanel} from '~/components/panel/Calculator.vue';
-import { usePwaInstall } from '~/composables/usePwaInstall';
 import { Calculator } from '~/services/calculator';
 import type HorizontalScrollContainer from '~/components/panel/HorizontalScrollContainer.vue';
 import FeaturedHeroPromo from '~/components/panel/FeaturedHeroPromo.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
-import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements';
-import { getHeroCostumes, RARITY_ORDER, type Costume, type CostumeRarity } from '~/assets/data/costumes';
+import { getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements/achievements';
+import { getHeroCostumes, RARITY_ORDER, type Costume, type CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
 
 useSeoMeta({
     title: 'Marvel Rivals Proficiency Calculator',
@@ -661,8 +652,6 @@ useSeoMeta({
 const preferences = useLocalStorage<PreferencesStore>('preferences', DEFAULT_PREFERENCES_STORE(), PreferencesStoreSchema);
 const DEFAULT_HERO = HERO_LIST.find(h => h.id == 'luna-snow')!;
 
-const { install: installPwa, canInstall: canInstallPwa } = usePwaInstall(); 
-
 const heroListContainer = ref<InstanceType<typeof HorizontalScrollContainer>>();
 
 // ==== ANIMATIONS ====
@@ -673,48 +662,48 @@ for (let i = 0; i < 4; i++)
 const calculatorPanel = ref<InstanceType<typeof CalculatorPanel>>();
 await useGsap(({ gsap, scrollTrigger, splitText }) => {
     // ==== HEADER LOGO MINIFY ON SCROLL ====
-    const logoTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '#credibility',
-            start: 'top 20%',
-            toggleActions: 'restart pause resume reverse'
-        }
-    });
+    // const logoTl = gsap.timeline({
+    //     scrollTrigger: {
+    //         trigger: '#credibility',
+    //         start: 'top 20%',
+    //         toggleActions: 'restart pause resume reverse'
+    //     }
+    // });
 
-    logoTl.to('.logo .marvel .space', {
-        width: 0,
-        duration: 0.1,
-        ease: 'power2.in'
-    })
-    .to('.logo .marvel .collapse', {
-        width: 0,
-        x: -10,
-        opacity: 0,
-        duration: 0.2,
-        ease: 'power2.in',
-        stagger: 0.05
-    }, '<')
-    .to('.logo .calc .top', {
-        y: '-25%',
-        x: '-25%',
-        scale: 0.5,
-        duration: .2,
-        ease: 'power1.in'
-    }, '<')
-    .to('.logo .calc .space', {
-        display: 'inline-block',
-        width: 0,
-        duration: .1
-    }, '<')
-    .to('.logo .calc .bottom', {
-        y: '25%',
-        x: '-125%',
-        scale: 0.5,
-        duration: .2,
-        ease: 'power1.in'
-    }, '<');
+    // logoTl.to('.logo .marvel .space', {
+    //     width: 0,
+    //     duration: 0.1,
+    //     ease: 'power2.in'
+    // })
+    // .to('.logo .marvel .collapse', {
+    //     width: 0,
+    //     x: -10,
+    //     opacity: 0,
+    //     duration: 0.2,
+    //     ease: 'power2.in',
+    //     stagger: 0.05
+    // }, '<')
+    // .to('.logo .calc .top', {
+    //     y: '-25%',
+    //     x: '-25%',
+    //     scale: 0.5,
+    //     duration: .2,
+    //     ease: 'power1.in'
+    // }, '<')
+    // .to('.logo .calc .space', {
+    //     display: 'inline-block',
+    //     width: 0,
+    //     duration: .1
+    // }, '<')
+    // .to('.logo .calc .bottom', {
+    //     y: '25%',
+    //     x: '-125%',
+    //     scale: 0.5,
+    //     duration: .2,
+    //     ease: 'power1.in'
+    // }, '<');
 
-    gsap.set('#hero .right-wrapper .info', {
+    gsap.set('#hero .right-wrapper .info-wrapper', {
         opacity: 1
     });
     gsap.set('#hero .featured-hero-desktop', {
@@ -757,12 +746,28 @@ await useGsap(({ gsap, scrollTrigger, splitText }) => {
         stagger: 0.05,
         ease: 'back.in'
     }, '-=2.8')
-    
+
+    .from('.logo-large', {
+        scale: 0,
+        opacity: 0,
+        ease: 'back.out',
+        duration: 0.3
+    }, '-=0.6')
+
     .from(lastIcon, {
         scale: 1.4,
         duration: 0.3,
         ease: 'elastic.out(1, 0.5)'
     }, '-=0.6')
+
+    .set('.proficiency-icons-anim', {
+        zIndex: 1,
+        duration: 0.2
+    }, '-=0.55')
+    .to('.proficiency-icons-anim', {
+        opacity: 0,
+        duration: 0.1
+    }, '-=0.5')
 
     // ==== HERO TITLE ====
     const splitTitle = new splitText('#hero-title', { type: 'words', ignore: 'span' })
@@ -803,12 +808,12 @@ await useGsap(({ gsap, scrollTrigger, splitText }) => {
 
     // ==== CREDIBILITY ====
 
-    scrollTrigger.create({
-        trigger: '#credibility',
-        start: 'center 100%',
-        onEnter: () => gsap.to('#header-cta', { opacity: 1, y: 0, duration: 0.2, ease: 'back.out' }),
-        onLeaveBack: () => gsap.to('#header-cta', { opacity: 0, y: -250, duration: 0.2 }),
-    });
+    // scrollTrigger.create({
+    //     trigger: '#credibility',
+    //     start: 'center 100%',
+    //     onEnter: () => gsap.to('#header-cta', { opacity: 1, y: 0, duration: 0.2, ease: 'back.out' }),
+    //     onLeaveBack: () => gsap.to('#header-cta', { opacity: 0, y: -250, duration: 0.2 }),
+    // });
 
     gsap.from('._gsap-hero-list-item', {
         opacity: 0,
@@ -911,12 +916,12 @@ await useGsap(({ gsap, scrollTrigger, splitText }) => {
         }
     })
 
-    scrollTrigger.create({
-        trigger: '#cta-final',
-        start: '30% 60%',
-        onEnter: () => gsap.to('#header-cta', { opacity: 0, y: -250, duration: 0.2 }),
-        onLeaveBack: () => gsap.to('#header-cta', { opacity: 1, y: 0, duration: 0.2, ease: 'back.out' }),
-    });
+    // scrollTrigger.create({
+    //     trigger: '#cta-final',
+    //     start: '30% 60%',
+    //     onEnter: () => gsap.to('#header-cta', { opacity: 0, y: -250, duration: 0.2 }),
+    //     onLeaveBack: () => gsap.to('#header-cta', { opacity: 1, y: 0, duration: 0.2, ease: 'back.out' }),
+    // });
 });
 
 
@@ -988,6 +993,28 @@ const currentHero = ref(featuredHero.value ?? DEFAULT_HERO);
 const averageStatsModal = ref<InstanceType<typeof AverageStatsModal>>();
 const avgStatsModalTab = ref<'normal'|'arcade'>('normal');
 
+const cosmeticsKey = computed(() => `cosmetics_owned_${currentHero.value.id}`);
+const ownedCostumes = useLocalStorage<string[]>(cosmeticsKey, []);
+const currentHeroAnimatedIconReward = computed<Reward>(() => {
+    const hasEasterEgg = currentHero.value.easterEgg && ownedCostumes.value.includes(currentHero.value.easterEgg);
+
+    const fps = currentHero.value.ranks.find(r => r.type.id == 'champion')!.type.rewards[0]!.iconAnimation!.fps;
+
+    return {
+        level: 50,
+        name: 'Champion Icon',
+        icon: `${currentHero.value.dataDir}${hasEasterEgg ? 'easter-egg/' : ''}bust-champion.webp`,
+        iconAnimation: {
+            size: currentHero.value.iconAnimationSize ?? [3600, 4000],
+            columns: 6,
+            rows: 10,
+            fps,
+            offset: currentHero.value.iconLargeAnimationOffset ?? currentHero.value.iconAnimationOffset
+        },
+        rarity: 'legendary'
+    }
+});
+
 const heroSelectOpen = ref(false);
 function clickHero(heroId: string) {
     heroSelectOpen.value = false;
@@ -997,6 +1024,13 @@ function clickHero(heroId: string) {
 
     currentHero.value = hero;
 }
+
+useEvent('keyup', (e: KeyboardEvent) => {
+    if (e.key === 'h' && !e.shiftKey && !e.ctrlKey && !e.altKey)
+        heroSelectOpen.value = true;
+    if (e.code === 'Escape' && !e.shiftKey && !e.ctrlKey && !e.altKey)
+        heroSelectOpen.value = false;
+})
 
 const heroHasRoleIcon = computed(() =>
     Array.isArray(currentHero.value.roles) && currentHero.value.roles.length

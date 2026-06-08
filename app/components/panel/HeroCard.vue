@@ -24,6 +24,7 @@
             <img
                 :src="portrait"
                 :alt="`${name} Portrait`"
+                draggable="false"
             />
         </div>
         <Tex
@@ -44,7 +45,12 @@
         <div class="info">
             <div class="name">
                 <div class="rank-icon-wrapper">
-                    <img v-if="rankDetails" :src="rankDetails.icon" />
+                    <img
+                        v-if="rankDetails"
+                        :src="rankDetails.icon"
+                        :alt="`Rank ${rankDetails.name} Icon`"
+                        draggable="false"
+                    />
                 </div>
                 <h3>{{ name }}</h3>
             </div>
@@ -54,12 +60,20 @@
                     v-for="role in roles"
                     :key="role"
                 >
-                    <img :src="ROLE_ICONS[role]">
+                    <img
+                        :src="ROLE_ICONS[role]"
+                        :alt="`${role} Icon`"
+                        draggable="false"
+                    />
                 </li>
                 <li
                     v-else
                 >
-                    <img :src="ROLE_ICONS[roles]">
+                    <img
+                        :src="ROLE_ICONS[roles]"
+                        :alt="`${roles} Icon`"
+                        draggable="false"
+                    />
                 </li>
             </ul>
         </div>
@@ -74,8 +88,6 @@ import {
     ROLE_ICONS,
     type
     HeroData,
-    type
-    HeroRole,
     type ProficiencyRank 
 } from '~/assets/data/common';
 

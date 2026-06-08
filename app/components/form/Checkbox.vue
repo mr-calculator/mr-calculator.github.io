@@ -1,5 +1,8 @@
 <template>
-    <label :class="{checkbox: 1, small}" :for="id">
+    <label
+        :class="['checkbox', `size-${size}`, `theme-${colorScheme}`]"
+        :for="id"
+    >
         <input
             :id="id"
             type="checkbox"
@@ -67,13 +70,30 @@
             &.hover
                 display: block
 
-    &.small
+    &.size-medium
+        .checkmark
+            width: 30px
+            height: 30px
+
+        .slot
+            font-size: 24px
+
+    &.size-small
         .checkmark
             width: 25px
             height: 25px
 
         .slot
             font-size: 20px
+
+    // theme-light is default
+    &.theme-dark
+        +hover
+            .slot
+                color: #5b75bb
+
+        .slot
+            color: $light-blue-highlight
 
     input
         position: absolute
@@ -111,14 +131,16 @@
 
     .slot
         font-size: 26px
-        font-family: MarvelRivals
+        font-family: $font-bold
+        font-weight: 400
         color: $light
 
 </style>
 
 <script setup lang="ts">
 withDefaults(defineProps<{
-    small?: boolean,
+    size?: 'large'|'medium'|'small',
+    colorScheme?: 'light'|'dark',
     modelValue: boolean,
     appendSlot?: boolean
 }>(), {
@@ -129,6 +151,6 @@ defineEmits<{
     'update:modelValue': [state: boolean],
 }>();
 
-const id = ref(randomId());
+const id = useId();
 
 </script>

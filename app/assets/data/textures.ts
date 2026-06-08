@@ -11,6 +11,9 @@ export const TEX = {
     logo: {
         default: '../icons/logo.png'
     } as Texture,
+    logoLarge: {
+        default: '../icons/logo-large.webp'
+    } as Texture,
 
     scrollbar: {
         default: 'ui/scrollbar.png'
@@ -30,6 +33,14 @@ export const TEX = {
     buttonWhite: {
         default: 'ui/button-white.png',
         hover: 'ui/button-white-hover.png'
+    } as Texture,
+    buttonDark: {
+        default: 'ui/button-dark.png',
+        hover: 'ui/button-dark-hover.png'
+    } as Texture,
+    buttonReadMore: {
+        default: 'ui/read-more.png',
+        hover: 'ui/read-more-hover.png'
     } as Texture,
     userCog: {
         default: 'ui/user-cog.png',
@@ -66,11 +77,17 @@ export const TEX = {
     panelTabSeparator: {
         default: 'ui/panel-tab-separator.png'
     } as Texture,
+    panelTabLine: {
+        default: 'ui/tab-line.png'
+    } as Texture,
     separatorLinesLeft: {
         default: 'ui/separator-lines-left.svg'
     } as Texture,
     separatorLinesRight: {
         default: 'ui/separator-lines-right.svg'
+    } as Texture,
+    playerLevelBackground: {
+        default: 'ui/player-level-background.png'
     } as Texture,
 
     cornerDecoLeftBottom: {
@@ -114,6 +131,16 @@ export const TEX = {
         default: 'ui/tab-straight.png',
         active: 'ui/tab-straight-active.png'
     } as Texture,
+    tabSpecial: {
+        default: 'ui/tab-special.png',
+        hover: 'ui/tab-special-hover.png'
+    } as Texture,
+    tabActiveAnimated: {
+        default: 'ui/tab-active-animated.gif'
+    } as Texture,
+    tabSpecialAnimated: {
+        default: 'ui/tab-special-animated.gif'
+    } as Texture,
     leftTriangle: {
         default: 'ui/left-triangle.webp'
     } as Texture,
@@ -121,6 +148,107 @@ export const TEX = {
         default: 'ui/right-triangle.webp'
     } as Texture,
 
+    leftPanel: {
+        default: 'ui/left-panel.webp'
+    } as Texture,
+    rightPanel: {
+        default: 'ui/right-panel.webp'
+    } as Texture,
+
+    rankBg: {
+        default: 'ui/ranks/rank-bg.png'
+    } as Texture,
+    rankAgent: {
+        default: 'ui/ranks/agent.png'
+    } as Texture,
+    rankAgentBg: {
+        default: 'ui/ranks/agent-bg.png'
+    } as Texture,
+    rankKnight: {
+        default: 'ui/ranks/knight.png'
+    } as Texture,
+    rankKnightBg: {
+        default: 'ui/ranks/knight-bg.png'
+    } as Texture,
+    rankCaptain: {
+        default: 'ui/ranks/captain.png'
+    } as Texture,
+    rankCaptainBg: {
+        default: 'ui/ranks/captain-bg.png'
+    } as Texture,
+    rankCenturion: {
+        default: 'ui/ranks/centurion.png'
+    } as Texture,
+    rankCenturionBg: {
+        default: 'ui/ranks/centurion-bg.png'
+    } as Texture,
+    rankLord: {
+        default: 'ui/ranks/lord.png'
+    } as Texture,
+    rankLordBg: {
+        default: 'ui/ranks/lord-bg.png'
+    } as Texture,
+    rankCount: {
+        default: 'ui/ranks/count.png'
+    } as Texture,
+    rankCountBg: {
+        default: 'ui/ranks/count-bg.png'
+    } as Texture,
+    rankColonel: {
+        default: 'ui/ranks/colonel.png'
+    } as Texture,
+    rankColonelBg: {
+        default: 'ui/ranks/colonel-bg.png'
+    } as Texture,
+    rankWarrior: {
+        default: 'ui/ranks/warrior.png'
+    } as Texture,
+    rankWarriorBg: {
+        default: 'ui/ranks/warrior-bg.png'
+    } as Texture,
+    rankElite: {
+        default: 'ui/ranks/elite.png'
+    } as Texture,
+    rankEliteBg: {
+        default: 'ui/ranks/elite-bg.png'
+    } as Texture,
+    rankGuardian: {
+        default: 'ui/ranks/guardian.png'
+    } as Texture,
+    rankGuardianBg: {
+        default: 'ui/ranks/guardian-bg.png'
+    } as Texture,
+    rankChampion: {
+        default: 'ui/ranks/champion.png'
+    } as Texture,
+    rankChampionBg: {
+        default: 'ui/ranks/champion-bg.png'
+    } as Texture,
+
+    lordBadgeGray: {
+        default: 'ui/ranks/lord-badge-gray.png'
+    } as Texture,
+    championBadgeGray: {
+        default: 'ui/ranks/champion-badge-gray.png'
+    } as Texture,
+
+    noRankDataBg: {
+        default: 'ui/no-rank-data-bg.png'
+    } as Texture,
+
+    markBackground: {
+        default: 'ui/mark-bg.png'
+    } as Texture,
+
+    drawTopLeftCorner: {
+        default: 'ui/draw-top-left-corner.png'
+    } as Texture,
+    drawBottomRightCorner: {
+        default: 'ui/draw-bottom-right-corner.png'
+    } as Texture,
+    drawBottomLeftCorner: {
+        default: 'ui/draw-bottom-left-corner.png'
+    } as Texture,
 
     cog: {
         default: 'icon/cog.png',
@@ -216,6 +344,12 @@ export const TEX = {
         default: 'icon/proficiency.png',
         hover: 'icon/proficiency-hover.png',
     } as Texture,
+    proficiencyGray: {
+        default: 'icon/proficiency-gray.png',
+    } as Texture,
+    proficiencyIcon: {
+        default: 'icon/proficiency-icon.webp',
+    } as Texture,
     missionInfinity: {
         default: 'icon/mission-infinity.png',
     } as Texture,
@@ -227,6 +361,9 @@ export const TEX = {
     } as Texture,
     dropdownCaret: {
         default: 'icon/dropdown-caret.png'
+    } as Texture,
+    dropdownCaretUp: {
+        default: 'icon/dropdown-caret-up.png'
     } as Texture,
     dropdownCheck: {
         default: 'icon/check.png'
@@ -280,6 +417,9 @@ export const TEX = {
     link: {
         default: 'icon/link.png'
     } as Texture,
+    share: {
+        default: 'icon/share.png'
+    } as Texture,
     unknownHero: {
         default: 'icon/unknown-hero.png'
     } as Texture,
@@ -307,17 +447,96 @@ export const TEX = {
     upload: {
         default: 'icon/upload.png'
     } as Texture,
+    skinIcon: {
+        default: 'icon/skin.png'
+    } as Texture,
+
+    rarityMythic: {
+        default: 'icon/rarity/mythic.png'
+    } as Texture,
     rarityLegendary: {
-        default: 'icon/rarity-legendary.webp'
+        default: 'icon/rarity/legendary.png'
     } as Texture,
     rarityEpic: {
-        default: 'icon/rarity-epic.webp'
+        default: 'icon/rarity/epic.png'
     } as Texture,
     rarityRare: {
-        default: 'icon/rarity-rare.webp'
+        default: 'icon/rarity/rare.png'
+    } as Texture,
+    rarityCommon: {
+        default: 'icon/rarity/common.png'
     } as Texture,
     costumeCustomizable: {
         default: 'icon/costume-customize.webp'
+    } as Texture,
+
+    filter: {
+        default: 'icon/filter/filter.png',
+        active: 'icon/filter/filter-active.png'
+    } as Texture,
+    filterNone: {
+        default: 'icon/filter/filter-none.png',
+    } as Texture,
+    filterSortAsc: {
+        default: 'icon/filter/sort-asc.png',
+    } as Texture,
+    filterSortDesc: {
+        default: 'icon/filter/sort-desc.png',
+    } as Texture,
+    filterHero: {
+        default: 'icon/filter/hero.png'
+    } as Texture,
+    filterNoGroup: {
+        default: 'icon/filter/no-group.png'
+    } as Texture,
+    filterSource: {
+        default: 'icon/filter/source.png'
+    } as Texture,
+    filterRarity: {
+        default: 'icon/filter/rarity.png'
+    } as Texture,
+    filterRaritySortUp: {
+        default: 'icon/filter/rarity-sort-up.png'
+    } as Texture,
+    filterRaritySortDown: {
+        default: 'icon/filter/rarity-sort-down.png'
+    } as Texture,
+    filterChecked: {
+        default: 'icon/filter/checked.png'
+    } as Texture,
+    filterCategories: {
+        default: 'icon/filter/categories.png'
+    } as Texture,
+    filterTheme: {
+        default: 'icon/filter/theme.png'
+    } as Texture,
+    filterTimeUp: {
+        default: 'icon/filter/time-up.png'
+    } as Texture,
+    filterTimeDown: {
+        default: 'icon/filter/time-down.png'
+    } as Texture,
+    sortAZ: {
+        default: 'icon/filter/sort-az.png'
+    } as Texture,
+    sortZA: {
+        default: 'icon/filter/sort-za.png'
+    } as Texture,
+    filterNoSearch: {
+        default: 'icon/filter/no-search.png'
+    } as Texture,
+    filterSearch: {
+        default: 'icon/filter/search.png'
+    } as Texture,
+
+    achievementsIcon: {
+        default: 'icon/achievement/achievements.png'
+    } as Texture,
+    careerAchievements: {
+        default: 'icon/career-achievements.png'
+    } as Texture,
+    careerAchievementsGray: {
+        default: 'icon/career-achievements-gray.png'
     } as Texture,
     achievementPoint: {
         default: 'icon/achievement-point.png'
@@ -379,17 +598,28 @@ export const TEX = {
         default: 'icon/achievement/rivalry-rising-gold.png'
     } as Texture,
 
+
+    discordIcon: {
+        default: 'icon/discord.png'
+    } as Texture,
+
     whiteBackground: {
         default: 'bg/white.webp'
     } as Texture,
     darkBackground: {
         default: 'bg/dark.png'
     } as Texture,
+    commonBackground: {
+        default: 'bg/common-bg.webp'
+    } as Texture,
     biColorBackground: {
         default: 'bg/bi-color-bg.webp'
     } as Texture,
     promotionalBackground: {
         default: 'bg/promotional-bg.webp',
+    } as Texture,
+    lordsBackground: {
+        default: 'bg/bg-lords.webp',
     } as Texture,
     dropdownHover: {
         default: 'bg/dropdown-hover.png'
@@ -466,6 +696,13 @@ export const TEX = {
         default: 'bg/hero-select-frame-right-gold.png'
     } as Texture,
 
+    profileHeaderBg: {
+        default: 'bg/profile-header-bg.png'
+    } as Texture,
+    pageLoadingBg: {
+        default: 'bg/page-bg-loading.webp'
+    } as Texture,
+
     listItemHover: {
         default: 'bg/list-item-hover.png'
     } as Texture,
@@ -485,6 +722,9 @@ export const TEX = {
     promotionalBackgroundMask: {
         default: 'mask/promotional-bg-mask.png',
     } as Texture,
+    promotionalBackgroundMaskInverted: {
+        default: 'mask/promotional-bg-mask-inverted.png',
+    } as Texture,
     barBackgroundMask: {
         default: 'mask/bar-bg-mask.webp'
     } as Texture,
@@ -496,6 +736,9 @@ export const TEX = {
     } as Texture,
     heroPrestigeMask: {
         default: 'mask/hero-prestige.webp'
+    } as Texture,
+    heroDisplayMask: {
+        default: 'mask/hero-display.webp'
     } as Texture,
     prestigeBackgroundMask: {
         default: 'mask/prestige-bg.webp'
@@ -517,6 +760,9 @@ export const TEX = {
     } as Texture,
     modalBackgroundMask: {
         default: 'mask/modal-bg-mask.png'
+    } as Texture,
+    profileCardMask: {
+        default: 'mask/profile-card-mask.png'
     } as Texture,
 
 
@@ -570,8 +816,21 @@ export const TEX = {
     promoFeaturedBar: {
         default: 'promo/featured-bar.png',
         active: 'promo/featured-bar-active.png'
-    } as Texture
+    } as Texture,
 
+
+    nameplateBackground: {
+        default: 'bg/nameplate-bg.png'
+    } as Texture,
+    cosmeticsListItemHover: {
+        default: 'bg/cosmetics-list-item-hover.png'
+    } as Texture,
+    cosmeticsListItemSelected: {
+        default: 'ui/cosmetics-list-item-selected.png'
+    } as Texture,
+    cosmeticsGridItemSelected: {
+        default: 'ui/cosmetics-grid-item-selected.png'
+    } as Texture,
 
 } satisfies  Record<string, Texture>;
 

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "ca9a121f-19ec-4258-94f7-aaedf11d404c_perfection",
+    "title": "Perfection",
+    "description": "Raise the Proficiency of 1 hero to Champion.",
+    "category": "galacta-guide",
+    "rarity": "gold",
+    "requirement": 1,
+    "reward": 20
+  },
+  {
+    "id": "034a66c2-7166-44ad-88f0-c0429492b9c5_ultimate-mastery",
+    "title": "Ultimate Mastery",
+    "description": "Raise the Proficiency of 1 hero to Lord.",
+    "category": "galacta-guide",
+    "rarity": "gold",
+    "requirement": 1,
+    "reward": 20
+  },
+  {
+    "id": "7aeffce6-6be6-485e-bc0f-379ad35d4564_multiversal-veterans",
+    "title": "Multiversal Veterans",
+    "description": "Raise the Proficiency of 2 heroes to Captain.",
+    "category": "galacta-guide",
+    "rarity": "gold",
+    "requirement": 2,
+    "reward": 20
+  },
+  {
+    "id": "8c8b6da9-5d9b-4c7b-8b4c-f97767db0ddb_what-a-team-up",
+    "title": "What a Team-Up!",
+    "description": "Read 15 Team-up stories.",
+    "category": "galacta-guide",
+    "rarity": "gold",
+    "requirement": 15,
+    "reward": 20
+  },
+  {
+    "id": "029d9e52-643f-432e-a806-2496f8e11bc9_heroic-honor",
+    "title": "Heroic Honor",
+    "description": "Read 33 hero stories.",
+    "category": "galacta-guide",
+    "rarity": "gold",
+    "requirement": 33,
+    "reward": 20
+  },
+  {
+    "id": "e63abee8-b856-400e-a72b-a69c113e5211_always-on-duty",
+    "title": "Always on Duty",
+    "description": "Unlock 5 hero costumes.",
+    "category": "galacta-guide",
+    "rarity": "gold",
+    "requirement": 5,
+    "reward": 20
+  },
+  {
+    "id": "4493e765-5cda-4697-9e3a-1718f7486449_sticking-around",
+    "title": "Sticking Around",
+    "description": "Log in for 30 days.",
+    "category": "galacta-guide",
+    "rarity": "gold",
+    "requirement": 30,
+    "reward": 20
+  },
+  {
+    "id": "a6ac831a-6f4e-4faf-a11e-44424135f128_night-at-the-museum",
+    "title": "Night at the Museum",
+    "description": "Unlock all Night at the Museum gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "e112768a-c65e-4e42-a84d-aed6c8a44b56_love-is-a-battlefield",
+    "title": "Love is a Battlefield",
+    "description": "Unlock all Love is a Battlefield gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "7132aff7-87f7-4560-88ed-6e3a07e95e8f_heart-of-the-dragon",
+    "title": "Heart of the Dragon",
+    "description": "Unlock all Heart of the Dragon gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "6835a7a5-47b4-4b21-894d-fc28de0dc3f9_the-abyss-awakens",
+    "title": "The Abyss Awakens",
+    "description": "Unlock all The Abyss Awakens gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "01a54ed0-5d8e-46c9-afdb-8fb2861f4c6d_hellfire-gala",
+    "title": "Hellfire Gala",
+    "description": "Unlock all Hellfire Gala gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "e8792ce3-ee59-450b-9587-1f4330d7b647_eternal-night-falls",
+    "title": "Eternal Night Falls",
+    "description": "Unlock all Eternal Night Falls gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "6d0e4213-4a8c-477e-8c1a-cf4523cc505e_rising-star",
+    "title": "Rising Star",
+    "description": "Reach level 20.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 20,
+    "reward": 10
+  },
+  {
+    "id": "dad6f864-7584-45ed-8bcc-e8c332e13d7f_challenge-accepted",
+    "title": "Challenge Accepted!",
+    "description": "Complete 20 missions.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 20,
+    "reward": 10
+  },
+  {
+    "id": "10076835-db4e-4d69-bfe9-7b12db0d6522_self-made",
+    "title": "Self Made",
+    "description": "Earn 3,000 Chrono Tokens.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 3000,
+    "reward": 10
+  },
+  {
+    "id": "f661712a-2095-4311-8d0f-63b14845ed17_dooms-rise",
+    "title": "Doom's Rise",
+    "description": "Unlock all Doom's Rise gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "id": "27d4ad7d-64c4-46c7-838e-2e071e5c08ff_colorful-words",
+    "title": "Colorful Words",
+    "description": "Use text coloring, Emoji, or Mood in chat channel once.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "c8e3e8d0-74a6-4b2a-a81c-edfc3a1e0c35_multiversal-view",
+    "title": "Multiversal View",
+    "description": "Change Home Background once.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "d09bd317-e2e3-4077-ab79-38653bcbe51e_competitive-bling",
+    "title": "Competitive Bling",
+    "description": "Obtain 1 Hero Accessory.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "17ed6cdb-62bd-4d3b-9ea3-f7f8f7e7a715_cosmic-convo",
+    "title": "Cosmic Convo",
+    "description": "Listen to 1 conversation between the Guardians of the Galaxy.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "70848819-8c48-4953-8520-558d5a6dc182_mixed-emotions",
+    "title": "Mixed Emotions",
+    "description": "Change your mood 5 times with different styles.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 5,
+    "reward": 5
+  },
+  {
+    "id": "0c3d07a2-8e9a-4ee2-9ee3-c981c07a1088_mutant-and-proud",
+    "title": "Mutant and Proud!",
+    "description": "Listen to 1 conversation between Mutants.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "74c89597-cac7-4373-bd80-9f4425a9728f_family-matters",
+    "title": "Family Matters",
+    "description": "Listen to 1 conversation between members of the Fantastic Four.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "97efbbc9-6029-407f-af48-78dc76215f03_first-family",
+    "title": "First Family",
+    "description": "Read all 4 of the Fantastic Four's hero stories.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 4,
+    "reward": 5
+  },
+  {
+    "id": "df475ec7-d989-490e-bf25-37f8f7a7adf9_member-when",
+    "title": "Member When...?",
+    "description": "Relive a Highlight in your Career.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "dd23ad80-c558-46ec-a4d5-be8cb3996b5c_window-dressing",
+    "title": "Window Dressing",
+    "description": "Switch up five different nameplates.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "02cb5fc9-c641-4f2f-bc36-43364e7ae0cc_you-do-you",
+    "title": "You Do You",
+    "description": "Use the customizable wheel once.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "7ef74c8c-e7ce-4365-a825-f45e4e63dcf4_now-thats-a-party",
+    "title": "Now THAT's a Party!",
+    "description": "Add 20 Friends.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 20,
+    "reward": 5
+  },
+  {
+    "id": "8ffe9296-f79b-4a15-9402-95122457c29a_hello-world",
+    "title": "Hello, World!",
+    "description": "Send your first message in the chat.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  }
+]

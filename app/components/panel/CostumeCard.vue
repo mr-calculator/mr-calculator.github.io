@@ -25,7 +25,12 @@
             <img
                 :src="src"
                 :alt="name"
-                :style="imageScale !== 1 ? { transform: `scale(${imageScale})`, transformOrigin: imageOrigin } : undefined"
+                :style="imageScale !== 1 ? {
+                    transform: `scale(${imageScale})`,
+                    transformOrigin: imageOrigin
+                } : undefined"
+                draggable="false"
+                loading="lazy"
             />
         </div>
 
@@ -43,7 +48,7 @@
             </div>
             <ClientOnly>
                 <FormCheckbox
-                    small
+                    size="small"
                     :model-value="owned"
                     @update:model-value="$emit('toggle')"
                     @click.stop
