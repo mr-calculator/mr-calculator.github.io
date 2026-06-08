@@ -1,5 +1,169 @@
 [
   {
+    "sha": "bb88d92381e3f14790dbe03cd9bd9c5fb7606687",
+    "node_id": "C_kwDORv7rQ9oAKGJiODhkOTIzODFlM2YxNDc5MGRiZTAzY2Q5YmQ5YzVmYjc2MDY2ODc",
+    "commit": {
+      "author": {
+        "name": "Marvel Rivals Calculator",
+        "email": "marvel-rivals-calculator@protonmail.com",
+        "date": "2026-06-05T19:30:33Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-06-05T19:30:33Z"
+      },
+      "message": "URGENT FIX: useLocalStorage stale watchers\n\nLocal Storage state watchers were attached to component/page instances which would cause the watchers to be stopped automatically at the parent's unmounted time, causing updates to state (and actual persistent local storage) to not work anymore, unless the page was SSR-ed.\r\nAttached the watcher to a detached effect scope to prevent nuxt from cleaning it up with the parent.",
+      "tree": {
+        "sha": "3b4bdc410a26a1fe1446bfb9220234ae2d95240a",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/3b4bdc410a26a1fe1446bfb9220234ae2d95240a"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/bb88d92381e3f14790dbe03cd9bd9c5fb7606687",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqIyPZCRC1aQ7uu5UhlAAA8vwQAF4XuBoY3THqnPsV57uvbvX+\n+zbdlF2SZgUvGB+yNQ7LmCCytrt8Dqw8V/wOxrQe83e8OtCwDrjkMya37XSI+yMv\nXLL/W/53FjHiPdtdLaDUU2MRXUkwmP6QmhymA+YX4322bofqsJw+p+LOeAU6SaAH\nHrZ/IOgLF8nBg/FluJ9fLzSgxFdl/tgt9XnZjfAggGBsqPyyi1ckJ+yeEJ/kPW5O\nffXZQ5nnws246E6+h9g2AJP/eVL1QnP3Cz3EftLsBYTI6ovDWXz2AhyWB0Ezpiji\nJjFIsF5+5G9q7i9mB1EeOEekK+MpsGxbCODLjvh4j25qYntctIskdIFswlLifFyZ\n05VO07UceKS500YafWVRXRMf2eOYtrMofWXnzN9Y8813sKf67jshMY+iidkal1X4\nIn/Kt/Mbyma6PYiCwxCxf9Y19A8aCSOKUhu3RftROJNPi9gIZb+TY3uKLOvzZAWU\nwvmMM0VfZRPdaSwdX0rK6zfN4A2+0R6OUdJsXV95cllHO9Ml2bQz0EyLfOH3WKRW\nROqdnu8FOU0NjvVSU9RN1Ijjn2UQtksMBVZICIRyWE9A6oKxQGFsSFci7uVV32CI\nk70cv8xOnRKKQvtJp2CZo5sQmBDzD98aqKZtN9BRahYBHhNaAI900eTPM5ancxDN\nSbIe3z3x6S2fJmuMBt12\n=j3v+\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 3b4bdc410a26a1fe1446bfb9220234ae2d95240a\nparent f2521fa1d386cee334499733bf27c1b65779718e\nauthor Marvel Rivals Calculator <marvel-rivals-calculator@protonmail.com> 1780687833 +0300\ncommitter GitHub <noreply@github.com> 1780687833 +0300\n\nURGENT FIX: useLocalStorage stale watchers\n\nLocal Storage state watchers were attached to component/page instances which would cause the watchers to be stopped automatically at the parent's unmounted time, causing updates to state (and actual persistent local storage) to not work anymore, unless the page was SSR-ed.\r\nAttached the watcher to a detached effect scope to prevent nuxt from cleaning it up with the parent.",
+        "verified_at": "2026-06-05T19:30:34Z"
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/bb88d92381e3f14790dbe03cd9bd9c5fb7606687",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/bb88d92381e3f14790dbe03cd9bd9c5fb7606687",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/bb88d92381e3f14790dbe03cd9bd9c5fb7606687/comments",
+    "author": {
+      "login": "mr-calculator",
+      "id": 269357878,
+      "node_id": "U_kgDOEA4TNg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/269357878?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mr-calculator",
+      "html_url": "https://github.com/mr-calculator",
+      "followers_url": "https://api.github.com/users/mr-calculator/followers",
+      "following_url": "https://api.github.com/users/mr-calculator/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mr-calculator/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mr-calculator/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mr-calculator/subscriptions",
+      "organizations_url": "https://api.github.com/users/mr-calculator/orgs",
+      "repos_url": "https://api.github.com/users/mr-calculator/repos",
+      "events_url": "https://api.github.com/users/mr-calculator/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mr-calculator/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f2521fa1d386cee334499733bf27c1b65779718e",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/f2521fa1d386cee334499733bf27c1b65779718e",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/f2521fa1d386cee334499733bf27c1b65779718e"
+      }
+    ]
+  },
+  {
+    "sha": "f2521fa1d386cee334499733bf27c1b65779718e",
+    "node_id": "C_kwDORv7rQ9oAKGYyNTIxZmExZDM4NmNlZTMzNDQ5OTczM2JmMjdjMWI2NTc3OTcxOGU",
+    "commit": {
+      "author": {
+        "name": "Marvel Rivals Calculator",
+        "email": "marvel-rivals-calculator@protonmail.com",
+        "date": "2026-05-27T04:53:54Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-05-27T04:53:54Z"
+      },
+      "message": "Fixed Safari-GSAP breaking bug\n\nwhen on Safari/iOS, scrolling would cause GSAP to rerender (since viewport dimensions change)",
+      "tree": {
+        "sha": "ba8b004cd84e1d6fab450a8f55ae3a77381722fe",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/ba8b004cd84e1d6fab450a8f55ae3a77381722fe"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/f2521fa1d386cee334499733bf27c1b65779718e",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqFnjiCRC1aQ7uu5UhlAAAzuoQABs8JYdnoVpwTDSW8twpzqcs\n0pCKARhhLernBYuGbfMrufmj16cl8QQzftpt63zR7GjP1iFk9D0Va+nzWHQKWQ28\nl7ksAxf6+lOrrHfhquWFCKMTKSfqR9dO17z/BwLPKkkul9gI+y70U2b2cyaw8+5O\neTcU37hAdDbsnHRg7HoELKIWV556UoE0YG7m08XM42Vp5jj1Df5c5QW2FFYyTdQS\nVx604z/oNCtcPxT/QvMBMNOq7nBO9mjVs/Tz0vFr+H6m5ncDTe+3fw+DJQmMPKS/\nGwZnXKeXATqqUAD3C9K06T8YcFvs8p6MSNd9qbFQZOoHd9wAwa0uh6M68tAAvlTS\nD6L6eZl7/O/5NlkD8NTl/+vg/tze58rF1koRvzaNy0ddxRYw64FGScdJyYzAoGBN\nS/RpOiup475YGAAab9pj5pMbsMIsfemukzOSmCXX7mbdIk+zzVOxFsEb2m7CEoSN\nVVR6tOOw6qaDkA+hnzKRz/U8QDeKD7vh+s/1DHApsIw/NefQyiJvBXAz9guGWBwF\nAJ3FXuzeq5R9jxANSx87if6pd6jhhgyqPNtMDp4NBelT1fJovXPUgWJVv5hURAMD\n4F6iLs7oeJL57qLTWSQyd51PwHoBQu1gGC860chjtMuvz2cpldgxx4X76teD7c1t\nTmETxTld1NINVsLEdb8c\n=Qsfc\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ba8b004cd84e1d6fab450a8f55ae3a77381722fe\nparent d7dadaaeddd89505a592399f35807472e8311c57\nauthor Marvel Rivals Calculator <marvel-rivals-calculator@protonmail.com> 1779857634 +0300\ncommitter GitHub <noreply@github.com> 1779857634 +0300\n\nFixed Safari-GSAP breaking bug\n\nwhen on Safari/iOS, scrolling would cause GSAP to rerender (since viewport dimensions change)",
+        "verified_at": "2026-05-27T04:53:55Z"
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/f2521fa1d386cee334499733bf27c1b65779718e",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/f2521fa1d386cee334499733bf27c1b65779718e",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/f2521fa1d386cee334499733bf27c1b65779718e/comments",
+    "author": {
+      "login": "mr-calculator",
+      "id": 269357878,
+      "node_id": "U_kgDOEA4TNg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/269357878?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mr-calculator",
+      "html_url": "https://github.com/mr-calculator",
+      "followers_url": "https://api.github.com/users/mr-calculator/followers",
+      "following_url": "https://api.github.com/users/mr-calculator/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mr-calculator/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mr-calculator/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mr-calculator/subscriptions",
+      "organizations_url": "https://api.github.com/users/mr-calculator/orgs",
+      "repos_url": "https://api.github.com/users/mr-calculator/repos",
+      "events_url": "https://api.github.com/users/mr-calculator/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mr-calculator/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "d7dadaaeddd89505a592399f35807472e8311c57",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/d7dadaaeddd89505a592399f35807472e8311c57",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/d7dadaaeddd89505a592399f35807472e8311c57"
+      }
+    ]
+  },
+  {
     "sha": "d7dadaaeddd89505a592399f35807472e8311c57",
     "node_id": "C_kwDORv7rQ9oAKGQ3ZGFkYWFlZGRkODk1MDVhNTkyMzk5ZjM1ODA3NDcyZTgzMTFjNTc",
     "commit": {
