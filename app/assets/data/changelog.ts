@@ -412,6 +412,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.0.0',
             date: 'June 8, 2026',
             time: '9:45 PM',
+            commitSha: '7abca45171d40cac2cce8ca46947c14fc6e3119f'
         },
         title: 'A fresh look',
         description: `This major update comes with a complete navigation revamp, tons of new tracking features, and crucial fixes!

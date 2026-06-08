@@ -677,21 +677,22 @@ async function createProfileSheet() {
 }
 
 function createProfileSheetLink() {
-    const serialized: ProfileSheetDataExportable = {
-        p: [
-            profile.value.name,
-            profile.value.level,
-            selectedHeroSkin.value,
-            profile.value.nameplate,
-            
-                highestRanksWithHeroData.value[0]!.rank.id,
-                highestRanksWithHeroData.value[0]!.store.level,
-                highestRanksWithHeroData.value[0]!.store.hero.name,
+    const profileData: ProfileSheetDataExportable['p'] = [
+        profile.value.name,
+        profile.value.level,
+        selectedHeroSkin.value,
+        profile.value.nameplate,
+        
+            highestRanksWithHeroData.value[0]!.rank.id,
+            highestRanksWithHeroData.value[0]!.store.level,
+            highestRanksWithHeroData.value[0]!.store.hero.name,
+    ];
 
-            profile.value.frame
-                ? profile.value.frame
-                : undefined,
-        ],
+    if (profile.value.frame)
+        profileData.push(profile.value.frame);
+
+    const serialized: ProfileSheetDataExportable = {
+        p: profileData,
         h: highestRanksWithHeroData.value.slice(0, 3).map(s => {
             const hero: ProfileSheetDataExportable['h'][0] = [
                 s.store.hero.id,
