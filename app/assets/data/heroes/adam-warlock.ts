@@ -5,6 +5,7 @@ export const AdamWarlock: HeroData = {
     id: 'adam-warlock',
     name: 'Adam Warlock',
     aliases: [
+        'perfect human',
         'child of light',
         'god slayer',
         'avatar of life',

@@ -458,8 +458,9 @@ const FILTER_SECTIONS = computed<FilterSection[]>(() => [
 ]);
 
 const searchFrame = (item: CosmeticItem, searchText: string) => 
-    item.name.toLowerCase().includes(searchText.toLowerCase());
-
+    item.name.toLowerCase().includes(searchText.toLowerCase())
+ || !!item.category?.toLowerCase().includes(searchText.toLowerCase())
+ || !!item.source?.toLowerCase().includes(searchText.toLowerCase())
 
 
 const selectedWrapper = useTemplateRef('selected-wrapper');

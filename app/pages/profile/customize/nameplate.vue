@@ -426,14 +426,16 @@ const FILTER_SECTIONS = computed<FilterSection[]>(() => [
 ]);
 
 const searchNameplate = (item: CosmeticItem, searchText: string) => {
+    const searchLower = searchText.toLowerCase();
     const hero = heroByInternalId[item.id.slice(1, 5)];
 
-    if (item.name.toLowerCase().includes(searchText.toLowerCase())
-     || item.category?.toLowerCase().includes(searchText.toLowerCase())
-     || item.source?.toLowerCase().includes(searchText.toLowerCase())
-     || item.sourceFull?.toLowerCase().includes(searchText.toLowerCase())
-     || item.theme?.toLowerCase().includes(searchText.toLowerCase())
-     || (hero && hero.name.toLowerCase().includes(searchText.toLowerCase()))
+    if (item.name.toLowerCase().includes(searchLower)
+     || item.category?.toLowerCase().includes(searchLower)
+     || item.source?.toLowerCase().includes(searchLower)
+     || item.sourceFull?.toLowerCase().includes(searchLower)
+     || item.theme?.toLowerCase().includes(searchLower)
+     || (hero && hero.name.toLowerCase().includes(searchLower))
+     || (hero && hero.aliases?.some(a => a.toLowerCase().includes(searchLower)))
     )
         return true;
 

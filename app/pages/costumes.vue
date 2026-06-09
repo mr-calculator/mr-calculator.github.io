@@ -205,7 +205,7 @@ const sortDropdownOptions: Option[] = [
         }
     },
     {
-        value: 'name',
+        value: 'name-asc',
         label: 'SORT BY NAME A-Z',
         leftIcon: {
             key: 'sortAZ',
@@ -213,7 +213,7 @@ const sortDropdownOptions: Option[] = [
         }
     },
     {
-        value: 'name',
+        value: 'name-desc',
         label: 'SORT BY NAME Z-A',
         leftIcon: {
             key: 'sortZA',
@@ -499,7 +499,26 @@ const sortedCostumes = computed<ListCostume[]>(() => {
 
     list = list.filter(c => {
         const checks: (() => boolean)[] = [
-            () => searchText.value ? c.name.toLowerCase().includes(searchText.value.toLowerCase()) : true,
+            () => {
+                if (!searchText.value)
+                    return true;
+
+                const searchLower = searchText.value.toLowerCase()
+
+                const hero = c.heroId ? HERO_LIST.find(h => h.id == c.heroId) : null;
+
+                return c.name.toLowerCase().includes(searchLower)
+                    || c.category.toLowerCase().includes(searchLower)
+                    || !!c.source?.toLowerCase().includes(searchLower)
+                    || !!c.theme?.toLowerCase().includes(searchLower)
+                    || (
+                        !!hero
+                     && (
+                            hero.name.toLowerCase().includes(searchLower)
+                         || !!hero.aliases?.some(a => a.toLowerCase().includes(searchLower))
+                        )
+                    );
+            },
             () => activeHeroesFilters.value.length ? activeHeroesFilters.value.includes(c.heroId) : true,
             () => activeRarityFilters.value.length ? activeRarityFilters.value.includes(c.rarity) : true,
             () => activeCategoriesFilters.value.length ? activeCategoriesFilters.value.includes(c.category) : true,
@@ -520,8 +539,10 @@ const sortedCostumes = computed<ListCostume[]>(() => {
         if (costumeSort.value === 'rarity')
             return (RARITY_ORDER.indexOf(a.rarity) ?? 3) - (RARITY_ORDER.indexOf(b.rarity) ?? 3);
 
-        if (costumeSort.value === 'name')
+        if (costumeSort.value === 'name-asc')
             return a.name.localeCompare(b.name);
+        if (costumeSort.value === 'name-desc')
+            return b.name.localeCompare(a.name);
 
         const da = a.releaseDate ?? '';
         const db = b.releaseDate ?? '';

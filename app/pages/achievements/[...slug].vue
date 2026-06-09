@@ -159,7 +159,8 @@ watch(category, (newCategory, oldCategory) => {
 
 watch(selectedCategory, cat => {
     router.push({
-        path: `/achievements/${cat}`
+        path: `/achievements/${cat}`,
+        query: route.query
     })
 });
 
