@@ -735,6 +735,11 @@ export async function generateProfileSheet(data: ProfileSheetData): Promise<Blob
         }
     );
 
+    // do it twice for safari to load fetched images into browser image internal cache
+    // and bypass cors stupidity
+    if (isSafari())
+        await satoriToWebp(svg, 844, 1128, 2);
+
     return satoriToWebp(svg, 844, 1128, 2);
 }
 

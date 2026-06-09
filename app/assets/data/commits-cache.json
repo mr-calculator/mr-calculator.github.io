@@ -1,5 +1,47 @@
 [
   {
+    "sha": "c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7",
+    "node_id": "C_kwDORv7rQ9oAKGM0NzI5OGE3N2Y1ZDk2MGEyOGEwZjY3YzBkZmI1ZjU2Y2MzNmMwZTc",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-09T05:03:07Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-09T05:03:07Z"
+      },
+      "message": "Fixed easter egg breaking reward list UI in modals (where it's not supposed to be mentioned)",
+      "tree": {
+        "sha": "5f48182ce2c31bc110569bfc804c10a2fe5ce51e",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/5f48182ce2c31bc110569bfc804c10a2fe5ce51e"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "9523d456de0c556db5def18e3bd373ac67eaa015",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/9523d456de0c556db5def18e3bd373ac67eaa015",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/9523d456de0c556db5def18e3bd373ac67eaa015"
+      }
+    ]
+  },
+  {
     "sha": "9523d456de0c556db5def18e3bd373ac67eaa015",
     "node_id": "C_kwDORv7rQ9oAKDk1MjNkNDU2ZGUwYzU1NmRiNWRlZjE4ZTNiZDM3M2FjNjdlYWEwMTU",
     "commit": {
