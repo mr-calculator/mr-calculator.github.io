@@ -20,6 +20,7 @@
 
         <div ref="listWrapper" class="list-wrapper">
             <PanelHeroProficiencyRewardList
+                embedded
                 :hero="hero"
                 :selected-item="selectedLevel"
                 :show-all-levels="showAllLevels"

@@ -63,7 +63,7 @@
         </div>
 
         <div
-            v-if="hasEasterEgg && hero.easterEggMessage"
+            v-if="!embedded && hasEasterEgg && hero.easterEggMessage"
             class="easter-egg"
             v-html="hero.easterEggMessage"
         />
@@ -78,6 +78,7 @@ import { tex } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
 
 const props = defineProps<{
+    embedded?: boolean,
     hero: HeroData,
     checked?: number[],
     selectedItem?: number,
