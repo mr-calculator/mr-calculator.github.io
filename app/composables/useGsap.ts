@@ -14,7 +14,7 @@ type GsapTools = {
 
 export function useGsap(callback: (tools: GsapTools) => void) {
     if (import.meta.server)
-        return;
+        return { remove: () => null };
 
     const triggers: InstanceType<typeof ScrollTrigger>[] = []
 
@@ -39,4 +39,6 @@ export function useGsap(callback: (tools: GsapTools) => void) {
         }),
         onUnmounted: () => triggers.forEach(t => t.kill()),
     })
+
+    return { remove: () => triggers.forEach(t => t.kill()) }
 }

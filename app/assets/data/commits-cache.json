@@ -1,5 +1,47 @@
 [
   {
+    "sha": "c16adc03064f2ae1028c8b69d7d2567584ffdc66",
+    "node_id": "C_kwDORv7rQ9oAKGMxNmFkYzAzMDY0ZjJhZTEwMjhjOGI2OWQ3ZDI1Njc1ODRmZmRjNjY",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T17:30:52Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T17:30:52Z"
+      },
+      "message": "Fixed costume list sticky tools going out of view on certain devices\nMade improvements to sticky tools (less spacing, smaller elements) to accommodate smaller devices",
+      "tree": {
+        "sha": "6f3bfccab9bd1a420b4df890fab7821109151e98",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/6f3bfccab9bd1a420b4df890fab7821109151e98"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/c16adc03064f2ae1028c8b69d7d2567584ffdc66",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c16adc03064f2ae1028c8b69d7d2567584ffdc66",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/c16adc03064f2ae1028c8b69d7d2567584ffdc66",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c16adc03064f2ae1028c8b69d7d2567584ffdc66/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "722664f494320f31f898bbc0f6835a86891947af",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/722664f494320f31f898bbc0f6835a86891947af",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/722664f494320f31f898bbc0f6835a86891947af"
+      }
+    ]
+  },
+  {
     "sha": "722664f494320f31f898bbc0f6835a86891947af",
     "node_id": "C_kwDORv7rQ9oAKDcyMjY2NGY0OTQzMjBmMzFmODk4YmJjMGY2ODM1YTg2ODkxOTQ3YWY",
     "commit": {

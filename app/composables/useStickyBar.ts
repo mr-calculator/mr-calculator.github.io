@@ -22,7 +22,7 @@ interface StickyBarOptions {
     blockHideRef?: Ref<number>
 }
 
-export async function useStickyBar(
+export function useStickyBar(
     elementRef: Readonly<ShallowRef<HTMLElement | null>>,
     options: StickyBarOptions = {}
 ) {
@@ -50,7 +50,7 @@ export async function useStickyBar(
             scroller.value = window
     }
 
-    await useGsap(({ scrollTrigger }) => {
+    const { remove: removeGSAP } = useGsap(({ scrollTrigger }) => {
         nextTick(() => {
             findScroller();
 
@@ -76,10 +76,10 @@ export async function useStickyBar(
                 });
             }
         })
-    })
+    });
 
     let lastKnownScrollY = 0
-    useEvent('scroll', () => {
+    const { remove: removeEvent } = useEvent('scroll', () => {
         if (mobileOnly && !mobile.value)
             return;
 
@@ -102,7 +102,7 @@ export async function useStickyBar(
         }
         else
             elementRef.value?.classList.add(showClass);
-    }, scroller.value)
+    }, scroller.value);
 
-    return { scroller }
+    return { scroller, remove: () => { removeGSAP(); removeEvent(); } }
 }

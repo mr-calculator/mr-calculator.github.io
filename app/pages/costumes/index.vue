@@ -287,10 +287,11 @@ function setupStickyBar() {
     })
 }
 
-setupStickyBar();
-onUpdated(() =>
+let { remove: removeStickyBar } = setupStickyBar();
+onUpdated(() => {
+    removeStickyBar();
     setupStickyBar()
-)
+})
 
 const mobile = isMobile();
 

@@ -57,8 +57,8 @@
                 :full-width="fullWidth"
                 :breakpoint-break="breakpointBreak"
 
-                @click="tabClick(tabId)"
-                @submenu-tab-click="tabClick($event)"
+                @click="tabClick(tabId, $event)"
+                @submenu-tab-click="(slotName, event) => tabClick(slotName, event)"
             >
                 <slot :name="tabId" />
 
@@ -133,6 +133,8 @@ useHead({
 const emit = defineEmits<{
     tabClick: [ tabId: string ]
 }>()
+
+const touchDevice = isTouchDevice();
 
 const slots = useSlots();
 if (!Object.keys(slots).length)
@@ -213,7 +215,17 @@ const hasAnyMarks = computed(() =>
     Object.values(props.marks).some(mark => mark !== 'none' && mark !== 'special')
 );
 
-function tabClick(tabId: string) {
+function tabClick(tabId: string, event: PointerEvent) {
+    if (!!submenuSlots.value[tabId]?.length
+     && !breakpointBreak.value
+     && touchDevice.value
+    ) {
+        event.stopImmediatePropagation();
+        event.stopPropagation();
+        event.preventDefault();
+        return;
+    }
+
     selectedTab.value = tabId;
     if (props.closeMobileMenuOnClick && !submenuSlots.value[selectedTab.value])
         menuOpen.value = false;

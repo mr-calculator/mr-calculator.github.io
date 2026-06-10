@@ -38,10 +38,12 @@
 
                 padding-bottom: 40px
 
-                +media-height($minmax: 'max', $size: 600px)
-                    max-height: calc(var(--u100vh) - 65px - 40px)
+                +media-height($minmax: 'max', $size: 800px)
+                    height: calc(var(--u100vh) - 65px - 40px)
                     overflow-x: clip
                     overflow-y: auto
+
+                    +scrollbar($thickness: 8px, $background: transparent, $thumb: $light-blue, $active: $color)
 
             > *:not(.categories-list)
                 padding-left: 13px
@@ -76,7 +78,10 @@
 
                     display: flex
                     align-items: center
-                    gap: 20px
+                    gap: 10px 20px
+
+                    +media($minmax: 'max', $size: 1260px)
+                        flex-wrap: wrap
 
                     .dropdown
                         width: 100%

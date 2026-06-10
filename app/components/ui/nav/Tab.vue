@@ -18,7 +18,7 @@
         @mouseenter="onHover"
         @mouseleave="onUnhover"
         
-        @click="mobileTapSelected"
+        @click.capture="mobileTapSelected"
         
         v-bind="$attrs"
     >
@@ -82,7 +82,7 @@
             :marks="marks"
             :selected="selected"
 
-            @click="$emit('submenuTabClick', slotName)"
+            @click="$emit('submenuTabClick', slotName, $event)"
         >
             <slot :name="slotName" />
         </Tab>
@@ -109,10 +109,9 @@ const props = defineProps<{
 }>();
 
 const emits = defineEmits<{
-    submenuTabClick: [ slotName: string ]
+    submenuTabClick: [ slotName: string, event: PointerEvent ]
 }>();
 
-const screenDimensions = useScreenDimensions();
 const touchDevice = isTouchDevice();
 
 function isMarkedAs(as: MarkType) {
@@ -143,7 +142,7 @@ const submenu = useTemplateRef('submenu');
 
 const scrollShow = ref(true);
 useEvent('scroll', () => {
-    if (screenDimensions.value.width < 800)
+    if (!props.breakpointBreak)
         return;
 
     const scrollY = window?.scrollY ?? 0;
@@ -159,10 +158,10 @@ function onHover(fromSubmenu = false) {
     if (touchDevice.value)
         return;
     
-    if (screenDimensions.value.width < 800)
+    if (!props.breakpointBreak)
         return;
 
-    if (screenDimensions.value.width < 800 && fromSubmenu)
+    if (!props.breakpointBreak && fromSubmenu)
         return;
     
     hoverCounter.value += 1;
@@ -172,23 +171,27 @@ function onUnhover(fromSubmenu = false) {
     if (touchDevice.value)
         return;
 
-    if (screenDimensions.value.width < 800)
+    if (!props.breakpointBreak)
         return;
 
-    if (screenDimensions.value.width < 800 && fromSubmenu)
+    if (!props.breakpointBreak && fromSubmenu)
         return;
 
     hoverCounter.value -= 1;
 }
 
 const mobileTapShow = ref(false);
-function mobileTapSelected() {
+function mobileTapSelected(e: PointerEvent, set = true) {
     if (!props.selected)
         return;
     if (!touchDevice.value)
         return;
 
-    mobileTapShow.value = !mobileTapShow.value;
+    if (set)
+        mobileTapShow.value = !mobileTapShow.value;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
 }
 
 // @ts-ignore
@@ -201,7 +204,7 @@ onClickOutside(tab, (e) => {
 })
 
 useEvent('touchmove', () => {
-    if (screenDimensions.value.width < 800)
+    if (!props.breakpointBreak)
         return;
 
     hoverCounter.value = 0;
