@@ -26,6 +26,7 @@
                         <FormSearchBox
                             ref="searchBox"
                             v-model="searchText"
+                            :small="mobile"
                         />
 
                         <div class="dropdown-like" @click="toggleFiltersVisible">
@@ -290,6 +291,8 @@ setupStickyBar();
 onUpdated(() =>
     setupStickyBar()
 )
+
+const mobile = isMobile();
 
 const mode = ref<'make-collection'|'collection'|'default'>('default');
 

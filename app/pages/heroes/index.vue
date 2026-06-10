@@ -3,7 +3,7 @@
         <div class="container">
             <div class="mobile-title">
                 <h1>
-                    Select your hero
+                    Heroes
                 </h1>
             </div>
             <UiSeparator class="mobile-separator" />

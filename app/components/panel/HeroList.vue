@@ -25,15 +25,17 @@
             <FormSearchBox
                 ref="searchBox"
                 v-model="searchText"
+                :small="mobile"
             />
             <div class="filters">
-                <FormCheckbox v-model="filterFavourites">
+                <FormCheckbox v-model="filterFavourites" :size="mobile ? 'medium' : 'large'">
                     FAVOURITES
                 </FormCheckbox>
                 <FormDropdown
                     ref="rolesDropdown"
                     :options="roleDropdownOptions"
                     v-model="filterByRole"
+                    :small="mobile"
                 />
             </div>
         </div>

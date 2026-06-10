@@ -155,6 +155,12 @@
                 grid-template-columns: min-content 1fr
                 gap: 10px
 
+            +media-mobile
+                max-height: calc(var(--u100vh) - 65px + 36px + 15px)
+                overflow-x: hidden
+                overflow-y: auto
+                gap: 5px
+
             &.sticky
                 background: $blue-gray
                 padding: 10px 20px
@@ -166,6 +172,9 @@
                 &.sticky-show,
                 &.sticky-force-show
                     transform: translateY(-36px - 15px)
+
+                    +media-mobile
+                        transform: translateY(-36px)
 
                     .owned-count
                         background: transparent
@@ -273,6 +282,11 @@
                     justify-content: center
                     align-items: center
                     gap: 10px
+
+                    +media-mobile
+                        .dropdown-like
+                            width: fit-content
+                            gap: 10px
 
         .list
             width: 100%

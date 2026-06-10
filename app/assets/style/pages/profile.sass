@@ -605,6 +605,7 @@
 
                 display: none
                 flex-direction: column
+                align-items: center
 
                 z-index: 12
 
@@ -658,6 +659,9 @@
                 z-index: 2
                 
                 +scrollbar($thickness: 8px, $background: transparent, $thumb: $light-blue, $active: $color)
+
+                +media-mobile
+                    padding: 0 0 40px 0
 
                 .costume
                     position: relative

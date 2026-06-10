@@ -76,7 +76,7 @@
         z-index: 10
 
         +media-mobile
-            gap: 20px
+            gap: 10px
             flex-direction: column
 
         &.embedded
@@ -116,10 +116,13 @@
         .back-button
             display: none
 
-        .search
+        .search-box
             position: relative
+            max-width: 100%
 
             ::v-deep(input)
+                max-width: 100%
+
                 +media-desktop
                     width: 320px
 

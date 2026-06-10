@@ -1,5 +1,47 @@
 [
   {
+    "sha": "722664f494320f31f898bbc0f6835a86891947af",
+    "node_id": "C_kwDORv7rQ9oAKDcyMjY2NGY0OTQzMjBmMzFmODk4YmJjMGY2ODM1YTg2ODkxOTQ3YWY",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T15:49:44Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T15:49:44Z"
+      },
+      "message": "Fixed submenu items clipping when screen height was too small\nFixed wrong breakpoints in the nav bar causing elements to either exist or don't at -+1 pixels width from where they were supposed to\nAdded ability to hover and tap tab item to show its submenu (excluding mobile)\nMoved square dropdown items to be centered on the square on mobile\nAdded more spacing to the tops of costumes and collections on tablet, since the submenu was too close to the content/title",
+      "tree": {
+        "sha": "aae3f229b39fcfa8a39adfd7f8caac4421643fbe",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/aae3f229b39fcfa8a39adfd7f8caac4421643fbe"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/722664f494320f31f898bbc0f6835a86891947af",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/722664f494320f31f898bbc0f6835a86891947af",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/722664f494320f31f898bbc0f6835a86891947af",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/722664f494320f31f898bbc0f6835a86891947af/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "68bfa1a070ee4e384a7300fe6d7971d9e99510f9",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/68bfa1a070ee4e384a7300fe6d7971d9e99510f9",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/68bfa1a070ee4e384a7300fe6d7971d9e99510f9"
+      }
+    ]
+  },
+  {
     "sha": "68bfa1a070ee4e384a7300fe6d7971d9e99510f9",
     "node_id": "C_kwDORv7rQ9oAKDY4YmZhMWEwNzBlZTRlMzg0YTczMDBmZTZkNzk3MWQ5ZTk5NTEwZjk",
     "commit": {

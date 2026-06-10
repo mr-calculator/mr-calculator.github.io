@@ -52,19 +52,19 @@ export async function useStickyBar(
 
     await useGsap(({ scrollTrigger }) => {
         nextTick(() => {
-            findScroller()
+            findScroller();
 
             if (scrollToTopOnInit)
-                scroller.value?.scrollTo({ top: 0, behavior: 'instant' })
+                scroller.value?.scrollTo({ top: 0, behavior: 'instant' });
 
-            const offset = resolveOffset()
+            const offset = resolveOffset();
             scrollTrigger.create({
                 trigger: elementRef.value,
                 scroller: scroller.value,
                 start: `${offset !== 0 ? `${offset}px` : '0%'} 0%`,
                 onEnter: () => elementRef.value?.classList.add(stickyClass),
                 onLeaveBack: () => elementRef.value?.classList.remove(stickyClass),
-            })
+            });
 
             if (forceShowTrigger) {
                 scrollTrigger.create({
@@ -73,33 +73,35 @@ export async function useStickyBar(
                     start: forceShowTrigger.start,
                     onEnter: () => elementRef.value?.classList.remove(forceShowTrigger.showClass),
                     onLeaveBack: () => elementRef.value?.classList.add(forceShowTrigger.showClass),
-                })
+                });
             }
         })
     })
 
     let lastKnownScrollY = 0
     useEvent('scroll', () => {
-        if (mobileOnly && !mobile.value) return
+        if (mobileOnly && !mobile.value)
+            return;
 
         if (blockHideRef && blockHideRef.value > 0) {
-            blockHideRef.value--
-            return
+            blockHideRef.value--;
+            return;
         }
 
         const scrollY =
             (scroller.value as HTMLElement).scrollTop ??
-            (scroller.value as Window).scrollY
-        const deltaY = scrollY - lastKnownScrollY
-        lastKnownScrollY = scrollY
+            (scroller.value as Window).scrollY;
+        const deltaY = scrollY - lastKnownScrollY;
+        lastKnownScrollY = scrollY;
 
         if (deltaY > 0) {
-            elementRef.value?.classList.remove(showClass)
+            elementRef.value?.classList.remove(showClass);
+
             if (elementRef.value?.classList.contains(stickyClass))
-                onScrollDownWhileSticky?.()
-        } else {
-            elementRef.value?.classList.add(showClass)
+                onScrollDownWhileSticky?.();
         }
+        else
+            elementRef.value?.classList.add(showClass);
     }, scroller.value)
 
     return { scroller }

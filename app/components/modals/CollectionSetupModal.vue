@@ -10,9 +10,13 @@
             v-model="inputModel"
         />
 
-        <FormCheckbox v-model="showOwnerModel" color-scheme="dark">
-            INCLUDE MY NAME ({{ profile.name }})
-        </FormCheckbox>
+        <div class="checkbox">
+            <FormCheckbox v-model="showOwnerModel" color-scheme="dark">
+                <div class="text">
+                    Include my name <i>({{ profile.name }})</i>
+                </div>
+            </FormCheckbox>
+        </div>
 
         <div class="buttons">
             <FormButton size="small" @click="$emit('confirm', { title: inputModel, showOwner: showOwnerModel })">
@@ -22,6 +26,16 @@
         </div>
     </div>
 </template>
+
+<style lang="sass" scoped>
+.modal
+    .checkbox
+        padding: 0 20px
+
+        .text
+            +media-mobile
+                font-size: 18px
+</style>
 
 <script setup lang="ts">
 import { DEFAULT_PROFILE_STORE, ProfileStoreSchema } from '~/assets/data/common';
