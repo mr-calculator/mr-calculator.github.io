@@ -1,5 +1,47 @@
 [
   {
+    "sha": "397765e665d423f84d940f72d88ee3979b2c0ab4",
+    "node_id": "C_kwDORv7rQ9oAKDM5Nzc2NWU2NjVkNDIzZjg0ZDk0MGY3MmQ4OGVlMzk3OWIyYzBhYjQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T19:39:44Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T19:39:44Z"
+      },
+      "message": "Added ability to hover/tap on tab item without being redirected (on tap) to the page\nFixed a few styling issues.",
+      "tree": {
+        "sha": "c026e54e0dcd158b001e261b0d805c8c9e407b76",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/c026e54e0dcd158b001e261b0d805c8c9e407b76"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/397765e665d423f84d940f72d88ee3979b2c0ab4",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/397765e665d423f84d940f72d88ee3979b2c0ab4",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/397765e665d423f84d940f72d88ee3979b2c0ab4",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/397765e665d423f84d940f72d88ee3979b2c0ab4/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "c16adc03064f2ae1028c8b69d7d2567584ffdc66",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c16adc03064f2ae1028c8b69d7d2567584ffdc66",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/c16adc03064f2ae1028c8b69d7d2567584ffdc66"
+      }
+    ]
+  },
+  {
     "sha": "c16adc03064f2ae1028c8b69d7d2567584ffdc66",
     "node_id": "C_kwDORv7rQ9oAKGMxNmFkYzAzMDY0ZjJhZTEwMjhjOGI2OWQ3ZDI1Njc1ODRmZmRjNjY",
     "commit": {
@@ -5246,41 +5288,5 @@
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/8bfae2df004aa71610f52d82eb8d0b9f8fd69923"
       }
     ]
-  },
-  {
-    "sha": "8bfae2df004aa71610f52d82eb8d0b9f8fd69923",
-    "node_id": "C_kwDORv7rQ9oAKDhiZmFlMmRmMDA0YWE3MTYxMGY1MmQ4MmViOGQwYjlmOGZkNjk5MjM",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-24T23:39:13Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-24T23:39:13Z"
-      },
-      "message": "Initial Commit",
-      "tree": {
-        "sha": "964ef3e2e8b37d7c11427bfc9875b2e00447e320",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/964ef3e2e8b37d7c11427bfc9875b2e00447e320"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/8bfae2df004aa71610f52d82eb8d0b9f8fd69923",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/8bfae2df004aa71610f52d82eb8d0b9f8fd69923",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/8bfae2df004aa71610f52d82eb8d0b9f8fd69923",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/8bfae2df004aa71610f52d82eb8d0b9f8fd69923/comments",
-    "author": null,
-    "committer": null,
-    "parents": []
   }
 ]

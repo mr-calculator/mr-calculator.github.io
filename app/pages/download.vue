@@ -128,6 +128,15 @@
             <template v-if="!selectedHero">
                 <li>
                     <FormCheckbox
+                        v-model="includeCollections"
+
+                        size="small"
+                    >
+                        <h4>Include collections</h4>
+                    </FormCheckbox>
+                </li>
+                <li>
+                    <FormCheckbox
                         v-model="includePreferences"
 
                         size="small"
@@ -370,6 +379,7 @@ import {
     type SerializableDataMap,
     type SerializableDataSegment
 } from '~/assets/data/common';
+import { CostumeCollectionStoreSchema } from '~/assets/data/cosmetics/costumes/costumes';
 import { DEFAULT_NAMEPLATE_ID } from '~/assets/data/cosmetics/nameplates/nameplates';
 import { HERO_LIST } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
@@ -423,6 +433,8 @@ Object.entries(localStorage ?? {})
       });
 const ownedNameplates = useLocalStorage<string[]>('nameplates_owned', [DEFAULT_NAMEPLATE_ID]);
 const ownedFrames = useLocalStorage<string[]>('frames_owned', []);
+
+const costumeCollections = useLocalStorage('costume_collections', [], CostumeCollectionStoreSchema);
 
 const route = useRoute();
 const heroFromUrl = route.query?.hero;
@@ -492,6 +504,7 @@ const includeFavourites = ref(true);
 const includePreferences = ref(true);
 const includeAchievements = ref(true);
 const includeCosmetics = ref(true);
+const includeCollections = ref(true);
 
 const dataBase: Pick<SerializableDataSegment<keyof SerializableDataMap>, 'version' | 'exportedAt'> = {
     version: config.dataVersion,
@@ -514,6 +527,9 @@ const allData = computed<AnySerializableDataSegment>(() => {
         unknownHeroes: includeUnknownHeroes.value ? unknownHeroes.value : undefined,
         preferences: includePreferences.value ? preferences.value : undefined,
         profile: includePreferences.value ? profile.value : undefined,
+        collections: includeCollections.value ? {
+            costumes: costumeCollections.value
+        } : undefined,
         ownedCostumes: includeCosmetics.value ? ownedCostumes : undefined,
         ownedNameplates: includeCosmetics.value ? ownedNameplates.value : undefined,
         ownedFrames: includeCosmetics.value ? ownedFrames.value : undefined,
@@ -568,15 +584,15 @@ function copyData() {
 }
 
 function downloadFile(content: string, filename: string, mimeType = 'application/octet-stream') {
-    const blob = new Blob([content], { type: mimeType })
-    const url = URL.createObjectURL(blob)
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
     
-    const a = document.createElement('a')
-    a.href = url
-    a.download = filename
-    a.click()
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
     
-    URL.revokeObjectURL(url)
+    URL.revokeObjectURL(url);
 }
 
 function downloadHeroData() {

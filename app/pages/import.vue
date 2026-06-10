@@ -35,33 +35,35 @@
         </div>
 
         <div v-if="overwriteCheck" class="overwrite-check">
-            <template v-if="overwriteCheck.remaining.length">
-                <h2>
-                    You are about to import the following data:
-                </h2>
-                <template v-if="dataSegment?.type == 'hero'">
-                    <ul class="import-list">
-                        <li v-if="dataSegment.data.stored">Hero Proficiency progress</li>
-                        <li v-if="dataSegment.data.__unknownHero">Added hero info</li>
-                        <li v-if="dataSegment.data.isFavourite">Hero favourite status</li>
-                        <li v-if="dataSegment.data.achievements">Hero achievements</li>
-                        <li v-if="dataSegment.data.ownedCostumes">Hero owned costumes</li>
-                    </ul>
-                </template>
-                <template v-else-if="dataSegment?.type == 'profile'">
-                    <ul class="import-list">
-                        <li v-if="dataSegment.data.storedHeroes">Proficiency progress</li>
-                        <li v-if="dataSegment.data.unknownHeroes">Added heroes info</li>
-                        <li v-if="dataSegment.data.favourites">Favourites</li>
-                        <li v-if="dataSegment.data.achievements">Achievements</li>
-                        <li v-if="dataSegment.data.ownedCostumes">Owned costumes</li>
-                        <li v-if="dataSegment.data.ownedNameplates">Owned nameplates</li>
-                        <li v-if="dataSegment.data.ownedFrames">Owned frames</li>
-                        <li v-if="dataSegment.data.preferences">Preferences</li>
-                        <li v-if="dataSegment.data.preferences">Profile (name, nameplate, frame, etc.)</li>
-                    </ul>
-                </template>
+            <h2>
+                You are about to import the following data:
+            </h2>
+            <template v-if="dataSegment?.type == 'hero'">
+                <ul class="import-list">
+                    <li v-if="dataSegment.data.stored">Hero Proficiency progress</li>
+                    <li v-if="dataSegment.data.__unknownHero">Added hero info</li>
+                    <li v-if="dataSegment.data.isFavourite">Hero favourite status</li>
+                    <li v-if="dataSegment.data.achievements">Hero achievements</li>
+                    <li v-if="dataSegment.data.ownedCostumes">Hero owned costumes</li>
+                </ul>
+            </template>
+            <template v-else-if="dataSegment?.type == 'profile'">
+                <ul class="import-list">
+                    <li v-if="dataSegment.data.storedHeroes">Proficiency progress</li>
+                    <li v-if="dataSegment.data.unknownHeroes">Added heroes info</li>
+                    <li v-if="dataSegment.data.favourites">Favourites</li>
+                    <li v-if="dataSegment.data.achievements">Achievements</li>
+                    <li v-if="dataSegment.data.collections">Collections</li>
+                    <li v-if="dataSegment.data.ownedCostumes">Owned costumes</li>
+                    <li v-if="dataSegment.data.ownedNameplates">Owned nameplates</li>
+                    <li v-if="dataSegment.data.ownedFrames">Owned frames</li>
+                    <li v-if="dataSegment.data.preferences">Preferences</li>
+                    <li v-if="dataSegment.data.profile">Profile (name, nameplate, frame, etc.)</li>
+                </ul>
+            </template>
+            <p><i>Note: Importing this data will <b>REPLACE</b> your current data!</i></p>
 
+            <template v-if="overwriteCheck.remaining.length">
                 <h2>
                     You will import the data of the following heroes
                 </h2>
@@ -173,7 +175,7 @@
                     <h2>
                         We found conflicts with your current data
                     </h2>
-                    <p>The following heroes already have data attached to them. Choose which ones to overwrite.</p>
+                    <p>The following heroes already have data attached to them. Choose which ones to <b>overwrite</b>.</p>
                 </div>
                 <ul class="heroes">
                     <li
@@ -317,7 +319,7 @@
             id="file-upload"
             type="file"
 
-            accept="*.mrprof"
+            accept=".mrprof"
 
             @change="importFiles(fileUploadInput?.files)"
         >
@@ -571,7 +573,7 @@ import {
     type PreferencesStore,
     type ProficiencyRank
 } from '~/assets/data/common';
-import { convertCostumeId } from '~/assets/data/cosmetics/costumes/costumes';
+import { convertCostumeId, CostumeCollectionStoreSchema } from '~/assets/data/cosmetics/costumes/costumes';
 import { DEFAULT_NAMEPLATE_ID } from '~/assets/data/cosmetics/nameplates/nameplates';
 import { HERO_LIST } from '~/assets/data/heroes';
 
@@ -612,6 +614,8 @@ const profile = useLocalStorage('profile', await DEFAULT_PROFILE_STORE(), Profil
 const achievementsStore = useLocalStorage<Achievement[]>('achievements', []);
 const ownedNameplates = useLocalStorage<string[]>('nameplates_owned', [DEFAULT_NAMEPLATE_ID]);
 const ownedFrames = useLocalStorage<string[]>('frames_owned', []);
+
+const costumeCollections = useLocalStorage('costume_collections', [], CostumeCollectionStoreSchema);
 
 const heroesWithData = computed(() => {
     return storedHeroes.map(heroStore => {
@@ -1113,6 +1117,10 @@ function importData() {
             ownedNameplates.value = dataSegment.value.data.ownedNameplates;
         if (dataSegment.value.data.ownedFrames)
             ownedFrames.value = dataSegment.value.data.ownedFrames;
+
+        if (dataSegment.value.data.collections) {
+            costumeCollections.value = dataSegment.value.data.collections.costumes;
+        }
     }
 
     nextTick(() => {

@@ -6,6 +6,7 @@ import { AchievementSchema, type Achievement } from "./achievements/achievements
 import type { Option } from "~/components/form/Dropdown.vue";
 import { DEFAULT_NAMEPLATE_ID } from "./cosmetics/nameplates/nameplates";
 import type { ProfileSheetData } from "~/services/generate-profile-sheet";
+import { CostumeCollectionSchema, type CostumeCollection } from "./cosmetics/costumes/costumes";
 
 export const LATEST_SEASON_NO = '8';
 
@@ -1056,6 +1057,9 @@ export interface SerializableDataMap {
         unknownHeroes?: HeroData[],
         preferences?: PreferencesStore,
         profile?: ProfileStore,
+        collections?: {
+            costumes: CostumeCollection[]
+        },
         ownedCostumes?: Record<string, string[]>,
         ownedNameplates?: string[],
         ownedFrames?: string[]
@@ -1101,6 +1105,9 @@ export const ProfileSegmentSchema = z.object({
         unknownHeroes: z.array(HeroDataSchema).optional(),
         preferences: PreferencesStoreSchema.optional(),
         profile: ProfileStoreSchema.optional(),
+        collections: z.object({
+            costumes: z.array(CostumeCollectionSchema)
+        }).optional(),
         ownedCostumes: z.record(z.string(), z.array(z.string())).optional(),
         ownedNameplates: z.array(z.string()).optional(),
         ownedFrames: z.array(z.string()).optional()
