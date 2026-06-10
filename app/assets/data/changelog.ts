@@ -445,6 +445,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.1.0',
             date: 'June 10, 2026',
             time: '4:52 AM',
+            commitSha: '3ab4e3e29800323c3e2f51694ba0d9e298ae1ffe'
         },
         title: 'Costume Collections',
         description: `This new feature allows for creating collections of costumes (for purposes such as "My Whishlist" or "My Favourite Costumes") and sharing them with your friends!`,
