@@ -39,6 +39,7 @@ export default defineNuxtConfig({
         ),
 
         '/costumes': { ssr: true },
+        '/costumes/collections': { ssr: false },
         '/profile': { ssr: true },
         '/profile/**': { ssr: true },
         '/profile/share': { ssr: false },

@@ -450,6 +450,9 @@ export const TEX = {
     skinIcon: {
         default: 'icon/skin.png'
     } as Texture,
+    userId: {
+        default: 'icon/user-id.png'
+    } as Texture,
 
     rarityMythic: {
         default: 'icon/rarity/mythic.png'

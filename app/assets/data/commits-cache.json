@@ -1,5 +1,47 @@
 [
   {
+    "sha": "eda0d0ce34bf55e52bd100176bcd1087cc81839a",
+    "node_id": "C_kwDORv7rQ9oAKGVkYTBkMGNlMzRiZjU1ZTUyYmQxMDAxNzZiY2QxMDg3Y2M4MTgzOWE",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-09T20:24:30Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-09T20:24:30Z"
+      },
+      "message": "Fixed profile sheet rendering without embedded images on apple-webkit",
+      "tree": {
+        "sha": "4bc3de9c31c0a5f3ca0c82ba9d87ccde8501418b",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/4bc3de9c31c0a5f3ca0c82ba9d87ccde8501418b"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/eda0d0ce34bf55e52bd100176bcd1087cc81839a",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/eda0d0ce34bf55e52bd100176bcd1087cc81839a",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/eda0d0ce34bf55e52bd100176bcd1087cc81839a",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/eda0d0ce34bf55e52bd100176bcd1087cc81839a/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7"
+      }
+    ]
+  },
+  {
     "sha": "c47298a77f5d960a28a0f67c0dfb5f56cc36c0e7",
     "node_id": "C_kwDORv7rQ9oAKGM0NzI5OGE3N2Y1ZDk2MGEyOGEwZjY3YzBkZmI1ZjU2Y2MzNmMwZTc",
     "commit": {

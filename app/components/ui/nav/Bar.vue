@@ -48,6 +48,7 @@
                 v-for="[tabId] in filteredSlots"
                 :key="tabId"
 
+                :link-map="linkMap"
                 :link="links ? linkMap[tabId] ?? `/${tabId}` : undefined"
                 :marks="marks[tabId]"
                 :selected="selectedTab == tabId || selectedTabFromSubmenu == tabId"
@@ -147,12 +148,12 @@ const filteredSlots = computed(() =>
 
 const submenuSlots = computed(() => {
     const keyedSubmenuSlots: Record<string, SubmenuTab[]> = {};
+
     Object.entries(slots).forEach(([key]) => {
         if (!key.startsWith('_'))
             return;
 
         const components = key.split('_').filter(Boolean);
-
         if (components.length != 2)
             throw createError({
                 message: 'Submenu slots must have the id format of: "_<tabId>_<subTabId>"!'
@@ -201,7 +202,7 @@ watch(() => props.selected, (newSelected) =>
 
 const isSubmenu = computed(() => selectedTab.value?.startsWith('_'));
 const selectedTabFromSubmenu = computed(() => {
-    if (!isSubmenu || !selectedTab.value)
+    if (!isSubmenu.value || !selectedTab.value)
         return null;
 
     const components = selectedTab.value.split('_').filter(Boolean);

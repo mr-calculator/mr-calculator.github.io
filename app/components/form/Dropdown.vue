@@ -1,7 +1,7 @@
 <template>
     <div
         ref="dropdown"
-        :class="{dropdown: 1, small}"
+        :class="{dropdown: 1, small, square}"
     >
         <div
             class="option current"
@@ -29,8 +29,9 @@
                         }"
                     />
                     <div
+                        v-if="!square"
                         class="text"
-                        v-html="(placeholder as Placeholder)?.label ?? placeholder ?? 'ALL'"
+                        v-html="placeholderText"
                     />
                 </template>
                 <template
@@ -48,7 +49,7 @@
                     />
                     {{ !opt.selectedLabel && idx != currentOptions.length - 1 ? '&bull;' : '' }}
                     <div
-                        v-if="opt.selectedLabel"
+                        v-if="opt.selectedLabel && !square"
                         :class="{
                             text: 1,
                             'single-word': opt.selectedLabel.split(/([^A-Za-z0-9])/g).length <= 1
@@ -56,7 +57,7 @@
                         v-html="opt.selectedLabel"
                     />
                 </template>
-                <template v-else>
+                <template v-else-if="!square">
                     <div class="text">
                         {{ currentOptions.length + ' SELECTED' }}
                     </div>
@@ -64,6 +65,7 @@
             </div>
 
             <div
+                v-if="!square"
                 class="icon caret"
                 :style="{'--img': expanded ? texUrl('dropdownCaretUp') : texUrl('dropdownCaret')}"
             />
@@ -218,6 +220,7 @@ const props = defineProps<{
     pushCheckedToTop?: boolean,
 
     small?: boolean,
+    square?: boolean,
     concatenateSelectedOptions?: boolean|number|((selected: Option[]) => { enabled: boolean, max: number }),
     mobileOverlay?: boolean,
 }>()
@@ -389,6 +392,13 @@ const shouldConcatenate = computed(() => {
 const tooltipText = computed(() =>
     currentOptions.value.map(opt => opt.label).join(', ')
 );
+
+const placeholderText = computed(() => {
+    if (typeof props.placeholder === 'object')
+        return props.placeholder.label ?? null;
+
+    return props.placeholder ?? 'ALL';
+})
 
 // ============================ EXPANDING ===============================
 

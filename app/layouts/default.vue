@@ -18,7 +18,8 @@
 
             links
             :link-map="{
-                home: '/'
+                home: '/',
+                _costumes_all: '/costumes'
             }"
         >
             <template #prepend>
@@ -62,6 +63,12 @@
             </template>
             <template #costumes>
                 Costumes
+            </template>
+            <template #_costumes_all>
+                All
+            </template>
+            <template #_costumes_collections>
+                Collections
             </template>
 
             <template #append v-if="shouldShowAppend">
@@ -281,10 +288,14 @@ const NAV_TAB_LINKS: Record<string, string> = {
     '/': 'home',
     '/heroes': 'heroes',
     '/achievements': 'achievements',
-    '/costumes': 'costumes',
+    '/costumes': '_costumes_all',
+    '/costumes/collections': '_costumes_collections'
 }
 
 const routeToTabId = computed(() => {
+    if (route.path == '/costumes' && !!route.query.collection)
+        return 'costumes';
+
     const tab = NAV_TAB_LINKS[route.path as string];
     if (!tab) {
         const pathComponents = trimFirst('/', route.path).split('/');

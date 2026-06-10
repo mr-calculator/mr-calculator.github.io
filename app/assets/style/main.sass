@@ -337,6 +337,9 @@ h1
 
         z-index: 2
 
+        pointer-events: none
+        user-select: none
+
         &,
         &::after,
         &::before
@@ -408,6 +411,10 @@ h1
     &.dark
         h1
             color: $blue
+
+    &.small
+        h1
+            font-size: 24px
 
     .back
         position: absolute

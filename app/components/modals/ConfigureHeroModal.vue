@@ -373,7 +373,6 @@ import { guessChallenge } from '~/assets/data/converge';
 import { HERO_LIST, UNKNOWN_HERO } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import type { Option } from '../form/Dropdown.vue';
-import type { TooltipBinding } from '~/directives/tooltip';
 
 const { notify } = useNotificationManager();
 

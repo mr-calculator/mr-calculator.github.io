@@ -43,7 +43,7 @@
                 :name="costume.name"
                 :src="`/img/heroes/data/${hero.id}/costumes/${costume.id}_200.webp`"
                 :rarity="costume.rarity"
-                :owned="ownedCostumes.includes(costume.id)"
+                :checked="ownedCostumes.includes(costume.id)"
                 :color="hero.color"
 
                 @toggle="toggleCostumeOwned(costume.id)"

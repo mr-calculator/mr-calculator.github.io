@@ -439,6 +439,26 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.0.0/profile.webp',
             '/img/changelog/v2.0.0/share.webp',
         ]
+    },
+    {
+        version: {
+            number: '2.1.0',
+            date: 'June 10, 2026',
+            time: '4:52 AM',
+        },
+        title: 'Costume Collections',
+        description: `This new feature allows for creating collections of costumes (for purposes such as "My Whishlist" or "My Favourite Costumes") and sharing them with your friends!`,
+        listTitle: 'Features',
+        list: [
+            'Creating, editing, deleting and sharing of collections',
+            'Importing (saving) collections received from friends'
+        ],
+        images: [
+            '/img/changelog/v2.1.0/collections.webp',
+            '/img/changelog/v2.1.0/collection.webp',
+            '/img/changelog/v2.1.0/make-collection.webp',
+            '/img/changelog/v2.1.0/make-collection-flow.webp',
+        ]
     }
 ];
 

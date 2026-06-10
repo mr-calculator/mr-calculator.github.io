@@ -35,7 +35,7 @@
         </div>
 
         <Tex
-            v-if="owned"
+            v-if="checked"
             class="check-corner"
             image="checkCorner"
             width="45px"
@@ -48,13 +48,14 @@
             </div>
             <ClientOnly>
                 <FormCheckbox
+                    v-if="displayCheckbox"
                     size="small"
-                    :model-value="owned"
+                    :model-value="checked"
                     @update:model-value="$emit('toggle')"
                     @click.stop
 
                     v-tooltip="({
-                        text: `${owned ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
+                        text: `${checked ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
                         icon: 'mouseLeft'
                     } satisfies TooltipBinding)"
                 />
@@ -115,7 +116,8 @@ const props = withDefaults(defineProps<{
     name: string;
     src: string;
     rarity: string;
-    owned: boolean;
+    checked: boolean;
+    displayCheckbox?: boolean,
     color?: string;
     imageScale?: number;
     imageOrigin?: string;
@@ -123,6 +125,7 @@ const props = withDefaults(defineProps<{
     color: 'var(--color)',
     imageScale: 1,
     imageOrigin: 'center center',
+    displayCheckbox: true
 });
 
 defineEmits<{ toggle: [] }>();

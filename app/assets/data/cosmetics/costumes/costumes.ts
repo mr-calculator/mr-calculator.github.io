@@ -1,5 +1,6 @@
 import COSTUMES_DATA from "./costumes.json";
 import OCEANHILLMAN_CONVERSION_MAP from '../../ohm-costume-conversion-map.json';
+import z from "zod";
 
 export type CostumeRarity = 'legendary'|'epic'|'rare'|'common';
 export const RARITY_ORDER: CostumeRarity[] = [
@@ -131,3 +132,13 @@ export function getAllThemes(heroId?: string) {
 export function convertCostumeId(oldId: string) {
     return (OCEANHILLMAN_CONVERSION_MAP as Record<string, string>)[oldId];
 }
+
+export const CostumeCollectionSchema = z.object({
+    id: z.uuidv4().optional(),
+    owner: z.string().optional(),
+    title: z.string(),
+    items: z.array(z.string())
+});
+export type CostumeCollection = z.infer<typeof CostumeCollectionSchema>;
+
+export const CostumeCollectionStoreSchema = z.array(CostumeCollectionSchema);

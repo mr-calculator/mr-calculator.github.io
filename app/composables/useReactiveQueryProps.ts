@@ -111,10 +111,15 @@ export const useReactiveQueryProps = (routeMap: DefineRouteOpts) => {
         if (newValue == oldValue)
             return;
 
-        const queryBuilder: Record<string, string|undefined> = {};
+        const queryBuilder: Record<string, string|undefined> = {
+            ...rawQuery.value  // ← preserve existing params not in routeMap
+        };
+
         Object.entries(routeMap).forEach(([key, { ref: reference, converter, default: defaultValue }]) => {
             if (reference.value != defaultValue)
                 queryBuilder[key] = converter.to(reference.value);
+            else
+                delete queryBuilder[key]; // ← remove if back to default, don't leave stale param
         });
 
         const qs = Object.entries(queryBuilder)

@@ -13,11 +13,11 @@ function deepMerge(target: any, source: any): any {
     if (typeof target !== 'object' || target === null)
         return source;
 
-    const result = { ...target };
+    const result = Array.isArray(target) ? [ ...target ] : { ...target };
     for (const key of Object.keys(source)) {
         result[key] = typeof source[key] === 'object'
                    && source[key] !== null
-                   && !Array.isArray(source[key]) ?
+                   && !Array.isArray(source[key]) ? // this should probably be removed, since this can now handle arrays
             deepMerge(target[key], source[key]) : source[key];
     }
     return result;

@@ -94,6 +94,21 @@
             ::v-deep(.icon)
                 width: var(--width, 30px)
                 height: var(--height, var(--width, 30px))
+
+    &.square
+        width: 45px
+
+        .option.current
+            padding-left: 0
+            padding-right: 0
+
+            display: flex
+            justify-content: center
+
+        .options
+            width: 200px
+            left: unset
+            right: 0
         
 .dropdown,
 .dropdown-mobile-overlay-wrapper .container
@@ -212,6 +227,8 @@
         justify-content: space-between
         align-items: center
         gap: 5px
+
+        // text-align: left
 
         +media-desktop
             height: 60px

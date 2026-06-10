@@ -1,11 +1,134 @@
 .costumes-page
+    padding-top: 80px
+
     +media-mobile
         padding: 10px 0 0 0
+
+    .dropdown-like
+        width: 200px
+        height: 45px
+        padding: 0 10px
+        background: $light-blue
+
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        cursor: pointer
+        user-select: none
+
+        +hover
+            background: $light-blue-highlight
+
+        &.fit-content
+            +media($minmax: 'min', $size: 810px)
+                width: fit-content
+                gap: 10px
+
+            &.fit-mobile
+                width: fit-content
+                gap: 10px
+
+        .content
+            display: flex
+            align-items: center
+            gap: 15px
+
+            font-size: 18px
+            font-family: $font-body
+            line-height: 1.2
+            color: var(--light)
+
+        .icon
+            --img: var(--tex-dropdownCaret)
+
+            flex-shrink: 0
+            width: var(--width, 15px)
+            height: var(--height, var(--width, 15px))
+
+            mask: var(--img) no-repeat
+            mask-size: 100%
+            mask-position: center
+
+            background: var(--img-bg, #fff)
+            background-size: 100%
+            background-position: center
+
+            &.up
+                --img: var(--tex-dropdownCaretUp)
 
     .container
         max-width: 1600px
         width: 100%
         height: 100%
+
+        .collection-title
+            position: relative
+            width: 100%
+
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            
+            margin-top: 20px
+
+            padding: 0 20px
+
+            h2
+                position: relative
+                width: 100%
+                max-width: 80%
+                font-family: $font-heavy
+                font-size: 54px
+                font-weight: 400
+                text-transform: uppercase
+                text-align: center
+                color: $blue
+
+                padding: 0 40px
+
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+
+                +media-mobile
+                    max-width: 60%
+                    font-size: 34px
+                    padding: 0 0
+
+                +media-phone
+                    max-width: 100%
+
+            p
+                display: block
+
+                font-family: $font-heavy
+                font-size: 18px
+                font-weight: 400
+                text-transform: uppercase
+                text-align: center
+
+                color: $light-blue
+
+                padding: 0 40px
+                
+                +media-mobile
+                    padding: 0 0
+
+                span
+                    color: $blue
+
+        .settings
+            position: absolute
+            right: 0
+
+            +media-mobile
+                position: relative
+                right: unset
+
+                margin: 10px 0
 
         .cosmetics-controls
             position: sticky
@@ -63,7 +186,7 @@
                 font-family: $font-bold
                 font-size: 22px
                 text-transform: uppercase
-                color: #4f5e73
+                color: $light-blue
 
                 +media-phone
                     font-size: 18px
@@ -100,49 +223,9 @@
                     ::v-deep(input)
                         width: 100% !important
 
-                .show-filters
-                    width: 200px
-                    height: 45px
-                    padding: 0 10px
-                    background: $light-blue
-
-                    display: flex
-                    justify-content: space-between
-                    align-items: center
-
-                    cursor: pointer
-                    user-select: none
-
+                .dropdown-like
                     +break
                         display: none
-
-                    .content
-                        display: flex
-                        align-items: center
-                        gap: 15px
-
-                        font-size: 18px
-                        font-family: $font-body
-                        line-height: 18px
-                        color: var(--light)
-
-                    .icon
-                        --img: var(--tex-dropdownCaret)
-
-                        flex-shrink: 0
-                        width: var(--width, 15px)
-                        height: var(--height, var(--width, 15px))
-
-                        mask: var(--img) no-repeat
-                        mask-size: 100%
-                        mask-position: center
-
-                        background: var(--img-bg, #fff)
-                        background-size: 100%
-                        background-position: center
-
-                        &.up
-                            --img: var(--tex-dropdownCaretUp)
 
                 .options
                     display: flex
@@ -170,6 +253,26 @@
 
                 .dropdown
                     width: 200px
+
+            .make-collection
+                grid-column: 1 / 2
+
+                width: 100%
+                display: flex
+                flex-wrap: wrap
+                justify-content: center
+                align-items: center
+                gap: 10px
+
+                +break
+                    grid-column: 1 / 3
+
+                .buttons
+                    display: flex
+                    flex-wrap: wrap
+                    justify-content: center
+                    align-items: center
+                    gap: 10px
 
         .list
             width: 100%

@@ -537,9 +537,16 @@ function changeName() {
     .then((name: string) => {
         name = name.trim();
 
-        if (name.length > 50)
-            name = name.slice(0, 50)
+        if (name.length < 3 || name.length > 50) {
+            notify(
+                `Name must be between 3 and 50 characters long!`,
+                3000,
+                { image: 'warning', color: '#c94f36' }
+            );
 
+            return;
+        }
+        
         profile.value.name = name;
     })
     .catch(() => null)

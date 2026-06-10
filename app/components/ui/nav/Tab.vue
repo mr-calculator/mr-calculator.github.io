@@ -14,7 +14,7 @@
 
         :to="link"
         draggable="false"
-
+        
         v-bind="$attrs"
     >
         <!-- ANIMATION (SPECIAL) -->
@@ -54,9 +54,11 @@
     <!-- SUBMENU -->
     <div
         v-if="selected && submenuSlots"
+        ref="submenu"
         :class="{
             [breakpointBreak ? 'navbar-submenu' : 'inner-submenu']: 1,
             'full-width': fullWidth,
+            'show': 1
         }"
         :style="{
             '--tab-left': tabLeft
@@ -67,7 +69,7 @@
             :key="slotName"
             class="submenu-item"
 
-            :link="link ? trimLast('/', link) + '/' + slotId : undefined"
+            :link="link ? (linkMap?.[slotName] ?? (trimLast('/', link) + '/' + slotId)) : undefined"
             :marks="marks"
             :selected="selected"
 
@@ -86,6 +88,7 @@ import type { ComponentInstance } from 'vue';
 import type { BarMark, MarkType, SubmenuTab } from './Bar.vue';
 
 const props = defineProps<{
+    linkMap?: Record<string, string>,
     link?: string,
     marks?: BarMark,
     selected: boolean,
@@ -122,6 +125,21 @@ function getTabRect() {
 
 onMounted(() => window?.setTimeout(() => tabRect.value = getTabRect(), 100));
 useEvent('resize', () => tabRect.value = getTabRect());
+
+const submenu = useTemplateRef('submenu');
+const mobile = isMobile();
+
+useEvent('scroll', () => {
+    if (mobile.value)
+        return;
+
+    const scrollY = window?.scrollY ?? 0;
+
+    if (scrollY > 50)
+        submenu.value?.classList.remove('show');
+    else
+        submenu.value?.classList.add('show');
+});
 
 const tabLeft = computed(() => {
     let left = tabRect.value.left + tabRect.value.width / 2;
