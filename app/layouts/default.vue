@@ -172,18 +172,20 @@
                 </div>
             </template>
             <template #append v-else>
-                <div class="large-device-menu-icon-wrapper">
-                    <div class="menu-icon" @click="menuOpen = !menuOpen">
-                        <Tex
-                            :image="menuOpen ? 'cross' : 'hamburger'"
-                            color="#fff"
+                <ClientOnly>
+                    <div class="large-device-menu-icon-wrapper">
+                        <div class="menu-icon" @click="menuOpen = !menuOpen">
+                            <Tex
+                                :image="menuOpen ? 'cross' : 'hamburger'"
+                                color="#fff"
 
-                            clickable
-                            :width="menuOpen ? 25 : 28"
-                            height="25px"
-                        />
+                                clickable
+                                :width="menuOpen ? 25 : 28"
+                                height="25px"
+                            />
+                        </div>
                     </div>
-                </div>
+                </ClientOnly>
             </template>
         </UiNavBar>
 

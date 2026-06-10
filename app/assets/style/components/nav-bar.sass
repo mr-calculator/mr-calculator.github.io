@@ -227,8 +227,6 @@ nav
             flex-direction: column
             gap: 5px
 
-            overflow: clip
-
             .tabItem
                 padding: 0 20px 
 
@@ -405,7 +403,7 @@ nav
 
     display: flex
 
-    transition: .1s ease-out
+    transition: .2s ease-out
     z-index: 9
 
     +hover
@@ -428,16 +426,37 @@ nav
 
         z-index: -1
 
+    &::after
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+        width: 120%
+        height: 160%
+
+        z-index: -1
+
+    &.opaque-bg
+        &::before
+            opacity: 1 !important
+
     &:not(.show)
-        +media-desktop
-            transform: translate(-50%, -150%)
+        +media($minmax: 'min', $size: 800px)
+            transform: translate(-50%, -350%)
             opacity: 0
             
             pointer-events: none
+            touch-action: none
             user-select: none
+
+            &::after,
+            &::before
+                pointer-events: none
             
     &.show
-        +media-desktop
+        +media($minmax: 'min', $size: 800px)
             transform: translate(-50%, 0%)
             opacity: 1
 

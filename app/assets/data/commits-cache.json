@@ -1,5 +1,89 @@
 [
   {
+    "sha": "68bfa1a070ee4e384a7300fe6d7971d9e99510f9",
+    "node_id": "C_kwDORv7rQ9oAKDY4YmZhMWEwNzBlZTRlMzg0YTczMDBmZTZkNzk3MWQ5ZTk5NTEwZjk",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T05:30:41Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T05:30:41Z"
+      },
+      "message": "Added commit sha to v2.1.0 to bind it to its commit in the changelog.",
+      "tree": {
+        "sha": "03ab9179136cc91f9cb8c8574fd30fccc5ce0c18",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/03ab9179136cc91f9cb8c8574fd30fccc5ce0c18"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/68bfa1a070ee4e384a7300fe6d7971d9e99510f9",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/68bfa1a070ee4e384a7300fe6d7971d9e99510f9",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/68bfa1a070ee4e384a7300fe6d7971d9e99510f9",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/68bfa1a070ee4e384a7300fe6d7971d9e99510f9/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "9e60f86227f993bfd932c765e57c9c9472cf78b6",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/9e60f86227f993bfd932c765e57c9c9472cf78b6",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/9e60f86227f993bfd932c765e57c9c9472cf78b6"
+      }
+    ]
+  },
+  {
+    "sha": "9e60f86227f993bfd932c765e57c9c9472cf78b6",
+    "node_id": "C_kwDORv7rQ9oAKDllNjBmODYyMjdmOTkzYmZkOTMyYzc2NWU1N2M5Yzk0NzJjZjc4YjY",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T05:29:43Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-10T05:29:43Z"
+      },
+      "message": "Fixed layout collapse (footer moving up 1 element) due to hydration mismatch when a collection in /costumes was set as the entry point.\nDisconnected IntersectionObserver on unmount to stop possible memory leak.",
+      "tree": {
+        "sha": "138b383ac305ba1c8ba9d7a50eca350966d374c9",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/138b383ac305ba1c8ba9d7a50eca350966d374c9"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/9e60f86227f993bfd932c765e57c9c9472cf78b6",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/9e60f86227f993bfd932c765e57c9c9472cf78b6",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/9e60f86227f993bfd932c765e57c9c9472cf78b6",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/9e60f86227f993bfd932c765e57c9c9472cf78b6/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "3ab4e3e29800323c3e2f51694ba0d9e298ae1ffe",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/3ab4e3e29800323c3e2f51694ba0d9e298ae1ffe",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/3ab4e3e29800323c3e2f51694ba0d9e298ae1ffe"
+      }
+    ]
+  },
+  {
     "sha": "3ab4e3e29800323c3e2f51694ba0d9e298ae1ffe",
     "node_id": "C_kwDORv7rQ9oAKDNhYjRlM2UyOTgwMDMyM2MzZTJmNTE2OTRiYTBkOWUyOThhZTFmZmU",
     "commit": {

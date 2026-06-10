@@ -69,6 +69,7 @@
 
 <style lang="sass" scoped>
 .costume-collections-page
+    padding-top: 80px
     overflow-x: hidden
     
     +media-desktop

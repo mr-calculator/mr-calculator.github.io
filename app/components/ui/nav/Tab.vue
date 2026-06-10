@@ -14,6 +14,11 @@
 
         :to="link"
         draggable="false"
+
+        @mouseenter="onHover"
+        @mouseleave="onUnhover"
+        
+        @click="mobileTapSelected"
         
         v-bind="$attrs"
     >
@@ -58,11 +63,15 @@
         :class="{
             [breakpointBreak ? 'navbar-submenu' : 'inner-submenu']: 1,
             'full-width': fullWidth,
-            'show': 1
+            'show': scrollShow || hoverCounter >= 1 || mobileTapShow,
+            'opaque-bg': hoverCounter >= 1 || mobileTapShow
         }"
         :style="{
             '--tab-left': tabLeft
         }"
+
+        @mouseenter="onHover(true)"
+        @mouseleave="onUnhover(true)"
     >
         <Tab
             v-for="{ slotName, slotId, selected, marks } in submenuSlots"
@@ -86,6 +95,7 @@
 import { NuxtLink } from '#components';
 import type { ComponentInstance } from 'vue';
 import type { BarMark, MarkType, SubmenuTab } from './Bar.vue';
+import { onClickOutside } from '@vueuse/core';
 
 const props = defineProps<{
     linkMap?: Record<string, string>,
@@ -101,6 +111,9 @@ const props = defineProps<{
 const emits = defineEmits<{
     submenuTabClick: [ slotName: string ]
 }>();
+
+const screenDimensions = useScreenDimensions();
+const touchDevice = isTouchDevice();
 
 function isMarkedAs(as: MarkType) {
     if (!props.marks || props.marks == 'none')
@@ -127,19 +140,73 @@ onMounted(() => window?.setTimeout(() => tabRect.value = getTabRect(), 100));
 useEvent('resize', () => tabRect.value = getTabRect());
 
 const submenu = useTemplateRef('submenu');
-const mobile = isMobile();
 
+const scrollShow = ref(true);
 useEvent('scroll', () => {
-    if (mobile.value)
+    if (screenDimensions.value.width < 800)
         return;
 
     const scrollY = window?.scrollY ?? 0;
 
     if (scrollY > 50)
-        submenu.value?.classList.remove('show');
+        scrollShow.value = false;
     else
-        submenu.value?.classList.add('show');
+        scrollShow.value = true;
 });
+
+const hoverCounter = ref(0);
+function onHover(fromSubmenu = false) {
+    if (touchDevice.value)
+        return;
+    
+    if (screenDimensions.value.width < 800)
+        return;
+
+    if (screenDimensions.value.width < 800 && fromSubmenu)
+        return;
+    
+    hoverCounter.value += 1;
+}
+
+function onUnhover(fromSubmenu = false) {
+    if (touchDevice.value)
+        return;
+
+    if (screenDimensions.value.width < 800)
+        return;
+
+    if (screenDimensions.value.width < 800 && fromSubmenu)
+        return;
+
+    hoverCounter.value -= 1;
+}
+
+const mobileTapShow = ref(false);
+function mobileTapSelected() {
+    if (!props.selected)
+        return;
+    if (!touchDevice.value)
+        return;
+
+    mobileTapShow.value = !mobileTapShow.value;
+}
+
+// @ts-ignore
+onClickOutside(tab, (e) => {
+    const target = e.target as HTMLElement;
+    if (submenu.value?.contains(target))
+        return;
+
+    mobileTapShow.value = false;
+})
+
+useEvent('touchmove', () => {
+    if (screenDimensions.value.width < 800)
+        return;
+
+    hoverCounter.value = 0;
+    mobileTapShow.value = false;
+})
 
 const tabLeft = computed(() => {
     let left = tabRect.value.left + tabRect.value.width / 2;

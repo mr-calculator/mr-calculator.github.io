@@ -181,7 +181,7 @@ function checkBreakpoint() {
         return;
     }
 
-    breakpointBreak.value = (window?.innerWidth ?? 0) > props.breakpoint;
+    breakpointBreak.value = (window?.innerWidth ?? 0) >= props.breakpoint;
 }
 onMounted(checkBreakpoint);
 useEvent('resize', checkBreakpoint);
