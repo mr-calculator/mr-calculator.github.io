@@ -78,4 +78,10 @@ watch(() => props.items, (newItems, oldItems) => {
             intersectionObserver.observe(el);
     }));
 })
+
+onUnmounted(() => {
+    if (intersectionObserver) {
+        intersectionObserver.disconnect();
+    }
+});
 </script>

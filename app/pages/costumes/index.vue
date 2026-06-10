@@ -414,9 +414,12 @@ function decodeCollection(collectionB64: string|undefined) {
     collection.value = JSON.parse(fromBase64(collectionB64 as string));
 }
 watch(() => route.query.collection,
-      (collectionB64) => decodeCollection(collectionB64 as string|undefined),
-      { immediate: true }
+      (collectionB64) => decodeCollection(collectionB64 as string|undefined)
 );
+onMounted(() => {
+    // only parse the collection query param after vue has safely hydrated the dom
+    decodeCollection(route.query.collection as string|undefined);
+});
 
 
 const collectionItems = ref<Set<string>>(new Set());
