@@ -113,31 +113,43 @@ async function main() {
     let previousNameplates: Nameplate[] = [];
     if (fs.existsSync(NAMEPLATES_FILE)) {
         previousNameplates = JSON.parse(fs.readFileSync(NAMEPLATES_FILE, { encoding: 'utf-8' }));
-
-        p.log.info(`Making a backup of the previous nameplates file...`);
-        // make a backup in case things go south
-        fs.copyFileSync(NAMEPLATES_FILE, NAMEPLATES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
     }
 
-    const nameplates: Nameplate[] = nameplatesWithLink.map(({ imageLink, ...rest }) => rest);
-    const json = JSON.stringify(nameplates, undefined, 4);
-
-    fs.writeFileSync(NAMEPLATES_FILE, json);
-    fs.writeFileSync(path.join(BASE, 'output', 'nameplates.json'), json);
-    p.log.info(`Wrote nameplate list to \`${NAMEPLATES_FILE}\``);
-
     p.log.info(`Creating nameplates diff...`);
-    const nameplatesToCopy = createDiff(nameplatesWithLink, previousNameplates);
+    const nameplatesDiff = createDiff(nameplatesWithLink, previousNameplates);
 
-    p.log.info(`Fetching new animated nameplate images from wiki...`);
-    await Promise.all(
-        nameplatesToCopy.filter(e => e!.type == 'animated').map(e => {
-            return fetchNameplate(e!.id, e!.imageLink);
-        })
-    );
 
-    p.log.info(`Copying new nameplate images from the game files`);
-    await copyNameplateImages(nameplatesToCopy);
+    if (nameplatesDiff.length) {
+        if (fs.existsSync(NAMEPLATES_FILE)) {
+            // make a backup in case things go south
+            p.log.info(`Making a backup of the previous nameplates file...`);
+            fs.copyFileSync(NAMEPLATES_FILE, NAMEPLATES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+        }
+
+        // combine diff with previous
+        const newNameplates: Nameplate[] = nameplatesDiff.map(({ imageLink, ...rest }) => rest);
+        const combinedNameplates: Nameplate[] = [...previousNameplates, ...newNameplates];
+        const json = JSON.stringify(combinedNameplates, undefined, 4);
+
+        // write combined
+        fs.writeFileSync(NAMEPLATES_FILE, json);
+        fs.writeFileSync(path.join(BASE, 'output', 'nameplates.json'), json);
+        p.log.info(`Wrote nameplate list to \`${NAMEPLATES_FILE}\``);
+
+        p.log.info(`Fetching new animated nameplate images from wiki...`);
+        await Promise.all(
+            nameplatesDiff.filter(e => e!.type == 'animated').map(e => {
+                return fetchNameplate(e!.id, e!.imageLink);
+            })
+        );
+
+        p.log.info(`Copying new nameplate images from the game files`);
+        await copyNameplateImages(nameplatesDiff);
+
+        p.outro(`Added ${nameplatesDiff.length} nameplates.`);
+    }
+    else
+        p.log.warn(`Didn't have any new additions. Nothing was modified.`);
 
     p.outro('Parse finished');
 }

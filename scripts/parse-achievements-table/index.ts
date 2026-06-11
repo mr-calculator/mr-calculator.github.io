@@ -171,14 +171,16 @@ function parseAchievementCategory(category: AchievementTypeCategory) {
 	const diff = createDiff(achievements, previousAchivements);
 
 	if (diff.length) {
-		p.log.info(`Making a backup of the previous achievements file (${category})...`);
 		// make a backup in case things go south
-		fs.copyFileSync(
-			outputAppPath,
-			ACHIEVEMENTS_FILE_BACKUP(category).replace(
-				'%DATE%', fileNameFriendlyDate(new Date())
-			)
-		);
+		if (fs.existsSync(outputAppPath)) {
+			p.log.info(`Making a backup of the previous achievements file (${category})...`);
+			fs.copyFileSync(
+				outputAppPath,
+				ACHIEVEMENTS_FILE_BACKUP(category).replace(
+					'%DATE%', fileNameFriendlyDate(new Date())
+				)
+			);
+		}
 
 		const combinedAchievements: (AchievementType|'_____new_achievements_____')[] = previousAchivements.slice();
 		combinedAchievements.push(
@@ -190,6 +192,7 @@ function parseAchievementCategory(category: AchievementTypeCategory) {
 		fs.writeFileSync(outputAppPath, JSON.stringify(combinedAchievements, null, 2));
 
 		p.log.info(`Parsed ${category} successfully. Saved at: ${outputPath}, ${outputAppPath}`);
+		p.log.info(`Added ${diff.length} achievements to ${category}.`);
 	}
 	else
 		p.log.warn(`${category} didn't have any new additions. Nothing was modified.`);

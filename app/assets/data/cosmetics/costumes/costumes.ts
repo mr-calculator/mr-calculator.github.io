@@ -129,6 +129,23 @@ export function getAllThemes(heroId?: string) {
     return Array.from(themes);
 }
 
+export function getAllPropertyValuesFromList(
+    list: string[],
+    property: 'heroId'|'category'|'source'|'theme'
+) {
+    const costumesByIds = Object.fromEntries(
+        getCostumesAsList().filter(c => list.includes(c.id))
+                           .map(c => [c.id, c])
+    );
+
+    const allPropertyValues = new Set<string>();
+    Object.entries(costumesByIds).forEach(([id, c]) =>
+        c[property] ? allPropertyValues.add(c[property]) : null
+    );
+
+    return Array.from(allPropertyValues);
+}
+
 export function convertCostumeId(oldId: string) {
     return (OCEANHILLMAN_CONVERSION_MAP as Record<string, string>)[oldId];
 }
@@ -142,3 +159,14 @@ export const CostumeCollectionSchema = z.object({
 export type CostumeCollection = z.infer<typeof CostumeCollectionSchema>;
 
 export const CostumeCollectionStoreSchema = z.array(CostumeCollectionSchema);
+
+export const OFFICIAL_COLLECTIONS: () => Record<string, CostumeCollection> = () => ({
+    '616-vault-2026': {
+        title: '616 VAULT (2026)',
+        items: [
+            "1025302","1035301","1024303","1048502","1050502","1020302","1031303","1051301",
+            "1051300","1039300","1017502","1014502","1041301","1052502","1018301","1033502",
+            "1051502"
+        ]
+    }
+})

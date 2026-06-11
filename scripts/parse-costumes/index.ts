@@ -87,14 +87,17 @@ async function main() {
         'This expects the tables to exist in `./scripts/parse-costumes/tables/` (only <tr> elements of the <tbody>)'
     );
 
+    // parse from html
     const costumes: Costume[] = [];
     const themesIconSources: Record<string, string> = {};
     forEachTable(t => parseTable(costumes, t, themesIconSources));
 
+    // get all theme icons from wiki
     p.log.info(`Fetching theme icons from wiki...`);
     for (const [id, src] of Object.entries(themesIconSources))
         await fetchThemeIcon(src, id);
 
+    // map to heroes
     const costumesByHeroes: Record<string, Costume[]> = {};
     costumes.forEach(c => {
         if (!costumesByHeroes[c.heroId])
@@ -103,28 +106,46 @@ async function main() {
         costumesByHeroes[c.heroId].push(c);
     });
 
+    // get previous costumes
     let previousCostumes: Record<string, Costume[]> = {};
     if (fs.existsSync(COSTUMES_FILE)) {
         previousCostumes = JSON.parse(fs.readFileSync(COSTUMES_FILE, { encoding: 'utf-8' }));
-
-        p.log.info(`Making a backup of the previous costumes file...`);
-        // make a backup in case things go south
-        fs.copyFileSync(COSTUMES_FILE, COSTUMES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
     }
 
-    const json = JSON.stringify(costumesByHeroes, undefined, 4);
-
-    fs.writeFileSync(COSTUMES_FILE, json);
-    fs.writeFileSync(path.join(BASE, 'output', 'costumes.json'), json);
-    p.log.info(`Wrote costume list to \`${COSTUMES_FILE}\``);
-
     p.log.info(`Creating costumes diff...`);
-    const costumesToCopy = createDiff(costumesByHeroes, previousCostumes);
+    const costumesDiff = createDiff(costumesByHeroes, previousCostumes);
 
-    p.log.info(`Copying new costume images from the game files`);
-    await copyCostumeImages(costumesToCopy);
+    if (costumesDiff.length) {
+        if (fs.existsSync(COSTUMES_FILE)) {
+            p.log.info(`Making a backup of the previous costumes file...`);
+            // make a backup in case things go south
+            fs.copyFileSync(COSTUMES_FILE, COSTUMES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+        }
 
-    p.outro(`Parse finished with ${costumesToCopy.length} additions.`);
+        // merge new costumes with previous costumes
+        const mergedCostumes: Record<string, Costume[]> = JSON.parse(JSON.stringify(previousCostumes));
+        costumesDiff.forEach((costume) => {
+            if (!mergedCostumes[costume.heroId])
+                mergedCostumes[costume.heroId] = [];
+
+            mergedCostumes[costume.heroId].push(costume);
+        });
+
+        const json = JSON.stringify(mergedCostumes, undefined, 4);
+
+        fs.writeFileSync(COSTUMES_FILE, json);
+        fs.writeFileSync(path.join(BASE, 'output', 'costumes.json'), json);
+        p.log.info(`Wrote costume list to \`${COSTUMES_FILE}\``);
+
+        p.log.info(`Copying new costume images from the game files`);
+        await copyCostumeImages(costumesDiff);
+
+        p.outro(`Added ${costumesDiff.length} costumes.`);
+    }
+    else
+        p.log.warn(`Didn't have any new additions. Nothing was modified.`);
+
+    p.outro('Parse finished.')
 }
 
 try {

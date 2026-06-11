@@ -10,6 +10,18 @@
         <UiSeparator class="mobile-separator with-spacing" dark />
 
         <div class="container">
+            <div v-if="collectionsStore.length" class="create-wrapper">
+                <FormButton to="/costumes?create-collection=1" size="tiny" color-scheme="dark">
+                    <Tex
+                        image="plus"
+
+                        width="20px"
+                        height="20px"
+                    />
+                    NEW COLLECTION
+                </FormButton>
+            </div>
+
             <ClientOnly>
                 <div v-if="collectionsStore.length" class="collections">
                     <NuxtLink
@@ -32,7 +44,13 @@
                                 )) + 'px',
                                 zIndex: isPastHalf(i, (mobile ? 3 : 6))
                                     ? i
-                                    : (mobile ? 3 : 6) - i
+                                    : (mobile ? 3 : 6) - i,
+                                transform: `translateX(-50%)` + (
+                                    isPastHalf(i, (mobile ? 3 : 6))
+                                        ? `scale(-1, 1)`
+                                        :
+                                        ''
+                                )
                             }"
                         >
                             <img
@@ -43,13 +61,27 @@
 
                         <div class="bar">
                             <h3 class="title">{{ collection.title }}</h3>
-                            <Tex
-                                v-if="!!collection.owner"
-                                image="userId"
+                            <div class="flags">
+                                <div class="flag">
+                                    <span>{{ collection.items.length }}</span>
+                                    <Tex
+                                        image="skinIcon"
+                                        color="#fff"
 
-                                width="20px"
-                                height="20px"
-                            />
+                                        width="20px"
+                                        height="20px"
+                                    />
+                                </div>
+                                <div v-if="!!collection.owner" class="flag">
+                                    <Tex
+                                        image="userId"
+                                        color="#fff"
+
+                                        width="20px"
+                                        height="20px"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </NuxtLink>
                 </div>
@@ -69,11 +101,11 @@
 
 <style lang="sass" scoped>
 .costume-collections-page
-    padding-top: 80px
+    padding-top: 30px
     overflow-x: hidden
     
     +media-desktop
-        padding-top: 80px + 40px
+        padding-top: 30px + 40px
         
     .mobile-title
         h1
@@ -83,6 +115,18 @@
         margin-bottom: 60px
     
     .container
+        display: flex
+        align-items: end
+        flex-direction: column
+        gap: 60px
+
+        +media-mobile
+            align-items: center
+
+        .create-wrapper
+            +media-desktop
+                padding-right: 30px
+
         .collections
             position: relative
             width: 100%
@@ -212,6 +256,7 @@
                     display: flex
                     justify-content: space-between
                     align-items: center
+                    gap: 20px
 
                     z-index: 8
 
@@ -230,6 +275,24 @@
                         overflow: hidden
                         text-overflow: ellipsis
                         white-space: nowrap
+
+                        +media-mobile
+                            font-size: 16px
+
+                    .flags
+                        display: flex
+                        align-items: center
+                        gap: 10px
+
+                        .flag
+                            display: flex
+                            align-items: center
+                            gap: 5px
+
+                            font-family: $font-body
+                            font-weight: 400
+                            font-size: 18px
+                            color: #fff
 
         .no-collections
             width: 100%
@@ -266,7 +329,6 @@ useSeoMeta({
 const mobile = isMobile();
 
 const collectionsStore = useLocalStorage('costume_collections', [], CostumeCollectionStoreSchema);
-
 const costumesById = Object.fromEntries(getCostumesAsList().map(c => [c.id, c]));
 
 function isPastHalf(idx: number, length: number) {

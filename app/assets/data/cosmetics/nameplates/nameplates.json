@@ -7337,5 +7337,17 @@
         "sourceLink": "/wiki/Iron_Samurai_(Iron_Man)",
         "theme": "Iron Samurai",
         "releaseDate": "2026-06-04"
+    },
+    {
+        "type": "normal",
+        "id": "31043213",
+        "name": "Glory Gunner",
+        "rarity": "rare",
+        "sourceFull": "BattlePass (S8): Project: Heroic Age",
+        "category": "BattlePass",
+        "source": "Project Heroic Age (BattlePass)",
+        "sourceLink": "/wiki/Project_Heroic_Age_(BattlePass)",
+        "theme": "Corporate Raiders",
+        "releaseDate": "2026-05-15"
     }
 ]

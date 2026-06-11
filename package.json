@@ -24,7 +24,8 @@
     "parse-nameplates": "npx tsx ./scripts/parse-nameplates/index.ts",
     "generate-hero-seo-image": "npx tsx ./scripts/generate-hero-seo-image/index.ts",
     "all-heroes-averages": "npx tsx ./scripts/all-heroes-averages.ts",
-    "fetch-commits": "node scripts/fetch-commits.js"
+    "fetch-commits": "node scripts/fetch-commits.js",
+    "fetch-analytics": "npx tsx ./scripts/analytics/index.ts"
   },
   "devDependencies": {
     "@clack/prompts": "^1.1.0",

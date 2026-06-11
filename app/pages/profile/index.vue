@@ -420,7 +420,7 @@
 import { onClickOutside } from '@vueuse/core';
 import { ACHIEVEMENTS, getAchievements, type Achievement } from '~/assets/data/achievements/achievements';
 import { calcTotalXp, DEFAULT_HERO_STORE, DEFAULT_PROFILE_STORE, LATEST_SEASON_NO, PROFICIENCY_RANK_BADGE_BGS, PROFICIENCY_RANK_BADGES, PROFICIENCY_RANKS, ProfileStoreSchema, RARITY_DATA, type HeroData, type PlayerHeroStore, type ProfileSheetDataExportable } from '~/assets/data/common';
-import { getHeroCostumes, RARITY_ORDER, type Costume, type CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
+import { CostumeCollectionStoreSchema, getHeroCostumes, RARITY_ORDER, type Costume, type CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
 import { HERO_LIST } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import InputModal from '~/components/modals/InputModal.vue';
@@ -546,6 +546,16 @@ function changeName() {
 
             return;
         }
+
+        // update all costume collections' names
+        const costumeCollections = useLocalStorage('costume_collections', [], CostumeCollectionStoreSchema);
+        costumeCollections.value = costumeCollections.value.map(c => {
+            // replace name
+            if (c.owner)
+                c.owner = name;
+
+            return c;
+        });
         
         profile.value.name = name;
     })

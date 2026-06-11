@@ -11,14 +11,82 @@
 
         <div class="container">
             <ClientOnly>
+                <div v-if="mode == 'collection' && collection" class="collection-title dark">
+                    <p>
+                        <span>{{ collectionOwnerPossesive }}</span> Collection
+                    </p>
+                    <div class="title-section">
+                        <div
+                            v-if="!mobile"
+                            class="owned-count"
+                        >
+                            <span class="owned">{{ ownedCostumesCount }}</span>/<span class="total">{{ sortedCostumes.length }} OWNED</span>
+                        </div>
+
+                        <h2>
+                            {{ collection.title }}
+                        </h2>
+
+                        <div v-if="mobile" class="owned-count">
+                            <span class="owned">{{ ownedCostumesCount }}</span>/<span class="total">{{ sortedCostumes.length }} OWNED</span>
+                        </div>
+
+                        <div class="options">
+                            <div
+                                :class="{'dropdown-like': 1, square: 1, selected: showFiltersWhenCollection}"
+                                @click="showFiltersWhenCollection = !showFiltersWhenCollection"
+                            >
+                                <Tex
+                                    image="filter"
+                                    color="#fff"
+
+                                    width="30px"
+                                    height="30px"
+                                />
+                            </div>
+                            <div class="dropdown-like square" @click="shareCollection">
+                                <Tex
+                                    image="share"
+
+                                    width="30px"
+                                    height="30px"
+                                />
+                            </div>
+                            <FormDropdown
+                                class="settings"
+                                :options="settingsOptions"
+                                :placeholder="{
+                                    leftIcon: {
+                                        key: 'cog',
+                                        size: 30,
+                                    }
+                                }"
+
+                                :model-value="''"
+                                @update:model-value="selectOption($event as 'add'|'edit'|'delete')"
+
+                                small
+                                square
+                            />
+                        </div>
+                    </div>
+                    <UiSeparator class="with-spacing" dark />
+                </div>
+
                 <div
-                    v-if="mode !== 'collection'"
+                    v-if="
+                        mode !== 'collection'
+                     || (mode == 'collection' && showFiltersWhenCollection)
+                    "
                     ref="cosmeticsControls"
-                    class="cosmetics-controls"
+                    :class="{
+                        'cosmetics-controls': 1,
+                        'no-owned-count': mode == 'collection' && showFiltersWhenCollection
+                    }"
                 >
-                    <p class="owned-count">
+                    <p v-if="mode == 'collection' && !showFiltersWhenCollection" class="owned-count">
                         <ClientOnly>
-                            <span class="owned">{{ ownedCostumesCount }}</span>/<span class="total">{{ costumes.length }} OWNED</span>
+                            <span class="owned">{{ ownedCostumesCount }}</span>/<span class="total">{{ sortedCostumes.length }} OWNED</span>
                         </ClientOnly>
                     </p>
 
@@ -135,32 +203,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div v-if="mode == 'collection' && collection" class="collection-title dark">
-                    <p>
-                        <span>{{ collectionOwnerPossesive }}</span> Collection
-                    </p>
-                    <h2>
-                        {{ collection.title }}
-                    </h2>
-                    <FormDropdown
-                        class="settings"
-                        :options="settingsOptions"
-                        :placeholder="{
-                            leftIcon: {
-                                key: 'cog',
-                                size: 30,
-                            }
-                        }"
-
-                        :model-value="''"
-                        @update:model-value="selectOption($event as 'add'|'edit'|'delete')"
-
-                        small
-                        square
-                    />
-                    <UiSeparator class="with-spacing" dark />
-                </div>
             </ClientOnly>
             <div v-if="sortedCostumes.length" class="list">
                 <UiVirtualizedScroll
@@ -185,7 +227,7 @@
             </div>
             <div v-else class="no-results">
                 <template
-                    v-if="mode !='make-collection'"
+                    v-if="mode == 'default' || collectionItems.size || collection?.items.length"
                 >
                     <p>No costumes match your filters</p>
                     <FormButton
@@ -196,7 +238,10 @@
                     </FormButton>
                 </template>
                 <template v-else>
-                    <p>You have no items in your collection.</p>
+                    <p v-if="isOwnCollection || mode == 'make-collection'">
+                        You have no items in your collection.
+                    </p>
+                    <p v-else>There are no items in this collection. Odd...</p>
                 </template>
             </div>
         </div>
@@ -207,7 +252,7 @@
 
 <script setup lang="ts">
 import { DEFAULT_PREFERENCES_STORE, DEFAULT_PROFILE_STORE, PreferencesStoreSchema, ProfileStoreSchema, type HeroData, type PreferencesStore } from '~/assets/data/common';
-import { CostumeCollectionStoreSchema, getAllCategories, getAllSources, getAllThemes, getCategoryIcon, getCostumesAsList, RARITY_ORDER, type Costume, type CostumeCollection } from '~/assets/data/cosmetics/costumes/costumes';
+import { CostumeCollectionSchema, CostumeCollectionStoreSchema, getAllCategories, getAllPropertyValuesFromList, getAllSources, getAllThemes, getCategoryIcon, getCostumesAsList, OFFICIAL_COLLECTIONS, RARITY_ORDER, type Costume, type CostumeCollection } from '~/assets/data/cosmetics/costumes/costumes';
 import { HERO_LIST } from '~/assets/data/heroes';
 import { type TextureKey } from '~/assets/data/textures';
 import type { Option, Placeholder } from '~/components/form/Dropdown.vue';
@@ -290,7 +335,7 @@ function setupStickyBar() {
 let { remove: removeStickyBar } = setupStickyBar();
 onUpdated(() => {
     removeStickyBar();
-    setupStickyBar()
+    setupStickyBar();
 })
 
 const mobile = isMobile();
@@ -312,8 +357,8 @@ const settingsOptions = computed<Option[]>(() => {
     if (!isOwnCollection.value)
         return [
             {
-                label: 'Add to your collections',
-                value: 'add',
+                label: 'Save collection',
+                value: 'favourite',
                 leftIcon: {
                     key: 'plus',
                     size: 20
@@ -413,16 +458,68 @@ function decodeCollection(collectionB64: string|undefined) {
 
         return;
     }
-    
+
+    function fail() {
+        notify(
+            `Uh-oh... The collection link was broken.`,
+            10000,
+            { image: 'chainBroken', color: '#c94f36' }
+        );
+
+        collection.value = null;
+        mode.value = 'default';
+
+        const { collection: _, ...prevQuery } = route.query;
+        router.push({
+            query: prevQuery
+        });
+    }
+
+    try {
+        const collectionParse = CostumeCollectionSchema.safeParse(
+            JSON.parse(fromBase64(collectionB64 as string))
+        );
+
+        if (!collectionParse.success) {
+            fail();
+            return;
+        }
+        
+        mode.value = 'collection';
+        collection.value = collectionParse.data;
+        showFiltersWhenCollection.value = collection.value.items.length >= 20;
+    }
+    catch {
+        fail();
+        return;
+    }
+}
+function checkCollectionFromRoute(queryCollection?: string) {
+    if (!queryCollection)
+        queryCollection = route.query.collection as string;
+
+    const officialCollection = OFFICIAL_COLLECTIONS()[queryCollection as string];
+    if (!officialCollection) {
+        decodeCollection(queryCollection as string|undefined);
+        return;
+    }
+
     mode.value = 'collection';
-    collection.value = JSON.parse(fromBase64(collectionB64 as string));
+    collection.value = officialCollection;
+    showFiltersWhenCollection.value = collection.value.items.length >= 20;
 }
 watch(() => route.query.collection,
-      (collectionB64) => decodeCollection(collectionB64 as string|undefined)
+    (collectionB64OrId) => checkCollectionFromRoute(collectionB64OrId as string)
 );
 onMounted(() => {
     // only parse the collection query param after vue has safely hydrated the dom
-    decodeCollection(route.query.collection as string|undefined);
+    checkCollectionFromRoute();
+});
+
+const showFiltersWhenCollection = ref(false);
+watch(showFiltersWhenCollection, () => {
+    removeStickyBar();
+    setupStickyBar();
 });
 
 
@@ -542,7 +639,19 @@ async function makeCollection() {
     catch { }
 }
 
-function cancelCollection() {
+async function cancelCollection() {
+    if (collectionItems.value.size > 0) {
+        try {
+            await openModal(ConfirmModal, {
+                title: `Are you sure?`,
+                message: `You are about to discard ${collectionItems.value.size} selected costumes.`
+            }).promise
+        }
+        catch {
+            return;
+        }
+    }
+
     // if user was editing a collection, take them back to collections page
     if (route.query['edit-collection']) {
         router.push({
@@ -564,13 +673,38 @@ function cancelCollection() {
     });
 }
 
+function shareCollection() {
+    if (!collection.value)
+        return;
+
+    let collectionBase64OrId;
+    if (OFFICIAL_COLLECTIONS()[route.query.collection as string])
+        collectionBase64OrId = route.query.collection;
+    else {
+        const shareableCollection = cloneObjectRefAsRaw<CostumeCollection>(collection)!;
+        delete shareableCollection.id;
+
+        collectionBase64OrId = toBase64(JSON.stringify(shareableCollection));
+    }
+    setClipboard(`${config.domainHttp}/costumes?collection=${collectionBase64OrId}`);
+
+    notify(
+        `${collection.value.title!}'s shareable link was copied to your clipboard.`,
+        5000,
+        { image: 'check', color: '#458a14' }
+    );
+}
+
 
 const ownedCostumes: Record<string, Ref<string[]>> = {};
 HERO_LIST.forEach(h => 
     ownedCostumes[h.id] = useLocalStorage<string[]>(() => `cosmetics_owned_${h.id}`, [])
 );
 const ownedCostumesCount = computed(() => 
-    Object.values(ownedCostumes).reduce((sum, current) => sum + current.value.length, 0)
+    Object.values(ownedCostumes)
+          .flatMap(c => c.value)
+          .filter(c => sortedCostumes.value.find(sc => sc.id == c))
+          .length
 )
 function costumeOwned(costume: Costume) {
     return ownedCostumes[costume.heroId]?.value.includes(costume.id) ?? false;
@@ -629,35 +763,42 @@ const searchText = ref('');
 const favouriteHeroes = useLocalStorage<HeroData['id'][]>(`favourite_heroes`, []);
 
 const activeHeroesFilters = ref<string[]>([]);
-const heroesFilterDropdownOptions = ref<Option[]>(HERO_LIST
-    .toSorted((a,b) => a.name.localeCompare(b.name))
-    .map<Option>(h => {
-        // not computed, since favourite heroes cannot be changed while this page is mounted
-        const isFav = favouriteHeroes.value.includes(h.id);
-        return {
-            leftIcon: {
-                url: `${h.dataDir}head.webp`,
-                size: 30
-            },
-            rightIcon: isFav ? 'favourite' as TextureKey : undefined,
+const collectionSkinsHeroes = computed(() =>
+    collection.value
+    ? getAllPropertyValuesFromList(collection.value.items, 'heroId')
+    : []
+)
+const heroesFilterDropdownOptions = computed<Option[]>(() => 
+    HERO_LIST
+        .filter(h => collection.value ? collectionSkinsHeroes.value.includes(h.id) : true)
+        .toSorted((a,b) => a.name.localeCompare(b.name))
+        .map<Option>(h => {
+            // not computed, since favourite heroes cannot be changed while this page is mounted
+            const isFav = favouriteHeroes.value.includes(h.id);
+            return {
+                leftIcon: {
+                    url: `${h.dataDir}head.webp`,
+                    size: 30
+                },
+                rightIcon: isFav ? 'favourite' as TextureKey : undefined,
 
-            value: h.id,
-            label: h.name,
+                value: h.id,
+                label: h.name,
 
-            whenSelected: { showOnlyLeftIcon: true }
-        }
-    })
-    .sort(({ value: a }, { value: b }) => {
-        const aIsFav = favouriteHeroes.value.includes(a!);
-        const bIsFav = favouriteHeroes.value.includes(b!);
+                whenSelected: { showOnlyLeftIcon: true }
+            }
+        })
+        .sort(({ value: a }, { value: b }) => {
+            const aIsFav = favouriteHeroes.value.includes(a!);
+            const bIsFav = favouriteHeroes.value.includes(b!);
 
-        if (aIsFav && !bIsFav)
-            return -1;
-        if (!aIsFav && bIsFav)
-            return 1;
+            if (aIsFav && !bIsFav)
+                return -1;
+            if (!aIsFav && bIsFav)
+                return 1;
 
-        return 0;
-    })
+            return 0;
+        })
 );
 
 const activeRarityFilters = ref<string[]>([]);
@@ -698,42 +839,61 @@ const rarityFilterDropdownOptions = ref<Option[]>([
 ]);
 
 const activeCategoriesFilters = ref<string[]>([]);
-const originalCategories = getAllCategories();
-const categoriesFilterDropdownOptions = ref<Option[]>(originalCategories.map(c => ({
-    leftIcon: {
-        url: getCategoryIcon(c),
-        size: 30
-    },
-
-    value: c,
-    label: c,
-
-    whenSelected: { showOnlyLeftIcon: true }
-})));
-
-const activeSourcesFilters = ref<string[]>([]);
-const sourcesFiltersDropdownOptions = ref<Option[]>(getAllSources()
-    .toSorted((a,b) => a.localeCompare(b))
-    .map(s => ({
-        value: s,
-        label: s
-    }))
-);
-
-const activeThemesFilters = ref<string[]>([]);
-const sourcesThemesDropdownOptions = ref<Option[]>(getAllThemes()
-    .toSorted((a,b) => a.localeCompare(b))
-    .map(t => ({
+const originalCategories = computed(() =>
+    collection.value
+        ? getAllPropertyValuesFromList(collection.value.items, 'category')
+        : getAllCategories()
+)
+const categoriesFilterDropdownOptions = computed<Option[]>(() => 
+    originalCategories.value.map(c => ({
         leftIcon: {
-            url: `/img/cosmetics/themes/${toKebabCase(t)}.webp`,
-            size: 23
+            url: getCategoryIcon(c),
+            size: 30
         },
 
-        value: t,
-        label: t,
+        value: c,
+        label: c,
 
         whenSelected: { showOnlyLeftIcon: true }
     }))
+);
+
+const activeSourcesFilters = ref<string[]>([]);
+const originalSources = computed(() =>
+    collection.value
+        ? getAllPropertyValuesFromList(collection.value.items, 'source')
+        : getAllSources()
+)
+const sourcesFiltersDropdownOptions = computed<Option[]>(() =>
+    originalSources.value
+        .toSorted((a,b) => a.localeCompare(b))
+        .map(s => ({
+            value: s,
+            label: s
+        }))
+);
+
+
+const activeThemesFilters = ref<string[]>([]);
+const originalThemes = computed(() =>
+    collection.value
+        ? getAllPropertyValuesFromList(collection.value.items, 'theme')
+        : getAllThemes()
+)
+const sourcesThemesDropdownOptions = computed<Option[]>(() => 
+    originalThemes.value
+        .toSorted((a,b) => a.localeCompare(b))
+        .map(t => ({
+            leftIcon: {
+                url: `/img/cosmetics/themes/${toKebabCase(t)}.webp`,
+                size: 23
+            },
+
+            value: t,
+            label: t,
+
+            whenSelected: { showOnlyLeftIcon: true }
+        }))
 );
 
 useReactiveQueryProps({
@@ -778,7 +938,7 @@ useReactiveQueryProps({
 
 const dropdowns = computed<{
     active: Ref<string[]>,
-    options: Ref<Option[]>,
+    options: Ref<Option[]>|ComputedRef<Option[]>,
     placeholder: string|Placeholder,
     props?: any
 }[]>(() => [
@@ -810,7 +970,8 @@ const dropdowns = computed<{
             }
         },
         props: {
-            concatenateSelectedOptions: true }
+            concatenateSelectedOptions: true
+        }
     },
     {
         active: activeCategoriesFilters,
@@ -881,7 +1042,7 @@ const sortedCostumes = computed<ListCostume[]>(() => {
     if (filterOwned.value)
         list = list.filter(c => costumeOwned(c));
 
-    if (mode.value != 'collection' && !previewCollection.value) {
+    if (!previewCollection.value) {
         list = list.filter(c => {
             const checks: (() => boolean)[] = [
                 () => {
@@ -984,8 +1145,19 @@ function itemClick(costume: ListCostume) {
     if (mode.value == 'make-collection') {
         if (collectionItems.value.has(costume.id))
             collectionItems.value.delete(costume.id);
-        else
+        else {
+            if (collectionItems.value.size >= 150) {
+                notify(
+                    `Your collection size exceedes the maximum 150 costumes!`,
+                    3000,
+                    { image: 'warning', color: '#c94f36' }
+                );
+
+                return;
+            }
+
             collectionItems.value.add(costume.id);
+        }
     }
 }
 </script>
