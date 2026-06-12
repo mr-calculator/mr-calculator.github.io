@@ -7349,5 +7349,117 @@
         "sourceLink": "/wiki/Project_Heroic_Age_(BattlePass)",
         "theme": "Corporate Raiders",
         "releaseDate": "2026-05-15"
+    },
+    {
+        "type": "normal",
+        "id": "30000134",
+        "name": "Digital Spirit",
+        "rarity": "rare",
+        "sourceFull": "Event Pass (S8.5): Shenloong Tournament",
+        "category": "Event Pass",
+        "source": "Shenloong Tournament",
+        "sourceLink": "/wiki/Shenloong_Tournament",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31015208",
+        "name": "Will of Galacta",
+        "rarity": "rare",
+        "sourceFull": "Event (S8.5): Twitch Drop",
+        "category": "Event",
+        "source": "Twitch Drops",
+        "sourceLink": "/wiki/Twitch_Drops",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31027207",
+        "name": "Ironwood Serpent",
+        "rarity": "rare",
+        "sourceFull": "Event Pass (S8.5): Shenloong Tournament",
+        "category": "Event Pass",
+        "source": "Shenloong Tournament",
+        "sourceLink": "/wiki/Shenloong_Tournament",
+        "theme": "Immortal Weapon",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "animated",
+        "id": "31029209",
+        "name": "Soulless Sword",
+        "rarity": "epic",
+        "sourceFull": "Store: Soulless Sword",
+        "category": "Store",
+        "source": "Soulless Sword",
+        "sourceLink": "/wiki/Soulless_Sword",
+        "theme": "Corporate Raiders",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31054208",
+        "name": "White Crown Phoenix",
+        "rarity": "rare",
+        "sourceFull": "Store: White Crown Phoenix",
+        "category": "Store",
+        "source": "White Crown Phoenix",
+        "sourceLink": "/wiki/White_Crown_Phoenix",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31063002",
+        "name": "Fantastic Cyclops",
+        "rarity": "rare",
+        "sourceFull": "Proficiency Reward: LV3",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31063003",
+        "name": "Uncanny Cyclops",
+        "rarity": "rare",
+        "sourceFull": "Proficiency Reward: LV24",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31063004",
+        "name": "Amazing Cyclops",
+        "rarity": "rare",
+        "sourceFull": "Proficiency Reward: LV34",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31063005",
+        "name": "Immortal Cyclops",
+        "rarity": "epic",
+        "sourceFull": "Proficiency Reward: LV65",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "31063201",
+        "name": "Weapon M",
+        "rarity": "rare",
+        "sourceFull": "Store: Weapon M",
+        "category": "Store",
+        "source": "Weapon M",
+        "sourceLink": "/wiki/Weapon_M",
+        "releaseDate": "2026-06-12"
     }
 ]

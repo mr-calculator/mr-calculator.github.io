@@ -314,7 +314,7 @@ async function createHeroFull(heroIdentity: HeroIdentity) {
     spinner.stop('Wrote hero file.');
 
     spinner.start('Copying images...');
-    await copyImages(heroIdentity.internalId!, heroIdentity.id!, p.log);
+    await copyImages(heroIdentity.internalId!, heroIdentity.id!, p.log, undefined, false);
     spinner.stop('Images copied and converted');
 
     if (hero.scrape)

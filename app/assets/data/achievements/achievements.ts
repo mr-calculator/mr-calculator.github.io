@@ -138,6 +138,11 @@ export const ACHIEVEMENT_CATEGORIES: {
                 icon: '/img/achievements/rewards/galacta-guide/its-your-girl-galacta.webp',
                 requirement: 280,
             },
+            {
+                title: 'Wade Wilson: The Spirit Guard',
+                icon: '/img/achievements/rewards/galacta-guide/wade-wilson-the-spirit-guard.webp',
+                requirement: 320,
+            },
         ]
     },
     {
@@ -260,6 +265,11 @@ export const ACHIEVEMENT_CATEGORIES: {
                 icon: '/img/common-rewards/chrono-tokens.webp',
                 requirement: 700,
             },
+            {
+                title: '200 Chrono Tokens',
+                icon: '/img/common-rewards/chrono-tokens.webp',
+                requirement: 740,
+            },
         ]
     },
     {
@@ -323,6 +333,11 @@ export const ACHIEVEMENT_CATEGORIES: {
                 title: '200 Unstable Molecules',
                 icon: '/img/common-rewards/unstable-mollecule.webp',
                 requirement: 360,
+            },
+            {
+                title: '200 Unstable Molecules',
+                icon: '/img/common-rewards/unstable-mollecule.webp',
+                requirement: 400,
             },
         ]
     }

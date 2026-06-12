@@ -460,7 +460,42 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.1.0/make-collection.webp',
             '/img/changelog/v2.1.0/make-collection-flow.webp',
         ]
-    }
+    },
+    {
+        version: {
+            number: '2.1.1',
+            date: 'June 12, 2026',
+            time: '11:16 PM',
+            commitSha: '4d254849f833f48a8fb008f949f84f8795a090c4'
+        },
+        title: 'Updated the costume collections feature',
+        description: `This update fixes a few issues with cosmetics, the collections feature, and adds a few nice-to-haves, further building upon the costume collections feature.`,
+        listTitle: 'Additions',
+        list: [
+            'Ability to see a count of costumes in a collection (and owned count)',
+            'Ability to filter, search, and sort collections (tools bar will automatically be shown when collection length is greater than 20).',
+            'Added a share button (that copies a shorter link — ID is not included, since it\'s a per browser property)',
+            'Added a New Collection button to the Collections List.',
+            'Added a confirmation step when cancelling the creation/editing of a collection (if there are any selected items)',
+            'Added an official collection for the 616 Vault (2026)',
+        ]
+    },
+    {
+        version: {
+            number: '2.1.2',
+            date: 'June 12, 2026',
+            time: '2:44 PM',
+        },
+        title: 'Content Update: Season 8.5',
+        description: `Added the new hero, costume, nameplates, and achievements (and new achievement rewards).`,
+        images: [
+            '/img/changelog/v2.1.2/cyclops-page.webp',
+            '/img/changelog/v2.1.2/achievements-cyclops.webp',
+            '/img/changelog/v2.1.2/costumes.webp',
+            '/img/changelog/v2.1.2/nameplates.webp',
+            '/img/changelog/v2.1.2/achievements-global.webp',
+        ]
+    },
 ];
 
 export function groupCommitsByVersion(commits: GitHubCommit[]):

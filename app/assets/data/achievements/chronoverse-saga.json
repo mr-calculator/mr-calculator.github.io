@@ -728,5 +728,32 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "id": "36ae0a53-42ea-4f51-bf73-cc0571231ba3_emergence-of-greatness",
+    "title": "Emergence of Greatness",
+    "description": "Heed the ancient wisdom of Shou-Lao in K'un-Lun: Shenloong Arena.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "9b6bc017-ece7-409d-a992-532033237606_a-step-too-far",
+    "title": "A Step Too Far",
+    "description": "Witness Daredevil emerge victorious in the Shenloong Trial.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "12e516cb-40b4-402d-85ca-19882af6a069_peak-of-power",
+    "title": "Peak of Power",
+    "description": "Witness Iron Fist Lin Lie emerge victorious in the Shenloong Trial.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

@@ -17,6 +17,7 @@ export const %HERO_NAME_CONST%: HeroData = {
         releasedAt: '%HERO_RELEASE_DATE%',
         featured: true
     },
+    internalId: '%HERO_INTERNAL_ID%',
     id: '%HERO_ID%',
     name: '%HERO_NAME%',
     aliases: [
@@ -35,6 +36,7 @@ export const %HERO_NAME_CONST%: HeroData = {
  * @param param0 hero information gathered from main script prompts
  */
 export function makeHeroFile({
+    internalId,
     id,
     name,
     roles,
@@ -44,6 +46,7 @@ export function makeHeroFile({
     mission2,
     mission2Req 
 } : {
+    internalId: string,
     id: string,
     name: string,
     roles: HeroRole[],
@@ -55,6 +58,7 @@ export function makeHeroFile({
 }, logger: typeof log) {
     // replace variables with info
     let file = template.replaceAll('%HERO_ID%', id)
+                       .replaceAll('%HERO_INTERNAL_ID%', internalId)
                        .replaceAll('%HERO_NAME%', name)
                        .replaceAll('%HERO_NAME_CONST%', name.replace(/\s+/g, ""))
                        .replaceAll('%HERO_ROLES%', `[${roles.map(r => `'${r}'`).join(', ')}]`)

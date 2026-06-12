@@ -998,5 +998,25 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "owner": "cyclops",
+    "id": "cf42a25f-4626-4fae-a2ca-eb87ff0079ff_x-men-schism",
+    "title": "X-Men: Schism",
+    "description": "As Cyclops, take down an enemy Wolverine.",
+    "category": "heroic-journey",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "owner": "cyclops",
+    "id": "9c0ada99-fd1c-4f00-b67d-28c888bf566b_connect-five",
+    "title": "Connect Five",
+    "description": "As Cyclops, hit 5 enemies with a single use of Concussive Beam.",
+    "category": "heroic-journey",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
   }
 ]

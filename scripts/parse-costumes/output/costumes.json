@@ -275,6 +275,19 @@
             "sourceLink": "/wiki/FLIGHT_MODE!_World_Tour_Merch_Vol.2",
             "theme": "Disco Revolution",
             "releaseDate": "2026-03-26"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029307",
+            "wikiLink": "/wiki/Soulless_Sword",
+            "name": "SOULLESS SWORD",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Corporate Raiders",
+            "releaseDate": "2026-06-12"
         }
     ],
     "rocket-raccoon": [
@@ -506,6 +519,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-02-06"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027304",
+            "wikiLink": "/wiki/Ironwood_Serpent",
+            "name": "IRONWOOD SERPENT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Shenloong Tournament",
+            "sourceLink": "/wiki/Shenloong_Tournament",
+            "theme": "Immortal Weapon",
+            "releaseDate": "2026-06-12"
         }
     ],
     "jeff-the-land-shark": [
@@ -3097,6 +3123,18 @@
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "theme": "Old Flames",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015101",
+            "wikiLink": "/wiki/Will_of_Galacta_(Storm)",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "sourceLink": "/wiki/Twitch_Drops",
+            "releaseDate": "2026-06-12"
         }
     ],
     "squirrel-girl": [
@@ -5091,6 +5129,18 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Winter Holiday 2025",
             "releaseDate": "2026-01-09"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054503",
+            "wikiLink": "/wiki/White_Crown_Phoenix",
+            "name": "WHITE CROWN PHOENIX",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-06-12"
         }
     ],
     "emma-frost": [
@@ -5718,6 +5768,44 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-03-20"
+        }
+    ],
+    "cyclops": [
+        {
+            "heroId": "cyclops",
+            "id": "1063500",
+            "wikiLink": "/wiki/Weapon_M",
+            "name": "WEAPON M",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-06-12"
+        },
+        {
+            "heroId": "cyclops",
+            "id": "1063101",
+            "wikiLink": "/wiki/Futuristic_Focus",
+            "name": "FUTURISTIC FOCUS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "sourceLink": "/wiki/Competitive#Rewards",
+            "releaseDate": "2026-06-12"
+        },
+        {
+            "heroId": "cyclops",
+            "id": "1063100",
+            "wikiLink": "/wiki/Shadowed_Gaze",
+            "name": "SHADOWED GAZE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-06-12"
         }
     ]
 }

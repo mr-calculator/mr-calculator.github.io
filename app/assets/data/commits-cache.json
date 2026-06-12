@@ -1,5 +1,47 @@
 [
   {
+    "sha": "4d254849f833f48a8fb008f949f84f8795a090c4",
+    "node_id": "C_kwDORv7rQ9oAKDRkMjU0ODQ5ZjgzM2Y0OGE4ZmIwMDhmOTQ5Zjg0Zjg3OTVhMDkwYzQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-11T23:16:12Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-11T23:16:12Z"
+      },
+      "message": "Updated the costume collections feature\nAdditions:\nAbility to see a count of costumes in a collection (and owned count)\nAbility to filter, search, and sort collections (tools bar will automatically be shown when collection length is greater than 20).\nAdded a share button (that copies a shorter link - id is not included, since it's a per browser property)\nAdded a New Collection button to the Collections List.\nAdded a confirmation step when cancelling the creation/editing of a collection (if there are any selected items)\nAdded an official collection for the 616 Vault (2026)\n\nFixed a reported issue with Starlord's Groovy Guardian nameplate having the wrong image and the Glory Gunner nameplate missing.\n\nImproved automation scripts for costumes, nameplates, and achievements. The first two were modified to only add new items based on a diff, rather than always overwriting the item lists.",
+      "tree": {
+        "sha": "1782a4bf040d3814239d28c98dac45cc0201cfd2",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/1782a4bf040d3814239d28c98dac45cc0201cfd2"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/4d254849f833f48a8fb008f949f84f8795a090c4",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/4d254849f833f48a8fb008f949f84f8795a090c4",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/4d254849f833f48a8fb008f949f84f8795a090c4",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/4d254849f833f48a8fb008f949f84f8795a090c4/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "a9883d7ae2abeb9c320a334411c8f227cb9bca8c",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/a9883d7ae2abeb9c320a334411c8f227cb9bca8c",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/a9883d7ae2abeb9c320a334411c8f227cb9bca8c"
+      }
+    ]
+  },
+  {
     "sha": "a9883d7ae2abeb9c320a334411c8f227cb9bca8c",
     "node_id": "C_kwDORv7rQ9oAKGE5ODgzZDdhZTJhYmViOWMzMjBhMzM0NDExYzhmMjI3Y2I5YmNhOGM",
     "commit": {
@@ -5244,48 +5286,6 @@
         "sha": "4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/4f47986628bbbed12f89eb0ee09a7fc92ee5627f"
-      }
-    ]
-  },
-  {
-    "sha": "4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
-    "node_id": "C_kwDORv7rQ9oAKDRmNDc5ODY2MjhiYmJlZDEyZjg5ZWIwZWUwOWE3ZmM5MmVlNTYyN2Y",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T00:30:09Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T00:30:09Z"
-      },
-      "message": "Fixed OG/Twitter SEO images having the wrong extension (png -> webp)",
-      "tree": {
-        "sha": "e9af785bdf3b5aac84bdaa29234828a4c40f4663",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/e9af785bdf3b5aac84bdaa29234828a4c40f4663"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/4f47986628bbbed12f89eb0ee09a7fc92ee5627f/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "6de72c0c1013e757a4695b84f6fd07687595edcd",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6de72c0c1013e757a4695b84f6fd07687595edcd",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/6de72c0c1013e757a4695b84f6fd07687595edcd"
       }
     ]
   }

@@ -9,6 +9,7 @@ export const WIKI_HERO_ID_MAP: Record<string, string> = {
     "Blade":                    "blade",
     "Captain America":          "captain-america",
     "Cloak & Dagger":           "cloak-and-dagger",
+    "Cyclops":                  "cyclops",
     "Daredevil":                "daredevil",
     "Deadpool":                 "deadpool",
     "Devil Dinosaur":           "devil-dinosaur",
