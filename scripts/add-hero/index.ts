@@ -2,7 +2,7 @@ import * as p from '@clack/prompts'
 import fs from 'fs';
 import { makeHeroFile } from './make-hero-file'
 import { copyImages } from './appropriate-images'
-import { scrapeData } from './scrape-stats'
+import { averageHeroRolesAverages, scrapeData } from './scrape-stats'
 import { HeroData, HeroRole } from '~/assets/data/common';
 
 export const HERO_FILE_PATH = `./app/assets/data/heroes/`;
@@ -325,14 +325,22 @@ async function createHeroFull(heroIdentity: HeroIdentity) {
 
 async function scrapeStats(internalId: string, processedId: string, roles: HeroRole[], season = 'last') {
     const spinner = p.spinner()
+    spinner.start('Scraping hero stats...');
 
-    if (roles.length == 1) {
-        spinner.start('Scraping hero stats...');
-        await scrapeData(internalId, processedId, roles[0], p.log, season);
-        spinner.stop('Scraped hero stats, modified files');
+    if (roles.length > 1) {
+        p.log.info('Hero has multiple roles, fetching all, attempting to infer...');
+        await Promise.all(roles.map((role, idx) => {
+            const internalIdRole = inferInternalId(`${processedId}_${role}`) ?? `${internalId}${idx + 1}`;
+            return scrapeData(internalIdRole, `${processedId}_${role}`, 'multi', p.log, season, true);
+        }));
+
+        p.log.info('Fetched roles, compiling average of averages...');
+        averageHeroRolesAverages(processedId, roles);
     }
     else
-        p.log.info('Cannot scrape hero stats as roles are either none or more than 1');
+        await scrapeData(internalId, processedId, roles[0], p.log, season);
+
+    spinner.stop('Scraped hero stats, modified files');
 }
 
 try {

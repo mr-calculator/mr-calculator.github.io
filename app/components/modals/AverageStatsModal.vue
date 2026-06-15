@@ -21,7 +21,7 @@
                 </div>
 
                 <div
-                    v-if="!hasAvgStats && genericStatsUsed.length"
+                    v-if="!rolesWithAvgStats.includes(role) && genericStatsUsed.length && statsType == 'normal'"
                     :class="{'uses-generic': 1, open: genericStatsExpanded}"
                     :title="`You are currently using generic stats.\nGeneric stats are gathered from hundreds of games of the top 500 players on ${hero.name}.`"
                     @click="genericStatsExpanded = !genericStatsExpanded"
@@ -46,26 +46,78 @@
                         </p>
                     </template>
                 </div>
-                <!-- <div v-else class="uses-generic blue" @click="useGenericStats">
+                <div
+                    v-else-if="!headless && genericAverageStats && statsType == 'normal'"
+                    class="uses-generic blue" @click="useGenericStats"
+                >
                     USE GENERIC STATS
-                </div> -->
+                </div>
             </div>
 
             <div class="toggle-wrapper">
-                <FormToggle
+                <FormMultiToggle
                     class="toggle"
-
-                    both
-                    :model-value="statsType == 'arcade'"
-                    @update:model-value="statsType = $event ? 'arcade' : 'normal'"
+                    v-model="statsType"
                 >
-                    <template #off>
+                    <template #normal>
                         Quick/Comp
                     </template>
-                    <template #on>
+                    <template #arcade>
                         Arcade
                     </template>
-                </FormToggle>
+                </FormMultiToggle>
+            </div>
+
+            <div
+                v-if="
+                    (statsType == 'normal' && statsPerRole)
+                 || (statsType == 'arcade' && arcadeStatsPerRole)
+                "
+                class="toggle-wrapper"
+            >
+                <FormMultiToggle
+                    class="toggle"
+                    v-model="role"
+                    :small="mobile"
+                >
+                    <template #all-roles>
+                        <Tex
+                            src="/img/heroes/roles/all-roles.webp"
+                            color="#fff"
+
+                            width="30px"
+                            height="30px"
+                        />
+                    </template>
+
+                    <template #vanguard>
+                        <Tex
+                            src="/img/heroes/roles/vanguard.webp"
+                            color="#fff"
+
+                            width="30px"
+                            height="30px"
+                        />
+                    </template>
+                    <template #duelist>
+                        <Tex
+                            src="/img/heroes/roles/duelist.webp"
+                            color="#fff"
+
+                            width="30px"
+                            height="30px"
+                        />
+                    </template>
+                    <template #strategist>
+                        <Tex
+                            src="/img/heroes/roles/strategist.webp"
+                            color="#fff"
+
+                            width="30px"
+                            height="30px"
+                        />
+                    </template>
+                </FormMultiToggle>
             </div>
 
             <ul v-if="neededStats" class="inputs">
@@ -106,8 +158,8 @@
 
                             :tab-index="index + 1"
 
-                            :model-value="statsType == 'normal' ? models[type!] : modelsArcade[type!]"
-                            @update:model-value="statsType == 'normal' ? (models[type!] = $event) : (modelsArcade[type!] = $event)"
+                            :model-value="getModel(type)"
+                            @update:model-value="setModel(type, $event)"
 
                             @change="onChange(type!, ($event.target as HTMLInputElement).value)"
                         />
@@ -402,15 +454,28 @@
 
 </style>
 
+<script lang="ts">
+export type RoleModels = Partial<Record<HeroRole, Record<string, string>>>;
+
+export type AverageStatsOutput = {
+    stats?: Record<string, string>,
+    statsArcade?: Record<string, string>,
+    roleStats?: RoleModels,
+    arcadeRoleStats?: RoleModels
+}
+</script>
+
 <script setup lang="ts">
-import { CHALLENGE_ICONS, CHALLENGE_NAMES, CHALLENGE_STATS, getAverageStatsForHero, type Challenge, type ChallengeStats, type HeroData, type PlayerHeroStore } from '~/assets/data/common';
+import { CHALLENGE_ICONS, CHALLENGE_NAMES, CHALLENGE_STATS, getAverageStatsForHero, HERO_ROLES, type Challenge, type ChallengeStats, type HeroData, type HeroRole, type PlayerHeroStore } from '~/assets/data/common';
 
 const props = withDefaults(defineProps<{
     title?: string,
     message?: string,
     hero: HeroData,
     stats: PlayerHeroStore['averageStats'],
+    statsPerRole?: PlayerHeroStore['averageStatsPerRole'],
     arcadeStats?: PlayerHeroStore['averageStatsArcade'],
+    arcadeStatsPerRole?: PlayerHeroStore['averageStatsArcadePerRole'],
 
     tab?: 'normal'|'arcade'
 
@@ -421,9 +486,11 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits<{
-    confirm: [value: { stats: Record<string, string>, statsArcade: Record<string, string> }],
+    confirm: [value: AverageStatsOutput],
     cancel: []
 }>()
+
+const mobile = isMobile();
 
 const infoModalOpen = ref(false);
 
@@ -444,60 +511,130 @@ const neededStats = computed<[string, string, string, ChallengeStats][]>(() => {
     ) ?? [];
 });
 
-const hasAvgStats = useHasAvgStats(() => props.hero, true);
-const genericStatsUsed = computed(() => {
-    const statsForHero = getAverageStatsForHero(props.hero.id);
+const rolesWithAvgStats = useRolesWithAvgStats(() => props.hero);
+const genericAverageStats = computed(() => {
+    let heroId = props.hero.id;
+    if (role.value != 'all-roles')
+        heroId += '_' + role.value;
 
-    if (!statsForHero)
+    return getAverageStatsForHero(heroId);
+})
+const genericStatsUsed = computed(() => {
+    if (!genericAverageStats.value)
         return [];
+
+    let statSource: Record<string, number>|undefined = props.stats;
+    if (role.value != 'all-roles')
+        statSource = props.statsPerRole?.[role.value] ?? {};
 
     return neededStats.value.filter(s => {
         if (s[0] == 'play')
             return false;
-        if (props.stats[s[0]] && !isNaN(props.stats[s[0]] ?? NaN))
+        if (statSource[s[0]] && !isNaN(statSource[s[0]] ?? NaN))
             return false;
 
         if (typeof props.hideGenericStats !== 'undefined')
             if (props.hideGenericStats[s[0] as Challenge['type']] === true)
                 return false;
-
         return true;
     }).map(s => ({
         name: s[1],
         icon: s[2],
-        value: statsForHero?.[s[0] as Challenge['type']] ?? 0
+        value: genericAverageStats.value?.[s[0] as Challenge['type']] ?? 0
     }));
 });
 const genericStatsExpanded = ref(false);
+
+function useGenericStats() {
+    if (statsType.value == 'arcade')
+        return;
+    if (role.value == 'all-roles')
+        Object.keys(models.value).forEach(k => delete models.value[k]);
+    else if (modelsRoles.value?.[role.value]) {
+        Object.keys(modelsRoles.value[role.value]!).forEach(k => delete modelsRoles.value[role.value as HeroRole]![k]);
+    }
+}
+
 
 const statsType = ref<'normal'|'arcade'>(props.tab);
 watch(() => props.tab, (tab) => statsType.value = tab);
 
 const models = ref<Record<string, string>>({});
+const modelsRoles = ref<RoleModels>({});
 const modelsArcade = ref<Record<string, string>>({});
+const modelsArcadeRoles = ref<RoleModels>({});
+
+const role = ref<HeroRole|'all-roles'>('all-roles');
 
 function setModels() {
     models.value = {};
-    neededStats.value?.forEach(stat =>
-        models.value![stat[0]] = `${props.stats[stat[0]] ?? ''}`
-    );
+    neededStats.value?.forEach(stat => {
+        models.value![stat[0]] = `${props.stats[stat[0]] ?? ''}`;
+
+        for (const role of HERO_ROLES) {
+            if (!modelsRoles.value[role])
+                modelsRoles.value[role] = {};
+            
+            modelsRoles.value[role]![stat[0]] = `${props.statsPerRole?.[role]?.[stat[0]] ?? ''}`;
+        }
+    });
 }
 if (Object.values(models.value ?? {}).length == 0)
     setModels();
 
 function setArcadeModels() {
     modelsArcade.value = {};
-    neededStats.value?.forEach(stat =>
-        modelsArcade.value![stat[0]] = `${props.arcadeStats?.[stat[0]] ?? ''}`
-    );
+    neededStats.value?.forEach(stat => {
+        modelsArcade.value![stat[0]] = `${props.arcadeStats?.[stat[0]] ?? ''}`;
+
+        for (const role of HERO_ROLES) {
+            if (!modelsArcadeRoles.value[role])
+                modelsArcadeRoles.value[role] = {};
+            
+            modelsArcadeRoles.value[role]![stat[0]] = `${props.arcadeStatsPerRole?.[role]?.[stat[0]] ?? ''}`;
+        }
+    });
 }
 if (Object.values(modelsArcade.value ?? {}).length == 0)
     setArcadeModels();
 
-// function useGenericStats() {
-//     Object.keys(models.value).forEach(k => models.value[k] = '0');
-//     emit('confirm', models.value);
-// }
+function getModel(statKey: string) {
+    if (statsType.value == 'normal') {
+        if (role.value == 'all-roles')
+            return models.value[statKey];
+        
+        return modelsRoles.value[role.value]?.[statKey] ?? '';
+    }
+    else {
+        if (role.value == 'all-roles')
+            return modelsArcade.value[statKey];
+        
+        return modelsArcadeRoles.value[role.value]?.[statKey] ?? '';
+    }
+}
+
+function setModel(statKey: string, value: string) {
+    if (statsType.value == 'normal') {
+        if (role.value == 'all-roles')
+            models.value[statKey] = value;
+        else {
+            if (!modelsRoles.value[role.value])
+                modelsRoles.value[role.value] = {};
+
+            modelsRoles.value[role.value]![statKey] = value;
+        }
+    }
+    else {
+        if (role.value == 'all-roles')
+            modelsArcade.value[statKey] = value;
+        else {
+            if (!modelsArcadeRoles.value[role.value])
+                modelsArcadeRoles.value[role.value] = {};
+
+            modelsArcadeRoles.value[role.value]![statKey] = value;
+        }
+    }
+}
 
 const warningPopup = ref<string|false>(false);
 let popupDisappearTask: any;
@@ -534,16 +671,30 @@ function closePopup() {
 function reset() {
     setModels();
     setArcadeModels();
+    role.value = 'all-roles';
 }
 
 defineExpose({
     stats: models,
     statsArcade: modelsArcade,
+    role,
     reset
 })
 
 function confirm() {
-    emit('confirm', { stats: models.value, statsArcade: modelsArcade.value });
+    function statsIfChangedOrEmpty<T>(val: T) {
+        return Object.values(val as any).some(v => v) ? val : undefined;
+    }
+    function statsIfChangedOrEmptyRoles(val: RoleModels) {
+        return Object.values(val).some(role => Object.values(role).some(v => v)) ? val : undefined;
+    }
+
+    emit('confirm', {
+        stats: statsIfChangedOrEmpty(models.value),
+        statsArcade: statsIfChangedOrEmpty(modelsArcade.value),
+        roleStats: statsIfChangedOrEmptyRoles(modelsRoles.value),
+        arcadeRoleStats: statsIfChangedOrEmptyRoles(modelsArcadeRoles.value)
+    });
 }
 
 useEvent('keydown', (e: KeyboardEvent) => {

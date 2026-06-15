@@ -12,6 +12,7 @@ export const LATEST_SEASON_NO = '8';
 
 export type HeroRole = 'vanguard'|'duelist'|'strategist';
 export const HeroRoleSchema = z.enum(['vanguard', 'duelist', 'strategist']);
+export const HERO_ROLES: HeroRole[] = ['vanguard', 'duelist', 'strategist'];
 
 // export interface Challenge {
 //     type: 'play'|'damage'|'heal'|'damage_heal'|'take_damage'|'finals'|'kos'|'kos_assists',
@@ -827,10 +828,21 @@ export const PlayerHeroStoreSchema = z.object({
     goal: z.number().default(1),
 
     averageStats: z.record(z.string(), z.number()).default({}),
+    averageStatsPerRole: z.object({
+        vanguard: z.record(z.string(), z.number()).optional(),
+        duelist: z.record(z.string(), z.number()).optional(),
+        strategist: z.record(z.string(), z.number()).optional(),
+    }).optional(),
     averageStatsArcade: z.record(z.string(), z.number()).optional().default({}),
+    averageStatsArcadePerRole: z.object({
+        vanguard: z.record(z.string(), z.number()).optional(),
+        duelist: z.record(z.string(), z.number()).optional(),
+        strategist: z.record(z.string(), z.number()).optional(),
+    }).optional(),
     arcadeMaxFeasableMissions: z.number().default(2),
     openedCalculator: z.boolean().default(false),
     usesGenericStats: z.boolean().default(false),
+    lastViewingRole: HeroRoleSchema.optional(),
 
     planner: z.object({
         mode: z.enum(['number-of-days', 'weekly']).default('number-of-days'),

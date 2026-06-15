@@ -178,7 +178,7 @@
                 position: relative
                 z-index: 2
 
-            .player-level,
+            .player-options-wrapper,
             .categories-list
                 position: absolute
                 bottom: 25px
@@ -200,207 +200,232 @@
                 +media-large-desktop
                     width: 375px
 
-            .player-level
-                padding-left: 50px
-                padding-right: 28px
-                padding-bottom: 12px
+            .player-options-wrapper
+                display: flex
+                flex-direction: column
+                gap: 20px
 
-                background: var(--tex-heroProficiencyLevel) no-repeat
-                background-size: 100% 100%
-
-                display: grid
-                grid-template-columns: 100%
-                grid-template-rows: 53px 67px
-
-                z-index: 4
-                user-select: none
-
-                +media-phone
-                    padding-left: 42px
-                    padding-right: 22px
-
-                > .popup
-                    position: absolute
-                    top: 0
-                    left: 20px
-                    transform: translateY(-100%)
-
-                    width: calc(100% - 10px)
-                    padding: 40px 35px 50px 35px
-
-                    +media-phone
-                        padding: 50px 35px 60px 35px
-                        height: auto
-
-                    .message
-                        p
-                            text-align: center
-                            line-height: 16px
-                            font-size: 18px
-                            margin-bottom: 6px
-
-                            span
-                                color: #c09b07
-
-                .current
-                    position: relative
-                    display: flex
-                    justify-content: space-between
-                    align-items: center
-
-                    cursor: pointer
-
-                    +hover
-                        &::before
-                            content: ""
-                            position: absolute
-                            top: 0
-                            left: 50%
-                            width: calc(100% + 44px)
-                            height: 100%
-
-                            transform: translateX(-50%) skew(4deg)
-
-                            backdrop-filter: brightness(1.2)
-
-                            z-index: -1
-
-                            +media-mobile
-                                left: calc(50% - 4px)
-                                width: calc(100% + 52px)
-                                transform: translateX(-50%) skew(2.5deg)
-
-                            +media-tablet
-                                left: calc(50%)
-                                width: calc(100% + 44px)
-                                transform: translateX(-50%) skew(4deg)
-
-                            +media-desktop
-                                left: 50%
-                                width: calc(100% + 52px)
-                                transform: translateX(-50%) skew(2.5deg)
-
-                            +media-large-desktop
-                                width: calc(100% + 44px)
-
-                        .rank
-                            color: $light-blue
-
-                            .icon
-                                img
-                                    filter: brightness(1.4)
-
-                    .rank h2,
-                    .level
-                        font-size: 28px
-                        font-family: $font-bold
-                        font-weight: normal
-                        text-transform: uppercase
-                        font-style: italic
-
-                    .rank
-                        height: 100%
-                        display: flex
-                        align-items: center
-                        gap: 10px
-
-                        color: $dark
-
-                        +media-phone
-                            gap: 0
-
-                        .icon
-                            width: 45px
-                            height: 100%
-
-                            display: flex
-                            justify-content: center
-                            align-items: center
-
-                            img
-                                display: block
-                                width: 75px
-
-                                pointer-events: none
-                                user-select: none
-                                -webkit-user-drag: none
-
-                    .level
-                        display: flex
-                        align-items: center
-                        gap: 5px
-
-                        color: $light-blue-highlight
-                        user-select: none
-
-                        +media-phone
-                            gap: 0
-
-                        &.can-level-up
-                            +hover
-                                color: #ebb72a
-
-                                .texture
-                                    ::v-deep(.tex-image)
-                                            background: #ebb72a
-
-                .bottom
-                    align-self: end
+                .role-select
                     width: 100%
-
-                    display: grid
-                    grid-template-columns: auto 40px
+                    display: flex
+                    justify-content: center
+                    align-items: center
                     gap: 10px
 
-                    .points
-                        width: 100%
+                    .modify
+                        cursor: pointer
 
+                        +hover
+                            .texture
+                                ::v-deep(img)
+                                    filter: drop-shadow(0px 1px 0 $light-blue) drop-shadow(1px 0px 0 $light-blue) drop-shadow(1px 1px 0 $light-blue) drop-shadow(0px -1px 0 $light-blue) drop-shadow(-1px 0px 0 $light-blue)
+
+                        .texture
+                            ::v-deep(img)
+                                filter: drop-shadow(0px 2px 0 $blue) drop-shadow(2px 0px 0 $blue) drop-shadow(2px 2px 0 $blue) drop-shadow(0px -2px 0 $blue) drop-shadow(-2px 0px 0 $blue)
+
+
+                .player-level
+                    padding-left: 50px
+                    padding-right: 28px
+                    padding-bottom: 12px
+
+                    background: var(--tex-heroProficiencyLevel) no-repeat
+                    background-size: 100% 100%
+
+                    display: grid
+                    grid-template-columns: 100%
+                    grid-template-rows: 53px 67px
+
+                    z-index: 4
+                    user-select: none
+
+                    +media-phone
+                        padding-left: 42px
+                        padding-right: 22px
+
+                    > .popup
+                        position: absolute
+                        top: 0
+                        left: 20px
+                        transform: translateY(-100%)
+
+                        width: calc(100% - 10px)
+                        padding: 40px 35px 50px 35px
+
+                        +media-phone
+                            padding: 50px 35px 60px 35px
+                            height: auto
+
+                        .message
+                            p
+                                text-align: center
+                                line-height: 16px
+                                font-size: 18px
+                                margin-bottom: 6px
+
+                                span
+                                    color: #c09b07
+
+                    .current
+                        position: relative
                         display: flex
-                        flex-direction: column
-                        gap: 4px
+                        justify-content: space-between
+                        align-items: center
 
                         cursor: pointer
 
-                        .point-count
+                        +hover
+                            &::before
+                                content: ""
+                                position: absolute
+                                top: 0
+                                left: 50%
+                                width: calc(100% + 44px)
+                                height: 100%
+
+                                transform: translateX(-50%) skew(4deg)
+
+                                backdrop-filter: brightness(1.2)
+
+                                z-index: -1
+
+                                +media-mobile
+                                    left: calc(50% - 4px)
+                                    width: calc(100% + 52px)
+                                    transform: translateX(-50%) skew(2.5deg)
+
+                                +media-tablet
+                                    left: calc(50%)
+                                    width: calc(100% + 44px)
+                                    transform: translateX(-50%) skew(4deg)
+
+                                +media-desktop
+                                    left: 50%
+                                    width: calc(100% + 52px)
+                                    transform: translateX(-50%) skew(2.5deg)
+
+                                +media-large-desktop
+                                    width: calc(100% + 44px)
+
+                            .rank
+                                color: $light-blue
+
+                                .icon
+                                    img
+                                        filter: brightness(1.4)
+
+                        .rank h2,
+                        .level
+                            font-size: 28px
+                            font-family: $font-bold
+                            font-weight: normal
+                            text-transform: uppercase
+                            font-style: italic
+
+                        .rank
+                            height: 100%
+                            display: flex
+                            align-items: center
+                            gap: 10px
+
+                            color: $dark
+
+                            +media-phone
+                                gap: 0
+
+                            .icon
+                                width: 45px
+                                height: 100%
+
+                                display: flex
+                                justify-content: center
+                                align-items: center
+
+                                img
+                                    display: block
+                                    width: 75px
+
+                                    pointer-events: none
+                                    user-select: none
+                                    -webkit-user-drag: none
+
+                        .level
                             display: flex
                             align-items: center
                             gap: 5px
 
-                            p
-                                font-family: $font
-                                font-size: 26px
-                                color: $light
+                            color: $light-blue-highlight
+                            user-select: none
 
-                                span
-                                    color: $light-blue-highlight
+                            +media-phone
+                                gap: 0
 
-                    .set
+                            &.can-level-up
+                                +hover
+                                    color: #ebb72a
+
+                                    .texture
+                                        ::v-deep(.tex-image)
+                                                background: #ebb72a
+
+                    .bottom
                         align-self: end
-                        position: relative
-                        display: flex
-                        justify-content: center
-                        align-items: center
+                        width: 100%
 
-                        .popup
-                            position: absolute
-                            top: 0
-                            right: 0
-                            transform: translate(60px, -100%)
+                        display: grid
+                        grid-template-columns: auto 40px
+                        gap: 10px
 
-                            // text-align: center
+                        .points
+                            width: 100%
 
-                            +media-mobile
-                                width: 200px
-                                height: 150px
+                            display: flex
+                            flex-direction: column
+                            gap: 4px
 
-                                font-size: 20px
+                            cursor: pointer
 
-                            +media-desktop
-                                width: 300px
-                                height: 150px
-                                padding: 30px 40px 60px 40px
+                            .point-count
+                                display: flex
+                                align-items: center
+                                gap: 5px
 
-                                transform: translate(90px, -100%)
+                                p
+                                    font-family: $font
+                                    font-size: 26px
+                                    color: $light
+
+                                    span
+                                        color: $light-blue-highlight
+
+                        .set
+                            align-self: end
+                            position: relative
+                            display: flex
+                            justify-content: center
+                            align-items: center
+
+                            .popup
+                                position: absolute
+                                top: 0
+                                right: 0
+                                transform: translate(60px, -100%)
+
+                                // text-align: center
+
+                                +media-mobile
+                                    width: 200px
+                                    height: 150px
+
+                                    font-size: 20px
+
+                                +media-desktop
+                                    width: 300px
+                                    height: 150px
+                                    padding: 30px 40px 60px 40px
+
+                                    transform: translate(90px, -100%)
 
         .content
             margin: 0 0 60px 0

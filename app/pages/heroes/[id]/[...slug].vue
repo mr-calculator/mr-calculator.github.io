@@ -194,151 +194,195 @@
                         </div>
                     </div>
                 </div>
-                <div v-else class="player-level">
-                    <ClientOnly>
-                        <div
-                            v-if="showQuickEditPopup" 
-                            class="popup"
-                            :style="{
-                                backgroundImage: texUrl('popup')
-                            }"
-                        >
-                            <div class="message">
-                                <p>
-                                    <span>Change your rank</span> by pressing on the icon/name.
-                                </p>
-                                <p>
-                                    Level up by pressing on &nbsp;<span>&#708; LV{{ currentRankComp.level }}</span>
-                                </p>
-                                <p>
-                                    <span>Change your points</span> by pressing on the number or <span>dragging</span> the progress bar.
-                                </p>
-                            </div>
+                <div v-else class="player-options-wrapper">
+                    <div v-if="isMultiRole && rolesWithAvgStats.length" class="role-select">
+                        <ClientOnly>
+                            <FormMultiToggle
+                                class="toggle"
+                                :model-value="storedLevel.lastViewingRole ?? 'all-roles'"
+                                @update:model-value="storedLevel.lastViewingRole = $event == 'all-roles'
+                                    ? undefined
+                                    : ($event as HeroRole)
+                                "
+                                small
+                            >
+                                <template
+                                    v-for="role in rolesWithAvgStats"
+                                    :key="role"
+                                    #[role]
+                                >
+                                    <Tex
+                                        :src="`/img/heroes/roles/${role}.webp`"
+                                        color="#fff"
 
-                            <Tex
-                                class="close"
-                                image="crossBlue"
-                                color="var(--blue)"
-                                @click.stop="showQuickEditPopup = false"
-                            />
-                        </div>
-
-                        <div
-                            class="current"
-                            @click="selectCurrentLevel()"
-
-                            v-tooltip="({
-                                text: `Select <b>current level</b>`,
-                                icon: 'mouseLeft'
-                            } satisfies TooltipBinding)"
-                        >
-                            <div class="rank">
-                                <div class="icon">
-                                    <img
-                                        :src="currentRankComp.rank.icon"
-                                        :alt="`${currentRankComp.rank.name} Icon`"
-                                        draggable="false"
+                                        width="30px"
+                                        height="30px"
                                     />
-                                </div>
-                                <h2>{{ currentRankComp.rank.name }}</h2>
-                            </div>
+                                </template>
+                            </FormMultiToggle>
+                        </ClientOnly>
                             <div
-                                :class="{ level: 1, 'can-level-up': canLevelUp.state }"
-                                @click.stop="levelUp"
-                                v-tooltip="canLevelUp.state ? ({
-                                    text: `Level up`,
-                                    icon: 'mouseLeft'
-                                } satisfies TooltipBinding) : undefined"
+                                v-if="rolesWithAvgStats.length < 4"
+                                class="modify"
+                                @click="editAvgStats()"
                             >
                                 <Tex
-                                    v-if="canLevelUp.state"
+                                    image="cog"
 
-                                    image="levelUp"
-
-                                    color="var(--light-blue-highlight)"
-                                    
-                                    width="20px"
-                                    height="20px"
+                                    width="30px"
+                                    height="30px"
                                 />
-                                LV{{ currentRankComp.level }}
                             </div>
                         </div>
-                        <div class="bottom">
-                            <div class="points">
-                                <Tex
-                                    class="point-count"
-                                    @click="editProficiencyPoints()"
-
-                                    image="proficiency"
-                                    hover="auto"
-                                    clickable
-
-                                    width="22px"
-                                    height="22px"
-                                    object-fit="contain"
-
-                                    v-tooltip="({
-                                        text: 'Set <b>proficiency points</b>',
-                                        icon: 'mouseLeft'
-                                    } satisfies TooltipBinding)"
-                                >
+                    <div class="player-level">
+                        <ClientOnly>
+                            <div
+                                v-if="showQuickEditPopup" 
+                                class="popup"
+                                :style="{
+                                    backgroundImage: texUrl('popup')
+                                }"
+                            >
+                                <div class="message">
                                     <p>
-                                        {{ pointsSliderModel ?? currentRankComp.points }}
-                                        <span>/{{ currentRankComp.rank.xpPerLevel }}</span>
+                                        <span>Change your rank</span> by pressing on the icon/name.
                                     </p>
-                                </Tex>
-                                <FormPointsSlider
-                                    class="slider"
-                                    :hero="hero"
+                                    <p>
+                                        Level up by pressing on &nbsp;<span>&#708; LV{{ currentRankComp.level }}</span>
+                                    </p>
+                                    <p>
+                                        <span>Change your points</span> by pressing on the number or <span>dragging</span> the progress bar.
+                                    </p>
+                                </div>
 
-                                    v-model="pointsSliderModel"
-                                    @drag-end="storedLevel.points = $event"
+                                <Tex
+                                    class="close"
+                                    image="crossBlue"
+                                    color="var(--blue)"
+                                    @click.stop="showQuickEditPopup = false"
                                 />
                             </div>
+
                             <div
-                                class="set warning-wrapper"
-                                @click="modifyHeroData"
+                                class="current"
+                                @click="selectCurrentLevel()"
+
                                 v-tooltip="({
-                                    text: `${hero.name} <b>options</b>`,
+                                    text: `Select <b>current level</b>`,
                                     icon: 'mouseLeft'
                                 } satisfies TooltipBinding)"
                             >
-                                <Tex
-                                    image="userCog"
-                                    hover="auto"
-                                    clickable
-
-                                    width="40px"
-                                    height="40px"
-                                    object-fit="cover"
-                                />
-
-                                <Tex
-                                    v-if="!hasAvgStats || isLv1AndGoalLv1 || unknownHeroHasPossibleMatch"
-                                    class="warning-bubble"
-                                    image="redDotExcl"
-
-                                    object-fit="contain"
-                                />
-
+                                <div class="rank">
+                                    <div class="icon">
+                                        <img
+                                            :src="currentRankComp.rank.icon"
+                                            :alt="`${currentRankComp.rank.name} Icon`"
+                                            draggable="false"
+                                        />
+                                    </div>
+                                    <h2>{{ currentRankComp.rank.name }}</h2>
+                                </div>
                                 <div
-                                    v-if="showEditPopup"
-                                    class="popup"
-                                    :style="{
-                                        backgroundImage: texUrl('popupGoldDownRight')
-                                    }"
+                                    :class="{ level: 1, 'can-level-up': canLevelUp.state }"
+                                    @click.stop="levelUp"
+                                    v-tooltip="canLevelUp.state ? ({
+                                        text: `Level up`,
+                                        icon: 'mouseLeft'
+                                    } satisfies TooltipBinding) : undefined"
                                 >
-                                    You can change your hero details from here too
                                     <Tex
-                                        class="close"
-                                        image="crossBlue"
-                                        color="var(--blue)"
-                                        @click.stop="showEditPopup = false"
+                                        v-if="canLevelUp.state"
+
+                                        image="levelUp"
+
+                                        color="var(--light-blue-highlight)"
+                                        
+                                        width="20px"
+                                        height="20px"
                                     />
+                                    LV{{ currentRankComp.level }}
                                 </div>
                             </div>
-                        </div>
-                    </ClientOnly>
+                            <div class="bottom">
+                                <div class="points">
+                                    <Tex
+                                        class="point-count"
+                                        @click="editProficiencyPoints()"
+
+                                        image="proficiency"
+                                        hover="auto"
+                                        clickable
+
+                                        width="22px"
+                                        height="22px"
+                                        object-fit="contain"
+
+                                        v-tooltip="({
+                                            text: 'Set <b>proficiency points</b>',
+                                            icon: 'mouseLeft'
+                                        } satisfies TooltipBinding)"
+                                    >
+                                        <p>
+                                            {{ pointsSliderModel ?? currentRankComp.points }}
+                                            <span>/{{ currentRankComp.rank.xpPerLevel }}</span>
+                                        </p>
+                                    </Tex>
+                                    <FormPointsSlider
+                                        class="slider"
+                                        :hero="hero"
+
+                                        v-model="pointsSliderModel"
+                                        @drag-end="storedLevel.points = $event"
+                                    />
+                                </div>
+                                <div
+                                    class="set warning-wrapper"
+                                    @click="modifyHeroData"
+                                    v-tooltip="({
+                                        text: `${hero.name} <b>options</b>`,
+                                        icon: 'mouseLeft'
+                                    } satisfies TooltipBinding)"
+                                >
+                                    <Tex
+                                        image="userCog"
+                                        hover="auto"
+                                        clickable
+
+                                        width="40px"
+                                        height="40px"
+                                        object-fit="cover"
+                                    />
+
+                                    <Tex
+                                        v-if="
+                                            (!hasAvgStats && !hasAvgArcadeStats)
+                                         || isLv1AndGoalLv1 || unknownHeroHasPossibleMatch
+                                        "
+                                        class="warning-bubble"
+                                        image="redDotExcl"
+
+                                        object-fit="contain"
+                                    />
+
+                                    <div
+                                        v-if="showEditPopup"
+                                        class="popup"
+                                        :style="{
+                                            backgroundImage: texUrl('popupGoldDownRight')
+                                        }"
+                                    >
+                                        You can change your hero details from here too
+                                        <Tex
+                                            class="close"
+                                            image="crossBlue"
+                                            color="var(--blue)"
+                                            @click.stop="showEditPopup = false"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </ClientOnly>
+                    </div>
                 </div>
             </div>
 
@@ -395,7 +439,7 @@
                                 <template v-if="hasAvgStatsNonGeneric">
                                     <h2>Your Average Stats per 10 minutes</h2>
                                     <ul class="stats with-border-decorations">
-                                        <li v-for="[statType, statValue] in Object.entries(storedLevel.averageStats).filter(([t]) => t != 'play')">
+                                        <li v-for="[statType, statValue] in Object.entries(usedAverageStats).filter(([t]) => t != 'play')">
                                             <img
                                                 :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
                                                 :alt="`${CHALLENGE_ICONS[statType as Challenge['type']]!} Icon`"
@@ -475,7 +519,10 @@
                     >
                         <template #normal>
                             <PanelCalculator
-                                v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+                                v-if="
+                                    (hasAvgStats)
+                                 && !isLv1AndGoalLv1 && !isIncorrectSelection
+                                "
 
                                 :hero="hero"
                                 :level="storedLevel"
@@ -502,7 +549,10 @@
                         </template>
                         <template #arcade>
                             <PanelCalculator
-                                v-if="hasAvgArcadeStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+                                v-if="
+                                    (hasAvgArcadeStats)
+                                 && !isLv1AndGoalLv1 && !isIncorrectSelection
+                                "
 
                                 :hero="hero"
                                 :level="storedLevel"
@@ -520,7 +570,7 @@
                                 v-else
                                 :hero="hero"
                                 :level="storedLevel"
-                                :has-avg-stats="hasAvgStats"
+                                :has-avg-stats="hasAvgArcadeStats"
                                 :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
                                 :is-incorrect-selection="isIncorrectSelection"
 
@@ -543,7 +593,10 @@
             >
                 <ClientOnly>
                     <PanelPlanner
-                        v-if="hasAvgStats && !isLv1AndGoalLv1 && !isIncorrectSelection"
+                        v-if="
+                            (hasAvgStats || hasAvgArcadeStats)
+                            && !isLv1AndGoalLv1 && !isIncorrectSelection
+                        "
 
                         :hero="hero"
                         v-model="storedLevel"
@@ -556,7 +609,7 @@
                         v-else
                         :hero="hero"
                         :level="storedLevel"
-                        :has-avg-stats="hasAvgStats"
+                        :has-avg-stats="hasAvgStats || hasAvgArcadeStats"
                         :is-lv1-and-goal-lv1="isLv1AndGoalLv1"
                         :is-incorrect-selection="isIncorrectSelection"
                         headless
@@ -587,9 +640,9 @@
 
 <script setup lang="ts">
 import { useModalManager } from '#imports';
-import { CHALLENGE_ICONS, CHALLENGE_NAMES, DEFAULT_HERO_STORE, DEFAULT_PREFERENCES_STORE, getAverageStatsForHero, getHeroMatchCount, levelToRank, PlayerHeroStoreSchema, PreferencesStoreSchema, PROFICIENCY_RANKS, replaceRewardPlaceholders, type Challenge, type HeroData, type PlayerHeroStore, type PreferencesStore, type ProficiencyRank, type Reward } from '~/assets/data/common';
+import { CHALLENGE_ICONS, CHALLENGE_NAMES, DEFAULT_HERO_STORE, DEFAULT_PREFERENCES_STORE, getAverageStatsForHero, getHeroMatchCount, levelToRank, PlayerHeroStoreSchema, PreferencesStoreSchema, PROFICIENCY_RANKS, replaceRewardPlaceholders, type Challenge, type HeroData, type HeroRole, type PlayerHeroStore, type PreferencesStore, type ProficiencyRank, type Reward } from '~/assets/data/common';
 import { createHero, deleteHero, editHero, HERO_LIST, UNKNOWN_HERO } from '~/assets/data/heroes';
-import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
+import AverageStatsModal, { type AverageStatsOutput } from '~/components/modals/AverageStatsModal.vue';
 import ListSelect from '~/components/modals/ListSelect.vue';
 import ModifyHeroData from '~/components/modals/ModifyHeroData.vue';
 import { changeColor } from '~/utils/util';
@@ -782,7 +835,12 @@ const navBarMarks = computed(() => ({
 
 const stats = computed(() => {
     const matchCount = getHeroMatchCount(hero.value.id);
-    const avgStats = getAverageStatsForHero(hero.value.id);
+
+    let heroId = hero.value.id;
+    if (storedLevel.value.lastViewingRole)
+        heroId += '_' + storedLevel.value.lastViewingRole;
+
+    const avgStats = getAverageStatsForHero(heroId);
 
     return {
         matchCount,
@@ -822,10 +880,16 @@ const storedLevel = useLocalStorage<PlayerHeroStore>(`hero_${hero.value.id}`, DE
 const hasAvgStats = useHasAvgStats(hero);
 const hasAvgStatsNonGeneric = useHasAvgStats(hero, true);
 const hasAvgArcadeStats = useHasAvgArcadeStats(hero);
+const isMultiRole = computed(() => Array.isArray(hero.value.roles) && hero.value.roles.length > 1);
 const isLv1AndGoalLv1 = computed(() => storedLevel.value.level == 1 && storedLevel.value.goal == 1);
 const unknownHeroHasPossibleMatch = useUnknownHeroHasPossibleMatch(hero.value).value.length;
 const isIncorrectSelection = computed(() => storedLevel.value.goal <= storedLevel.value.level);
-
+const rolesWithAvgStats = useRolesWithAvgStats(hero);
+const usedAverageStats = computed(() => {
+    if (!storedLevel.value.lastViewingRole)
+        return storedLevel.value.averageStats;
+    return storedLevel.value.averageStatsPerRole?.[storedLevel.value.lastViewingRole] ?? {};
+});
 
 const page = ref<PageId>(pageFromUrl.value);
 watch(pageFromUrl, (newPage, oldPage) => {
@@ -924,7 +988,7 @@ watch(() => storedLevel.value.points, (points) => {
     pointsSliderModel.value = points;
 });
 
-const finishedAnimation = ref(false);
+const finishedAnimation = useSawCalculatorAnimation();
 
 const canLevelUp = computed(() => {
     const level = storedLevel.value.level;
@@ -1044,37 +1108,95 @@ function editProficiencyPoints(callback = () => {}, callbackOnSuccess = false) {
 }
 
 function editAvgStats(callback = () => {}, callbackOnSuccess = false, arcade = false) {
-    openModal<{stats: Record<string, string>, statsArcade: Record<string, string>}>(AverageStatsModal, {
+    openModal<AverageStatsOutput>(AverageStatsModal, {
         title: 'Set your average stats',
         message: 'Input your Avg/10 Mins stats to get accurate time spans to get your desired rewards!',
         hero: hero.value,
         tab: arcade ? 'arcade' : undefined,
 
         stats: storedLevel.value.averageStats,
-        arcadeStats: storedLevel.value.averageStatsArcade
+        statsPerRole: isMultiRole.value ? (storedLevel.value.averageStatsPerRole ?? {}) : undefined,
+        arcadeStats: storedLevel.value.averageStatsArcade,
+        arcadeStatsPerRole: isMultiRole.value ? (storedLevel.value.averageStatsArcadePerRole ?? {}) : undefined,
     })
     .promise
-    .then(({stats, statsArcade}) => {
-        const parsedStats: Record<string, number> = {};
-        Object.entries(stats).forEach(([type, value]) => parsedStats[type] = parseFloat(value) || 0);
+    .then(({stats, statsArcade, roleStats, arcadeRoleStats}) => {
+        if (stats) {
+            const parsedStats: Record<string, number> = {};
+            Object.entries(stats).forEach(([type, value]) =>
+                parsedStats[type] = parseFloat(value) || 0
+            );
 
-        const parsedStatsArcade: Record<string, number> = {};
-        Object.entries(statsArcade).forEach(([type, value]) => {
-            if (type == 'play') {
-                parsedStatsArcade[type] = 0;
+            storedLevel.value.averageStats = parsedStats;
+        }
 
-                return;
-            }
 
-            const parsedValue = parseFloat(value);
-            if (!parsedValue || isNaN(parsedValue))
-                return;
+        if (statsArcade) {
+            const parsedStatsArcade: Record<string, number> = {};
+            Object.entries(statsArcade).forEach(([type, value]) => {
+                if (type == 'play') {
+                    parsedStatsArcade[type] = 0;
 
-            parsedStatsArcade[type] = parsedValue;
-        });
+                    return;
+                }
 
-        storedLevel.value.averageStats = parsedStats;
-        storedLevel.value.averageStatsArcade = parsedStatsArcade;
+                const parsedValue = parseFloat(value);
+                if (!parsedValue || isNaN(parsedValue))
+                    return;
+
+                parsedStatsArcade[type] = parsedValue;
+            });
+
+            storedLevel.value.averageStatsArcade = parsedStatsArcade;
+        }
+
+        if (roleStats) {
+            if (!storedLevel.value.averageStatsPerRole)
+                storedLevel.value.averageStatsPerRole = {};
+
+            objectEntries(roleStats).forEach(([role, stats]) => {
+                const parsedStats: Record<string, number> = {};
+                Object.entries(stats!).forEach(([type, value]) => {
+                    if (type == 'play') {
+                        parsedStats[type] = 0;
+
+                        return;
+                    }
+
+                    const parsedValue = parseFloat(value);
+                    if (!parsedValue || isNaN(parsedValue))
+                        return;
+
+                    parsedStats[type] = parsedValue;
+                });
+
+                storedLevel.value.averageStatsPerRole![role] = parsedStats;
+            });
+        }
+
+        if (arcadeRoleStats) {
+            if (!storedLevel.value.averageStatsArcadePerRole)
+                storedLevel.value.averageStatsArcadePerRole = {};
+
+            objectEntries(arcadeRoleStats).forEach(([role, stats]) => {
+                const parsedStatsArcade: Record<string, number> = {};
+                Object.entries(stats!).forEach(([type, value]) => {
+                    if (type == 'play') {
+                        parsedStatsArcade[type] = 0;
+
+                        return;
+                    }
+
+                    const parsedValue = parseFloat(value);
+                    if (!parsedValue || isNaN(parsedValue))
+                        return;
+
+                    parsedStatsArcade[type] = parsedValue;
+                });
+
+                storedLevel.value.averageStatsArcadePerRole![role] = parsedStatsArcade;
+            });
+        }
 
         notify(
             `Updated your average stats!`,

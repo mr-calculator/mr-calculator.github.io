@@ -1,5 +1,6 @@
 <template>
     <nav
+        ref="navbar"
         :class="{
             navBar: 1,
             transparent,
@@ -98,6 +99,7 @@ export type SubmenuTab = {
 
 <script setup lang="ts">
 import breakpointCss from '@/assets/style/components/navbar-break.css?raw';
+import { onClickOutside } from '@vueuse/core';
 
 const props = withDefaults(defineProps<{
     marks?: NavBarMarks,
@@ -133,6 +135,15 @@ useHead({
 const emit = defineEmits<{
     tabClick: [ tabId: string ]
 }>()
+
+const navbar = useTemplateRef('navbar');
+onClickOutside(navbar, () => {
+    menuOpen.value = false;
+});
+useEvent('scroll', () => {
+    if (window.scrollY > 1)
+        menuOpen.value = false;
+});
 
 const touchDevice = isTouchDevice();
 

@@ -1,5 +1,47 @@
 [
   {
+    "sha": "e507e39b8646cb900c0217f994095fccecda731e",
+    "node_id": "C_kwDORv7rQ9oAKGU1MDdlMzliODY0NmNiOTAwYzAyMTdmOTk0MDk1ZmNjZWNkYTczMWU",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-12T14:43:22Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-12T14:43:22Z"
+      },
+      "message": "Content Update: Season 8.5\n\nAdded the new hero, costume, nameplates, and achievements (and new achievement rewards).",
+      "tree": {
+        "sha": "efccc5ecc3f2e1f5d4956cac3e95fc65c93da285",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/efccc5ecc3f2e1f5d4956cac3e95fc65c93da285"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/e507e39b8646cb900c0217f994095fccecda731e",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/e507e39b8646cb900c0217f994095fccecda731e",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/e507e39b8646cb900c0217f994095fccecda731e",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/e507e39b8646cb900c0217f994095fccecda731e/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "4d254849f833f48a8fb008f949f84f8795a090c4",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/4d254849f833f48a8fb008f949f84f8795a090c4",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/4d254849f833f48a8fb008f949f84f8795a090c4"
+      }
+    ]
+  },
+  {
     "sha": "4d254849f833f48a8fb008f949f84f8795a090c4",
     "node_id": "C_kwDORv7rQ9oAKDRkMjU0ODQ5ZjgzM2Y0OGE4ZmIwMDhmOTQ5Zjg0Zjg3OTVhMDkwYzQ",
     "commit": {
@@ -5244,48 +5286,6 @@
         "sha": "eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6"
-      }
-    ]
-  },
-  {
-    "sha": "eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
-    "node_id": "C_kwDORv7rQ9oAKGVhYTczZTdhNzk3YjRiMDE0YWIxMzY3OTRkNmRjMDVhOWU2M2ExYjY",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T01:01:01Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T01:01:01Z"
-      },
-      "message": "Fixed (I think) hero pages not prerendering",
-      "tree": {
-        "sha": "f5cad0dcb0bc6d599073180b1435045231c25f70",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/f5cad0dcb0bc6d599073180b1435045231c25f70"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/4f47986628bbbed12f89eb0ee09a7fc92ee5627f",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/4f47986628bbbed12f89eb0ee09a7fc92ee5627f"
       }
     ]
   }

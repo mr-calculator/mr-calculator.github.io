@@ -84,7 +84,13 @@
                         'no-owned-count': mode == 'collection' && showFiltersWhenCollection
                     }"
                 >
-                    <p v-if="mode == 'collection' && !showFiltersWhenCollection" class="owned-count">
+                    <p
+                        v-if="
+                            mode !== 'collection'
+                         || mode == 'collection' && !showFiltersWhenCollection
+                        "
+                        class="owned-count"
+                    >
                         <ClientOnly>
                             <span class="owned">{{ ownedCostumesCount }}</span>/<span class="total">{{ sortedCostumes.length }} OWNED</span>
                         </ClientOnly>

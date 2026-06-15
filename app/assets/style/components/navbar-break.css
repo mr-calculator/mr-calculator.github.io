@@ -60,11 +60,28 @@
 
             flex-direction: column;
 
-            background: var(--blue-accent) var(--tex-barBackground);
-            background-position: bottom;
-
             overflow-x: hidden;
             overflow-y: auto;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+
+                background: var(--blue) var(--tex-barBackground);
+                background-size: auto 65px;
+                background-position: 90% 0%;
+
+                z-index: 1;
+            }
+
+
+            > * {
+                z-index: 2
+            }
 
             > .tabItem {
                 padding: 0 25px 0 25px;
@@ -80,9 +97,14 @@
     }
 }
 
-@media (max-width: %breakpoint_max%px and min-width: 992px) {
+@media (max-width: %breakpoint_max%px) and (min-width: 991px) {
     .navBar[data-nav-id="%nav_id%"] .tabList {
         top: 64.5px;
         width: calc(100% - 18.5px);
+
+        &::before {
+            background-color: color-mix(in srgb, var(--blue) 80%, transparent);
+            background-position: calc(90% + 19px) 0%;
+        }
     }
 }

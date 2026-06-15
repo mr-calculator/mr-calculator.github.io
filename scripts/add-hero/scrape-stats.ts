@@ -53,7 +53,7 @@ const MATCHES_FILE_BACKUP = './app/assets/data/hero-matches_%DATE%.backup.json';
 
 // to automatically convert from RivalsMeta structure to our own structure
 type MissionMap = Partial<Record<Challenge['type'], string[]|null>>;
-const MISSION_TYPES_FOR_ROLE: Record<HeroRole, MissionMap> = {
+const MISSION_TYPES_FOR_ROLE: Record<HeroRole|'multi', MissionMap> = {
     'vanguard': {
         take_damage: ['total_damage_taken'],
         kos: ['kills']
@@ -64,6 +64,10 @@ const MISSION_TYPES_FOR_ROLE: Record<HeroRole, MissionMap> = {
     },
     'strategist': {
         heal: ['total_hero_heal'],
+        kos_assists: ['kills', 'assists']
+    },
+    'multi': {
+        damage_heal: ['total_hero_damage', 'total_hero_heal'],
         kos_assists: ['kills', 'assists']
     }
 }
@@ -88,7 +92,7 @@ const FINAL_HITS_MANUAL = JSON.parse(fs.readFileSync('./scripts/stats/data/avera
 let heroMatchCount: number = 0;
 
 // scrapes data for hero from every player available -> processes it
-export async function scrapeData(internalId: string, heroId: string, role: HeroRole, logger: typeof log, season: string) {
+export async function scrapeData(internalId: string, heroId: string, role: HeroRole|'multi', logger: typeof log, season: string, noBackup = false) {
     // request RivalsMeta API
     let data: HeroData|null = null;
     try {
@@ -154,8 +158,8 @@ export async function scrapeData(internalId: string, heroId: string, role: HeroR
     );
 
     // add the data to our current data
-    setHeroStatsInFile(heroId, averagedStats);
-    setHeroMatchCountInFile(heroId, heroMatchCount);
+    setHeroStatsInFile(heroId, averagedStats, noBackup);
+    setHeroMatchCountInFile(heroId, heroMatchCount, noBackup);
 }
 
 export function fileNameFriendlyDate(date: Date) {
@@ -169,9 +173,10 @@ export function fileNameFriendlyDate(date: Date) {
     return `${year}-${month}-${day}.${hours}-${minutes}-${seconds}-${millis}`;
 }
 
-function setHeroStatsInFile(heroId: string, newStats: Partial<Record<Challenge['type'], number>>) {
-    // make a backup in case things go south
-    fs.copyFileSync(STATS_FILE, STATS_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+function setHeroStatsInFile(heroId: string, newStats: Partial<Record<Challenge['type'], number>>, noBackup: boolean) {
+    // make a backup in case things go south (more like historical relevance)
+    if (!noBackup)
+        fs.copyFileSync(STATS_FILE, STATS_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
 
     const stats = JSON.parse(fs.readFileSync(STATS_FILE, { encoding: 'utf-8' }));
 
@@ -180,13 +185,56 @@ function setHeroStatsInFile(heroId: string, newStats: Partial<Record<Challenge['
     fs.writeFileSync(STATS_FILE, JSON.stringify(stats, null, 4));
 }
 
-function setHeroMatchCountInFile(heroId: string, count: number) {
-    // make a backup in case things go south
-    fs.copyFileSync(MATCHES_FILE, MATCHES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+function setHeroMatchCountInFile(heroId: string, count: number, noBackup: boolean) {
+    // make a backup in case things go south (more like historical relevance)
+    if (!noBackup)
+        fs.copyFileSync(MATCHES_FILE, MATCHES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
 
     const matches = JSON.parse(fs.readFileSync(MATCHES_FILE, { encoding: 'utf-8' }));
 
     matches[heroId] = count;
 
+    fs.writeFileSync(MATCHES_FILE, JSON.stringify(matches, null, 4));
+}
+
+export function averageHeroRolesAverages(heroId: string, roles: HeroRole[]) {
+    // make backups (for historical relevance)
+    fs.copyFileSync(STATS_FILE, STATS_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+    fs.copyFileSync(MATCHES_FILE, MATCHES_FILE_BACKUP.replace('%DATE%', fileNameFriendlyDate(new Date())));
+
+    // calculate average of averages
+    const stats: Record<string, Record<string, number>> = JSON.parse(fs.readFileSync(STATS_FILE, { encoding: 'utf-8' }));
+    // also add matches together
+    const matches: Record<string, number> = JSON.parse(fs.readFileSync(MATCHES_FILE, { encoding: 'utf-8' }));
+    matches[heroId] = 0; // reset since we'll be adding
+
+    const averageStatsSums: Record<string, [number, number]> = {};
+    for (const role of roles) {
+        const heroIdForRole = `${heroId}_${role}`;
+
+        const matchesForRole = matches[heroIdForRole];
+        if (matchesForRole)
+            matches[heroId] += matchesForRole;
+
+        const statsForRole = stats[heroIdForRole];
+        if (!statsForRole)
+            continue;
+
+        Object.entries(statsForRole).forEach(([type, avg]) => {
+            if (!averageStatsSums[type])
+                averageStatsSums[type] = [0, 0];
+
+            averageStatsSums[type][0] += avg; // sum
+            averageStatsSums[type][1]++; // count
+        });        
+    }
+
+    stats[heroId] = Object.fromEntries(
+        Object.entries(averageStatsSums)
+            .map(([type, [ sum, count ]]) => [ type, sum / count ]
+        )
+    );
+    
+    fs.writeFileSync(STATS_FILE, JSON.stringify(stats, null, 4));
     fs.writeFileSync(MATCHES_FILE, JSON.stringify(matches, null, 4));
 }

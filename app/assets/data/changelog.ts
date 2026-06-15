@@ -496,6 +496,27 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.1.2/achievements-global.webp',
         ]
     },
+    {
+        version: {
+            number: '2.2.0',
+            date: 'June 15, 2026',
+            time: '1:43 AM',
+        },
+        title: 'Multi-Role Heroes Average Stats Feature & Fixes',
+        description: `Added a feature that allows users to have different stats for every role of multi-role heroes (Deadpool) (both for storing and using in Estimates and Planner)`,
+        list: [
+            'Added generic average stats for all Deadpool roles individually, as well as combined (updated for S8.0)',
+            'Added ability for full menu (open state on mobile) to be hidden away by tapping outside of it or scrolling the page',
+            'Fixed menu background on mobile having wrong size (should now repeat at precise intervals to match the menu items)',
+            'Fixed menu on small desktops going too much (18.5px) to the right, going past the diagonal cutoff of the top bar',
+            'Fixed sticky toolbar on Cosmetics page going under the menu bar when stuck',
+        ],
+        images: [
+            '/img/changelog/v2.2.0/role-selector.webp',
+            '/img/changelog/v2.2.0/set-average-stats.webp',
+            '/img/changelog/v2.2.0/generic-stats.webp',
+        ]
+    },
 ];
 
 export function groupCommitsByVersion(commits: GitHubCommit[]):

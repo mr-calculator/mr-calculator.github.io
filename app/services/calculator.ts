@@ -13,7 +13,9 @@ export interface PersonalRankTimeEstimate {
 }
 
 type PickedStore = Pick<PlayerHeroStore, 
-    'averageStats'|'averageStatsArcade'|'arcadeMaxFeasableMissions'|'goal'|'level'|'points'
+    'averageStats'|'averageStatsArcade'
+    |'averageStatsPerRole'|'averageStatsArcadePerRole'|'lastViewingRole'
+    |'arcadeMaxFeasableMissions'|'goal'|'level'|'points'
 >;
 
 export class Calculator {
@@ -26,6 +28,26 @@ export class Calculator {
         this.store = level;
     }
 
+    private getAverageStatFromStore(type: string, arcade: boolean) {
+        let source: Record<string, number>|undefined = {};
+        if (!arcade) {
+            if (!this.store.lastViewingRole)
+                source = this.store.averageStats;
+            else {
+                source = this.store.averageStatsPerRole?.[this.store.lastViewingRole];
+            }
+        }
+        else {
+            if (!this.store.lastViewingRole)
+                source = this.store.averageStatsArcade;
+            else {
+                source = this.store.averageStatsArcadePerRole?.[this.store.lastViewingRole];
+            }
+        }
+
+        return source?.[type];
+    }
+
     private avgPointsPer10MinsForChallenge(rank: Rank, challenge: Challenge, arcade: boolean) {
         const genericStats = getAverageStatsForHero(this.hero.id);
 
@@ -35,10 +57,7 @@ export class Calculator {
         if (challenge.type == 'play')
             return 10 * reward / challenge.needed;
 
-        let avgStat = arcade ?
-            (this.store.averageStatsArcade?.[challenge.type] ?? 0)
-            :
-            this.store.averageStats?.[challenge.type];
+        let avgStat = this.getAverageStatFromStore(challenge.type, arcade);
 
         if (!avgStat) {
             avgStat = genericStats?.[challenge.type] ?? 0;
