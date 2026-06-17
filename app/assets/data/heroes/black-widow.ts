@@ -21,8 +21,8 @@ export const BlackWidow: HeroData = {
     dataDir: '/img/heroes/data/black-widow/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [0, -25],
-    iconLargeAnimationOffset: [10, -25],
+    iconAnimationOffset: [0, 25],
+    iconLargeAnimationOffset: [-10, 25],
 
     ranks: [
         {

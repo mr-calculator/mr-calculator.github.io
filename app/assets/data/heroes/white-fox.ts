@@ -20,8 +20,8 @@ export const WhiteFox: HeroData = {
     color: '#64d5e3',
     dataDir: '/img/heroes/data/white-fox/',
 
-    iconAnimationOffset: [4, -42],
-    iconLargeAnimationOffset: [15, -42],
+    iconAnimationOffset: [-4, 42],
+    iconLargeAnimationOffset: [-15, 42],
     
     ranks: [
         {

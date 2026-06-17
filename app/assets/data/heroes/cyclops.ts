@@ -19,7 +19,7 @@ export const Cyclops: HeroData = {
     color: '#3cbfdd',
     dataDir: '/img/heroes/data/cyclops/',
     
-    iconAnimationOffset: [-35, -50],
+    iconAnimationOffset: [35, 50],
 
     ranks: [
         {

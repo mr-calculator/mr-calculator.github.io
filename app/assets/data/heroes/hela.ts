@@ -17,8 +17,8 @@ export const Hela: HeroData = {
     color: '#4da7a7',
     dataDir: '/img/heroes/data/hela/',
 
-    iconAnimationOffset: [-8, -20],
-    iconLargeAnimationOffset: [10, -20],
+    iconAnimationOffset: [8, 20],
+    iconLargeAnimationOffset: [-10, 20],
 
     ranks: [
         {

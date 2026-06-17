@@ -18,7 +18,7 @@ export const Magneto: HeroData = {
     dataDir: '/img/heroes/data/magneto/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [-15, -30],
+    iconAnimationOffset: [15, 30],
 
     ranks: [
         {

@@ -16,8 +16,8 @@ export const WinterSoldier: HeroData = {
     dataDir: '/img/heroes/data/winter-soldier/',
 
     iconAnimationSize: [3584, 3960],
-    iconAnimationOffset: [-10, -53],
-    iconLargeAnimationOffset: [5, -43],
+    iconAnimationOffset: [10, 53],
+    iconLargeAnimationOffset: [-5, 43],
 
     ranks: [
         {

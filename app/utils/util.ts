@@ -704,3 +704,20 @@ export function base64ArrayBuffer(arrayBuffer: ArrayBuffer) {
   
   return base64
 }
+
+export function blobToDataUrl(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+}
+
+export function dataUrlToBlob(dataUrl: string): Blob {
+    const [header, base64] = dataUrl.split(',');
+    const mime = header!.match(/:(.*?);/)?.[1] ?? 'application/octet-stream';
+    const binary = atob(base64!);
+    const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+    return new Blob([bytes], { type: mime });
+}

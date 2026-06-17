@@ -298,60 +298,12 @@
                     <h3>Well, even if you didn't, you can find an answer here.</h3>
                 </div>
                 <div class="graphics">
-                    <div id="lord-icon-large" class="lord-icon-container">
-                        <Tex
-                            class="frame-bg"
-                            image="heroSelectFrameGold"
-
-                            width="350px"
-                            height="150px"
-                        />
-                        <Tex
-                            class="frame-right"
-                            image="heroSelectFrameRightGold"
-
-                            width="350px"
-                            height="150px"
-                        />
-                        <Tex
-                            class="shine"
-                            image="star"
-
-                            width="80px"
-                            height="80px"
-                        />
-                        <div class="animated-icon-wrapper">
-                            <UiAnimatedIcon
-                                class="animated-icon"
-                                :style="{
-                                    '--mask-url': `url('${currentHero.iconLargeMask ?? DEFAULT_ANIMATED_ICON_LARGE_MASK}')`
-                                }"
-                                :reward="currentHeroAnimatedIconReward"
-                                :size="350"
-                            />
-                        </div>
-                        <Tex
-                            class="frame-left"
-                            image="heroSelectFrameLeftGold"
-
-                            width="350px"
-                            height="150px"
-                        />
-
-                        <img
-                            class="badge"
-                            src="/img/common-rewards/champion-badge.webp"
-                            alt="Champion Icon"
-                            draggable="false"
-                        />
-                        <img
-                            v-if="heroHasRoleIcon"
-                            class="role"
-                            :src="heroRoleIcon"
-                            alt="Hero Role Icon"
-                            draggable="false"
-                        >
-                    </div>
+                    <UiAnimatedIconLarge
+                        id="champion-icon-large"
+                        :icon-mask="currentHero.iconLargeMask"
+                        :reward="heroAnimatedIconReward"
+                        :hero-role="heroRolesAsArray(currentHero.roles)[0]"
+                    />
                 </div>
 
                 <div class="hero-skin">
@@ -621,7 +573,7 @@ import { AVG_COMP_MATCH_DURATION_MIN,
     PreferencesStoreSchema,
     type Reward, 
 } from '~/assets/data/common';
-import { getFeaturedHero, HERO_LIST } from '~/assets/data/heroes';
+import { getFeaturedHero, HERO_LIST, heroRolesAsArray } from '~/assets/data/heroes';
 import AverageStatsModal from '~/components/modals/AverageStatsModal.vue';
 import {default as CalculatorPanel} from '~/components/panel/Calculator.vue';
 import { Calculator } from '~/services/calculator';
@@ -860,7 +812,7 @@ await useGsap(({ gsap, scrollTrigger, splitText }) => {
         }
     });
 
-    questionTl.from('#lord-icon-large', {
+    questionTl.from('#champion-icon-large', {
         opacity: 0,
         x: 200,
         duration: .5,
@@ -993,28 +945,6 @@ const currentHero = ref(featuredHero.value ?? DEFAULT_HERO);
 const averageStatsModal = ref<InstanceType<typeof AverageStatsModal>>();
 const avgStatsModalTab = ref<'normal'|'arcade'>('normal');
 
-const cosmeticsKey = computed(() => `cosmetics_owned_${currentHero.value.id}`);
-const ownedCostumes = useLocalStorage<string[]>(cosmeticsKey, []);
-const currentHeroAnimatedIconReward = computed<Reward>(() => {
-    const hasEasterEgg = currentHero.value.easterEgg && ownedCostumes.value.includes(currentHero.value.easterEgg);
-
-    const fps = currentHero.value.ranks.find(r => r.type.id == 'champion')!.type.rewards[0]!.iconAnimation!.fps;
-
-    return {
-        level: 50,
-        name: 'Champion Icon',
-        icon: `${currentHero.value.dataDir}${hasEasterEgg ? 'easter-egg/' : ''}bust-champion.webp`,
-        iconAnimation: {
-            size: currentHero.value.iconAnimationSize ?? [3600, 4000],
-            columns: 6,
-            rows: 10,
-            fps,
-            offset: currentHero.value.iconLargeAnimationOffset ?? currentHero.value.iconAnimationOffset
-        },
-        rarity: 'legendary'
-    }
-});
-
 const heroSelectOpen = ref(false);
 function clickHero(heroId: string) {
     heroSelectOpen.value = false;
@@ -1032,18 +962,26 @@ useEvent('keyup', (e: KeyboardEvent) => {
         heroSelectOpen.value = false;
 })
 
-const heroHasRoleIcon = computed(() =>
-    Array.isArray(currentHero.value.roles) && currentHero.value.roles.length
- || currentHero.value.roles
-);
-const heroRoleIcon = computed(() => {
-    if (!heroHasRoleIcon.value)
-        return '';
+const cosmeticsKey = computed(() => `cosmetics_owned_${currentHero.value.id}`);
+const ownedCostumes = useLocalStorage<string[]>(cosmeticsKey, []);
+const heroAnimatedIconReward = computed<Reward>(() => {
+    const hasEasterEgg = currentHero.value.easterEgg && ownedCostumes.value.includes(currentHero.value.easterEgg);
 
-    if (Array.isArray(currentHero.value.roles))
-        return ROLE_ICONS[currentHero.value.roles[0]!];
+    const fps = currentHero.value.ranks.find(r => r.type.id == 'champion')!.type.rewards[0]!.iconAnimation!.fps;
 
-    return ROLE_ICONS[currentHero.value.roles];
+    return {
+        level: 50,
+        name: 'Champion Icon',
+        icon: `${currentHero.value.dataDir}${hasEasterEgg ? 'easter-egg/' : ''}bust-champion.webp`,
+        iconAnimation: {
+            size: currentHero.value.iconAnimationSize ?? [3600, 4000],
+            columns: 6,
+            rows: 10,
+            fps,
+            offset: currentHero.value.iconLargeAnimationOffset ?? currentHero.value.iconAnimationOffset
+        },
+        rarity: 'legendary'
+    }
 });
 
 const plannerHeroStoreMobile = ref<PlayerHeroStore>(DEFAULT_HERO_STORE());

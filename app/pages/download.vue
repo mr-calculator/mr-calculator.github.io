@@ -13,9 +13,19 @@
             <li
                 v-for="hero in heroesWithData"
                 :class="{selected: selectedHero == hero.hero.id}"
-                :title="hero.hero.name"
 
                 @click="clickHero(hero.hero.id)"
+
+                v-tooltip="({
+                    text: hero.hero.name + (hero.isUnknownHero ? ' (Custom Added)' : ''),
+                    icon: hero.isUnknownHero
+                        ? {
+                            image: 'unknownHero',
+                            width: '20px',
+                            height: '15px'
+                        }
+                        : undefined
+                } satisfies TooltipBinding)"
             >
                 <div
                     v-if="hero.isFavourite"
@@ -30,10 +40,19 @@
                 </div>
                 <div class="icon">
                     <img
-                        :src="`${hero.hero.dataDir}head.webp`"
+                        :src="useHeroImage('head', hero.hero).value"
                         :alt="`${hero.hero.name}`"
                         draggable="false"
                     />
+                    <div v-if="hero.isUnknownHero" class="unknown-hero-marker">
+                        <Tex
+                            image="unknownHero"
+                            color="var(--blue)"
+
+                            width="35px"
+                            height="26px"
+                        />
+                    </div>
                 </div>
                 <div
                     v-if="hero.rank?.icon && hero.rank.id != 'agent'"
@@ -81,7 +100,7 @@
             <div class="scroll-container">
                 <PanelJSONDisplay
                     class="json-display"
-                    :code="!!selectedHero ? heroData : allData"
+                    :code="displayData"
                 />
             </div>
         </div>
@@ -218,6 +237,7 @@
             pointer-events: none
 
         .icon
+            position: relative
             width: calc(($width - 70px) / 8)
             height: calc(($width - 70px) / 8)
 
@@ -232,6 +252,14 @@
                 object-fit: cover
 
                 user-select: none
+
+            .unknown-hero-marker
+                position: absolute
+                bottom: 0
+                right: -3px
+
+                z-index: 2
+                pointer-events: none
 
         .badge
             position: absolute
@@ -347,6 +375,9 @@
         width: auto
         min-width: 355px
 
+        +media-mobile
+            min-width: 200px
+
         .texture
             margin-right: 0
 
@@ -367,6 +398,7 @@ p
 <script setup lang="ts">
 import { getAchievements, type Achievement } from '~/assets/data/achievements/achievements';
 import {
+    DEFAULT_HERO_STORE,
     DEFAULT_PREFERENCES_STORE,
     DEFAULT_PROFILE_STORE,
     levelToRank,
@@ -384,6 +416,8 @@ import { DEFAULT_NAMEPLATE_ID } from '~/assets/data/cosmetics/nameplates/namepla
 import { HERO_LIST } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import ConfirmModal from '~/components/modals/ConfirmModal.vue';
+import type { TooltipBinding } from '~/directives/tooltip';
+import { getAllHeroImages } from '~/services/image-operations';
 
 useSeoMeta({
     title: 'Download | MR Proficiency Calculator',
@@ -440,7 +474,19 @@ const route = useRoute();
 const heroFromUrl = route.query?.hero;
 
 const heroesWithData = computed(() => {
-    return storedHeroes.value.map(heroStore => {
+    const stores: ({id: string} & PlayerHeroStore)[] = cloneObjectRefAsRaw(storedHeroes.value)!;
+    // add unknown heroes with no store — give them a default store
+    unknownHeroes.value.forEach(unkHero => {
+        if (!!stores.find(storedH => storedH.id == unkHero.id))
+            return;
+
+        stores.push({
+            id: unkHero.id,
+            ...DEFAULT_HERO_STORE()
+        });
+    })
+
+    return stores.map(heroStore => {
         const heroes = HERO_LIST;
         let heroData = heroes.find(hd => hd.id == heroStore.id);
 
@@ -498,6 +544,41 @@ function clickHero(heroId: string|null) {
 }
 
 const dataExpanded = ref(false);
+const displayData = computed(() => {
+    const source: AnySerializableDataSegment = !!selectedHero.value
+        ? cloneObjectRefAsRaw(heroData.value)!
+        : cloneObjectRefAsRaw(allData.value)!;
+
+    if (source.type == 'hero') {
+        if (!source.data.__unknownHero || !source.data.hero?.heroImages)
+            return source;
+
+        objectEntries(source.data.hero.heroImages).forEach(([key, value]) => {
+            if (!value || value.length < 80)
+                return;
+
+            source.data.hero!.heroImages![key] = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
+        });
+    }
+    else if (source.type == 'profile') {
+        if (!source.data.unknownHeroes)
+            return source;
+
+        Object.values(source.data.unknownHeroes).forEach(hero => {
+            if (!hero.heroImages)
+                return;
+
+            objectEntries(hero.heroImages).forEach(([key, value]) => {
+                if (!value || value.length < 80)
+                    return;
+
+                hero!.heroImages![key] = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
+            });
+        })
+    }
+
+    return source;
+});
 
 const includeUnknownHeroes = ref(true);
 const includeFavourites = ref(true);
@@ -505,6 +586,27 @@ const includePreferences = ref(true);
 const includeAchievements = ref(true);
 const includeCosmetics = ref(true);
 const includeCollections = ref(true);
+
+async function unknownHeroWithImages(heroData: HeroData): Promise<HeroData> {
+    const images = await getAllHeroImages(heroData);
+
+    const promises = Object.entries(images).map(async ([key, blob]) => {
+        if (!blob)
+            return null;
+
+        const base64 = await blobToDataUrl(blob);
+
+        return [key, base64];
+    }).filter(Boolean) as Promise<[string, string]>[];
+
+    return {
+        ...heroData,
+        heroImages: Object.fromEntries(await Promise.all(promises))
+    }
+}
+
+// since unknown heroes can't change while this page is mounted, this should be fine without a computed
+const unknownHeroesWithImages = await Promise.all(unknownHeroes.value.map(h => unknownHeroWithImages(h)));
 
 const dataBase: Pick<SerializableDataSegment<keyof SerializableDataMap>, 'version' | 'exportedAt'> = {
     version: config.dataVersion,
@@ -524,7 +626,7 @@ const allData = computed<AnySerializableDataSegment>(() => {
         storedHeroes: storedHeroes.value,
         favourites: includeFavourites.value ? favourites.value : undefined,
         achievements: includeAchievements.value ? achievementsStore.value : undefined,
-        unknownHeroes: includeUnknownHeroes.value ? unknownHeroes.value : undefined,
+        unknownHeroes: includeUnknownHeroes.value ? unknownHeroesWithImages : undefined,
         preferences: includePreferences.value ? preferences.value : undefined,
         profile: includePreferences.value ? profile.value : undefined,
         collections: includeCollections.value ? {
@@ -543,16 +645,18 @@ const heroData = computed<AnySerializableDataSegment>(() => {
     if (!selectedHero.value || !heroData)
         return allData.value;
 
-    if (heroData.isUnknownHero)
+    if (heroData.isUnknownHero) {
+        const unknownHeroDataWithImages = unknownHeroesWithImages.find(h => h.id == heroData.hero.id)!;
         return dataWithBase('hero', {
             __unknownHero: true,
             id: heroData.hero.id,
-            hero: heroData.hero,
+            hero: unknownHeroDataWithImages,
             stored: heroData.stored,
             achievements: heroData.achievements,
             isFavourite: heroData.isFavourite,
             ownedCostumes: heroData.costumes
         })
+    }
 
     return dataWithBase('hero', {
         id: heroData.hero.id,

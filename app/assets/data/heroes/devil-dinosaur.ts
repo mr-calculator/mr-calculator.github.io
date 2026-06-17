@@ -22,8 +22,8 @@ export const DevilDinosaur: HeroData = {
     color: '#ff6c67',
     dataDir: '/img/heroes/data/devil-dinosaur/',
 
-    iconAnimationOffset: [10, -20],
-    iconLargeAnimationOffset: [15, -18],
+    iconAnimationOffset: [-10, 20],
+    iconLargeAnimationOffset: [-15, 18],
     
     ranks: [
         {

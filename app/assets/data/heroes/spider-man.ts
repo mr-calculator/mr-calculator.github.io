@@ -22,7 +22,7 @@ export const SpiderMan: HeroData = {
     dataDir: '/img/heroes/data/spider-man/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [0, -20],
+    iconAnimationOffset: [0, 20],
 
     ranks: [
         {

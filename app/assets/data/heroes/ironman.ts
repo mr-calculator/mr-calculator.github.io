@@ -17,7 +17,7 @@ export const Ironman: HeroData = {
     color: '#ff6680',
     dataDir: '/img/heroes/data/ironman/',
 
-    iconAnimationOffset: [-17, -15],
+    iconAnimationOffset: [17, 15],
 
     ranks: [
         {

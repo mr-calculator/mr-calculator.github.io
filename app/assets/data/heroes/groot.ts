@@ -12,8 +12,8 @@ export const Groot: HeroData = {
     dataDir: '/img/heroes/data/groot/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [-15, -42],
-    iconLargeAnimationOffset: [15, -32],
+    iconAnimationOffset: [15, 42],
+    iconLargeAnimationOffset: [-15, 32],
 
     ranks: [
         {

@@ -23,7 +23,7 @@ export const LunaSnow: HeroData = {
     color: '#227ddf',
     dataDir: '/img/heroes/data/luna-snow/',
 
-    iconAnimationOffset: [-10, -35],
+    iconAnimationOffset: [10, 35],
     easterEgg: '1031313',
     easterEggMessage: `
     Woah! You found an <b>easter egg</b>!

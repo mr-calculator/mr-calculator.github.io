@@ -12,8 +12,8 @@ export const RocketRaccoon: HeroData = {
     dataDir: '/img/heroes/data/rocket-raccoon/',
 
     iconAnimationSize: [3584, 3972],
-    iconAnimationOffset: [-7, -33],
-    iconLargeAnimationOffset: [5, -28],
+    iconAnimationOffset: [7, 33],
+    iconLargeAnimationOffset: [-5, 28],
 
     ranks: [
         {

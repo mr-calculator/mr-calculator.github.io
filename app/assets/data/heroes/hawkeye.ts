@@ -19,8 +19,8 @@ export const Hawkeye: HeroData = {
     dataDir: '/img/heroes/data/hawkeye/',
 
     iconAnimationSize: [3492, 3952],
-    iconAnimationOffset: [-2, -27],
-    iconLargeAnimationOffset: [10, -27],
+    iconAnimationOffset: [2, 27],
+    iconLargeAnimationOffset: [-10, 27],
 
     ranks: [
         {

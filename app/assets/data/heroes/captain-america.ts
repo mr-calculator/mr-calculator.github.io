@@ -15,7 +15,7 @@ export const CaptainAmerica: HeroData = {
     color: '#4e8bd0',
     dataDir: '/img/heroes/data/captain-america/',
 
-    iconAnimationOffset: [5, -20],
+    iconAnimationOffset: [-5, 20],
 
     ranks: [
         {

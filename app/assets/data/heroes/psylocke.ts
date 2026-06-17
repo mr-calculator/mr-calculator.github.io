@@ -19,8 +19,8 @@ export const Psylocke: HeroData = {
     dataDir: '/img/heroes/data/psylocke/',
 
     iconAnimationSize: [2952, 2980],
-    iconAnimationOffset: [-10, -40],
-    iconLargeAnimationOffset: [0, -30],
+    iconAnimationOffset: [10, 40],
+    iconLargeAnimationOffset: [0, 30],
     iconLargeMask: '/img/heroes/data/psylocke/hero-select-mask.webp',
 
     ranks: [

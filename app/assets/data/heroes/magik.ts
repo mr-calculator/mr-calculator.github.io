@@ -17,8 +17,8 @@ export const Magik: HeroData = {
     color: '#ab7977',
     dataDir: '/img/heroes/data/magik/',
 
-    iconAnimationOffset: [-15, -30],
-    iconLargeAnimationOffset: [5, -30],
+    iconAnimationOffset: [15, 30],
+    iconLargeAnimationOffset: [-5, 30],
 
     ranks: [
         {

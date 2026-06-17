@@ -19,7 +19,7 @@ export const Thor: HeroData = {
     dataDir: '/img/heroes/data/thor/',
 
     iconAnimationSize: [2400, 2668],
-    iconAnimationOffset: [-5, -20],
+    iconAnimationOffset: [5, 20],
 
     ranks: [
         {

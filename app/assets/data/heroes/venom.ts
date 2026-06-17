@@ -14,7 +14,7 @@ export const Venom: HeroData = {
     color: '#3d4252',
     dataDir: '/img/heroes/data/venom/',
 
-    iconAnimationOffset: [-15, -15],
+    iconAnimationOffset: [15, 15],
 
     ranks: [
         {

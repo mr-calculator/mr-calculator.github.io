@@ -14,7 +14,7 @@ export const Ultron: HeroData = {
     dataDir: '/img/heroes/data/ultron/',
 
     iconAnimationSize: [3584, 3972],
-    iconAnimationOffset: [-5, -33],
+    iconAnimationOffset: [5, 33],
 
     ranks: [
         {

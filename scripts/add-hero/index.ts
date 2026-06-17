@@ -4,6 +4,7 @@ import { makeHeroFile } from './make-hero-file'
 import { copyImages } from './appropriate-images'
 import { averageHeroRolesAverages, scrapeData } from './scrape-stats'
 import { HeroData, HeroRole } from '~/assets/data/common';
+import { addInternalIdPair, inferHeroId, inferInternalId } from './util';
 
 export const HERO_FILE_PATH = `./app/assets/data/heroes/`;
 
@@ -204,34 +205,7 @@ async function main() {
     }
 }
 
-function inferHeroId(heroName: string) {
-    return heroName
-        .replace(/\s+/g, "-")
-        .replace(/[^a-zA-Z0-9-_]/g, "")
-        .replace(/-+/g, "-")
-        .replace(/^-+|-+$/g, "")
-        .toLowerCase();
-}
 
-const HERO_ID_CONV_PATH = './scripts/add-hero/hero-id-conversion.json';
-function inferInternalId(heroId: string): string|undefined {
-    const ids = JSON.parse(fs.readFileSync(HERO_ID_CONV_PATH, { encoding: 'utf-8' }));
-
-    return ids[heroId];
-}
-
-function addInternalIdPair(heroId: string, internalId: string) {
-    const ids = JSON.parse(fs.readFileSync(HERO_ID_CONV_PATH, { encoding: 'utf-8' }));
-
-    if (ids[heroId])
-        return false;
-
-    ids[heroId] = internalId;
-
-    fs.writeFileSync(HERO_ID_CONV_PATH, JSON.stringify(ids, undefined, 4));
-
-    return true;
-}
 
 async function createHeroFull(heroIdentity: HeroIdentity) {
     const hero = await p.group(

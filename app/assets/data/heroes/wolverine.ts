@@ -17,8 +17,8 @@ export const Wolverine: HeroData = {
     dataDir: '/img/heroes/data/wolverine/',
 
     iconAnimationSize: [2400, 2668],
-    iconAnimationOffset: [-5, -15],
-    iconLargeAnimationOffset: [5, -15],
+    iconAnimationOffset: [5, 15],
+    iconLargeAnimationOffset: [-5, 15],
 
     ranks: [
         {

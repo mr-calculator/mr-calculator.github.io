@@ -2,7 +2,7 @@
     <div
         class="profile-page simple-page no-navbar"
         :style="{
-            '--hero-silhouette': `url(${selectedHero.dataDir}silhouette.webp)`,
+            '--hero-silhouette': `url(${useHeroImage('silhouette', selectedHero).value})`,
         }"
     >
         <div class="silhouette" />
@@ -96,7 +96,7 @@
                                     class="item"
                                 >
                                     <img
-                                        :src="`${rank.store.hero.dataDir}head.webp`"
+                                        :src="`${useHeroImage('head', rank.store.hero).value}`"
                                         :alt="`${rank.store.hero.name} Portrait`"
                                         draggable="false"
                                     />
@@ -232,7 +232,7 @@
                             :selected-hero="heroSelectSelectedHero"
                             :links="false"
                             :add-hero-enabled="false"
-                            :show-unknown-heroes="false"
+                            :show-unknown-heroes="true"
 
                             list-view-disabled
 
@@ -260,7 +260,7 @@
                                 :key="costume.id ?? 'default'"
                                 :class="{
                                     costume: 1,
-                                    checked: heroSelectSelectedCostume == costume.id
+                                    checked: (heroSelectSelectedCostume ?? 'default') == costume.id
                                 }"
 
                                 @click="heroSelectSelectedCostume = costume.id ?? undefined"
@@ -274,7 +274,7 @@
                                     <h4>{{ costume.name }}</h4>
                                 </div>
 
-                                <div v-if="heroSelectSelectedCostume == costume.id" class="check">
+                                <div v-if="(heroSelectSelectedCostume ?? 'default') == costume.id" class="check">
                                     <Tex
                                         image="dropdownCheck"
                                         color="var(--color)"
@@ -421,7 +421,7 @@ import { onClickOutside } from '@vueuse/core';
 import { ACHIEVEMENTS, getAchievements, type Achievement } from '~/assets/data/achievements/achievements';
 import { calcTotalXp, DEFAULT_HERO_STORE, DEFAULT_PROFILE_STORE, LATEST_SEASON_NO, PROFICIENCY_RANK_BADGE_BGS, PROFICIENCY_RANK_BADGES, PROFICIENCY_RANKS, ProfileStoreSchema, RARITY_DATA, type HeroData, type PlayerHeroStore, type ProfileSheetDataExportable } from '~/assets/data/common';
 import { CostumeCollectionStoreSchema, getHeroCostumes, RARITY_ORDER, type Costume, type CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
-import { HERO_LIST } from '~/assets/data/heroes';
+import { HERO_LIST, UNKNOWN_HERO } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import InputModal from '~/components/modals/InputModal.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
@@ -569,7 +569,8 @@ const heroSelectCostumeList = useTemplateRef('costume-list');
 onClickOutside(heroSelectCostumeList, () => heroSelectCostumeListOpen.value = false);
 
 const heroSelectCostumes = computed<{ id: string|null, name: string, rarity: CostumeRarity|null }[]>(() => {
-    const selectedHero = HERO_LIST.find(h => h.id == heroSelectSelectedHero.value)!;
+    const selectedHero = HERO_LIST.find(h => h.id == heroSelectSelectedHero.value)
+        ?? unknownHeroes.value.find(h => h.id == heroSelectSelectedHero.value)!;
     const heroCostumes = getHeroCostumes(heroSelectSelectedHero.value);
 
     return [
@@ -586,12 +587,15 @@ const heroSelectCostumes = computed<{ id: string|null, name: string, rarity: Cos
     ]
 });
 
-const selectedHero = computed(() => HERO_LIST.find(h => h.id == profile.value.selectedHero.id)!);
+const selectedHero = computed(() =>
+    HERO_LIST.find(h => h.id == profile.value.selectedHero.id)
+?? unknownHeroes.value.find(h => profile.value.selectedHero.id)!
+);
 const selectedHeroSkin = computed(() => {
     if (!profile.value.selectedHero.skin)
-        return selectedHero.value.dataDir + 'full-body.webp';
+        return useHeroImage('full-body', selectedHero.value).value;
 
-    return `${selectedHero.value.dataDir}costumes/${profile.value.selectedHero.skin}.webp`
+    return `${selectedHero.value.dataDir}costumes/${profile.value.selectedHero.skin}.webp`;
 });
 
 const _heroSelectSelectedHero = ref<string|null>(null);
@@ -652,6 +656,13 @@ onClickOutside(profileSheetOverlayContainer, () => {
 
 async function createProfileSheet() {
     profileSheetUrl.value = 'loading';
+    const heroes = await Promise.all(highestRanksWithHeroData.value.slice(0, 3).map(async s => ({
+        name: s.store.hero.name,
+        iconUrl: await useHeroImageAsync('head', s.store.hero),
+        levels: s.store.level,
+        rankName: s.rank.name,
+    })));
+
     profileSheetBlob = await generateProfileSheet({
         profile: {
             name: profile.value.name,
@@ -669,12 +680,7 @@ async function createProfileSheet() {
                 heroName: highestRanksWithHeroData.value[0]!.store.hero.name
             }
         },
-        heroes: highestRanksWithHeroData.value.slice(0, 3).map(s => ({
-            name: s.store.hero.name,
-            iconUrl: s.store.hero.dataDir + 'head.webp',
-            levels: s.store.level,
-            rankName: s.rank.name,
-        })),
+        heroes,
         proficiency: {
             points: totalPoints.value,
             lords: lordsNo.value,
@@ -691,13 +697,20 @@ async function createProfileSheet() {
         URL.revokeObjectURL(profileSheetUrl.value);
 
     profileSheetUrl.value = url;
+
+
+    heroes.forEach(h => URL.revokeObjectURL(h.iconUrl));
 }
 
 function createProfileSheetLink() {
+    const selectedHeroSkinFiltered = selectedHeroSkin.value.startsWith('blob:')
+        ? `${UNKNOWN_HERO().dataDir}full-body.webp`
+        : selectedHeroSkin.value;
+        
     const profileData: ProfileSheetDataExportable['p'] = [
         profile.value.name,
         profile.value.level,
-        selectedHeroSkin.value,
+        selectedHeroSkinFiltered,
         profile.value.nameplate,
         
             highestRanksWithHeroData.value[0]!.rank.id,

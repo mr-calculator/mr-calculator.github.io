@@ -20,7 +20,7 @@ export const InvisibleWoman: HeroData = {
     dataDir: '/img/heroes/data/invisible-woman/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [-5, -10],
+    iconAnimationOffset: [5, 10],
 
     ranks: [
         {

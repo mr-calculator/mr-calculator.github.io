@@ -517,6 +517,25 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.2.0/generic-stats.webp',
         ]
     },
+    {
+        version: {
+            number: '2.3.0',
+            date: 'June 18, 2026',
+            time: '10:31 PM',
+        },
+        title: 'Added custom heroes user images',
+        description: `Added ability to upload custom images for user added heroes
+        <br>
+        <br>
+        <i>(Gamora Image taken from <a href="https://www.reddit.com/r/marvelrivals/comments/1n2iy1f/gamora_character_design/" target="_blank" rel="noopener noreferrer">Reddit</a>. Artwork by pboyshrty - <a href="https://www.instagram.com/byplayboyshorty" target="_blank" rel="noopener noreferrer">Instagram</a>, <a href="https://www.reddit.com/user/Cultural_Ad4203/" target="_blank" rel="noopener noreferrer">Reddit</a>)</i>
+        `,
+        list: [
+            'Updated all hero stats to S8.0',
+        ],
+        images: [
+            '/img/changelog/v2.3.0/gamora.webp',
+        ]
+    },
 ];
 
 export function groupCommitsByVersion(commits: GitHubCommit[]):

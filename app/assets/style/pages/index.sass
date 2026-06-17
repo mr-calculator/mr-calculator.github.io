@@ -1180,16 +1180,11 @@
                         width: 100%
                         height: 100%
 
-                    .lord-icon-container
+                    .large-animated-icon-container
                         position: absolute
                         bottom: 30px
                         left: 50%
                         transform: translateX(-50%) scale(0.85)
-
-                        width: 350px
-                        height: 150px
-
-                        z-index: 2
 
                         +media-ml-desktop
                             bottom: 50%
@@ -1200,77 +1195,6 @@
                             bottom: 50%
                             left: 17%
                             transform: translateY(50%)
-
-                        .frame-bg,
-                        .frame-right,
-                        .frame-left
-                            position: absolute
-                            left: 0
-                            bottom: 0
-
-                            width: 350px
-                            height: 150px
-
-                        .shine
-                            position: absolute
-                            top: 0
-                            right: 0
-
-                            animation: pulsate 3s cubic-bezier(1,-0.01,0,.99) 0s infinite
-
-                            @keyframes pulsate
-                                0%
-                                    opacity: 0
-                                    filter: brightness(1) blur(0px)
-                                    transform: rotate(0deg)
-                                50%
-                                    opacity: 1
-                                    filter: brightness(1.2) blur(1px)
-                                    transform: rotate(90deg)
-                                100%
-                                    opacity: 0
-                                    filter: brightness(1) blur(0px)
-                                    transform: rotate(90deg)
-                                    
-
-                        .animated-icon-wrapper
-                            position: absolute
-                            bottom: 0
-                            width: 100%
-                            height: 200px
-
-                            overflow: clip
-
-                            .animated-icon
-                                position: absolute
-                                bottom: -85px
-                                left: -20px
-
-                                mask-image: var(--mask-url)
-                                mask-repeat: no-repeat
-                                mask-size: 360px 220px
-                                mask-position: -10px 28px
-
-                        .badge
-                            position: absolute
-                            bottom: 25px
-                            left: 38px
-                            width: 80px
-
-                            transform: translate(-50%, 50%)
-                            user-select: none
-                            -webkit-user-drag: none
-
-                        .role
-                            position: absolute
-                            top: 42px
-                            right: 42px
-                            width: 40px
-
-                            filter: invert(1)
-                            opacity: .64
-                            user-select: none
-                            -webkit-user-drag: none
 
                 .hero-skin
                     position: absolute

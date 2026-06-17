@@ -14,8 +14,8 @@ export const Mantis: HeroData = {
     dataDir: '/img/heroes/data/mantis/',
 
     iconAnimationSize: [2400, 2668],
-    iconAnimationOffset: [-17, -12],
-    iconLargeAnimationOffset: [-7, -12],
+    iconAnimationOffset: [17, 12],
+    iconLargeAnimationOffset: [7, 12],
     easterEgg: '1020307',
     easterEggMessage: `
     Woah! You found an <b>easter egg</b>!

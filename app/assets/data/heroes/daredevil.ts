@@ -21,8 +21,8 @@ export const Daredevil: HeroData = {
     color: '#f0597d',
     dataDir: '/img/heroes/data/daredevil/',
 
-    iconAnimationOffset: [-10, -25],
-    iconLargeAnimationOffset: [15, -25],
+    iconAnimationOffset: [10, 25],
+    iconLargeAnimationOffset: [-15, 25],
 
     ranks: [
         {

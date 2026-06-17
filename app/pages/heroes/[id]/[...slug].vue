@@ -2,7 +2,7 @@
     <div
         class="hero-page"
         :style="{
-            '--hero-silhouette': `url(${hero.dataDir}silhouette.webp)`,
+            '--hero-silhouette': `url(${useHeroImage('silhouette', hero).value}`,
             '--hero-color': hero.color,
         }"
     >
@@ -81,10 +81,10 @@
             <template #planner>
                 Planner
             </template>
-            <template #achievements>
+            <template v-if="!isUnknownHero" #achievements>
                 Achievements
             </template>
-            <template #costumes>
+            <template v-if="!isUnknownHero" #costumes>
                 Costumes
             </template>
         </UiNavBar>
@@ -126,7 +126,7 @@
 
                     <img
                         class="logo"
-                        :src="hero.dataDir + 'logo.webp'"
+                        :src="useHeroImage('logo', hero).value"
                         :alt="`${hero.name} Logo`"
                         draggable="false"
                     />
@@ -134,7 +134,7 @@
                     <div class="prestige-img-wrapper">
                         <img
                             class="prestige-img"
-                            :src="hero.dataDir + 'prestige.webp'"
+                            :src="useHeroImage('prestige', hero).value"
                             :alt="`${hero.name} Prestige`"
                             draggable="false"
                         />
@@ -657,6 +657,8 @@ import type { TooltipBinding } from '~/directives/tooltip';
 import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory } from '~/assets/data/achievements/achievements';
 import { getAllCategories, getCategoryIcon } from '~/assets/data/cosmetics/costumes/costumes';
 import type { NavBarMarks } from '~/components/ui/nav/Bar.vue';
+import EditUnknownHeroImages, { type AnimationProperties } from '~/components/modals/EditUnknownHeroImages.vue';
+import { deleteImage, getAllHeroImages, HERO_IMAGES, saveImage, type HeroImages } from '~/services/image-operations';
 
 type PageId = 'overview'|'customize'|'estimates'|'planner'|'achievements'|'costumes';
 const PAGE_IDS = ['overview', 'customize', 'estimates', 'planner', 'achievements', 'costumes'];
@@ -1031,6 +1033,8 @@ function openWhereModal(where: string, returnToModal = true) {
         selectLevelGoal(returnToModal ? modifyHeroData : undefined);
     else if (where == 'edit-unknown-hero')
         editUnknownHero(returnToModal ? modifyHeroData : undefined);
+    else if (where == 'edit-unknown-hero-images')
+        editUnknownHeroImages(returnToModal ? modifyHeroData : undefined);
     else if (where == 'convert-unknown-hero')
         convertUnknownHero(returnToModal ? modifyHeroData : undefined);
     else if (where == 'delete-unknown-hero')
@@ -1270,6 +1274,61 @@ function editUnknownHero(callback = () => {}, callbackOnSuccess = false) {
         // success, route to new hero if id changed
         if (currentId != editedHero.id)
             router.replace('/heroes/' + editedHero.id);
+    })
+    .catch(callback)
+}
+
+async function editUnknownHeroImages(callback = () => {}, callbackOnSuccess = false) {
+    openModal(EditUnknownHeroImages, {
+        title: 'Edit Hero Images',
+        hero: structuredClone(extractRawValue(hero)),
+        heroImages: await getAllHeroImages(hero.value)
+    })
+    .promise
+    .then(async (result: { color: string, images: HeroImages, animation: AnimationProperties }) => {
+        hero.value.color = result.color;
+
+        objectEntries(result.images)
+            .forEach(([key, blob]) => {
+                if (typeof blob === 'undefined')
+                    return;
+
+                if (blob === null) {
+                    deleteImage(hero.value.id, key).catch(() => {
+                        notify(
+                            `An unexpected error occured. We couldn't delete the "${HERO_IMAGES[key]!.name}" image.`,
+                            5000,
+                            { image: 'warning', color: '#c94f36' }
+                        );
+                    });
+
+                    return;
+                }
+
+                saveImage(hero.value.id, key, blob).catch((e) => {
+                    console.error(e);
+                    notify(
+                        `An unexpected error occured. We couldn't save the "${HERO_IMAGES[key]!.name}" image.`,
+                        5000,
+                        { image: 'warning', color: '#c94f36' }
+                    );
+                })
+            });
+
+        revokeHeroImageCache(hero.value.id);
+
+        const defaultHero = UNKNOWN_HERO();
+        hero.value.iconAnimationSize = result.animation.iconAnimationSize ?? defaultHero.iconAnimationSize;
+        hero.value.iconAnimationOffset = result.animation.iconAnimationOffset ?? defaultHero.iconAnimationOffset;
+        hero.value.iconLargeAnimationOffset = result.animation.iconLargeAnimationOffset ?? defaultHero.iconLargeAnimationOffset;
+        
+        notify(
+            `Hero images edited successfully!`,
+            3000,
+            { image: 'check', color: '#458a14' }
+        );
+        if (callbackOnSuccess)
+            callback();
     })
     .catch(callback)
 }

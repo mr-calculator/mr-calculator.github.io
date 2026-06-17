@@ -42,6 +42,12 @@
                 <ul class="import-list">
                     <li v-if="dataSegment.data.stored">Hero Proficiency progress</li>
                     <li v-if="dataSegment.data.__unknownHero">Added hero info</li>
+                    <li
+                        v-if="dataSegment.data.__unknownHero
+                     && Object.keys(dataSegment.data.hero?.heroImages ?? {}).length"
+                    >
+                        Added hero images
+                    </li>
                     <li v-if="dataSegment.data.isFavourite">Hero favourite status</li>
                     <li v-if="dataSegment.data.achievements">Hero achievements</li>
                     <li v-if="dataSegment.data.ownedCostumes">Hero owned costumes</li>
@@ -51,6 +57,12 @@
                 <ul class="import-list">
                     <li v-if="dataSegment.data.storedHeroes">Proficiency progress</li>
                     <li v-if="dataSegment.data.unknownHeroes">Added heroes info</li>
+                    <li
+                        v-if="dataSegment.data.unknownHeroes
+                     && dataSegment.data.unknownHeroes.some(h => Object.keys(h.heroImages ?? {}).length)"
+                    >
+                        Added heroes images
+                    </li>
                     <li v-if="dataSegment.data.favourites">Favourites</li>
                     <li v-if="dataSegment.data.achievements">Achievements</li>
                     <li v-if="dataSegment.data.collections">Collections</li>
@@ -71,19 +83,34 @@
                     <li
                         v-for="hero in overwriteCheck.remaining"
                         :class="{
-                            checked: overwriteToggles[hero.heroId],
+                            checked: overwriteToggles[hero.heroId]
+                               || overwriteUnknownHeroToggles[hero.heroId]
+                               || overwriteUnknownHeroImagesToggles[hero.heroId],
                             selected: selectedRemainingHero == hero.heroId
                         }"
-                        :title="hero.hero.name"
 
                         @click="clickHero(hero, true)"
+
+                        v-tooltip="({
+                            text: hero.hero.name + (hero.type == 'unknown' || hero.type == 'both' ? ' (Custom Added)' : ''),
+                            icon: hero.type == 'unknown' || hero.type == 'both'
+                                ? {
+                                    image: 'unknownHero',
+                                    width: '20px',
+                                    height: '15px'
+                                }
+                                : undefined
+                        } satisfies TooltipBinding)"
                     >
                         <!--
                             :class="{selected: selectedHero == hero.heroId}"
                             @click="clickHero(hero.heroId)"
                         -->
                         <div
-                            v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
+                            v-if="overwriteToggles[hero.heroId]
+                               || overwriteUnknownHeroToggles[hero.heroId]
+                               || overwriteUnknownHeroImagesToggles[hero.heroId]
+                            "
                             class="check"
                         >
                             <Tex
@@ -95,7 +122,10 @@
                         </div>
                         <div class="icon">
                             <img
-                                :src="`${hero.hero.dataDir}head.webp`"
+                                :src="hero.type == 'unknown' || hero.type == 'both'
+                                    ? (imageURLsToBeImported[hero.heroId] ?? `${hero.hero.dataDir}head.webp`)
+                                    : `${hero.hero.dataDir}head.webp`
+                                "
                                 :alt="`${hero.hero.name}`"
                                 draggable="false"
                             />
@@ -113,17 +143,27 @@
                     <div class="hero-info">
                         <FormCheckbox
                             v-if="selectedRemainingHeroData.type == 'both'"
-                            :model-value="overwriteToggles[selectedRemainingHeroData.heroId]! || overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!"
+                            :model-value="
+                                overwriteToggles[selectedRemainingHeroData.heroId]!
+                             || overwriteUnknownHeroToggles[selectedRemainingHeroData.heroId]!
+                            "
                             @update:model-value="$event => {
-                                overwriteToggles[selectedRemainingHeroData!.heroId] = $event,
-                                overwriteUnknownHeroToggles[selectedRemainingHeroData!.heroId] = $event
+                                overwriteToggles[selectedRemainingHeroData!.heroId] = $event;
+                                overwriteUnknownHeroToggles[selectedRemainingHeroData!.heroId] = $event;
+                                overwriteUnknownHeroImagesToggles[selectedRemainingHeroData!.heroId] = $event;
                             }"
 
                             size="small"
                         />
                         <div class="icon">
                             <img
-                                :src="`${selectedRemainingHeroData.hero.dataDir}head.webp`"
+                                :src="selectedRemainingHeroData.type == 'unknown' || selectedRemainingHeroData.type == 'both'
+                                    ? (
+                                        imageURLsToBeImported[selectedRemainingHeroData.heroId]
+                                     ?? `${selectedRemainingHeroData.hero.dataDir}head.webp`
+                                    )
+                                    : `${selectedRemainingHeroData.hero.dataDir}head.webp`
+                                "
                                 :alt="`${selectedRemainingHeroData.hero.name}`"
                                 draggable="false"
                             />
@@ -151,6 +191,15 @@
                             append-slot
                         >
                             <h4>Import hero info</h4>
+                        </FormCheckbox>
+                        <FormCheckbox
+                            v-if="selectedRemainingHeroData.type == 'both' || selectedRemainingHeroData.type == 'unknown'"
+                            v-model="overwriteUnknownHeroImagesToggles[selectedRemainingHeroData.heroId]!"
+
+                            size="small"
+                            append-slot
+                        >
+                            <h4>Import hero images</h4>
                         </FormCheckbox>
 
                         <Tex
@@ -181,19 +230,34 @@
                     <li
                         v-for="hero in overwriteCheck.conflicting"
                         :class="{
-                            checked: overwriteToggles[hero.heroId],
+                            checked: overwriteToggles[hero.heroId]
+                               || overwriteUnknownHeroToggles[hero.heroId]
+                               || overwriteUnknownHeroImagesToggles[hero.heroId],
                             selected: selectedHero == hero.heroId
                         }"
-                        :title="hero.hero.name"
 
                         @click="clickHero(hero)"
+                        
+                        v-tooltip="({
+                            text: hero.hero.name + (hero.type == 'unknown' || hero.type == 'both' ? ' (Custom Added)' : ''),
+                            icon: hero.type == 'unknown' || hero.type == 'both'
+                                ? {
+                                    image: 'unknownHero',
+                                    width: '20px',
+                                    height: '15px'
+                                }
+                                : undefined
+                        } satisfies TooltipBinding)"
                     >
                         <!--
                             :class="{selected: selectedHero == hero.heroId}"
                             @click="clickHero(hero.heroId)"
                         -->
                         <div
-                            v-if="overwriteToggles[hero.heroId] || overwriteUnknownHeroToggles[hero.heroId]"
+                            v-if="overwriteToggles[hero.heroId]
+                               || overwriteUnknownHeroToggles[hero.heroId]
+                               || overwriteUnknownHeroImagesToggles[hero.heroId]
+                            "
                             class="check"
                         >
                             <Tex
@@ -204,7 +268,13 @@
                             />
                         </div>
                         <div class="icon">
-                            <img :src="`${hero.hero.dataDir}head.webp`" :alt="hero.hero.name" draggable="false" />
+                            <img
+                                :src="hero.type == 'unknown' || hero.type == 'both'
+                                    ? (imageURLsToBeImported[hero.heroId] ?? `${hero.hero.dataDir}head.webp`)
+                                    : `${hero.hero.dataDir}head.webp`
+                                "
+                                :alt="hero.hero.name" draggable="false"
+                            />
                         </div>
                         <div
                             v-if="hero.rank?.icon && hero.rank.id != 'agent'"
@@ -220,17 +290,28 @@
                 <div class="hero-info">
                     <FormCheckbox
                         v-if="selectedHeroData.type == 'both'"
-                        :model-value="overwriteToggles[selectedHeroData.heroId]! || overwriteUnknownHeroToggles[selectedHeroData.heroId]!"
+                        :model-value="
+                            overwriteToggles[selectedHeroData.heroId]!
+                         || overwriteUnknownHeroToggles[selectedHeroData.heroId]!
+                         || overwriteUnknownHeroImagesToggles[selectedHeroData.heroId]!
+                        "
                         @update:model-value="$event => {
-                            overwriteToggles[selectedHeroData!.heroId] = $event,
-                            overwriteUnknownHeroToggles[selectedHeroData!.heroId] = $event
+                            overwriteToggles[selectedHeroData!.heroId] = $event;
+                            overwriteUnknownHeroToggles[selectedHeroData!.heroId] = $event;
+                            overwriteUnknownHeroImagesToggles[selectedHeroData!.heroId] = $event;
                         }"
 
                         size="small"
                     />
                     <div class="icon">
                         <img
-                            :src="`${selectedHeroData.hero.dataDir}head.webp`"
+                            :src="selectedHeroData.type == 'unknown' || selectedHeroData.type == 'both'
+                                ? (
+                                    imageURLsToBeImported[selectedHeroData.heroId]
+                                    ?? `${selectedHeroData.hero.dataDir}head.webp`
+                                )
+                                : `${selectedHeroData.hero.dataDir}head.webp`
+                            "
                             :alt="selectedHeroData.hero.name"
                             draggable="false"
                         />
@@ -259,7 +340,15 @@
                     >
                         <h4>Overwrite hero info</h4>
                     </FormCheckbox>
+                    <FormCheckbox
+                        v-if="selectedHeroData.type == 'both' || selectedHeroData.type == 'unknown'"
+                        v-model="overwriteUnknownHeroImagesToggles[selectedHeroData.heroId]!"  
 
+                        size="small"
+                        append-slot
+                    >
+                        <h4>Overwrite hero images</h4>
+                    </FormCheckbox>
                     <Tex
                         image="cross"
                         color="var(--light-blue)"
@@ -295,7 +384,7 @@
                 v-if="dataSegment"
                 size="small"
 
-                @click="dataSegment = null"
+                @click="clearData()"
             >
                 CLEAR
             </FormButton>
@@ -520,6 +609,8 @@
 
         .toggle
             display: flex
+            flex-wrap: wrap
+            justify-content: center
             align-items: center
             gap: 10px
 
@@ -542,6 +633,8 @@
         width: auto
         min-width: 355px
 
+        +media-mobile
+            min-width: 200px
 p
     color: $light-blue
     text-align: center
@@ -571,11 +664,13 @@ import {
     type HeroData,
     type PlayerHeroStore,
     type PreferencesStore,
-    type ProficiencyRank
+    type ProficiencyRank,
 } from '~/assets/data/common';
 import { convertCostumeId, CostumeCollectionStoreSchema } from '~/assets/data/cosmetics/costumes/costumes';
 import { DEFAULT_NAMEPLATE_ID } from '~/assets/data/cosmetics/nameplates/nameplates';
 import { HERO_LIST } from '~/assets/data/heroes';
+import type { TooltipBinding } from '~/directives/tooltip';
+import { HERO_IMAGES, saveImage } from '~/services/image-operations';
 
 useSeoMeta({
     title: 'Import | MR Proficiency Calculator',
@@ -681,9 +776,11 @@ function clickHero(hero: OverwriteCheck[0], remaining = false) {
 }
 
 const dataSegment = ref<AnySerializableDataSegment|null>(null);
+const imageURLsToBeImported = ref<Record<string, string>>({});
 
 const overwriteToggles = ref<Record<string, boolean>>({});
 const overwriteUnknownHeroToggles = ref<Record<string, boolean>>({});
+const overwriteUnknownHeroImagesToggles = ref<Record<string, boolean>>({});
 
 type OverwriteCheck = {
     type: 'stats'|'unknown'|'both',
@@ -703,8 +800,10 @@ const overwriteCheck = computed<{ conflicting: OverwriteCheck, remaining: Overwr
         const heroSegmentData = dataSegment.value.data;
 
         overwriteToggles.value[heroSegmentData.id] = true;
-        if (heroSegmentData.__unknownHero)
+        if (heroSegmentData.__unknownHero) {
             overwriteUnknownHeroToggles.value[heroSegmentData.id] = true;
+            overwriteUnknownHeroImagesToggles.value[heroSegmentData.id] = true;
+        }
 
         const existingHero = heroesWithData.value.find(h => h.hero.id == heroSegmentData.id);
         if (existingHero) {
@@ -748,8 +847,10 @@ const overwriteCheck = computed<{ conflicting: OverwriteCheck, remaining: Overwr
             if (!!heroInSegmentStore || !!heroInSegmentUnknownHeroes) {
                 overwriteToggles.value[hero.hero.id] = true;
 
-                if (heroInSegmentUnknownHeroes)
+                if (heroInSegmentUnknownHeroes) {
                     overwriteUnknownHeroToggles.value[hero.hero.id] = true;
+                    overwriteUnknownHeroImagesToggles.value[hero.hero.id] = true;
+                }
 
                 conflicting.push({
                     type: heroInSegmentStore && heroInSegmentUnknownHeroes ? 'both' : (heroInSegmentStore ? 'stats' : 'unknown'),
@@ -802,6 +903,7 @@ const overwriteCheck = computed<{ conflicting: OverwriteCheck, remaining: Overwr
                 });
 
             overwriteUnknownHeroToggles.value[hero.id] = true;
+            overwriteUnknownHeroImagesToggles.value[hero.id] = true;
         });
 
         return { conflicting, remaining };
@@ -942,6 +1044,35 @@ function processContent(content: string) {
     // validation was finally successful, set the dataSegment in place
     // convert costume ids in case needed
     dataSegment.value = convertOHMCostumeIdsToMRCostumeIds(result.data);
+
+    // create blobs for hero images we're going to use to display (only head)
+    if (dataSegment.value.type == 'hero') {
+        if (!dataSegment.value.data.__unknownHero || !dataSegment.value.data.hero?.heroImages)
+            return;
+
+        const headData = dataSegment.value.data.hero.heroImages['head'];
+        if (!headData)
+            return;
+
+        const blob = dataUrlToBlob(headData);
+        imageURLsToBeImported.value[dataSegment.value.data.hero.id] = URL.createObjectURL(blob);
+    }
+    else if (dataSegment.value.type == 'profile') {
+        if (!dataSegment.value.data.unknownHeroes)
+            return dataSegment.value;
+
+        Object.values(dataSegment.value.data.unknownHeroes).forEach(hero => {
+            if (!hero.heroImages)
+                return;
+
+            const headData = hero.heroImages['head'];
+            if (!headData)
+                return;
+
+            const blob = dataUrlToBlob(headData);
+            imageURLsToBeImported.value[hero.id] = URL.createObjectURL(blob);
+        });
+    }
 }
 
 function importFiles(files?: FileList|null) {
@@ -1024,7 +1155,13 @@ onMounted(async () => {
     });
 })
 
-function importData() {
+async function importData() {
+    // revoke & delete temporary head images
+    Object.entries(imageURLsToBeImported.value).forEach(([heroId, blobURL]) => {
+        delete imageURLsToBeImported.value[heroId];
+        URL.revokeObjectURL(blobURL);
+    });
+
     if (!dataSegment.value)
         return;
 
@@ -1034,13 +1171,39 @@ function importData() {
         if (
             dataSegment.value.data.__unknownHero
          && dataSegment.value.data.hero
-         && overwriteUnknownHeroToggles.value[id]
         ) {
-            const existingIndex = unknownHeroes.value.findIndex(h => h.id == id);
-            if (existingIndex != -1)
-                unknownHeroes.value[existingIndex] = dataSegment.value.data.hero;
-            else
-                unknownHeroes.value.push(dataSegment.value.data.hero);
+            const hero = dataSegment.value.data.hero;
+
+            if (overwriteUnknownHeroImagesToggles.value[id]) {
+                // import images to idb
+                await Promise.all(objectEntries(hero.heroImages ?? {}).map(async ([key, data]) => {
+                    if (!data)
+                        return;
+
+                    const blob = dataUrlToBlob(data);
+
+                    await saveImage(hero.id, key, blob).catch(() => {
+                        notify(
+                            `An unexpected error occured. We couldn't save the "${HERO_IMAGES[key]!.name}" image.`,
+                            5000,
+                            { image: 'warning', color: '#c94f36' }
+                        );
+                    })
+                }));
+            }
+
+            // delete images from hero to prevent them from getting stored in local storage (since 5mb limit)
+            delete hero.heroImages;
+
+            
+            if (overwriteUnknownHeroToggles.value[id]) {
+                // add unknown hero to store
+                const existingIndex = unknownHeroes.value.findIndex(h => h.id == id);
+                if (existingIndex != -1)
+                    unknownHeroes.value[existingIndex] = hero;
+                else
+                    unknownHeroes.value.push(hero);
+            }
         }
 
         if (overwriteToggles.value[id])
@@ -1068,9 +1231,31 @@ function importData() {
     else if (dataSegment.value.type == 'profile') {
         if (dataSegment.value.data.unknownHeroes) {
             for (const unknownHero of dataSegment.value.data.unknownHeroes) {
+                if (overwriteUnknownHeroImagesToggles.value[unknownHero.id]) {
+                    // import images to idb
+                    await Promise.all(objectEntries(unknownHero.heroImages ?? {}).map(async ([key, data]) => {
+                        if (!data)
+                            return;
+
+                        const blob = dataUrlToBlob(data);
+
+                        await saveImage(unknownHero.id, key, blob).catch(() => {
+                            notify(
+                                `An unexpected error occured. We couldn't save the "${HERO_IMAGES[key]!.name}" image.`,
+                                5000,
+                                { image: 'warning', color: '#c94f36' }
+                            );
+                        })
+                    }));
+                }
+
+                // delete images from hero to prevent them from getting stored in local storage (since 5mb limit)
+                delete unknownHero.heroImages;
+
                 if (!overwriteUnknownHeroToggles.value[unknownHero.id])
                     continue;
 
+                // add unknown hero to store
                 const existingIndex = unknownHeroes.value.findIndex(h => h.id == unknownHero.id);
                 if (existingIndex != -1)
                     unknownHeroes.value[existingIndex] = unknownHero;
@@ -1124,7 +1309,8 @@ function importData() {
     }
 
     nextTick(() => {
-        resetLocalStorageCache()
+        resetLocalStorageCache();
+        revokeHeroImageCache();
 
         nextTick(fixUnknownHeroesImagePaths)
     });
@@ -1136,6 +1322,15 @@ function importData() {
         3000,
         { image: 'check', color: '#458a14' }
     );
+}
+
+function clearData() {
+    dataSegment.value = null;
+
+    Object.entries(imageURLsToBeImported.value).forEach(([heroId, blobURL]) => {
+        delete imageURLsToBeImported.value[heroId];
+        URL.revokeObjectURL(blobURL);
+    }); 
 }
 
 </script>

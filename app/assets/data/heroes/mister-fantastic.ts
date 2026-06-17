@@ -16,7 +16,7 @@ export const MisterFantastic: HeroData = {
     dataDir: '/img/heroes/data/mister-fantastic/',
 
     iconAnimationSize: [3584, 3972],
-    iconAnimationOffset: [-5, -20],
+    iconAnimationOffset: [5, 20],
 
     ranks: [
         {

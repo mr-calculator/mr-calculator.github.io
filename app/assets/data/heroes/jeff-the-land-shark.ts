@@ -14,7 +14,7 @@ export const JeffTheLandShark: HeroData = {
     dataDir: '/img/heroes/data/jeff-the-land-shark/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [-10, -10],
+    iconAnimationOffset: [10, 10],
 
     ranks: [
         {

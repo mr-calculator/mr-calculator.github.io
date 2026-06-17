@@ -15,8 +15,8 @@ export const SquirrelGirl: HeroData = {
     color: '#f4a366',
     dataDir: '/img/heroes/data/squirrel-girl/',
 
-    iconAnimationOffset: [-8, -15],
-    iconLargeAnimationOffset: [-8, -10],
+    iconAnimationOffset: [8, 15],
+    iconLargeAnimationOffset: [8, 10],
     iconLargeMask: '/img/heroes/data/squirrel-girl/hero-select-mask.webp',
 
     ranks: [

@@ -18,7 +18,7 @@ export const ThePunisher: HeroData = {
     dataDir: '/img/heroes/data/the-punisher/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [-10, -30],
+    iconAnimationOffset: [10, 30],
 
     ranks: [
         {

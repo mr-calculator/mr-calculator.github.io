@@ -16,7 +16,7 @@ export const Namor: HeroData = {
     dataDir: '/img/heroes/data/namor/',
 
     iconAnimationSize: [3584, 3972],
-    iconAnimationOffset: [0, -30],
+    iconAnimationOffset: [0, 30],
 
     ranks: [
         {

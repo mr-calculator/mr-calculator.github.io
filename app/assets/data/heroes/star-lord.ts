@@ -17,8 +17,8 @@ export const StarLord: HeroData = {
     dataDir: '/img/heroes/data/star-lord/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [0, -47],
-    iconLargeAnimationOffset: [20, -47],
+    iconAnimationOffset: [0, 47],
+    iconLargeAnimationOffset: [-20, 47],
 
     ranks: [
         {

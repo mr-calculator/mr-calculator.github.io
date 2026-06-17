@@ -22,7 +22,7 @@ export const MoonKnight: HeroData = {
     dataDir: '/img/heroes/data/moon-knight/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [0, -42],
+    iconAnimationOffset: [0, 42],
 
     ranks: [
         {

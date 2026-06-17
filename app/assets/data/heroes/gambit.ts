@@ -16,8 +16,8 @@ export const Gambit: HeroData = {
     color: '#ff97e0',
     dataDir: '/img/heroes/data/gambit/',
 
-    iconAnimationOffset: [-10, -52],
-    iconLargeAnimationOffset: [20, -52],
+    iconAnimationOffset: [10, 52],
+    iconLargeAnimationOffset: [-20, 52],
     iconLargeMask: '/img/heroes/data/gambit/hero-select-mask.webp',
 
     ranks: [

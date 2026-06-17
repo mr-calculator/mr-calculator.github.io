@@ -14,7 +14,7 @@ export const HumanTorch: HeroData = {
     dataDir: '/img/heroes/data/human-torch/',
 
     iconAnimationSize: [3588, 3972],
-    iconAnimationOffset: [0, -32],
+    iconAnimationOffset: [0, 32],
 
     ranks: [
         {

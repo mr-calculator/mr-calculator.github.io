@@ -92,62 +92,76 @@
                 <h3>Export hero</h3>
             </li>
 
-            <li v-if="isUnknownHero" class="list-separator" />
-            <li v-if="isUnknownHero" @click="$emit('confirm', 'edit-unknown-hero')">
-                <div class="icon-wrapper">
-                    <Tex
-                        image="edit"
-                        state="hover"
+            <template v-if="isUnknownHero">
+                <li class="list-separator" />
+                <li @click="$emit('confirm', 'edit-unknown-hero')">
+                    <div class="icon-wrapper">
+                        <Tex
+                            image="edit"
+                            state="hover"
 
-                        width="70px"
-                        height="70px"
+                            width="70px"
+                            height="70px"
+                            object-fit="contain"
+                        />
+                    </div>
+                    <h3>Edit Hero</h3>
+                </li>
+                <li @click="$emit('confirm', 'edit-unknown-hero-images')">
+                    <div class="icon-wrapper">
+                        <Tex
+                            image="photo"
+                            state="hover"
+
+                            width="70px"
+                            height="70px"
+                            object-fit="contain"
+                        />
+                    </div>
+                    <h3>Edit Hero Images</h3>
+                </li>
+                <li
+                    class="warning-wrapper"
+                    @click="$emit('confirm', 'convert-unknown-hero')"
+                >
+                    <Tex
+                        v-if="unknownHeroHasPossibleMatch"
+                        class="warning-bubble"
+                        image="redDotExcl"
+
+                        width="22px"
+                        height="22px"
                         object-fit="contain"
                     />
-                </div>
-                <h3>Edit Hero</h3>
-            </li>
-            <li
-                v-if="isUnknownHero"
-                class="warning-wrapper"
-                @click="$emit('confirm', 'convert-unknown-hero')"
-            >
-                <Tex
-                    v-if="unknownHeroHasPossibleMatch"
-                    class="warning-bubble"
-                    image="redDotExcl"
 
-                    width="22px"
-                    height="22px"
-                    object-fit="contain"
-                />
+                    <div class="icon-wrapper">
+                        <Tex
+                            image="swap"
+                            state="hover"
+                            color="#fff"
 
-                <div class="icon-wrapper">
-                    <Tex
-                        image="swap"
-                        state="hover"
-                        color="#fff"
+                            width="45px"
+                            height="45px"
+                            object-fit="contain"
+                        />
+                    </div>
+                    <h3>Convert to Official Hero</h3>
+                </li>
+                <li @click="$emit('confirm', 'delete-unknown-hero')">
+                    <div class="icon-wrapper">
+                        <Tex
+                            image="delete"
+                            state="hover"
+                            color="#fc6b60"
 
-                        width="45px"
-                        height="45px"
-                        object-fit="contain"
-                    />
-                </div>
-                <h3>Convert to Official Hero</h3>
-            </li>
-            <li v-if="isUnknownHero" @click="$emit('confirm', 'delete-unknown-hero')">
-                <div class="icon-wrapper">
-                    <Tex
-                        image="delete"
-                        state="hover"
-                        color="#fc6b60"
-
-                        width="70px"
-                        height="70px"
-                        object-fit="contain"
-                    />
-                </div>
-                <h3>Delete Hero</h3>
-            </li>
+                            width="70px"
+                            height="70px"
+                            object-fit="contain"
+                        />
+                    </div>
+                    <h3>Delete Hero</h3>
+                </li>
+            </template>
         </ul>
 
         <div v-if="!headless" class="buttons">

@@ -18,8 +18,8 @@ export const BlackCat: HeroData = {
     color: '#7b68f0',
     dataDir: '/img/heroes/data/black-cat/',
 
-    iconAnimationOffset: [-4, -25],
-    iconLargeAnimationOffset: [-10, -20],
+    iconAnimationOffset: [4, 25],
+    iconLargeAnimationOffset: [10, 20],
 
     ranks: [
         {

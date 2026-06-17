@@ -117,8 +117,8 @@ const animatedIconStyle = computed(() => {
     return {
         '--size': props.size + 'px',
         '--sheet-width': icon.sheetWidth + 'px',
-        '--offset-x': (offsetX * -1) + 'px',
-        '--offset-y': (offsetY * -1) + 'px',
+        '--offset-x': offsetX + 'px',
+        '--offset-y': offsetY + 'px',
         backgroundImage: `url(${icon.icon})`,
         backgroundPosition: `-${col * icon.frameSize[0]}px -${row * icon.frameSize[1]}px`
     };

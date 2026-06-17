@@ -18,7 +18,7 @@ export const ElsaBloodstone: HeroData = {
     color: '#e86245',
     dataDir: '/img/heroes/data/elsa-bloodstone/',
 
-    iconAnimationOffset: [15, -20],
+    iconAnimationOffset: [-15, 20],
 
     ranks: [
         {

@@ -18,8 +18,8 @@ export const Storm: HeroData = {
     dataDir: '/img/heroes/data/storm/',
 
     iconAnimationSize: [3584, 3972],
-    iconAnimationOffset: [-10, -25],
-    iconLargeAnimationOffset: [10, -25],
+    iconAnimationOffset: [10, 25],
+    iconLargeAnimationOffset: [-10, 25],
 
     ranks: [
         {

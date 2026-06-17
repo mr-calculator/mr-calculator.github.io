@@ -7,6 +7,7 @@ import type { Option } from "~/components/form/Dropdown.vue";
 import { DEFAULT_NAMEPLATE_ID } from "./cosmetics/nameplates/nameplates";
 import type { ProfileSheetData } from "~/services/generate-profile-sheet";
 import { CostumeCollectionSchema, type CostumeCollection } from "./cosmetics/costumes/costumes";
+import { loadImage } from "../../services/image-operations";
 
 export const LATEST_SEASON_NO = '8';
 
@@ -729,6 +730,8 @@ export function replaceRewardPlaceholders(string: string, hero: HeroData) {
                  .replaceAll('%HERO_DATA_DIR%', hero.dataDir ?? '');
 }
 
+const DataUrlSchema = z.string().regex(/^data:[a-z]+\/[a-z0-9+.-]+;base64,[A-Za-z0-9+/=]+$/);
+
 export const HeroDataSchema = z.object({
     meta: z.object({
         releasedAt: z.iso.date().optional(),
@@ -753,6 +756,28 @@ export const HeroDataSchema = z.object({
 
     easterEgg: z.string().optional(),
     easterEggMessage: z.string().optional(),
+
+    heroImages: z.object({
+        'bust-champion': DataUrlSchema.optional(),
+        'full-body': DataUrlSchema.optional(),
+        'head': DataUrlSchema.optional(),
+        'head-lord': DataUrlSchema.optional(),
+        'portrait': DataUrlSchema.optional(),
+        'prestige': DataUrlSchema.optional(),
+        'silhouette': DataUrlSchema.optional(),
+        'logo': DataUrlSchema.optional(),
+        'story': DataUrlSchema.optional(),
+
+        'fantastic-nameplate': DataUrlSchema.optional(),
+        'uncanny-nameplate': DataUrlSchema.optional(),
+        'amazing-nameplate': DataUrlSchema.optional(),
+        'immortal-nameplate': DataUrlSchema.optional(),
+
+        'ko-1': DataUrlSchema.optional(),
+        'ko-2': DataUrlSchema.optional(),
+
+        'spray': DataUrlSchema.optional(),
+    }).optional()
 });
 export type HeroData = z.infer<typeof HeroDataSchema>;
 
@@ -1131,10 +1156,14 @@ export const AnySegmentSchema = z.discriminatedUnion('type', [
     ProfileSegmentSchema
 ])
 
-export function fixUnknownHeroesImagePaths() {
+export async function fixUnknownHeroesImagePaths() {
     const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 
     for (const hero of unknownHeroes.value) {
+        const hasChangedBustChampion = !!(await loadImage(hero.id, 'bust-champion'));
+        if (!hasChangedBustChampion && hero.iconAnimationOffset?.[0] == -10 && hero.iconAnimationOffset?.[1] ==  -40)
+            hero.iconAnimationOffset = [10, 40];
+
         for (const rank of hero.ranks) {
             for (const reward of rank.type.rewards) {
                 const oldPath = '/img/heroes/common-rewards/';

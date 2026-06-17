@@ -132,7 +132,7 @@
                                 />
                                 <img
                                     class="portrait"
-                                    :src="entry.hero.dataDir + 'story.webp'"
+                                    :src="useHeroImage('story', entry.hero).value"
                                     :alt="`${entry.hero.name} Story Portrait`"
                                     draggable="false"
                                 />
@@ -223,7 +223,7 @@
                 >
                     <div class="card-top">
                         <img
-                            :src="entry.hero.dataDir + 'story.webp'"
+                            :src="useHeroImage('story', entry.hero).value"
                             class="portrait"
                             :alt="`${entry.hero.name} Story Portrait`"
                             draggable="false"
@@ -405,7 +405,7 @@
                         :name="hero.name"
                         :roles="hero.roles"
                         :color="hero.color"
-                        :portrait="`${hero.dataDir}portrait.webp`"
+                        :portrait="useHeroImage('portrait', hero).value"
 
                         :is-favourite="favourites.includes(hero.id)"
                         :is-checked="selectedHero == hero.id"

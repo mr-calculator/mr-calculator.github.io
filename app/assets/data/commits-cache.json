@@ -1,5 +1,47 @@
 [
   {
+    "sha": "1cdee04c67eda436d37d092f67fb7c6753ae2e03",
+    "node_id": "C_kwDORv7rQ9oAKDFjZGVlMDRjNjdlZGE0MzZkMzdkMDkyZjY3ZmI3YzY3NTNhZTJlMDM",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-15T01:53:44Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-15T01:53:44Z"
+      },
+      "message": "Multi-Role Heroes Average Stats Feature & Fixes\n\nAdded a feature that allows users to have different stats for every role of multi-role heroes (Deadpool) (both for storing and using in Estimates and Planner)\n\n- Added generic average stats for all Deadpool roles individually, as well as combined (updated for S8.0)\n- Added ability for full menu (open state on mobile) to be hidden away by tapping outside of it or scrolling the page\n- Fixed menu background on mobile having wrong size (should now repeat at precise intervals to match the menu items)\n- Fixed menu on small desktops going too much (18.5px) to the right, going past the diagonal cutoff of the top bar\n- Fixed sticky toolbar on Cosmetics page going under the menu bar when stuck",
+      "tree": {
+        "sha": "d51c18d8336d0adc2fbc586d3c535df5d45d5fc2",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/d51c18d8336d0adc2fbc586d3c535df5d45d5fc2"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/1cdee04c67eda436d37d092f67fb7c6753ae2e03",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1cdee04c67eda436d37d092f67fb7c6753ae2e03",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/1cdee04c67eda436d37d092f67fb7c6753ae2e03",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/1cdee04c67eda436d37d092f67fb7c6753ae2e03/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "e507e39b8646cb900c0217f994095fccecda731e",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/e507e39b8646cb900c0217f994095fccecda731e",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/e507e39b8646cb900c0217f994095fccecda731e"
+      }
+    ]
+  },
+  {
     "sha": "e507e39b8646cb900c0217f994095fccecda731e",
     "node_id": "C_kwDORv7rQ9oAKGU1MDdlMzliODY0NmNiOTAwYzAyMTdmOTk0MDk1ZmNjZWNkYTczMWU",
     "commit": {
@@ -5244,48 +5286,6 @@
         "sha": "3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a"
-      }
-    ]
-  },
-  {
-    "sha": "3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a",
-    "node_id": "C_kwDORv7rQ9oAKDNkYTJkNGNlMzBlZTQ4ZDljMDY2MzBhN2MzOWI4YWMzY2U4ZWFlMmE",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T01:34:41Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T01:34:41Z"
-      },
-      "message": "Added Google site verification",
-      "tree": {
-        "sha": "363e10fa0eba732a9e7c8b122868d64fa8525251",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/363e10fa0eba732a9e7c8b122868d64fa8525251"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/3da2d4ce30ee48d9c06630a7c39b8ac3ce8eae2a/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/eaa73e7a797b4b014ab136794d6dc05a9e63a1b6"
       }
     ]
   }

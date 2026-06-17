@@ -18,8 +18,8 @@ export const Angela: HeroData = {
     dataDir: '/img/heroes/data/angela/',
 
     iconAnimationSize: [3624, 4040],
-    iconAnimationOffset: [-20, -15],
-    iconLargeAnimationOffset: [8, -15],
+    iconAnimationOffset: [20, 15],
+    iconLargeAnimationOffset: [-8, 15],
 
     ranks: [
         {

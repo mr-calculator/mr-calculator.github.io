@@ -17,7 +17,7 @@ export const TheThing: HeroData = {
     dataDir: '/img/heroes/data/the-thing/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [-2, -38],
+    iconAnimationOffset: [2, 38],
 
     ranks: [
         {

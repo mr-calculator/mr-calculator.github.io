@@ -48,7 +48,7 @@ async function main() {
     p.log.info('Copying all images for all heroes...');
 
     const heroes = getHeroesFile();
-    p.log.info('Using `./add-hero/hero-id-conversion.json`');
+    p.log.info('Using `./add-hero/cache/hero-id-conversion.json`');
 
     const heroesWithoutRoleDeadpools = Object.entries(heroes).filter(([_, internal]) => 
         internal.length == 4

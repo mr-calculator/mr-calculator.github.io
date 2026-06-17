@@ -50,6 +50,7 @@ import { WhiteFox } from "./heroes/white-fox";
 import { BlackCat } from "./heroes/black-cat";
 import { DevilDinosaur } from "./heroes/devil-dinosaur";
 import { Cyclops } from "./heroes/cyclops";
+import { loadImage } from "../../services/image-operations";
 
 export const HERO_LIST: HeroData[] = [
     AdamWarlock,
@@ -113,7 +114,7 @@ export const UNKNOWN_HERO: () => HeroData = () => ({
     dataDir: '/img/heroes/data/unknown-hero/',
 
     iconAnimationSize: [2952, 2980],
-    iconAnimationOffset: [-10, -40],
+    iconAnimationOffset: [10, 40],
 
     ranks: [
         {

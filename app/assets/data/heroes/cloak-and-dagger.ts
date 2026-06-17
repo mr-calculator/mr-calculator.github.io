@@ -16,7 +16,7 @@ export const CloakAndDagger: HeroData = {
     color: '#a2b7fd',
     dataDir: '/img/heroes/data/cloak-and-dagger/',
 
-    iconAnimationOffset: [22, -45],
+    iconAnimationOffset: [-22, 45],
 
     ranks: [
         {

@@ -15,7 +15,7 @@ export const BlackPanther: HeroData = {
     color: '#7c5a93',
     dataDir: '/img/heroes/data/black-panther/',
 
-    iconAnimationOffset: [-5, -20],
+    iconAnimationOffset: [5, 20],
 
     ranks: [
         {

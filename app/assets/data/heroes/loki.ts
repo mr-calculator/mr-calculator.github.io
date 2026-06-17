@@ -22,7 +22,7 @@ export const Loki: HeroData = {
     color: '#62a173',
     dataDir: '/img/heroes/data/loki/',
 
-    iconAnimationOffset: [-10, -30],
+    iconAnimationOffset: [10, 30],
 
     ranks: [
         {

@@ -20,7 +20,7 @@ export const PeniParker: HeroData = {
     dataDir: '/img/heroes/data/peni-parker/',
 
     iconAnimationSize: [3584, 3980],
-    iconAnimationOffset: [-7, -30],
+    iconAnimationOffset: [7, 30],
 
     ranks: [
         {

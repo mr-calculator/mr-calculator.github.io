@@ -19,7 +19,7 @@ export const AdamWarlock: HeroData = {
     dataDir: '/img/heroes/data/adam-warlock/',
 
     iconAnimationSize: [3584, 3972],
-    iconAnimationOffset: [-20, -20],
+    iconAnimationOffset: [20, 20],
 
     ranks: [
         {

@@ -76,6 +76,7 @@
 import { levelToRank, replaceRewardPlaceholders, type HeroData, type ProficiencyRank, type Reward } from '~/assets/data/common';
 import { tex } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
+import { HERO_IMAGES } from '~/services/image-operations';
 
 const props = defineProps<{
     embedded?: boolean,
@@ -173,11 +174,21 @@ const aggregatedRewards = computed(() => {
         if (hasEasterEgg.value)
             applyEasterEgg(reward);
 
+
+        const iconPath = replaceRewardPlaceholders(reward.icon, props.hero);
+        let iconKey = iconPath.split('/').at(-1)!;
+        iconKey = iconKey.slice(0, iconKey.length - '.webp'.length)!;
+        const icon = Object.keys(HERO_IMAGES).includes(iconKey)
+            ? useHeroImage(iconKey, props.hero).value
+            : iconPath;
+
         const processed: Reward = {
             ...reward,
             name: replaceRewardPlaceholders(reward.name, props.hero),
-            icon: replaceRewardPlaceholders(reward.icon, props.hero)
+            icon
         }
+
+
 
         if (processed.iconAnimation) {
             if (props.hero.iconAnimationSize)

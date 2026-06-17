@@ -17,7 +17,7 @@ export const Phoenix: HeroData = {
     dataDir: '/img/heroes/data/phoenix/',
 
     iconAnimationSize: [3528, 3980],
-    iconAnimationOffset: [10, -25],
+    iconAnimationOffset: [-10, 25],
 
     ranks: [
         {

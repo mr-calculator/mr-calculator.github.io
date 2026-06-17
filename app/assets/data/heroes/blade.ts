@@ -19,7 +19,7 @@ export const Blade: HeroData = {
     color: '#ff6c67',
     dataDir: '/img/heroes/data/blade/',
 
-    iconAnimationOffset: [10, -25],
+    iconAnimationOffset: [-10, 25],
 
     ranks: [
         {

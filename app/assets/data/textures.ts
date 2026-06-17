@@ -292,6 +292,9 @@ export const TEX = {
     more: {
         default: 'icon/more.png'
     } as Texture,
+    photo: {
+        default: 'icon/photo.png'
+    } as Texture,
     time: {
         default: 'icon/time.png'
     } as Texture,

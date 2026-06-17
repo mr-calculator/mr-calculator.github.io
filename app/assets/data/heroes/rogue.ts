@@ -15,8 +15,8 @@ export const Rogue: HeroData = {
     dataDir: '/img/heroes/data/rogue/',
 
     iconAnimationSize: [3584, 3972],
-    iconAnimationOffset: [-20, -32],
-    iconLargeAnimationOffset: [0, -32],
+    iconAnimationOffset: [20, 32],
+    iconLargeAnimationOffset: [0, 32],
 
     ranks: [
         {

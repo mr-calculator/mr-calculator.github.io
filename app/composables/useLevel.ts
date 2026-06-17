@@ -1,5 +1,6 @@
 import { levelToRank, replaceRewardPlaceholders, type HeroData, type Reward } from "~/assets/data/common";
 import { tex } from "~/assets/data/textures";
+import { HERO_IMAGES } from "~/services/image-operations";
 
 export const useLevel = (level: number, hero: HeroData) => {
     const rank = levelToRank(level);
@@ -10,11 +11,18 @@ export const useLevel = (level: number, hero: HeroData) => {
         icon: tex('none'),
     };
 
-    const reward = cloneObjectRefAsRaw<Reward>(rank?.rewards.find(r => r.level == level)) ?? emptyReward
+    const reward = cloneObjectRefAsRaw<Reward>(rank?.rewards.find(r => r.level == level)) ?? emptyReward;
+    const iconPath = replaceRewardPlaceholders(reward.icon, hero);
+    let iconKey = iconPath.split('/').at(-1)!;
+    iconKey = iconKey.slice(0, iconKey.length - '.webp'.length)!;
+    const icon = Object.keys(HERO_IMAGES).includes(iconKey)
+            ? useHeroImage(iconKey, hero).value
+            : iconPath;
+
     const processedReward: Reward = {
         ...reward,
         name: replaceRewardPlaceholders(reward.name, hero),
-        icon: replaceRewardPlaceholders(reward.icon, hero)
+        icon
     }
 
     if (processedReward.iconAnimation) {

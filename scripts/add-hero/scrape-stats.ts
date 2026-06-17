@@ -3,7 +3,7 @@ import { Challenge, HeroRole } from "../../app/assets/data/common";
 import { log } from "@clack/prompts";
 
 // RivalsMeta data structure for hero
-interface HeroData {
+export interface HeroData {
     _id: number,
     players: {
         info: {
@@ -45,11 +45,13 @@ interface HeroData {
 }
 
 // where to get and where to set
-const ENDPOINT = `https://rivalsmeta.com/api/hero-leaderboard/%CHARACTER_ID%?device=1&season=`
-const STATS_FILE = './app/assets/data/average-hero-stats.json';
-const STATS_FILE_BACKUP = './app/assets/data/average-hero-stats_%DATE%.backup.json';
-const MATCHES_FILE = './app/assets/data/hero-matches.json';
-const MATCHES_FILE_BACKUP = './app/assets/data/hero-matches_%DATE%.backup.json';
+export const ENDPOINT = `https://rivalsmeta.com/api/hero-leaderboard/%CHARACTER_ID%?device=1&season=`
+export const STATS_FILE = './app/assets/data/average-hero-stats.json';
+export const STATS_FILE_BACKUP = './app/assets/data/average-hero-stats_%DATE%.backup.json';
+export const MATCHES_FILE = './app/assets/data/hero-matches.json';
+export const MATCHES_FILE_BACKUP = './app/assets/data/hero-matches_%DATE%.backup.json';
+export const AVG_FINAL_HITS_FILE = './scripts/add-hero/cache/average-final-hits.json';
+export const AVG_FINAL_HITS_FILE_BACKUP = './scripts/add-hero/cache/average-final-hits_%DATE%.backup.json';
 
 // to automatically convert from RivalsMeta structure to our own structure
 type MissionMap = Partial<Record<Challenge['type'], string[]|null>>;
@@ -75,7 +77,7 @@ const MISSION_TYPES_FOR_ROLE: Record<HeroRole|'multi', MissionMap> = {
 // since we don't have final hits from the API, I manually went through a few hundred players' profiles
 // and got their Avg Final Hits / 10 mins stat for every hero - yes it was painful
 // this looks like: Record<string, number[]>
-const FINAL_HITS_MANUAL = JSON.parse(fs.readFileSync('./scripts/stats/data/average-final-hits.json', { encoding: 'utf-8' }));
+const FINAL_HITS_MANUAL = JSON.parse(fs.readFileSync(AVG_FINAL_HITS_FILE, { encoding: 'utf-8' }));
 // A little info from what I've tried:
 // while it is technically possible to scrape these final hits (at least from a few hundred players -
 // 5 players per hero = 240) from tracker.gg or RivalsMeta matches, that would be an invasive/aggresive
@@ -88,29 +90,39 @@ const FINAL_HITS_MANUAL = JSON.parse(fs.readFileSync('./scripts/stats/data/avera
 // headless rivals client and using that to get info, but that is waaaay beyond the scope of this project.
 
 
-// count how many matches were used in getting these stats
-let heroMatchCount: number = 0;
-
 // scrapes data for hero from every player available -> processes it
-export async function scrapeData(internalId: string, heroId: string, role: HeroRole|'multi', logger: typeof log, season: string, noBackup = false) {
-    // request RivalsMeta API
-    let data: HeroData|null = null;
-    try {
-        const res = await fetch(ENDPOINT.replace('%CHARACTER_ID%', internalId) + season);
-        data = await res.json();
-    }
-    catch (err) {
-        logger.error(err instanceof Error ? err.message : String(err));
-        if (err instanceof Error && err.stack)
-            logger.error(err.stack);
+export async function scrapeData(
+    internalId: string,
+    heroId: string,
+    role: HeroRole|'multi',
+    logger: typeof log,
+    season: string,
+    noBackup = false,
+    providedData: HeroData|null = null
+) {
+    // count how many matches were used in getting these stats
+    let heroMatchCount: number = 0;
+    
+    let data: HeroData|null = providedData;
+    // request RivalsMeta API if data was not provided
+    if (!data) {
+        try {
+            const res = await fetch(ENDPOINT.replace('%CHARACTER_ID%', internalId) + season);
+            data = await res.json();
+        }
+        catch (err) {
+            logger.error(err instanceof Error ? err.message : String(err));
+            if (err instanceof Error && err.stack)
+                logger.error(err.stack);
+        }
     }
 
     if (!data) {
-        logger.error('Data could not be processed, generic average stats are skipped.');
+        logger.error(`[${heroId} - ${internalId}] Data could not be processed, generic average stats are skipped.`);
         return;
     }
     if (!data.players?.length) {
-        logger.error('Data did not include any players, generic average stats are skipped.');
+        logger.error(`[${heroId} - ${internalId}] Data did not include any players, generic average stats are skipped.`);
         return;
     }
 

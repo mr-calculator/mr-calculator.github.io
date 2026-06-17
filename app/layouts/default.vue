@@ -8,7 +8,10 @@
                 heroes: 'special',
 
                 achievements: preferences.sawAchievementsPage ? 'none' : 'new',
-                costumes: preferences.sawCostumesPage ? 'none' : 'new'
+                costumes: preferences.sawCostumesPage ? 'none' : 'new',
+
+                // this will not apply to anything, but will make the hamburger menu show the excl mark for the profile append
+                ___profile: !preferences.sawNameplatesPage || !preferences.sawFramesPage ? 'new' : 'none'
             }"
 
             :transparent="!safari"

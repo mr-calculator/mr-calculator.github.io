@@ -22,7 +22,7 @@ export const IronFist: HeroData = {
     dataDir: '/img/heroes/data/iron-fist/',
 
     iconAnimationSize: [3584, 3940],
-    iconAnimationOffset: [-3, -35],
+    iconAnimationOffset: [3, 35],
 
     ranks: [
         {
