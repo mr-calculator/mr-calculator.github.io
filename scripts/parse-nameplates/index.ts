@@ -60,7 +60,7 @@ async function parseTable(nameplates: Nameplate[], table: string, themesIconSour
         const releaseDate = cells[7].querySelector('span font')?.textContent?.replace(/([^0-9-])/g, '');
 
         // not existing check
-        if ([internalId, name, rarity, sourceFull, image, releaseDate].some(f => typeof f === 'undefined')) {
+        if ([internalId, name, rarity, sourceFull, releaseDate].some(f => typeof f === 'undefined')) {
             p.log.error(`Nameplate [${name ?? internalId ?? 'unknown'}] doesn't have enough fields, skipping`);
             return null;
         }
@@ -81,7 +81,7 @@ async function parseTable(nameplates: Nameplate[], table: string, themesIconSour
 
             releaseDate: releaseDate?.trim(),
 
-            imageLink: image!
+            imageLink: image
         } satisfies NameplateWithImageLink;
         
     }).filter(Boolean);
@@ -138,9 +138,9 @@ async function main() {
 
         p.log.info(`Fetching new animated nameplate images from wiki...`);
         await Promise.all(
-            nameplatesDiff.filter(e => e!.type == 'animated').map(e => {
-                return fetchNameplate(e!.id, e!.imageLink);
-            })
+            nameplatesDiff.filter(e => e.type == 'animated' && e.imageLink).map(e =>
+                fetchNameplate(e.id, e.imageLink!)
+            )
         );
 
         p.log.info(`Copying new nameplate images from the game files`);

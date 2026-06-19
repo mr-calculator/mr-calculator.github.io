@@ -278,7 +278,7 @@
         },
         {
             "heroId": "magik",
-            "id": "1029307",
+            "id": "1029305",
             "wikiLink": "/wiki/Soulless_Sword",
             "name": "SOULLESS SWORD",
             "rarity": "legendary",
@@ -1280,6 +1280,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036301",
+            "wikiLink": "/wiki/Coastal_Wall-Crawler",
+            "name": "COASTAL WALL-CRAWLER",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Krakoan Reels",
+            "sourceLink": "/wiki/Krakoan_Reels",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-06-18"
         }
     ],
     "ironman": [
@@ -1764,6 +1777,19 @@
             "category": "Free Event Reward",
             "theme": "Twisted Nightmare",
             "releaseDate": "2026-02-19"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018305",
+            "wikiLink": "/wiki/Nautical_Mystic",
+            "name": "NAUTICAL MYSTIC",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-06-18"
         }
     ],
     "black-panther": [
@@ -4101,6 +4127,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Thieves Guild",
             "releaseDate": "2026-03-27"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025305",
+            "wikiLink": "/wiki/Coastal_Couple",
+            "name": "COASTAL COUPLE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Krakoan Reels",
+            "sourceLink": "/wiki/Krakoan_Reels",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-06-18"
         }
     ],
     "daredevil": [
@@ -4625,6 +4664,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "ESU College Life",
             "releaseDate": "2026-04-03"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040303",
+            "wikiLink": "/wiki/Fantastic_Beach_Dad",
+            "name": "FANTASTIC BEACH DAD",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "source": "Krakoan Reels",
+            "sourceLink": "/wiki/Krakoan_Reels",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-06-18"
         }
     ],
     "ultron": [
@@ -5256,6 +5308,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Trumps of The Grandmaster",
             "releaseDate": "2026-01-30"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053302",
+            "wikiLink": "/wiki/White_Wave_Queen",
+            "name": "WHITE WAVE QUEEN",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-06-18"
         }
     ],
     "human-torch": [

@@ -20,7 +20,8 @@ export const NAMEPLATE_THEMES_DIR = './public/img/cosmetics/themes';
  */
 const GAME_FILES_DIRECTORY = process.env.GAME_FILES_DIRECTORY!;
 /**
- * When using FModel, only extract the `Marvel/Content/Marvel/UI/Textures/Show/Playerhead` path
+ * When using FModel, only extract the `Marvel/Content/Marvel/UI/Textures/Show/Playerhead`
+ * or `Marvel/Content/Marvel/UI/Textures/Show/Nameplate` path.
  * 
  * Extract from pak: `pakchunkHQ-Windows.utoc` and `Patch_-Windows_X.X.XXXXXXXX_P.utoc`
  * 
@@ -82,7 +83,7 @@ export type Nameplate = {
 
     releaseDate?: string,
 }
-export type NameplateWithImageLink = Nameplate & { imageLink: string };
+export type NameplateWithImageLink = Nameplate & { imageLink?: string };
 
 export function innerText(el: Element|undefined|null): string|undefined {
     if (!el)

@@ -140,7 +140,8 @@
                     <a
                         class="icon"
                         :href="appConfig.discordServer"
-                        active-class="selected"
+                        target="_blank"
+                        rel="noopener noreferrer"
 
                         v-tooltip="({
                             text: 'Join the <b>Discord Server</b>'

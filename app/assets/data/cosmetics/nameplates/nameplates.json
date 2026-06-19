@@ -7461,5 +7461,98 @@
         "source": "Weapon M",
         "sourceLink": "/wiki/Weapon_M",
         "releaseDate": "2026-06-12"
+    },
+    {
+        "type": "normal",
+        "id": "30000133",
+        "name": "Floating Avenger",
+        "rarity": "rare",
+        "sourceFull": "Event (S8.5): Tandem Tides",
+        "category": "Event",
+        "source": "Tandem Tides",
+        "sourceLink": "/wiki/Tandem_Tides",
+        "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "normal",
+        "id": "30000175",
+        "name": "Hellfire Bay Beach",
+        "rarity": "rare",
+        "sourceFull": "Event Pass (S8.5): Pop & Win",
+        "category": "Event Pass",
+        "source": "Pop & Win",
+        "sourceLink": "/wiki/Pop_%26_Win",
+        "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "normal",
+        "id": "30000176",
+        "name": "Summer Splashes",
+        "rarity": "legendary",
+        "sourceFull": "Event Pass (S8.5): Krakoan Reels",
+        "category": "Event Pass",
+        "source": "Krakoan Reels",
+        "sourceLink": "/wiki/Krakoan_Reels",
+        "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "animated",
+        "id": "31018210",
+        "name": "Nautical Mystic",
+        "rarity": "epic",
+        "sourceFull": "Event Pass (S8.5): Pop & Win",
+        "category": "Event Pass",
+        "source": "Pop & Win",
+        "sourceLink": "/wiki/Pop_%26_Win",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "animated",
+        "id": "31025208",
+        "name": "Coastal Couple",
+        "rarity": "epic",
+        "sourceFull": "Event Pass (S8.5): Krakoan Reels",
+        "category": "Event Pass",
+        "source": "Krakoan Reels",
+        "sourceLink": "/wiki/Krakoan_Reels",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "normal",
+        "id": "31036214",
+        "name": "Coastal Wall-Crawler",
+        "rarity": "rare",
+        "sourceFull": "Event Pass (S8.5): Krakoan Reels",
+        "category": "Event Pass",
+        "source": "Krakoan Reels",
+        "sourceLink": "/wiki/Krakoan_Reels",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "normal",
+        "id": "31040208",
+        "name": "Fantastic Beach Dad",
+        "rarity": "rare",
+        "sourceFull": "Event Pass (S8.5): Krakoan Reels",
+        "category": "Event Pass",
+        "source": "Krakoan Reels",
+        "sourceLink": "/wiki/Krakoan_Reels",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "animated",
+        "id": "31053208",
+        "name": "White Wave Queen",
+        "rarity": "epic",
+        "sourceFull": "Event Pass (S8.5): Pop & Win",
+        "category": "Event Pass",
+        "source": "Pop & Win",
+        "sourceLink": "/wiki/Pop_%26_Win",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-06-18"
     }
 ]
