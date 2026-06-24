@@ -1,5 +1,3 @@
-import type { HeroData } from "~/assets/data/common";
-
 const DB_NAME = 'local-images';
 const DB_VERSION = 1;
 
@@ -91,8 +89,8 @@ export const HERO_IMAGES: Record<keyof HeroImages, { name: string, description?:
     },
 }
 
-export async function getAllHeroImages(hero: HeroData): Promise<HeroImages> {
-    const images = await Promise.all(Object.keys(HERO_IMAGES).map(key => loadImage(hero.id, key as keyof HeroImages)));
+export async function getAllHeroImages(hero: { id: string }): Promise<HeroImages> {
+    const images = await Promise.all(Object.keys(HERO_IMAGES).map(key => loadHeroImage(hero.id, key as keyof HeroImages)));
 
     return Object.fromEntries(
         Object.keys(HERO_IMAGES).map((key, idx) => [key, images[idx]]).filter(([_, blob]) => !!blob)
@@ -109,7 +107,7 @@ function getImageStores(): string[] {
 
 let dbPromise: Promise<IDBDatabase> | null = null;
 
-function openDb(): Promise<IDBDatabase> {
+function openHeroDb(): Promise<IDBDatabase> {
     if (dbPromise) return dbPromise;
 
     dbPromise = new Promise((resolve, reject) => {
@@ -131,8 +129,8 @@ function openDb(): Promise<IDBDatabase> {
 }
 
 // heroId stays arg 1, key (image type) stays arg 2, same call signature as before
-export async function saveImage(heroId: string, key: keyof HeroImages, blob: Blob): Promise<void> {
-    const db = await openDb();
+export async function saveHeroImage(heroId: string, key: keyof HeroImages, blob: Blob): Promise<void> {
+    const db = await openHeroDb();
     return new Promise((resolve, reject) => {
         try {
             const tx = db.transaction(key, 'readwrite');
@@ -146,8 +144,8 @@ export async function saveImage(heroId: string, key: keyof HeroImages, blob: Blo
     });
 }
 
-export async function loadImage(heroId: string, key: keyof HeroImages): Promise<Blob | null> {
-    const db = await openDb();
+export async function loadHeroImage(heroId: string, key: keyof HeroImages): Promise<Blob | null> {
+    const db = await openHeroDb();
     return new Promise((resolve, reject) => {
         try {
             const tx = db.transaction(key, 'readonly');
@@ -161,8 +159,22 @@ export async function loadImage(heroId: string, key: keyof HeroImages): Promise<
     });
 }
 
-export async function deleteImage(heroId: string, key: keyof HeroImages): Promise<void> {
-    const db = await openDb();
+export async function moveHeroImageStore(oldHeroId: string, newHeroId: string): Promise<void> {
+    const keys = Object.keys(HERO_IMAGES) as (keyof typeof HERO_IMAGES)[];
+    const images = await Promise.all(keys.map(key =>
+        loadHeroImage(oldHeroId, key)
+    ));
+    await Promise.all(keys.map(key => deleteHeroImage(oldHeroId, key)));
+    await Promise.all(keys.map((key, idx) => saveHeroImage(newHeroId, key, images[idx]!)));
+}
+
+export async function deleteHeroImageStore(heroId: string): Promise<void> {
+    const keys = Object.keys(HERO_IMAGES) as (keyof typeof HERO_IMAGES)[];
+    await Promise.all(keys.map(key => deleteHeroImage(heroId, key)));
+}
+
+export async function deleteHeroImage(heroId: string, key: keyof HeroImages): Promise<void> {
+    const db = await openHeroDb();
     return new Promise((resolve, reject) => {
         try {
             const tx = db.transaction(key, 'readwrite');

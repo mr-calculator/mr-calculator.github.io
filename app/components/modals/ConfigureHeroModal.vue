@@ -364,7 +364,14 @@
                     background: #f1b70c
                 &.invalid
                     background: #c94f36
+                    
+.modal
+    .buttons
+        position: sticky
+        bottom: 0
 
+        padding-bottom: calc(15px + env(safe-area-inset-bottom))
+        z-index: 3
 </style>
 
 <script setup lang="ts">

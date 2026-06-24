@@ -37,11 +37,24 @@
         </div>
         <div v-if="sortedCostumes.length" class="list">
             <PanelCostumeCard
+                v-if="showAddCostume && hero.id.startsWith('__unknown_')"
+                name="Add Custom"
+                :src="tex('allHeroesCostume')"
+                rarity="common"
+                :checked="false"
+                :display-checkbox="false"
+
+                @click="openCreateCostumeModal()"
+            />
+            <PanelCostumeCard
                 v-for="costume in sortedCostumes"
                 :key="costume.id"
 
                 :name="costume.name"
-                :src="`/img/heroes/data/${hero.id}/costumes/${costume.id}_200.webp`"
+                :src="costume.custom
+                    ? customCostumesURLs[costume.id]!
+                    : `/img/heroes/data/${hero.id}/costumes/${costume.id}_200.webp`
+                "
                 :rarity="costume.rarity"
                 :checked="ownedCostumes.includes(costume.id)"
                 :color="hero.color"
@@ -50,7 +63,7 @@
                 @click="openCostumeDetail(costume)"
             />
         </div>
-        <div v-else class="no-results">
+        <div v-else-if="heroCostumes.length" class="no-results">
             <p>No costumes match your filters</p>
             <FormButton
                 size="tiny"
@@ -58,6 +71,17 @@
             >
                 Reset filters
             </FormButton>
+        </div>
+        <div v-else-if="showAddCostume && hero.id.startsWith('__unknown_')" class="list">
+            <PanelCostumeCard
+                name="Add Custom"
+                :src="tex('allHeroesCostume')"
+                rarity="common"
+                :checked="false"
+                :display-checkbox="false"
+
+                @click="openCreateCostumeModal()"
+            />
         </div>
     </div>
 </template>
@@ -193,13 +217,22 @@ import type { HeroData } from '~/assets/data/common';
 import { getAllCategories, getAllSources, getAllThemes, getCategoryIcon, getHeroCostumes, RARITY_ORDER, type Costume } from '~/assets/data/cosmetics/costumes/costumes';
 import CostumeDetailModal from '../modals/CostumeDetailModal.vue';
 import type { Option } from '../form/Dropdown.vue';
+import { tex } from '~/assets/data/textures';
+import { deleteCostumeImage, loadCostumeImage, saveCostumeImage } from '~/services/costume-image-operations';
+import EditCustomCostumeModal from '../modals/EditCustomCostumeModal.vue';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     hero: HeroData,
-}>();
+    showAddCostume?: boolean
+}>(), {
+    showAddCostume: true
+});
+
+const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 
 const activeFilters = defineModel<string[]>({ required: true });
 
+const { notify } = useNotificationManager();
 const { openModal } = useModalManager();
 
 const cosmeticsControls = useTemplateRef('cosmeticsControls');
@@ -222,6 +255,31 @@ useStickyBar(cosmeticsControls, {
 
 const ownedCostumes = useLocalStorage<string[]>(() => `cosmetics_owned_${props.hero.id}`, []);
 const heroCostumes = computed(() => getHeroCostumes(props.hero.id));
+
+const customCostumesURLs = ref<Record<string, string>>(Object.fromEntries(
+    heroCostumes.value.filter(c => c.custom).map(c => [c.id, tex('allHeroesCostume')])
+));
+function revokeCustomCostumesURLs() {
+    Object.values(customCostumesURLs.value).forEach(url => URL.revokeObjectURL(url));
+}
+async function createCustomCostumeURLs() {
+    revokeCustomCostumesURLs();
+
+    const urls = await Promise.all(heroCostumes.value.filter(c => c.custom).map(async c => {
+        const image = await loadCostumeImage(c.id);
+
+        if (!image)
+            return [c.id, tex('allHeroesCostume')];
+
+        return [c.id, URL.createObjectURL(image)];
+    }));
+
+    customCostumesURLs.value = Object.fromEntries(urls);
+}
+
+onMounted(createCustomCostumeURLs);
+onUnmounted(revokeCustomCostumesURLs);
+watch(heroCostumes, createCustomCostumeURLs);
 
 const costumeSort = ref('rarity');
 
@@ -363,10 +421,78 @@ function toggleCostumeOwned(id: string) {
 function openCostumeDetail(costume: Costume) {
     openModal(CostumeDetailModal, {
         costume,
-        heroId: props.hero.id,
-        heroColor: props.hero.color,
+        hero: props.hero,
     })
     .promise
+    .then(edit => {
+        if (!costume.custom)
+            return;
+
+        if (!edit)
+            return;
+
+        openCreateCostumeModal(costume.id);
+    })
     .catch(() => null);
+}
+
+
+function openCreateCostumeModal(id?: string) {
+    const existingCostume = heroCostumes.value.find(c => c.id == id);
+
+    openModal(EditCustomCostumeModal, {
+        title: !!existingCostume ? `Edit costume ${existingCostume.name}` : 'Create a new costume',
+        heroId: props.hero.id,
+        costume: cloneObjectRefAsRaw(existingCostume)
+    })
+    .promise
+    .then((res: { costume: Costume, image: Blob|null }) => {
+        const hero = unknownHeroes.value.find(h => h.id == props.hero.id);
+        if (!hero) {
+            notify(
+                `The hero doesn't exist!`,
+                5000,
+                { image: 'warning', color: '#c94f36' }
+            );
+
+            return;
+        }
+        
+        // make sure custom costumes exists as an array
+        if (!hero.customCostumes)
+            hero.customCostumes = [];
+
+        // set costume
+        const existingCostumeIdx = hero.customCostumes.findIndex(c => c.id == res.costume.id);
+        if (existingCostumeIdx == -1)
+            hero.customCostumes.push(res.costume);
+        else
+            hero.customCostumes[existingCostumeIdx] = res.costume;
+
+        // set images
+        if (res.image === null) {
+            deleteCostumeImage(res.costume.id).catch((e) => {
+                console.error(e);
+                notify(
+                    `An unexpected error occured. We couldn't delete the previous image of the costume.`,
+                    5000,
+                    { image: 'warning', color: '#c94f36' }
+                );
+            });
+        }
+        else {
+            saveCostumeImage(res.costume.id, res.image).catch((e) => {
+                console.error(e);
+                notify(
+                    `An unexpected error occured. We couldn't save "${res.costume.name}"'s image.`,
+                    5000,
+                    { image: 'warning', color: '#c94f36' }
+                );
+            });
+        }
+
+        createCustomCostumeURLs();
+    })
+    .catch(() => null)
 }
 </script>

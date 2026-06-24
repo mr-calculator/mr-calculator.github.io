@@ -1,6 +1,6 @@
 import { levelToRank, replaceRewardPlaceholders, type HeroData, type Reward } from "~/assets/data/common";
 import { tex } from "~/assets/data/textures";
-import { HERO_IMAGES } from "~/services/image-operations";
+import { HERO_IMAGES } from "~/services/hero-image-operations";
 
 export const useLevel = (level: number, hero: HeroData) => {
     const rank = levelToRank(level);

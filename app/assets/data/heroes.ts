@@ -1,4 +1,4 @@
-import { PROFICIENCY_RANKS, type HeroData, type HeroRole } from "./common";
+import { DEFAULT_HERO_STORE, DEFAULT_PROFILE_STORE, PlayerHeroStoreSchema, PROFICIENCY_RANKS, ProfileStoreSchema, type HeroData, type HeroRole, type PlayerHeroStore } from "./common";
 import { AdamWarlock } from "./heroes/adam-warlock";
 import { CloakAndDagger } from "./heroes/cloak-and-dagger";
 import { Deadpool } from "./heroes/deadpool";
@@ -50,7 +50,8 @@ import { WhiteFox } from "./heroes/white-fox";
 import { BlackCat } from "./heroes/black-cat";
 import { DevilDinosaur } from "./heroes/devil-dinosaur";
 import { Cyclops } from "./heroes/cyclops";
-import { loadImage } from "../../services/image-operations";
+import { deleteHeroImageStore, moveHeroImageStore } from "../../services/hero-image-operations";
+import { deleteCostumeImage } from "../../services/costume-image-operations";
 
 export const HERO_LIST: HeroData[] = [
     AdamWarlock,
@@ -242,29 +243,66 @@ export function createHero(hero: HeroData) {
     return true;
 }
 
-export function editHero(id: string, hero: HeroData) {
+export async function editHero(id: string, hero: HeroData) {
     const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
+    const profile = useLocalStorage('profile', await DEFAULT_PROFILE_STORE(), ProfileStoreSchema);
+    const storedLevel = useLocalStorage<PlayerHeroStore|null>(`hero_${id}`, null).value;
 
     // check to see if hero with same name/id exists
     if (id !== hero.id)
         if (unknownHeroes.value.find(h => h.id == hero.id || h.name == hero.name))
-            return false;
+            return 'New hero name already exists!';
 
     // check to see if hero with the id exists
     const heroIndex = unknownHeroes.value.findIndex(h => h.id == id);
     if (heroIndex == -1)
-        return false;
+        return 'Hero doesn\'t exist!';
 
     unknownHeroes.value[heroIndex] = hero;
+
+    // id change moving and modifying existing id in all places
+    if (id !== hero.id) {
+        if (storedLevel) {
+            deleteFromLocalStorage(`hero_${id}`);
+            useLocalStorage<PlayerHeroStore|null>(`hero_${hero.id}`, null).value = storedLevel;
+        }
+
+        // swap in the profile if selected
+        if (profile.value.selectedHero.id == id)
+            profile.value.selectedHero.id = hero.id;
+
+        const ownedCostumes = useLocalStorage<string[]>(() => `cosmetics_owned_${id}`, []).value;
+        deleteFromLocalStorage(`cosmetics_owned_${id}`);
+        useLocalStorage<string[]>(() => `cosmetics_owned_${hero.id}`, []).value = ownedCostumes;
+
+
+        // move custom images to a store with the new hero id
+        try {
+            await moveHeroImageStore(id, hero.id);
+        }
+        catch (e) {
+            return `An error occured while moving the hero's custom images.`;
+        }
+    }
 
     return true;
 }
 
-export function deleteHero(id: string) {
+export async function deleteHero(id: string) {
     const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 
     const heroIndex = unknownHeroes.value.findIndex(h => h.id == id);
+    const hero = unknownHeroes.value[heroIndex]!;
     unknownHeroes.value.splice(heroIndex, 1);
+
+    deleteHeroImageStore(id).catch(() => null);
+    hero.customCostumes?.forEach(c => deleteCostumeImage(c.id).catch(() => null));
+
+    const profile = useLocalStorage('profile', await DEFAULT_PROFILE_STORE(), ProfileStoreSchema);
+    if (profile.value.selectedHero.id == id)
+        profile.value.selectedHero.id = 'luna-snow';
+
+    deleteFromLocalStorage(`cosmetics_owned_${id}`);
 }
 
 

@@ -1,5 +1,47 @@
 [
   {
+    "sha": "d23b8c67864f58c7a877e5e6b7c9536d24030131",
+    "node_id": "C_kwDORv7rQ9oAKGQyM2I4YzY3ODY0ZjU4YzdhODc3ZTVlNmI3Yzk1MzZkMjQwMzAxMzE",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-19T14:36:20Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-06-19T14:36:20Z"
+      },
+      "message": "Added new costumes and nameplates\nFixed Magik's Soulless Sword costume having the wrong ID of a variant (1029307) instead of the main costume's (1029305).\nAdded official costume collections list.",
+      "tree": {
+        "sha": "954115229e7854a3aa6f10b8b497542e0f54bfbd",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/954115229e7854a3aa6f10b8b497542e0f54bfbd"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/d23b8c67864f58c7a877e5e6b7c9536d24030131",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/d23b8c67864f58c7a877e5e6b7c9536d24030131",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/d23b8c67864f58c7a877e5e6b7c9536d24030131",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/d23b8c67864f58c7a877e5e6b7c9536d24030131/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "6cfd50b3e511b25afb76acd51a794456fac20506",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6cfd50b3e511b25afb76acd51a794456fac20506",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/6cfd50b3e511b25afb76acd51a794456fac20506"
+      }
+    ]
+  },
+  {
     "sha": "6cfd50b3e511b25afb76acd51a794456fac20506",
     "node_id": "C_kwDORv7rQ9oAKDZjZmQ1MGIzZTUxMWIyNWFmYjc2YWNkNTFhNzk0NDU2ZmFjMjA1MDY",
     "commit": {
@@ -5244,48 +5286,6 @@
         "sha": "e1f541acd029c72a4e7a92769cc9a6f033a475ae",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/e1f541acd029c72a4e7a92769cc9a6f033a475ae",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/e1f541acd029c72a4e7a92769cc9a6f033a475ae"
-      }
-    ]
-  },
-  {
-    "sha": "e1f541acd029c72a4e7a92769cc9a6f033a475ae",
-    "node_id": "C_kwDORv7rQ9oAKGUxZjU0MWFjZDAyOWM3MmE0ZTdhOTI3NjljYzlhNmYwMzNhNDc1YWU",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T17:44:31Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-03-25T17:44:31Z"
-      },
-      "message": "Attempt #2 to fix sitemap being rejected by Google",
-      "tree": {
-        "sha": "45651bd9980402d021a6fe27ea3c0aa1e5fa3847",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/45651bd9980402d021a6fe27ea3c0aa1e5fa3847"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/e1f541acd029c72a4e7a92769cc9a6f033a475ae",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/e1f541acd029c72a4e7a92769cc9a6f033a475ae",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/e1f541acd029c72a4e7a92769cc9a6f033a475ae",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/e1f541acd029c72a4e7a92769cc9a6f033a475ae/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "dbe8746f79a24f7ecdf47eff28e1f1a17411df43",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/dbe8746f79a24f7ecdf47eff28e1f1a17411df43",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/dbe8746f79a24f7ecdf47eff28e1f1a17411df43"
       }
     ]
   }

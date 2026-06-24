@@ -417,7 +417,8 @@ import { HERO_LIST } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import ConfirmModal from '~/components/modals/ConfirmModal.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
-import { getAllHeroImages } from '~/services/image-operations';
+import { loadCostumeImage } from '~/services/costume-image-operations';
+import { getAllHeroImages } from '~/services/hero-image-operations';
 
 useSeoMeta({
     title: 'Download | MR Proficiency Calculator',
@@ -550,30 +551,50 @@ const displayData = computed(() => {
         : cloneObjectRefAsRaw(allData.value)!;
 
     if (source.type == 'hero') {
-        if (!source.data.__unknownHero || !source.data.hero?.heroImages)
+        if (!source.data.__unknownHero)
             return source;
 
-        objectEntries(source.data.hero.heroImages).forEach(([key, value]) => {
-            if (!value || value.length < 80)
-                return;
+        if (source.data.hero?.heroImages) {
+            objectEntries(source.data.hero.heroImages).forEach(([key, value]) => {
+                if (!value || value.length < 80)
+                    return;
 
-            source.data.hero!.heroImages![key] = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
-        });
+                source.data.hero!.heroImages![key] = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
+            });
+        }
+
+        if (source.data.hero?.customCostumes) {
+            source.data.hero.customCostumes.forEach(c => {
+                const value = c.customImage;
+                if (!value || value.length < 80)
+                    return;
+
+                c.customImage = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
+            })
+        }
     }
     else if (source.type == 'profile') {
         if (!source.data.unknownHeroes)
             return source;
 
         Object.values(source.data.unknownHeroes).forEach(hero => {
-            if (!hero.heroImages)
-                return;
+            if (hero.heroImages) {
+                objectEntries(hero.heroImages).forEach(([key, value]) => {
+                    if (!value || value.length < 80)
+                        return;
 
-            objectEntries(hero.heroImages).forEach(([key, value]) => {
-                if (!value || value.length < 80)
-                    return;
+                    hero!.heroImages![key] = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
+                });
+            }
+            if (hero.customCostumes) {
+                hero.customCostumes.forEach(c => {
+                    const value = c.customImage;
+                    if (!value || value.length < 80)
+                        return;
 
-                hero!.heroImages![key] = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
-            });
+                    c.customImage = value.slice(0, 40) + '...' + value.slice(value.length - 40, value.length);
+                })
+            }
         })
     }
 
@@ -599,9 +620,24 @@ async function unknownHeroWithImages(heroData: HeroData): Promise<HeroData> {
         return [key, base64];
     }).filter(Boolean) as Promise<[string, string]>[];
 
+    const costumesWithImages = await Promise.all(heroData.customCostumes?.map(async c => {
+        const blob = await loadCostumeImage(c.id);
+
+        if (!blob)
+            return c;
+
+        const base64 = await blobToDataUrl(blob);
+
+        return {
+            ...c,
+            customImage: base64
+        }
+    }) ?? []);
+
     return {
         ...heroData,
-        heroImages: Object.fromEntries(await Promise.all(promises))
+        heroImages: Object.fromEntries(await Promise.all(promises)),
+        customCostumes: costumesWithImages.length == 0 ? undefined : costumesWithImages
     }
 }
 

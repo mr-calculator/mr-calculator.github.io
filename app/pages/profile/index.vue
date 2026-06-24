@@ -425,6 +425,7 @@ import { HERO_LIST, UNKNOWN_HERO } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import InputModal from '~/components/modals/InputModal.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
+import { loadCostumeImage } from '~/services/costume-image-operations';
 import { clearProfileSheetCache, generateProfileSheet } from '~/services/generate-profile-sheet';
 
 const title = `Profile | MR Proficiency Calculator`
@@ -589,11 +590,37 @@ const heroSelectCostumes = computed<{ id: string|null, name: string, rarity: Cos
 
 const selectedHero = computed(() =>
     HERO_LIST.find(h => h.id == profile.value.selectedHero.id)
-?? unknownHeroes.value.find(h => profile.value.selectedHero.id)!
+?? unknownHeroes.value.find(h => h.id == profile.value.selectedHero.id)!
 );
+
+const selectedHeroSkinCustomURL = ref<string|null>(null);
+async function createCustomCostumeURL() {
+    if (selectedHeroSkinCustomURL.value)
+        URL.revokeObjectURL(selectedHeroSkinCustomURL.value);
+
+    if (!profile.value.selectedHero.skin)
+        return;
+
+    const image = await loadCostumeImage(profile.value.selectedHero.skin);
+
+    if (!image) {
+        selectedHeroSkinCustomURL.value = tex('allHeroesCostume');
+        return;
+    }
+
+    selectedHeroSkinCustomURL.value = URL.createObjectURL(image);
+}
+
+onMounted(createCustomCostumeURL);
+onUnmounted(() => selectedHeroSkinCustomURL.value ? URL.revokeObjectURL(selectedHeroSkinCustomURL.value) : null);
+watch(() => profile.value.selectedHero.skin, createCustomCostumeURL);
+
 const selectedHeroSkin = computed(() => {
     if (!profile.value.selectedHero.skin)
         return useHeroImage('full-body', selectedHero.value).value;
+
+    if (profile.value.selectedHero.id.startsWith('__unknown_'))
+        return selectedHeroSkinCustomURL.value ?? tex('allHeroesCostume');
 
     return `${selectedHero.value.dataDir}costumes/${profile.value.selectedHero.skin}.webp`;
 });

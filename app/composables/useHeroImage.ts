@@ -1,6 +1,6 @@
 import type { HeroData } from "~/assets/data/common";
 import { UNKNOWN_HERO } from "~/assets/data/heroes";
-import { loadImage } from "~/services/image-operations";
+import { loadHeroImage } from "~/services/hero-image-operations";
 
 const heroImageRefs: Record<string, Ref<string>> = {};
 
@@ -19,7 +19,7 @@ export function useHeroImage(key: string, hero: HeroData): Ref<string> {
     const refImage = ref(fallback);
     heroImageRefs[cacheKey] = refImage;
 
-    loadImage(hero.id, key)
+    loadHeroImage(hero.id, key)
         .then(image => {
             if (image)
                 refImage.value = URL.createObjectURL(image);
@@ -33,7 +33,7 @@ export async function useHeroImageAsync(key: string, hero: HeroData): Promise<st
     let image = `${hero.dataDir}${key}.webp`;
 
     try {
-        const imageBlob = await loadImage(hero.id, key);
+        const imageBlob = await loadHeroImage(hero.id, key);
         if (imageBlob)
             image = URL.createObjectURL(imageBlob);
     }
@@ -55,7 +55,7 @@ export async function revokeHeroImageCache(heroId?: string) {
         urlRef.value = `${UNKNOWN_HERO().dataDir}${key}.webp`;
 
         // in case an image was added (and wasn't removed), load it into the ref
-        loadImage(heroId, key)
+        loadHeroImage(heroId, key)
             .then(image => {
                 if (image)
                     urlRef.value = URL.createObjectURL(image);

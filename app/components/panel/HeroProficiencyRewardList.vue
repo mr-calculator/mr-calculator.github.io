@@ -76,7 +76,7 @@
 import { levelToRank, replaceRewardPlaceholders, type HeroData, type ProficiencyRank, type Reward } from '~/assets/data/common';
 import { tex } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
-import { HERO_IMAGES } from '~/services/image-operations';
+import { HERO_IMAGES } from '~/services/hero-image-operations';
 
 const props = defineProps<{
     embedded?: boolean,

@@ -311,7 +311,8 @@
                         align-items: center
                         gap: 2px
 
-                        background: color-mix(in srgb, $light-blue 20%, transparent) var(--selected-image)
+                        background-color: color-mix(in srgb, $light-blue 20%, transparent)
+                        background-image: var(--selected-image)
                         background-repeat: no-repeat
                         background-size: contain
                         background-position: center
@@ -469,7 +470,7 @@ export type AnimationProperties = {
 <script setup lang="ts">
 import type { HeroData, Reward } from '~/assets/data/common';
 import { heroRolesAsArray, UNKNOWN_HERO } from '~/assets/data/heroes';
-import { getImageDimensions, type HeroImages, HERO_IMAGES } from '~/services/image-operations';
+import { getImageDimensions, type HeroImages, HERO_IMAGES } from '~/services/hero-image-operations';
 
 const { notify } = useNotificationManager();
 

@@ -536,6 +536,29 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.3.0/gamora.webp',
         ]
     },
+    {
+        version: {
+            number: '2.3.1',
+            date: 'June 25, 2026',
+            time: '10:06 PM',
+        },
+        title: 'Added custom costumes & better UX for costumes',
+        description: `Added the ability to add custom costumes (to custom-added heroes only) with data and images (stored in your browser) — also exportable!
+        <br/>
+        <br/>
+        White Fox Art made by <a href="https://x.com/RKreates_" target="_blank" rel="noopener noreferrer">Riko Kreates</a>.
+        `,
+        list: [
+            'Added the ability to make a selection in the costumes page to either make a collection or mark as owned/unowned. Shift may be used with clicking to select multiple items at the same time.',
+            'Fixed modifying custom-added heroes\' names causing loss of stored proficiency progress, owned costumes and custom images.'
+        ],
+        images: [
+            '/img/changelog/v2.3.1/costumes-page.webp',
+            '/img/changelog/v2.3.1/costume-detail.webp',
+            '/img/changelog/v2.3.1/edit.webp',
+            '/img/changelog/v2.3.1/costumes-selection.webp',
+        ]
+    },
 ];
 
 export function groupCommitsByVersion(commits: GitHubCommit[]):

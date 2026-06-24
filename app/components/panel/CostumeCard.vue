@@ -50,12 +50,12 @@
                 <FormCheckbox
                     v-if="displayCheckbox"
                     size="small"
-                    :model-value="checked"
+                    :model-value="typeof owned !== 'undefined' ? owned : checked"
                     @update:model-value="$emit('toggle')"
                     @click.stop
 
                     v-tooltip="({
-                        text: `${checked ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
+                        text: `${typeof owned !== 'undefined' ? owned : checked ? 'Unmark' : 'Mark'} costume as <b>owned</b>`,
                         icon: 'mouseLeft'
                     } satisfies TooltipBinding)"
                 />
@@ -110,13 +110,15 @@
 </style>
 
 <script setup lang="ts">
+import type { CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
 import type { TooltipBinding } from '~/directives/tooltip';
 
 const props = withDefaults(defineProps<{
     name: string;
     src: string;
-    rarity: string;
+    rarity: CostumeRarity;
     checked: boolean;
+    owned?: boolean;
     displayCheckbox?: boolean,
     color?: string;
     imageScale?: number;

@@ -119,16 +119,20 @@
                                 v-model="costumeSort"
                                 small
                             />
-                            <FormCheckbox
+
+                            <FormDropdown
                                 :class="{breakHidden: !filtersVisible}"
+                                ref="owned-dropdown"
 
+                                placeholder="OWNERSHIP"
+                                :options="[
+                                    { label: 'ALL', value: undefined },
+                                    { label: 'OWNED', value: 'owned' },
+                                    { label: 'UNOWNED', value: 'unowned' },
+                                ]"
                                 v-model="filterOwned"
-
-                                size="medium"
-                                color-scheme="dark"
-                            >
-                                OWNED
-                            </FormCheckbox>
+                                small
+                            />
                         </div>
                     </div>
 
@@ -154,10 +158,10 @@
                             @click="mode = 'make-collection'"
                         >
                             <div class="content">
-                                MAKE COLLECTION
+                                SELECT ITEMS
                             </div>
                             <Tex
-                                image="plus"
+                                image="checklist"
                                 color="#fff"
 
                                 width="20px"
@@ -181,7 +185,7 @@
                                 @click="cancelCollection"
                             >
                                 <div class="content">
-                                    CANCEL
+                                    {{ collectionItems.size ? 'DESELECT' : 'CANCEL' }}
                                 </div>
                                 <Tex
                                     image="close"
@@ -193,13 +197,51 @@
                             </div>
                             <div
                                 class="dropdown-like fit-content"
+                                @click="selectAll"
+                            >
+                                <div class="content">
+                                    {{ 
+                                        sortedCostumes.every(c => collectionItems.has(c.id))
+                                     ? 'DESELECT ALL'
+                                     : 'SELECT ALL'
+                                    }}
+                                </div>
+                                <Tex
+                                    image="checklist"
+                                    color="#fff"
+
+                                    width="20px"
+                                    height="20px"
+                                />
+                            </div>
+                            <div class="spacer" />
+
+                            <FormDropdown
+                                v-if="!editingCollection && collectionItems.size"
+                                class="settings"
+                                :options="[
+                                    { label: 'OWNED', value: 'owned' },
+                                    { label: 'UNOWNED', value: 'unowned' },
+                                ]"
+                                placeholder="MARK AS"
+
+                                :model-value="''"
+                                @update:model-value="markAs($event as 'owned'|'unowned')"
+
+                                small
+                                fit-content
+                            />
+
+                            <div
+                                v-if="collectionItems.size"
+                                class="dropdown-like fit-content"
                                 @click="makeCollection"
                             >
                                 <div class="content">
-                                    DONE
+                                    {{ editingCollection ? 'SAVE COLLECTION' : 'MAKE COLLECTION' }}
                                 </div>
                                 <Tex
-                                    image="dropdownCheck"
+                                    image="plus"
                                     color="#fff"
 
                                     width="20px"
@@ -209,6 +251,8 @@
                         </div>
                     </div>
                 </div>
+
+                <p v-if="mode == 'make-collection' && !touch"><i>You can select multiple by holding <b>SHIFT</b></i></p>
             </ClientOnly>
             <div v-if="sortedCostumes.length" class="list">
                 <UiVirtualizedScroll
@@ -223,11 +267,12 @@
                         :src="`/img/heroes/data/${costume.hero.id}/costumes/${costume.id}_200.webp`"
                         :rarity="costume.rarity"
                         :checked="mode == 'make-collection' ? collectionItems.has(costume.id) : costumeOwned(costume)"
-                        :display-checkbox="mode != 'make-collection'"
+                        :owned="costumeOwned(costume)"
+
                         :color="costume.hero.color"
 
                         @toggle="toggleCostumeOwned(costume.heroId, costume.id)"
-                        @click="itemClick(costume)"
+                        @click="itemClick($event, costume)"
                     />
                 </UiVirtualizedScroll>
             </div>
@@ -345,8 +390,10 @@ onUpdated(() => {
 })
 
 const mobile = isMobile();
+const touch = isTouchDevice();
 
 const mode = ref<'make-collection'|'collection'|'default'>('default');
+const editingCollection = ref(false);
 
 const collection = ref<CostumeCollection|null>();
 const collectionOwnerPossesive = computed(() => {
@@ -544,6 +591,9 @@ const checkCreateCollection = () => {
             });
         }, 100);
 
+        if (route.query['edit-collection'])
+            editingCollection.value = true;
+
         // set up collection items if there are none (meaning this is coming from navigation)
         if (route.query['edit-collection'] && !collectionItems.value.size) {
             const existingCollection = collectionsStore.value.find(c => c.id == route.query['edit-collection']);
@@ -569,6 +619,16 @@ async function makeCollection() {
         return;
     }
 
+    if (collectionItems.value.size >= 150) {
+        notify(
+            `Your collection size exceedes the maximum 150 costumes!`,
+            3000,
+            { image: 'warning', color: '#c94f36' }
+        );
+
+        return;
+    }
+
     const collection: Partial<CostumeCollection> = {};
     try {
         // check if collection exists
@@ -578,7 +638,7 @@ async function makeCollection() {
             existingCollection = collectionsStore.value.find(c => c.id == editCollectionId);
 
         const { title, showOwner } = await openModal(CollectionSetupModal, {
-            title: `Give your collection a title`,
+            title: editingCollection.value ? `Update collection details` : `Give your collection a title`,
             inputPlaceholder: `Collection title...`,
 
             inputValue: existingCollection?.title ?? undefined,
@@ -635,6 +695,9 @@ async function makeCollection() {
             { image: 'check', color: '#458a14' }
         );
 
+
+        editingCollection.value = false;
+
         // navigate to new own collection
         router.push({
             query: {
@@ -643,6 +706,30 @@ async function makeCollection() {
         });
     }
     catch { }
+}
+
+function markAs(as: 'owned'|'unowned') {
+    const costumesById = Object.fromEntries(costumes.map(c => [c.id, c]));
+    collectionItems.value.forEach(itemId => {
+        const costume = costumesById[itemId];
+        if (!costume)
+            return;
+
+        const index = ownedCostumes[costume.heroId]?.value.indexOf(itemId) ?? -1;
+        if (index === -1 && as == 'owned')
+            ownedCostumes[costume.heroId]?.value.push(itemId);
+        else if (as == 'unowned')
+            ownedCostumes[costume.heroId]?.value.splice(index, 1);
+    });
+}
+
+function selectAll() {
+    const allSelected = sortedCostumes.value.every(c => collectionItems.value.has(c.id));
+    
+    if (!allSelected)
+        sortedCostumes.value.forEach(c => collectionItems.value.add(c.id));
+    else
+        collectionItems.value.clear();
 }
 
 async function cancelCollection() {
@@ -657,6 +744,8 @@ async function cancelCollection() {
             return;
         }
     }
+
+    editingCollection.value = false;
 
     // if user was editing a collection, take them back to collections page
     if (route.query['edit-collection']) {
@@ -762,7 +851,7 @@ const sortDropdownOptions: Option[] = [
     },
 ];
 
-const filterOwned = ref(false);
+const filterOwned = ref<'owned'|'unowned'>();
 
 const searchText = ref('');
 
@@ -911,8 +1000,8 @@ useReactiveQueryProps({
     },
     owned: {
         ref: filterOwned,
-        default: false,
-        converter: RouteConverter.boolean
+        default: undefined,
+        converter: RouteConverter.string
     },
     sort: {
         ref: costumeSort,
@@ -1032,7 +1121,7 @@ const dropdowns = computed<{
 ]);
 
 function resetFilters() {
-    filterOwned.value = false;
+    filterOwned.value = undefined;
     searchText.value = '';
     activeHeroesFilters.value = [];
     activeRarityFilters.value = [];
@@ -1045,8 +1134,10 @@ type ListCostume = Costume & { hero: HeroData };
 const sortedCostumes = computed<ListCostume[]>(() => {
     let list = costumes.slice();
 
-    if (filterOwned.value)
+    if (filterOwned.value == 'owned')
         list = list.filter(c => costumeOwned(c));
+    else if (filterOwned.value == 'unowned')
+        list = list.filter(c => !costumeOwned(c));
 
     if (!previewCollection.value) {
         list = list.filter(c => {
@@ -1135,34 +1226,44 @@ function toggleCostumeOwned(heroId: string, id: string) {
 function openCostumeDetail(costume: ListCostume) {
     openModal(CostumeDetailModal, {
         costume,
-        heroId: costume.hero.id,
-        heroColor: costume.hero.color,
+        hero: costume.hero,
     })
     .promise
     .catch(() => null);
 }
 
-function itemClick(costume: ListCostume) {
+function itemClick(e: PointerEvent, costume: ListCostume) {
     if (mode.value == 'default' || mode.value == 'collection') {
         openCostumeDetail(costume);
         return;
     }
 
     if (mode.value == 'make-collection') {
-        if (collectionItems.value.has(costume.id))
-            collectionItems.value.delete(costume.id);
+        if (!e.shiftKey) {
+            if (collectionItems.value.has(costume.id))
+                collectionItems.value.delete(costume.id);
+            else
+                collectionItems.value.add(costume.id);
+        }
         else {
-            if (collectionItems.value.size >= 150) {
-                notify(
-                    `Your collection size exceedes the maximum 150 costumes!`,
-                    3000,
-                    { image: 'warning', color: '#c94f36' }
-                );
+            const itemsR = Array.from(collectionItems.value);
+            const lastItem = itemsR.at(-1)!;
+            const lastItemIndex = sortedCostumes.value.findIndex(c => c.id == lastItem);
 
-                return;
-            }
+            const clickedItemIndex = sortedCostumes.value.indexOf(costume);
 
-            collectionItems.value.add(costume.id);
+            const a = lastItemIndex < clickedItemIndex ? lastItemIndex : clickedItemIndex;
+            const b = clickedItemIndex > lastItemIndex ? clickedItemIndex : lastItemIndex;
+            const section = sortedCostumes.value.slice(a, b + 1);
+
+            const shouldAdd = section.some(c => !collectionItems.value.has(c.id))
+
+            section.forEach(c => {
+                if (shouldAdd)
+                    collectionItems.value.add(c.id);
+                else
+                    collectionItems.value.delete(c.id);
+            });
         }
     }
 }

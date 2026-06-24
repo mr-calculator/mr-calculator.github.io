@@ -476,6 +476,10 @@ export const TEX = {
         default: 'icon/costume-customize.webp'
     } as Texture,
 
+    checklist: {
+        default: 'icon/checklist.png'
+    } as Texture,
+
     filter: {
         default: 'icon/filter/filter.png',
         active: 'icon/filter/filter-active.png'
@@ -691,6 +695,9 @@ export const TEX = {
     } as Texture,
     allHeroes: {
         default: 'bg/all-heroes.png'
+    } as Texture,
+    allHeroesCostume: {
+        default: 'bg/all-heroes-costume.webp'
     } as Texture,
     heroSelectFrameGold: {
         default: 'bg/hero-select-frame-gold.png'

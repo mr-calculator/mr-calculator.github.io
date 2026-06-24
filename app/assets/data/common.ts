@@ -6,8 +6,8 @@ import { AchievementSchema, type Achievement } from "./achievements/achievements
 import type { Option } from "~/components/form/Dropdown.vue";
 import { DEFAULT_NAMEPLATE_ID } from "./cosmetics/nameplates/nameplates";
 import type { ProfileSheetData } from "~/services/generate-profile-sheet";
-import { CostumeCollectionSchema, type CostumeCollection } from "./cosmetics/costumes/costumes";
-import { loadImage } from "../../services/image-operations";
+import { CostumeCollectionSchema, CostumeSchema, type CostumeCollection } from "./cosmetics/costumes/costumes";
+import { loadHeroImage } from "../../services/hero-image-operations";
 
 export const LATEST_SEASON_NO = '8';
 
@@ -777,7 +777,9 @@ export const HeroDataSchema = z.object({
         'ko-2': DataUrlSchema.optional(),
 
         'spray': DataUrlSchema.optional(),
-    }).optional()
+    }).optional(),
+
+    customCostumes: z.array(CostumeSchema).optional(),
 });
 export type HeroData = z.infer<typeof HeroDataSchema>;
 
@@ -1160,7 +1162,7 @@ export async function fixUnknownHeroesImagePaths() {
     const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 
     for (const hero of unknownHeroes.value) {
-        const hasChangedBustChampion = !!(await loadImage(hero.id, 'bust-champion'));
+        const hasChangedBustChampion = !!(await loadHeroImage(hero.id, 'bust-champion'));
         if (!hasChangedBustChampion && hero.iconAnimationOffset?.[0] == -10 && hero.iconAnimationOffset?.[1] ==  -40)
             hero.iconAnimationOffset = [10, 40];
 

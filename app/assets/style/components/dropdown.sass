@@ -15,7 +15,7 @@
     align-items: center
     gap: 20px
 
-    z-index: 19
+    z-index: 21
 
     +mediaIOS
         background: #121221e3
@@ -113,6 +113,24 @@
             +media-mobile
                 right: 50%
                 transform: translateX(50%)
+
+    &.fitContent
+        width: fit-content
+
+        .option.current
+            display: flex
+            justify-content: center
+            
+            .text
+                padding-right: 5px
+
+        .options
+            width: 100%
+
+    &.up
+        .options
+            top: unset
+            bottom: 100%
         
 .dropdown,
 .dropdown-mobile-overlay-wrapper .container

@@ -32,6 +32,8 @@
         <p class="info">
             This will remove the custom added hero and move your data to the selected hero.
             <br/>
+            This will remove all custom images (if any) you added to this hero!
+            <br/>
             This will also overwrite your current stats for the selected hero, if you have any.
             <br/>
             This action is irreversible!

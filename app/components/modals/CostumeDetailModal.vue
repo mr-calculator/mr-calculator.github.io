@@ -18,12 +18,18 @@
             @click="$emit('cancel')"
         />
         <div class="scroll-container">
-            <div class="costume-image-panel" :style="{ '--hero-color': heroColor, '--hero-image': `url(${src})` }">
+            <div
+                class="costume-image-panel"
+                :style="{
+                    '--hero-color': props.heroColor ?? hero.color,
+                    '--hero-image': `url(${src})`
+                }
+            ">
                 <div
                     :class="['hero-image', costume.rarity ? `rarity-${costume.rarity}` : '']"
                     :style="{
                         '--hero-image': `url(${src})`,
-                        '--hero-color': heroColor
+                        '--hero-color': props.heroColor ?? hero.color
                     }"
                 >
                     <div class="stroke" />
@@ -42,13 +48,13 @@
             <div class="details-panel">
                 <img
                     class="hero-badge"
-                    :src="`/img/heroes/data/${heroId}/logo.webp`"
+                    :src="hero ? useHeroImage('logo', hero).value : `/img/heroes/data/${heroId}/logo.webp`"
                     alt="Hero Badge"
                     draggable="false"
                 />
 
                 <div class="title-wrapper">
-                    <h2>
+                    <h2 :class="{ custom: costume.custom }">
                         <FormCheckbox
                             :model-value="ownedCostumes.includes(costume.id)"
                             @update:model-value="toggleCostumeOwned"
@@ -61,7 +67,7 @@
                         <div class="title">
                             {{ costume.name }}
                             <a
-                                v-if="costume.wikiLink"
+                                v-if="costume.wikiLink && !costume.custom"
                                 class="wiki-link large"
                                 
                                 :href="toWikiLink(costume.wikiLink)"
@@ -83,6 +89,23 @@
                                 />
                             </a>
                         </div>
+                        <Tex
+                            v-if="costume.custom"
+                            class="edit"
+                            image="edit"
+
+                            color="#8695bb"
+                            hover="color"
+                            hover-color="#5d75b2"
+
+                            square
+                            clickable
+
+                            width="40px"
+                            height="40px"
+
+                            @click="$emit('confirm', true)"
+                        />
                     </h2>
                     <UiSeparator class="title-divider" />    
                 </div>
@@ -121,10 +144,10 @@
                     <NuxtLink
                         class="detail"
                         
-                        :to="createCostumesLink(costume.category, 'category')"
+                        :to="costume.custom ? undefined : createCostumesLink(costume.category, 'category')"
                         @click="$emit('cancel')"
 
-                        v-tooltip="({
+                        v-tooltip="costume.custom ? undefined : ({
                             text: createCostumeTooltipLabel(costume.category),
                             icon: 'mouseLeft'
                         } satisfies TooltipBinding)"
@@ -138,10 +161,10 @@
                         v-if="costume.source"
                         class="detail"
 
-                        :to="createCostumesLink(costume.source, 'source')"
+                        :to="costume.custom ? undefined : createCostumesLink(costume.source, 'source')"
                         @click="$emit('cancel')"
 
-                        v-tooltip="({
+                        v-tooltip="costume.custom ? undefined : ({
                             text: createCostumeTooltipLabel(costume.source),
                             icon: 'mouseLeft'
                         } satisfies TooltipBinding)"
@@ -152,7 +175,7 @@
                                 {{ costume.source }}
                             </div>
                             <a
-                                v-if="costume.sourceLink"
+                                v-if="costume.sourceLink && !costume.custom"
                                 class="wiki-link"
                                 
                                 :href="toWikiLink(costume.sourceLink)"
@@ -182,17 +205,18 @@
                     <NuxtLink
                         v-if="costume.theme"
                         class="detail"
-                        :to="createCostumesLink(costume.theme, 'theme')"
+                        :to="costume.custom ? undefined : createCostumesLink(costume.theme, 'theme')"
                         @click="$emit('cancel')"
 
-                        v-tooltip="({
+                        v-tooltip="costume.custom ? undefined : ({
                             text: createCostumeTooltipLabel(costume.theme),
                             icon: 'mouseLeft'
                         } satisfies TooltipBinding)"
                     >
                         <span class="label">Theme</span>
-                        <div class="with-icon">
+                        <div :class="{'with-icon': themeIconExists(costume.theme)}">
                             <Tex
+                                v-if="themeIconExists(costume.theme)"
                                 :src="`/img/cosmetics/themes/${toKebabCase(costume.theme)}.webp`"
                                 color="var(--blue)"
 
@@ -205,7 +229,7 @@
                             </div>
 
                             <a
-                                v-if="costume.theme"
+                                v-if="costume.theme && !costume.custom"
                                 class="wiki-link"
                                 
                                 :href="toWikiLink(`/wiki/Themes#${costume.theme.replaceAll(' ', '_')}`)"
@@ -550,6 +574,9 @@
             align-items: center
             gap: 10px
 
+            &.custom
+                padding: 0 55px 0 55px !important
+
             .title
                 display: inline-flex
                 align-items: center
@@ -566,6 +593,13 @@
             .checkbox
                 position: absolute
                 left: 10px
+                top: 50%
+
+                transform: translateY(-50%)
+
+            .edit
+                position: absolute
+                right: 10px
                 top: 50%
 
                 transform: translateY(-50%)
@@ -656,14 +690,17 @@
 </style>
 
 <script setup lang="ts">
-import type { Costume, CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
-import type { TextureKey } from '~/assets/data/textures';
+import type { HeroData } from '~/assets/data/common';
+import { getAllThemes, getCategoryIcon, type Costume, type CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
+import { tex, type TextureKey } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
+import { loadCostumeImage } from '~/services/costume-image-operations';
 
 const props = withDefaults(defineProps<{
     costume: Costume;
-    heroId: string;
-    heroColor?: string;
+    hero: HeroData;
+    heroId?: string,
+    heroColor?: string,
     imageScale?: number;
     imageOrigin?: string;
 }>(), {
@@ -672,9 +709,9 @@ const props = withDefaults(defineProps<{
     imageOrigin: 'center center',
 });
 
-defineEmits<{ cancel: [] }>();
+defineEmits<{ confirm: [ edit: boolean ], cancel: [] }>();
 
-const ownedCostumes = useLocalStorage<string[]>(`cosmetics_owned_${props.heroId}`, []);
+const ownedCostumes = useLocalStorage<string[]>(`cosmetics_owned_${props.heroId ?? props.hero.id}`, []);
 function toggleCostumeOwned() {
     const index = ownedCostumes.value.indexOf(props.costume.id);
     if (index === -1)
@@ -687,11 +724,34 @@ const RARITY_MAP: Partial<Record<CostumeRarity, TextureKey>> = {
     legendary: 'rarityLegendary',
     epic: 'rarityEpic',
     rare: 'rarityRare',
+    common: 'rarityCommon'
 }
 
 const toWikiLink = (id: string) => `https://marvelrivals.fandom.com${id}`;
 
-const src = computed(() => `/img/heroes/data/${props.heroId}/costumes/${props.costume.id}.webp`);
+const customURL = ref<string|null>(null);
+async function createCustomCostumeURL() {
+    if (customURL.value)
+        URL.revokeObjectURL(customURL.value);
+
+    const image = await loadCostumeImage(props.costume.id);
+
+    if (!image) {
+        customURL.value = tex('allHeroesCostume');
+        return;
+    }
+
+    customURL.value = URL.createObjectURL(image);
+}
+
+onMounted(createCustomCostumeURL);
+onUnmounted(() => customURL.value ? URL.revokeObjectURL(customURL.value) : null);
+watch(() => props.costume, createCustomCostumeURL);
+
+const src = computed(() => props.costume.custom
+    ? (customURL.value ?? tex('allHeroesCostume'))
+    : `/img/heroes/data/${props.heroId ?? props.hero.id}/costumes/${props.costume.id}.webp`
+);
 
 const formattedDate = computed(() => {
     if (!props.costume.releaseDate)
@@ -724,5 +784,10 @@ function createCostumesLink(id: string, type: 'category'|'source'|'theme') {
 
 function createCostumeTooltipLabel(type: string) {
     return `See <b>${type}</b>` + (type.toLowerCase().endsWith('costumes') ? '' : ' costumes');
+}
+
+const existingThemes = getAllThemes();
+function themeIconExists(theme: string) {
+    return existingThemes.includes(theme);
 }
 </script>

@@ -2,7 +2,7 @@
     <div
         class="hero-page"
         :style="{
-            '--hero-silhouette': `url(${useHeroImage('silhouette', hero).value}`,
+            '--hero-silhouette': `url(${useHeroImage('silhouette', hero).value})`,
             '--hero-color': hero.color,
         }"
     >
@@ -84,7 +84,7 @@
             <template v-if="!isUnknownHero" #achievements>
                 Achievements
             </template>
-            <template v-if="!isUnknownHero" #costumes>
+            <template #costumes>
                 Costumes
             </template>
         </UiNavBar>
@@ -476,7 +476,7 @@
                 </PanelTabbedContainer>
             </div>
             <div
-                v-else-if="page == 'costumes' && !isUnknownHero"
+                v-else-if="page == 'costumes'"
                 class="content cosmetics-wrapper"
                 ref="content"
             >
@@ -658,7 +658,7 @@ import { ACHIEVEMENT_CATEGORIES, getAchievements, type AchievementTypeCategory }
 import { getAllCategories, getCategoryIcon } from '~/assets/data/cosmetics/costumes/costumes';
 import type { NavBarMarks } from '~/components/ui/nav/Bar.vue';
 import EditUnknownHeroImages, { type AnimationProperties } from '~/components/modals/EditUnknownHeroImages.vue';
-import { deleteImage, getAllHeroImages, HERO_IMAGES, saveImage, type HeroImages } from '~/services/image-operations';
+import { deleteHeroImage, getAllHeroImages, HERO_IMAGES, saveHeroImage, type HeroImages } from '~/services/hero-image-operations';
 
 type PageId = 'overview'|'customize'|'estimates'|'planner'|'achievements'|'costumes';
 const PAGE_IDS = ['overview', 'customize', 'estimates', 'planner', 'achievements', 'costumes'];
@@ -919,7 +919,7 @@ function setPage(newPage: PageId) {
 }
 
 // one time check for unknown heroes with wrong url
-if (isUnknownHero.value && ['achievements', 'costumes'].includes(page.value)) {
+if (isUnknownHero.value && ['achievements'].includes(page.value)) {
     router.replace({
         path: `/heroes/${hero.value.id}`
     });
@@ -1234,9 +1234,9 @@ function selectLevelGoal(callback = () => {}, callbackOnSuccess = false) {
 function editUnknownHero(callback = () => {}, callbackOnSuccess = false) {
     const currentId = `${hero.value.id}`
 
-    function errorNotify() {
+    function errorNotify(message = `An unexpected error occured and we couldn't save the hero's data.`) {
         notify(
-            `An unexpected error occured and we couldn't save the hero's data.`,
+            message,
             3000,
             { image: 'warning', color: '#c94f36' }
         );
@@ -1248,15 +1248,16 @@ function editUnknownHero(callback = () => {}, callbackOnSuccess = false) {
         hero: structuredClone(extractRawValue(hero))
     })
     .promise
-    .then((editedHero: HeroData) => {
+    .then(async (editedHero: HeroData) => {
         if (!editedHero || !editedHero.id) {
             errorNotify();
             return;
         }
 
         // add hero to local storage or route back on error
-        if (!editHero(currentId, editedHero)) {
-            errorNotify();
+        const res = await editHero(currentId, editedHero);
+        if (res !== true) {
+            errorNotify(res);
             return;
         }
 
@@ -1271,9 +1272,10 @@ function editUnknownHero(callback = () => {}, callbackOnSuccess = false) {
             { image: 'check', color: '#458a14' }
         );
 
-        // success, route to new hero if id changed
-        if (currentId != editedHero.id)
+        if (currentId != editedHero.id) {
+            // success, route to new hero if id changed
             router.replace('/heroes/' + editedHero.id);
+        }
     })
     .catch(callback)
 }
@@ -1294,7 +1296,7 @@ async function editUnknownHeroImages(callback = () => {}, callbackOnSuccess = fa
                     return;
 
                 if (blob === null) {
-                    deleteImage(hero.value.id, key).catch(() => {
+                    deleteHeroImage(hero.value.id, key).catch(() => {
                         notify(
                             `An unexpected error occured. We couldn't delete the "${HERO_IMAGES[key]!.name}" image.`,
                             5000,
@@ -1305,7 +1307,7 @@ async function editUnknownHeroImages(callback = () => {}, callbackOnSuccess = fa
                     return;
                 }
 
-                saveImage(hero.value.id, key, blob).catch((e) => {
+                saveHeroImage(hero.value.id, key, blob).catch((e) => {
                     console.error(e);
                     notify(
                         `An unexpected error occured. We couldn't save the "${HERO_IMAGES[key]!.name}" image.`,
@@ -1340,7 +1342,7 @@ function convertUnknownHero(callback = () => {}, callbackOnSuccess = false) {
         hero: structuredClone(extractRawValue(hero))
     })
     .promise
-    .then((heroId: string) => {
+    .then(async (heroId: string) => {
         const officialHero = HERO_LIST.find(h => h.id == heroId)
 
         if (!officialHero) {
@@ -1379,6 +1381,19 @@ function convertUnknownHero(callback = () => {}, callbackOnSuccess = false) {
         changeLocalStorageKey(`hero_${hero.value.id}`, `hero_${heroId}`);
         deleteFromLocalStorage(`hero_${hero.value.id}`);
         deleteHero(hero.value.id);
+
+        try {
+            await Promise.all(Object.keys(HERO_IMAGES).map(key =>
+                deleteHeroImage(hero.value.id, key as keyof typeof HERO_IMAGES)
+            ))
+        }
+        catch {
+            notify(
+                `Failed to delete some or all custom hero images.`,
+                5000,
+                { image: 'warning', color: '#c94f36' }
+            );
+        }
 
         if (callbackOnSuccess)
             callback();

@@ -1,7 +1,7 @@
 <template>
     <div
         ref="dropdown"
-        :class="{dropdown: 1, small, square}"
+        :class="{dropdown: 1, small, square, fitContent, [`${openedDirection}`]: 1}"
     >
         <div
             class="option current"
@@ -212,7 +212,7 @@ import { onClickOutside } from '@vueuse/core'
 import { texUrl, type TextureKey } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     options: Option[],
     placeholder?: string|Placeholder,
 
@@ -220,10 +220,14 @@ const props = defineProps<{
     pushCheckedToTop?: boolean,
 
     small?: boolean,
+    fitContent?: boolean,
     square?: boolean,
     concatenateSelectedOptions?: boolean|number|((selected: Option[]) => { enabled: boolean, max: number }),
     mobileOverlay?: boolean,
-}>()
+    openedDirection?: 'up'|'down'
+}>(), {
+    openedDirection: 'down'
+})
 
 const model = defineModel<string|string[]>();
 const expanded = ref(false);

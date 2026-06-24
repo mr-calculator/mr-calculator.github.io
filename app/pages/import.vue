@@ -43,8 +43,12 @@
                     <li v-if="dataSegment.data.stored">Hero Proficiency progress</li>
                     <li v-if="dataSegment.data.__unknownHero">Added hero info</li>
                     <li
-                        v-if="dataSegment.data.__unknownHero
-                     && Object.keys(dataSegment.data.hero?.heroImages ?? {}).length"
+                        v-if="
+                        dataSegment.data.__unknownHero
+                     && (
+                            Object.keys(dataSegment.data.hero?.heroImages ?? {}).length
+                         || dataSegment.data.hero?.customCostumes?.length
+                        )"
                     >
                         Added hero images
                     </li>
@@ -58,8 +62,12 @@
                     <li v-if="dataSegment.data.storedHeroes">Proficiency progress</li>
                     <li v-if="dataSegment.data.unknownHeroes">Added heroes info</li>
                     <li
-                        v-if="dataSegment.data.unknownHeroes
-                     && dataSegment.data.unknownHeroes.some(h => Object.keys(h.heroImages ?? {}).length)"
+                        v-if="
+                        dataSegment.data.unknownHeroes
+                     && (
+                            dataSegment.data.unknownHeroes.some(h => Object.keys(h.heroImages ?? {}).length)
+                         || dataSegment.data.unknownHeroes.some(h => h.customCostumes?.length)
+                        )"
                     >
                         Added heroes images
                     </li>
@@ -670,7 +678,8 @@ import { convertCostumeId, CostumeCollectionStoreSchema } from '~/assets/data/co
 import { DEFAULT_NAMEPLATE_ID } from '~/assets/data/cosmetics/nameplates/nameplates';
 import { HERO_LIST } from '~/assets/data/heroes';
 import type { TooltipBinding } from '~/directives/tooltip';
-import { HERO_IMAGES, saveImage } from '~/services/image-operations';
+import { saveCostumeImage } from '~/services/costume-image-operations';
+import { HERO_IMAGES, saveHeroImage } from '~/services/hero-image-operations';
 
 useSeoMeta({
     title: 'Import | MR Proficiency Calculator',
@@ -1182,7 +1191,7 @@ async function importData() {
 
                     const blob = dataUrlToBlob(data);
 
-                    await saveImage(hero.id, key, blob).catch(() => {
+                    await saveHeroImage(hero.id, key, blob).catch(() => {
                         notify(
                             `An unexpected error occured. We couldn't save the "${HERO_IMAGES[key]!.name}" image.`,
                             5000,
@@ -1190,10 +1199,26 @@ async function importData() {
                         );
                     })
                 }));
+
+                await Promise.all(hero.customCostumes?.map(async c => {
+                    if (!c.customImage)
+                        return;
+
+                    const blob = dataUrlToBlob(c.customImage);
+
+                    await saveCostumeImage(c.id, blob).catch(() => {
+                        notify(
+                            `An unexpected error occured. We couldn't save "${c.name}"'s image.`,
+                            5000,
+                            { image: 'warning', color: '#c94f36' }
+                        );
+                    })
+                }) ?? []);
             }
 
             // delete images from hero to prevent them from getting stored in local storage (since 5mb limit)
             delete hero.heroImages;
+            hero.customCostumes?.forEach(c => delete c.customImage);
 
             
             if (overwriteUnknownHeroToggles.value[id]) {
@@ -1239,7 +1264,7 @@ async function importData() {
 
                         const blob = dataUrlToBlob(data);
 
-                        await saveImage(unknownHero.id, key, blob).catch(() => {
+                        await saveHeroImage(unknownHero.id, key, blob).catch(() => {
                             notify(
                                 `An unexpected error occured. We couldn't save the "${HERO_IMAGES[key]!.name}" image.`,
                                 5000,
@@ -1247,10 +1272,27 @@ async function importData() {
                             );
                         })
                     }));
+
+                    
+                    await Promise.all(unknownHero.customCostumes?.map(async c => {
+                        if (!c.customImage)
+                            return;
+
+                        const blob = dataUrlToBlob(c.customImage);
+
+                        await saveCostumeImage(c.id, blob).catch(() => {
+                            notify(
+                                `An unexpected error occured. We couldn't save "${c.name}"'s image.`,
+                                5000,
+                                { image: 'warning', color: '#c94f36' }
+                            );
+                        })
+                    }) ?? []);
                 }
 
                 // delete images from hero to prevent them from getting stored in local storage (since 5mb limit)
                 delete unknownHero.heroImages;
+                unknownHero.customCostumes?.forEach(c => delete c.customImage);
 
                 if (!overwriteUnknownHeroToggles.value[unknownHero.id])
                     continue;

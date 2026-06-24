@@ -452,6 +452,7 @@
                     <UiCorners />
                     <PanelCostumeList
                         :hero="currentHero"
+                        :show-add-costume="false"
                         v-model="costumeFilters"
                     />
                 </div>
