@@ -2844,6 +2844,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Clashing Lions",
             "releaseDate": "2025-01-23"
+        },
+        {
+            "heroId": "black-widow",
+            "id": "1033504",
+            "wikiLink": "/wiki/Aquatic_Assassin",
+            "name": "AQUATIC ASSASSIN",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-06-26"
         }
     ],
     "winter-soldier": [
@@ -4242,6 +4255,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-03-13"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055300",
+            "wikiLink": "/wiki/Sonar_Savior",
+            "name": "SONAR SAVIOR",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-06-26"
         }
     ],
     "rogue": [

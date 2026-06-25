@@ -7554,5 +7554,29 @@
         "sourceLink": "/wiki/Pop_%26_Win",
         "theme": "Swimsuit Special",
         "releaseDate": "2026-06-18"
+    },
+    {
+        "type": "animated",
+        "id": "31033208",
+        "name": "Aquatic Assassin",
+        "rarity": "epic",
+        "sourceFull": "Store: Aquatic Assassin Bundle",
+        "category": "Store",
+        "source": "Aquatic Assassin",
+        "sourceLink": "/wiki/Aquatic_Assassin",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-06-26"
+    },
+    {
+        "type": "animated",
+        "id": "31055206",
+        "name": "Sonar Savior",
+        "rarity": "epic",
+        "sourceFull": "Store: Sonar Savior Bundle",
+        "category": "Store",
+        "source": "Sonar Savior",
+        "sourceLink": "/wiki/Sonar_Savior",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-06-26"
     }
 ]

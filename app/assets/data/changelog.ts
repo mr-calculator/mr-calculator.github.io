@@ -485,6 +485,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.1.2',
             date: 'June 12, 2026',
             time: '2:44 PM',
+            commitSha: 'e507e39b8646cb900c0217f994095fccecda731e'
         },
         title: 'Content Update: Season 8.5',
         description: `Added the new hero, costume, nameplates, and achievements (and new achievement rewards).`,
@@ -501,6 +502,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.2.0',
             date: 'June 15, 2026',
             time: '1:43 AM',
+            commitSha: '1cdee04c67eda436d37d092f67fb7c6753ae2e03'
         },
         title: 'Multi-Role Heroes Average Stats Feature & Fixes',
         description: `Added a feature that allows users to have different stats for every role of multi-role heroes (Deadpool) (both for storing and using in Estimates and Planner)`,
@@ -522,6 +524,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.3.0',
             date: 'June 18, 2026',
             time: '10:31 PM',
+            commitSha: '6cfd50b3e511b25afb76acd51a794456fac20506'
         },
         title: 'Added custom heroes user images',
         description: `Added ability to upload custom images for user added heroes
@@ -541,6 +544,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.3.1',
             date: 'June 25, 2026',
             time: '10:06 PM',
+            commitSha: 'c27a6b667230be7be1a7a347b43c87d9d9569efa'
         },
         title: 'Added custom costumes & better UX for costumes',
         description: `Added the ability to add custom costumes (to custom-added heroes only) with data and images (stored in your browser) — also exportable!
