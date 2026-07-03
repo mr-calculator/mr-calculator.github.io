@@ -265,6 +265,41 @@ export class Calculator {
 
         return totalTimes;
     }
+
+    public timeToCurrent(arcade = false): PersonalRankTimeEstimate[] {
+        const currentLevel = this.store.level;
+
+        const currentProficiencyRank = levelToRank(1);
+        if (!currentProficiencyRank)
+            return [];
+
+        let toProficiencyRank = levelToRank(currentLevel);
+        if (!toProficiencyRank)
+            return [];
+
+        const remainingRanks = this.hero.ranks.filter(rank => 
+            rank.type.levelStart < currentLevel
+        );
+
+        let totalTimes: PersonalRankTimeEstimate[] = [];
+        for (let i = 0; i < remainingRanks.length; i++) {
+            const rank = remainingRanks[i]!;
+            let arcadePreviousRankTimes: {
+                maxFeasableMissions: number,
+                previousRankTime?: PersonalRankTimeEstimate,
+            } | undefined = undefined;
+
+            if (arcade) {
+                arcadePreviousRankTimes = { maxFeasableMissions: this.store.arcadeMaxFeasableMissions ?? 1 };
+
+                if (i > 0)
+                    arcadePreviousRankTimes.previousRankTime = totalTimes[i - 1];
+            }
+            totalTimes.push(this.rankTime(rank, 1, currentLevel, this.store.points, arcadePreviousRankTimes));
+        }
+
+        return totalTimes;
+    }
 }
 
 export function calculateTimesToLevel(hero: HeroData, store: PickedStore) {

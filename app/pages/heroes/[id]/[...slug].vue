@@ -419,59 +419,13 @@
                             v-model="selectedRank"
                         />
                     </template>
-                    <template v-if="stats.avgStats" #stats>
-                        <div class="stats-container">
-                            <h2>Generic Average Stats per 10 minutes</h2>
-                            <ul class="stats with-border-decorations">
-                                <li v-for="[statType, statValue] in Object.entries(stats.avgStats)">
-                                    <img
-                                        :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
-                                        :alt="`${CHALLENGE_ICONS[statType as Challenge['type']]!} Icon`"
-                                        draggable="false"
-                                    >
-                                    <p>{{ CHALLENGE_NAMES[statType as Challenge['type']]! }}</p>
-                                    <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
-                                </li>
-                            </ul>
-                            <h3>DATA FROM <span>{{ stats.matchCount.toLocaleString() }}</span> MATCHES</h3>
+                    <template #stats>
+                        <PanelHeroStats
+                            :hero="hero"
+                            :estimates="timeEstimates"
 
-                            <ClientOnly>
-                                <template v-if="hasAvgStatsNonGeneric">
-                                    <h2>Your Average Stats per 10 minutes</h2>
-                                    <ul class="stats with-border-decorations">
-                                        <li v-for="[statType, statValue] in Object.entries(usedAverageStats).filter(([t]) => t != 'play')">
-                                            <img
-                                                :src="CHALLENGE_ICONS[statType as Challenge['type']]!"
-                                                :alt="`${CHALLENGE_ICONS[statType as Challenge['type']]!} Icon`"
-                                                draggable="false"
-                                            >
-                                            <p>{{ CHALLENGE_NAMES[statType as Challenge['type']]! }}</p>
-                                            <p class="stat-value">{{ statValue.toLocaleString(undefined, { maximumFractionDigits: 1 }) }}</p>
-                                        </li>
-                                    </ul>
-                                    <FormButton size="small" @click="editAvgStats()">
-                                        <Tex
-                                            image="gameTime"
-                                            color="var(--dark)"
-
-                                            width="40px"
-                                            height="40px"
-                                        />
-                                        CHANGE YOUR STATS
-                                    </FormButton>
-                                </template>
-                                <FormButton v-else size="small" @click="editAvgStats()">
-                                    <Tex
-                                        image="gameTime"
-                                        color="var(--dark)"
-
-                                        width="40px"
-                                        height="40px"
-                                    />
-                                    ADD YOUR OWN STATS
-                                </FormButton>
-                            </ClientOnly>
-                        </div>
+                            @edit-avg-stats="editAvgStats()"
+                        />
                     </template>
                 </PanelTabbedContainer>
             </div>
@@ -833,22 +787,7 @@ const navBarMarks = computed(() => ({
         'warning-bubble' : 'none',
     estimates: !storedLevel.value.openedCalculator ? 'warning-bubble' : 'none',
     // costumes: !preferences.value.sawCosmeticsTab ? 'new' : 'none'
-} satisfies NavBarMarks))
-
-const stats = computed(() => {
-    const matchCount = getHeroMatchCount(hero.value.id);
-
-    let heroId = hero.value.id;
-    if (storedLevel.value.lastViewingRole)
-        heroId += '_' + storedLevel.value.lastViewingRole;
-
-    const avgStats = getAverageStatsForHero(heroId);
-
-    return {
-        matchCount,
-        avgStats
-    }
-})
+} satisfies NavBarMarks));
 
 const preferences = useLocalStorage<PreferencesStore>('preferences', DEFAULT_PREFERENCES_STORE(), PreferencesStoreSchema);
 
@@ -880,18 +819,13 @@ function toggleFavourite() {
 
 const storedLevel = useLocalStorage<PlayerHeroStore>(`hero_${hero.value.id}`, DEFAULT_HERO_STORE(), PlayerHeroStoreSchema);
 const hasAvgStats = useHasAvgStats(hero);
-const hasAvgStatsNonGeneric = useHasAvgStats(hero, true);
 const hasAvgArcadeStats = useHasAvgArcadeStats(hero);
 const isMultiRole = computed(() => Array.isArray(hero.value.roles) && hero.value.roles.length > 1);
 const isLv1AndGoalLv1 = computed(() => storedLevel.value.level == 1 && storedLevel.value.goal == 1);
 const unknownHeroHasPossibleMatch = useUnknownHeroHasPossibleMatch(hero.value).value.length;
 const isIncorrectSelection = computed(() => storedLevel.value.goal <= storedLevel.value.level);
 const rolesWithAvgStats = useRolesWithAvgStats(hero);
-const usedAverageStats = computed(() => {
-    if (!storedLevel.value.lastViewingRole)
-        return storedLevel.value.averageStats;
-    return storedLevel.value.averageStatsPerRole?.[storedLevel.value.lastViewingRole] ?? {};
-});
+
 
 const page = ref<PageId>(pageFromUrl.value);
 watch(pageFromUrl, (newPage, oldPage) => {

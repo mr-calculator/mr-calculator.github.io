@@ -167,6 +167,16 @@ const KNOWN_MISTAKES: Record<string, MistakeAction> = {
     "31052210": {
         action: 'reassign-id',
         newId: "31050210"
+    },
+
+    // seaside sentinel wrong id
+    "31055206": {
+        secondaryId: {
+            field: 'name',
+            value: "Seaside Sentinel"
+        },
+        action: 'reassign-id',
+        newId: '31022213'
     }
 }
 

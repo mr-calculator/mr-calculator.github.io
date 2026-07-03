@@ -306,7 +306,7 @@ export async function deleteHero(id: string) {
 }
 
 
-export function getFeaturedHero(maxDisplayDayCount = 25) {
+export function getFeaturedHero(maxDisplayDayCount = 15) {
     const featuredHeroes = HERO_LIST.filter(h => h.meta?.featured && !!h.meta?.releasedAt);
 
     let latestDate = new Date('1970-01-01');

@@ -2135,19 +2135,6 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Twisted Nightmare",
             "releaseDate": "2026-03-06"
-        },
-        {
-            "heroId": "captain-america",
-            "id": "1022303",
-            "wikiLink": "/wiki/Seaside_Sentinel",
-            "name": "SEASIDE SENTINEL",
-            "rarity": "epic",
-            "customizable": true,
-            "category": "Limited Time",
-            "source": "Shop/Limited-Time Costumes",
-            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
-            "theme": "Swimsuit Special",
-            "releaseDate": "2026-07-02"
         }
     ],
     "wolverine": [
@@ -2262,18 +2249,6 @@
             "source": "Museum Ticket (BattlePass)",
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "releaseDate": "2026-01-16"
-        },
-        {
-            "heroId": "wolverine",
-            "id": "1049101",
-            "wikiLink": "/wiki/Will_of_Galacta_(Wolverine)",
-            "name": "WILL OF GALACTA",
-            "rarity": "rare",
-            "customizable": false,
-            "category": "Twitch Drop",
-            "source": "Twitch Drops",
-            "sourceLink": "/wiki/Twitch_Drops",
-            "releaseDate": "2026-07-05"
         }
     ],
     "loki": [
@@ -2414,19 +2389,6 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "The Collector's Collection",
             "releaseDate": "2026-01-02"
-        },
-        {
-            "heroId": "loki",
-            "id": "1016504",
-            "wikiLink": "/wiki/Seaside_Siren",
-            "name": "SEASIDE SIREN",
-            "rarity": "legendary",
-            "customizable": true,
-            "category": "Lucky Draw",
-            "source": "Lucky Draw Costumes",
-            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
-            "theme": "Swimsuit Special",
-            "releaseDate": "2026-07-02"
         }
     ],
     "adam-warlock": [
@@ -5897,19 +5859,6 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-03-20"
-        },
-        {
-            "heroId": "white-fox",
-            "id": "1060501",
-            "wikiLink": "/wiki/Coastal_Kumiho",
-            "name": "COASTAL KUMIHO",
-            "rarity": "legendary",
-            "customizable": true,
-            "category": "Lucky Draw",
-            "source": "Lucky Draw Costumes",
-            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
-            "theme": "Swimsuit Special",
-            "releaseDate": "2026-07-02"
         }
     ],
     "cyclops": [

@@ -854,6 +854,11 @@ export const PlayerHeroStoreSchema = z.object({
     points: z.number().default(0),
     goal: z.number().default(1),
 
+    /**
+     * In seconds (yea stupid, ik)
+     */
+    gameHours: z.number().optional(),
+
     averageStats: z.record(z.string(), z.number()).default({}),
     averageStatsPerRole: z.object({
         vanguard: z.record(z.string(), z.number()).optional(),

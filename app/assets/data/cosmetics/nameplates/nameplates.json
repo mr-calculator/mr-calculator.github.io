@@ -7578,5 +7578,41 @@
         "sourceLink": "/wiki/Sonar_Savior",
         "theme": "Swimsuit Special",
         "releaseDate": "2026-06-26"
+    },
+    {
+        "type": "animated",
+        "id": "31016210",
+        "name": "Seaside Siren",
+        "rarity": "epic",
+        "sourceFull": "Event Pass (S8.5): Pop & Win Vol.2",
+        "category": "Event Pass",
+        "source": "Pop & Win Vol.2",
+        "sourceLink": "/wiki/Pop_%26_Win_Vol.2",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-07-02"
+    },
+    {
+        "type": "animated",
+        "id": "31060202",
+        "name": "Coastal Kumiho",
+        "rarity": "epic",
+        "sourceFull": "Event Pass (S8.5): Pop & Win Vol.2",
+        "category": "Event Pass",
+        "source": "Pop & Win Vol.2",
+        "sourceLink": "/wiki/Pop_%26_Win_Vol.2",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-07-02"
+    },
+    {
+        "type": "normal",
+        "id": "31022213",
+        "name": "Seaside Sentinel",
+        "rarity": "rare",
+        "sourceFull": "Store: Seaside Sentinel Bundle",
+        "category": "Store",
+        "source": "Seaside Sentinel",
+        "sourceLink": "/wiki/Seaside_Sentinel",
+        "theme": "Swimsuit Special",
+        "releaseDate": "2026-07-02"
     }
 ]
