@@ -26,6 +26,7 @@ export const WIKI_HERO_ID_MAP: Record<string, string> = {
     "Iron Fist":                "iron-fist",
     "Iron Man":                 "ironman",
     "Jeff the Land Shark":      "jeff-the-land-shark",
+    "Jubilee":                  "jubilee",
     "Loki":                     "loki",
     "Luna Snow":                "luna-snow",
     "Magik":                    "magik",

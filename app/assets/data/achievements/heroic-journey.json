@@ -1018,5 +1018,25 @@
     "rarity": "silver",
     "requirement": 1,
     "reward": 10
+  },
+  {
+    "owner": "jubilee",
+    "id": "cb06b5a9-9770-4f4b-8824-316379af9bfe_vampires-sparkle",
+    "title": "Vampire's Sparkle",
+    "description": "As Jubilee, Blind an enemy Blade with Dazzling Detonation.",
+    "category": "heroic-journey",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "owner": "jubilee",
+    "id": "4215fd41-698d-4c9e-8c28-e7ae1ee7f232_burning-bright",
+    "title": "Burning Bright",
+    "description": "As Jubilee, assist allies in achieving a team wipe.",
+    "category": "heroic-journey",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
   }
 ]

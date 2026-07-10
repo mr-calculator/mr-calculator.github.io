@@ -400,9 +400,9 @@
 
         <p>
             <i>
-                You can also import data from the <a href="https://oceanhillman.github.io/download" target="blank" rel="noopener">oceanhillman fork</a> (the one with the costumes).
+                <b>READ ME:</b> This page can only import <b>.mrprof</b> files exported by the calculator. This feature exists to allow you to transfer data across devices.
                 <br/>
-                Your owned costumes will be automatically converted so you don't lose anything!
+                <b>There is currently no way for you to import your in-game data directly from Marvel Rivals!</b>
             </i>
         </p>
 

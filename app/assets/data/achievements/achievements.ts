@@ -270,6 +270,11 @@ export const ACHIEVEMENT_CATEGORIES: {
                 icon: '/img/common-rewards/chrono-tokens.webp',
                 requirement: 740,
             },
+            {
+                title: '200 Chrono Tokens',
+                icon: '/img/common-rewards/chrono-tokens.webp',
+                requirement: 780,
+            },
         ]
     },
     {
@@ -338,6 +343,11 @@ export const ACHIEVEMENT_CATEGORIES: {
                 title: '200 Unstable Molecules',
                 icon: '/img/common-rewards/unstable-mollecule.webp',
                 requirement: 400,
+            },
+            {
+                title: '200 Unstable Molecules',
+                icon: '/img/common-rewards/unstable-mollecule.webp',
+                requirement: 440,
             },
         ]
     }

@@ -563,6 +563,26 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.3.1/costumes-selection.webp',
         ]
     },
+
+    {
+        version: {
+            number: '2.4.0',
+            date: 'July 10, 2026',
+            time: '6:46 PM'
+        },
+        title: 'Added Jubilee',
+        description: `Added Jubilee to the calculator without generic stats (will add later - when averages are more accurate)<br/>
+        Made slight optimisations and bug fixes.
+        `,
+        list: [
+            'Added Jubilee',
+            'Added new costumes, nameplates, nameplate frames, season banner',
+            'Added new achievements'
+        ],
+        images: [
+            '/img/changelog/v2.4.0/hero-page.webp',
+        ]
+    },
 ];
 
 export function groupCommitsByVersion(commits: GitHubCommit[]):
@@ -620,7 +640,7 @@ export function groupCommitsByVersion(commits: GitHubCommit[]):
 }
 
 export const DEVELOPER_LETTER = () => ({
-    validUntil: new Date('2026-08-07'),
+    validUntil: new Date('2026-07-07'),
     title: 'A fresh look',
     message: `
         <p>

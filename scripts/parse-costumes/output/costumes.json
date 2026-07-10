@@ -147,6 +147,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035503",
+            "wikiLink": "/wiki/Venom_Bloom",
+            "name": "VENOM BLOOM",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "theme": "Savage Land",
+            "releaseDate": "2026-07-10"
         }
     ],
     "magik": [
@@ -418,6 +431,19 @@
             "sourceLink": "/wiki/Citizenship_of_Monster_Kingdom",
             "theme": "Animal Party",
             "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023308",
+            "wikiLink": "/wiki/Golden_Artificer",
+            "name": "GOLDEN ARTIFICER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "theme": "Clan Akkaba",
+            "releaseDate": "2026-07-10"
         }
     ],
     "groot": [
@@ -1093,6 +1119,18 @@
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "theme": "The Collector's Collection",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020306",
+            "name": "AKKABAN ACOLYTE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "theme": "Clan Akkaba",
+            "releaseDate": "2026-07-10"
         }
     ],
     "spider-man": [
@@ -1433,6 +1471,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "New Marauders",
             "releaseDate": "2026-02-20"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034302",
+            "wikiLink": "/wiki/Iron_Pharaoh",
+            "name": "IRON PHARAOH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "theme": "Clan Akkaba",
+            "releaseDate": "2026-07-10"
         }
     ],
     "bruce-banner": [
@@ -2148,6 +2199,18 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-07-02"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022102",
+            "wikiLink": "/wiki/Will_of_Galacta_(Captain_America)",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "sourceLink": "/wiki/Twitch_Drops",
+            "releaseDate": "2026-07-10"
         }
     ],
     "wolverine": [
@@ -2274,6 +2337,19 @@
             "source": "Twitch Drops",
             "sourceLink": "/wiki/Twitch_Drops",
             "releaseDate": "2026-07-05"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049504",
+            "wikiLink": "/wiki/Bloodless_Berserker",
+            "name": "BLOODLESS BERSERKER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Horsemen of Death",
+            "releaseDate": "2026-07-10"
         }
     ],
     "loki": [
@@ -2655,6 +2731,18 @@
             "sourceLink": "/wiki/FLIGHT_MODE!_World_Tour_Merch_Vol.2",
             "theme": "Disco Revolution",
             "releaseDate": "2026-03-26"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045503",
+            "wikiLink": "/wiki/Lord_of_Atlantis",
+            "name": "LORD OF ATLANTIS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "releaseDate": "2026-07-10"
         }
     ],
     "scarlet-witch": [
@@ -4191,6 +4279,19 @@
             "sourceLink": "/wiki/Krakoan_Reels",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-06-18"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025501",
+            "wikiLink": "/wiki/Storied_Survivors",
+            "name": "STORIED SURVIVORS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2026-07-10"
         }
     ],
     "daredevil": [
@@ -4383,6 +4484,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Mr. & Mrs. X",
             "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065501",
+            "wikiLink": "/wiki/Raider_Prime",
+            "name": "RAIDER PRIME",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Corporate Raiders",
+            "releaseDate": "2026-07-10"
         }
     ],
     "blade": [
@@ -4741,6 +4855,18 @@
             "sourceLink": "/wiki/Krakoan_Reels",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-06-18"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040102",
+            "wikiLink": "/wiki/Red-Y_4_Action",
+            "name": "RED-Y 4 ACTION",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "releaseDate": "2026-07-10"
         }
     ],
     "ultron": [
@@ -4839,6 +4965,18 @@
             "source": "Twitch Drops",
             "sourceLink": "/wiki/Twitch_Drops",
             "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028503",
+            "wikiLink": "/wiki/Ultron-15",
+            "name": "ULTRON-15",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "releaseDate": "2026-07-10"
         }
     ],
     "angela": [
@@ -5806,6 +5944,18 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057302",
+            "name": "DEAD MUMMY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "theme": "Temple Protectors",
+            "releaseDate": "2026-07-10"
         }
     ],
     "elsa-bloodstone": [
@@ -5858,6 +6008,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "elsa-bloodstone",
+            "id": "1059503",
+            "wikiLink": "/wiki/Primal_Predator",
+            "name": "PRIMAL PREDATOR",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "The Faith-Harvesting Engine (BattlePass)",
+            "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
+            "theme": "Savage Land",
+            "releaseDate": "2026-07-10"
         }
     ],
     "white-fox": [
@@ -5948,6 +6111,44 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-06-12"
+        }
+    ],
+    "jubilee": [
+        {
+            "heroId": "jubilee",
+            "id": "1064500",
+            "wikiLink": "/wiki/Midnight_Mutant",
+            "name": "MIDNIGHT MUTANT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "jubilee",
+            "id": "1064101",
+            "wikiLink": "/wiki/Crimson_Crown",
+            "name": "CRIMSON CROWN",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "sourceLink": "/wiki/Competitive#Rewards",
+            "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "jubilee",
+            "id": "1064100",
+            "wikiLink": "/wiki/Cool_Combustion",
+            "name": "COOL COMBUSTION",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-07-10"
         }
     ]
 }

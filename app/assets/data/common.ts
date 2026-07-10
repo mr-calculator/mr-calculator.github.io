@@ -9,7 +9,7 @@ import type { ProfileSheetData } from "~/services/generate-profile-sheet";
 import { CostumeCollectionSchema, CostumeSchema, type CostumeCollection } from "./cosmetics/costumes/costumes";
 import { loadHeroImage } from "../../services/hero-image-operations";
 
-export const LATEST_SEASON_NO = '8';
+export const LATEST_SEASON_NO = '9';
 
 export type HeroRole = 'vanguard'|'duelist'|'strategist';
 export const HeroRoleSchema = z.enum(['vanguard', 'duelist', 'strategist']);

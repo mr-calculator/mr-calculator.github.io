@@ -295,5 +295,14 @@
     "rarity": "silver",
     "requirement": 1,
     "reward": 10
+  },
+  {
+    "id": "4eb586d2-6d75-4812-baca-4185961e538f_the-mystery-of-thebes",
+    "title": "The Mystery of Thebes",
+    "description": "Unlock all The Mystery of Thebes gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
   }
 ]

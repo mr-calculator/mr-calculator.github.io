@@ -52,6 +52,7 @@ import { DevilDinosaur } from "./heroes/devil-dinosaur";
 import { Cyclops } from "./heroes/cyclops";
 import { deleteHeroImageStore, moveHeroImageStore } from "../../services/hero-image-operations";
 import { deleteCostumeImage } from "../../services/costume-image-operations";
+import { Jubilee } from "./heroes/jubilee";
 
 export const HERO_LIST: HeroData[] = [
     AdamWarlock,
@@ -79,6 +80,7 @@ export const HERO_LIST: HeroData[] = [
     IronFist,
     Ironman,
     JeffTheLandShark,
+    Jubilee,
     Loki,
     LunaSnow,
     Magik,
