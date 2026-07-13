@@ -957,7 +957,7 @@ export const PreferencesStoreSchema = z.object({
         ).default('all-roles'),
         filterFavourites: z.boolean().default(false),
 
-        listSortKey: z.enum(['name', 'role', 'rank', 'level', 'xp', 'current-xp']).default('xp'),
+        listSortKey: z.enum(['name', 'role', 'rank', 'level', 'xp', 'current-xp', 'ttg']).default('xp'),
         listSortDirection: z.enum(['asc', 'desc']).default('desc')
     })
 })

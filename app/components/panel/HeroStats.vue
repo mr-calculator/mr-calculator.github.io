@@ -365,6 +365,7 @@ const gameSeconds = computed(() => {
     return totalTimeToLevelAvg.value;
 })
 const gameHours = computed(() => secondsToHoursString(gameSeconds.value));
+const gameHoursNumber = computed(() => ((gameSeconds.value ?? 0) / 60 / 60).toFixed(1));
 
 const timeSum = computed(() => totalEstimatedTimeAvg.value + gameSeconds.value);
 
@@ -372,8 +373,8 @@ function editGameHours() {
     openModal(InputModal, {
         title: `Set hero hours played`,
         message: `Set your in-game hours played for ${hero.value.name}`,
-        inputPlaceholder: `e.g.: ${gameHours.value}`,
-        inputValue: storedLevel.value.gameHours,
+        inputPlaceholder: `e.g.: ${gameHoursNumber.value}`,
+        inputValue: gameHoursNumber.value,
         numberInput: {
             step: 10,
             min: 0
@@ -381,7 +382,7 @@ function editGameHours() {
     })
     .promise
     .then(hours => {
-        const parsed = parseInt(hours);
+        const parsed = parseFloat(hours);
         if (isNaN(parsed)) {
             notify(
                 `The hours inputted are not a number!`,

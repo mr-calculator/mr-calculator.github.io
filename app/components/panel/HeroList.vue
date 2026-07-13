@@ -98,6 +98,15 @@
                                     {{ sortDir === 'asc' ? '▲' : '▼' }}
                                 </span>
                             </th>
+                            <th class="sortable num" @click="setSort('ttg')">
+                                <span class="label-full">TIME TO GOAL</span>
+                                <span
+                                    v-if="sortKey === 'ttg'"
+                                    class="caret"
+                                >
+                                    {{ sortDir === 'asc' ? '▲' : '▼' }}
+                                </span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -182,6 +191,7 @@
                                 </div>
                             </td>
                             <td class="num-cell xp">{{ entry.totalXp.toLocaleString() }}</td>
+                            <td class="num-cell ttg">{{ secondsToHoursString(entry.timeToGoal) }}h</td>
                         </tr>
                     </tbody>
                 </table>
@@ -274,6 +284,9 @@
                         </span>
                         <span class="xp">
                             Total Points: {{ entry.totalXp.toLocaleString() }}
+                        </span>
+                        <span class="xp">
+                            Time to Goal: {{ secondsToHoursString(entry.timeToGoal) }}h
                         </span>
                     </div>
                 </div>
@@ -442,6 +455,7 @@ import { getFeaturedHero, HERO_LIST, heroRolesAsArray } from '~/assets/data/hero
 import { tex, texUrl } from '~/assets/data/textures';
 import type { TooltipBinding } from '~/directives/tooltip';
 import type { Option } from '../form/Dropdown.vue';
+import { Calculator } from '~/services/calculator';
 
 const props = withDefaults(defineProps<{
     embedded?: boolean,
@@ -636,19 +650,28 @@ const RANK_ORDER = Object.keys(PROFICIENCY_RANKS);
 
 const heroData = computed(() => {
     return [...HERO_LIST, ...unknownHeroes.value].map(hero => {
-        const stored = useLocalStorage<PlayerHeroStore>(`hero_${hero.id}`, DEFAULT_HERO_STORE(), PlayerHeroStoreSchema);
+        const stored = useLocalStorage<PlayerHeroStore>(
+            `hero_${hero.id}`, DEFAULT_HERO_STORE(), PlayerHeroStoreSchema
+        );
         const rankData = PROFICIENCY_RANKS[stored.value.rank] ?? PROFICIENCY_RANKS.agent!;
         const totalXp = calcTotalXp(stored.value.level, stored.value.points);
+
+        const calc = new Calculator(hero, stored.value);
+        const estimates = calc.totalTimes();
+        let timeToGoal = 0;
+        estimates.forEach(r => timeToGoal += r.time[1]);
+
         return {
             hero,
             storedLevel: stored.value,
             rankData,
-            totalXp
+            totalXp,
+            timeToGoal
         };
     });
 });
 
-type SortKey = 'name'|'role'|'rank'|'level'|'xp'|'current-xp';
+type SortKey = 'name'|'role'|'rank'|'level'|'xp'|'current-xp'|'ttg';
 const sortKey = computed({
     get: () => preferences.value.heroList.listSortKey,
     set: (value) => preferences.value.heroList.listSortKey = value
@@ -665,6 +688,7 @@ const cardSortOptions = [
     { label: 'LEVEL',       value: 'level' },
     { label: 'CURRENT XP',  value: 'current-xp' },
     { label: 'TOTAL XP',    value: 'xp' },
+    { label: 'TIME TO GOAL',    value: 'ttg' },
 ];
 
 const ROLE_ORDER = ['vanguard', 'duelist', 'strategist'];
@@ -719,6 +743,15 @@ const sortedHeroData = computed(() => {
 
             case 'current-xp':
                 cmp = (a.storedLevel.points / a.rankData.xpPerLevel) - (b.storedLevel.points / b.rankData.xpPerLevel);
+                break;
+
+            case 'ttg':
+                const placeholderV = sortDir.value === 'asc' ? Number.MAX_SAFE_INTEGER : -1;
+
+                const aV = a.timeToGoal == 0 ? placeholderV : a.timeToGoal;
+                const bV = b.timeToGoal == 0 ? placeholderV : b.timeToGoal;
+
+                cmp = aV - bV;
                 break;
         }
 

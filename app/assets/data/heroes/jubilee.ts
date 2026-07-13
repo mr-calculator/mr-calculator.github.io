@@ -11,6 +11,8 @@ export const Jubilee: HeroData = {
     aliases: [
         'Jubilation Lee',
         '李千歡',
+        'Jubes',
+        'Jub Jub',
         'The Explosive Firecracker',
         'Horseman of Famine',
     ],
