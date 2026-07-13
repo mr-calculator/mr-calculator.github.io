@@ -568,7 +568,8 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         version: {
             number: '2.4.0',
             date: 'July 10, 2026',
-            time: '6:46 PM'
+            time: '6:46 PM',
+            commitSha: '74dfc6b1ca8bac660d0a32126b70bb7de105a60a'
         },
         title: 'Added Jubilee',
         description: `Added Jubilee to the calculator without generic stats (will add later - when averages are more accurate)<br/>
