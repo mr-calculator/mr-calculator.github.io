@@ -20,6 +20,7 @@ export const Angela: HeroData = {
     iconAnimationSize: [3624, 4040],
     iconAnimationOffset: [20, 15],
     iconLargeAnimationOffset: [-8, 15],
+    iconBattleAnimationOffset: [5, 22],
 
     ranks: [
         {

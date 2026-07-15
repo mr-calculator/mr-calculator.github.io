@@ -20,6 +20,7 @@ export const Blade: HeroData = {
     dataDir: '/img/heroes/data/blade/',
 
     iconAnimationOffset: [-10, 25],
+    iconBattleAnimationOffset: [-10, 20],
 
     ranks: [
         {

@@ -18,6 +18,7 @@ export const TheThing: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [2, 38],
+    iconBattleAnimationOffset: [-4, 40],
 
     ranks: [
         {

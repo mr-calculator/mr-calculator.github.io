@@ -23,6 +23,7 @@ export const IronFist: HeroData = {
 
     iconAnimationSize: [3584, 3940],
     iconAnimationOffset: [3, 35],
+    iconBattleAnimationOffset: [0, 30],
 
     ranks: [
         {

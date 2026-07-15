@@ -17,6 +17,7 @@ export const Rogue: HeroData = {
     iconAnimationSize: [3584, 3972],
     iconAnimationOffset: [20, 32],
     iconLargeAnimationOffset: [0, 32],
+    iconBattleAnimationOffset: [20, 30],
 
     ranks: [
         {

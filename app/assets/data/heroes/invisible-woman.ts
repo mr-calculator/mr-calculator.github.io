@@ -21,6 +21,7 @@ export const InvisibleWoman: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [5, 10],
+    iconBattleAnimationOffset: [-4, 10],
 
     ranks: [
         {

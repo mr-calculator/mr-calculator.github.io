@@ -14,6 +14,7 @@ export const Groot: HeroData = {
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [15, 42],
     iconLargeAnimationOffset: [-15, 32],
+    iconBattleAnimationOffset: [6, 34],
 
     ranks: [
         {

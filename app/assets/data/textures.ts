@@ -250,6 +250,55 @@ export const TEX = {
         default: 'ui/draw-bottom-left-corner.png'
     } as Texture,
 
+    // ------ HERO BATTLE PORTRAIT ------
+    heroBattlePortraitBg: {
+        default: 'ui/hero-battle-portrait/bg.png'
+    } as Texture,
+    heroBattlePortraitBorder: {
+        default: 'ui/hero-battle-portrait/border.png'
+    } as Texture,
+    heroBattlePortraitCorner: {
+        default: 'ui/hero-battle-portrait/corner.png'
+    } as Texture,
+    heroBattlePortraitDecoLeft: {
+        default: 'ui/hero-battle-portrait/deco-left.png'
+    } as Texture,
+    heroBattlePortraitDecoRight: {
+        default: 'ui/hero-battle-portrait/deco-right.png'
+    } as Texture,
+
+    heroBattlePortraitBorderPurple: {
+        default: 'ui/hero-battle-portrait/purple-border.png'
+    } as Texture,
+    heroBattlePortraitCornerPurple: {
+        default: 'ui/hero-battle-portrait/purple-corner.png'
+    } as Texture,
+    heroBattlePortraitDecoLeftPurple: {
+        default: 'ui/hero-battle-portrait/purple-deco-left.png'
+    } as Texture,
+    heroBattlePortraitDecoRightPurple: {
+        default: 'ui/hero-battle-portrait/purple-deco-right.png'
+    } as Texture,
+
+    heroBattlePortraitBorderGold: {
+        default: 'ui/hero-battle-portrait/gold-border.png'
+    } as Texture,
+    heroBattlePortraitCornerGold: {
+        default: 'ui/hero-battle-portrait/gold-corner.png'
+    } as Texture,
+    heroBattlePortraitDecoLeftGold: {
+        default: 'ui/hero-battle-portrait/gold-deco-left.png'
+    } as Texture,
+    heroBattlePortraitDecoRightGold: {
+        default: 'ui/hero-battle-portrait/gold-deco-right.png'
+    } as Texture,
+
+    heroBattlePortraitMask: {
+        default: 'mask/hero-battle-portrait-mask.png'
+    } as Texture,
+
+    // ------ -------------------- ------
+
     cog: {
         default: 'icon/cog.png',
     } as Texture,
@@ -423,6 +472,9 @@ export const TEX = {
     share: {
         default: 'icon/share.png'
     } as Texture,
+    hero: {
+        default: 'icon/hero.png'
+    } as Texture,
     unknownHero: {
         default: 'icon/unknown-hero.png'
     } as Texture,
@@ -455,6 +507,9 @@ export const TEX = {
     } as Texture,
     userId: {
         default: 'icon/user-id.png'
+    } as Texture,
+    battle: {
+        default: 'icon/battle.webp'
     } as Texture,
 
     rarityMythic: {
@@ -702,11 +757,27 @@ export const TEX = {
     heroSelectFrameGold: {
         default: 'bg/hero-select-frame-gold.png'
     } as Texture,
+
     heroSelectFrameLeftGold: {
         default: 'bg/hero-select-frame-left-gold.png'
     } as Texture,
     heroSelectFrameRightGold: {
         default: 'bg/hero-select-frame-right-gold.png'
+    } as Texture,
+    heroSelectFrameLeftPurple: {
+        default: 'bg/hero-select-frame-left-purple.png'
+    } as Texture,
+    heroSelectFrameRightPurple: {
+        default: 'bg/hero-select-frame-right-purple.png'
+    } as Texture,
+
+    heroSelectFrameForBadge: {
+        default: 'bg/hero-select-frame-for-badge.png'
+    } as Texture,
+    
+
+    proficiencyRewardBg: {
+        default: 'bg/proficiency-reward-bg.png'
     } as Texture,
 
     profileHeaderBg: {

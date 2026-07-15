@@ -21,6 +21,7 @@ export const Hawkeye: HeroData = {
     iconAnimationSize: [3492, 3952],
     iconAnimationOffset: [2, 27],
     iconLargeAnimationOffset: [-10, 27],
+    iconBattleAnimationOffset: [-12, 24],
 
     ranks: [
         {

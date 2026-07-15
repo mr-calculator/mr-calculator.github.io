@@ -20,6 +20,7 @@ export const Cyclops: HeroData = {
     dataDir: '/img/heroes/data/cyclops/',
     
     iconAnimationOffset: [35, 50],
+    iconBattleAnimationOffset: [24, 54],
 
     ranks: [
         {

@@ -17,6 +17,7 @@ export const MisterFantastic: HeroData = {
 
     iconAnimationSize: [3584, 3972],
     iconAnimationOffset: [5, 20],
+    iconBattleAnimationOffset: [-4, 16],
 
     ranks: [
         {

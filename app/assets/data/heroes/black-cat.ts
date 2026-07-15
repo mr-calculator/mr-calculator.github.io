@@ -20,6 +20,7 @@ export const BlackCat: HeroData = {
 
     iconAnimationOffset: [4, 25],
     iconLargeAnimationOffset: [10, 20],
+    iconBattleAnimationOffset: [-5, 22],
 
     ranks: [
         {

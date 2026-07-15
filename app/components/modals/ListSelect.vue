@@ -30,7 +30,8 @@
                 :contrast-mode="true"
                 :id-prefix="title"
 
-                @reward-click="selectedLevel = $event"
+                @reward-click="selectedLevel = $event.level"
+                @level-click="selectedLevel = $event"
             />
         </div>
 

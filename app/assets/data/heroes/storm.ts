@@ -20,6 +20,7 @@ export const Storm: HeroData = {
     iconAnimationSize: [3584, 3972],
     iconAnimationOffset: [10, 25],
     iconLargeAnimationOffset: [-10, 25],
+    iconBattleAnimationOffset: [4, 20],
 
     ranks: [
         {

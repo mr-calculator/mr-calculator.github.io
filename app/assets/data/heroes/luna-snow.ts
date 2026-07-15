@@ -24,6 +24,8 @@ export const LunaSnow: HeroData = {
     dataDir: '/img/heroes/data/luna-snow/',
 
     iconAnimationOffset: [10, 35],
+    iconBattleAnimationOffset: [10, 35],
+
     easterEgg: '1031313',
     easterEggMessage: `
     Woah! You found an <b>easter egg</b>!

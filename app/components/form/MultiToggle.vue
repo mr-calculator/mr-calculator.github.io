@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="{toggle: 1, large, small}"
+        :class="{toggle: 1, large, small, vertical}"
     >
         <div
             v-for="(slot, id) in $slots"
@@ -41,6 +41,12 @@
         .state
             min-height: 48px
             padding: 5px 20px
+
+    &.vertical
+        flex-direction: column
+
+        .state
+            min-width: unset
 
     &.small
         .state
@@ -91,6 +97,7 @@
 <script setup lang="ts">
 const props = defineProps<{
     large?: boolean,
+    vertical?: boolean,
     small?: boolean
 }>();
 

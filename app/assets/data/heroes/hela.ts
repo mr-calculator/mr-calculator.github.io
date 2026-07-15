@@ -19,6 +19,7 @@ export const Hela: HeroData = {
 
     iconAnimationOffset: [8, 20],
     iconLargeAnimationOffset: [-10, 20],
+    iconBattleAnimationOffset: [0, 14],
 
     ranks: [
         {

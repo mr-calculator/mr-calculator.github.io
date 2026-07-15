@@ -118,6 +118,7 @@ export const UNKNOWN_HERO: () => HeroData = () => ({
 
     iconAnimationSize: [2952, 2980],
     iconAnimationOffset: [10, 40],
+    iconBattleAnimationOffset: [0, 34],
 
     ranks: [
         {

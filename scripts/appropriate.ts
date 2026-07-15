@@ -7,7 +7,7 @@ import path from "path";
 const HEROES_DIR = `./public/img/heroes/`;
 const HEROES_DATA_DIR = `./public/img/heroes/data/`;
 
-const HERO_ID_CONV_PATH = './scripts/add-hero/hero-id-conversion.json';
+const HERO_ID_CONV_PATH = './scripts/add-hero/cache/hero-id-conversion.json';
 function getHeroesFile(): Record<string, string> {
     return JSON.parse(fs.readFileSync(HERO_ID_CONV_PATH, { encoding: 'utf-8' }));
 }

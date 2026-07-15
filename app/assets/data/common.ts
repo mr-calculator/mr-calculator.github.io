@@ -294,6 +294,7 @@ export const FILTER_RARITY_OPTS: (prefix?: string) => Option[] = (prefix) => [
 ];
 
 export const RewardSchema = z.object({
+    type: z.enum(['item', 'nameplate', 'title', 'portrait', 'badge', 'frame']).optional(),
     level: z.number(),
     name: z.string(),
     icon: z.string(),
@@ -361,18 +362,21 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'item',
                 level: 1,
                 name: 'Default KO Prompt',
                 icon: '/img/common-rewards/default-ko-prompt.webp',
                 rarity: 'rare'
             },
             {
+                type: 'portrait',
                 level: 1,
                 name: 'Default Avatar',
                 icon: '%HERO_DATA_DIR%head.webp',
                 rarity: 'rare'
             },
             {
+                type: 'nameplate',
                 level: 3,
                 name: 'Fantastic %HERO_NAME%',
                 icon: '%HERO_DATA_DIR%fantastic-nameplate.webp',
@@ -393,12 +397,14 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'item',
                 level: 5,
                 name: '%HERO_NAME%',
                 icon: '%HERO_DATA_DIR%spray.webp',
                 rarity: 'rare'
             },
             {
+                type: 'title',
                 level: 8,
                 name: 'Fantastic %HERO_NAME%',
                 icon: '/img/common-rewards/title.webp',
@@ -419,12 +425,14 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'item',
                 level: 10,
                 name: '%HERO_NAME% KO Prompt 1',
                 icon: '%HERO_DATA_DIR%ko-1.webp',
                 rarity: 'epic'
             },
             {
+                type: 'item',
                 level: 13,
                 name: '100 Unstable Molecules',
                 icon: '/img/common-rewards/unstable-mollecule.webp'
@@ -444,12 +452,14 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'item',
                 level: 15,
                 name: '%HERO_NAME% KO Prompt 2',
                 icon: '%HERO_DATA_DIR%ko-2.webp',
                 rarity: 'epic'
             },
             {
+                type: 'item',
                 level: 18,
                 name: '100 Units',
                 icon: '/img/common-rewards/units.webp'
@@ -469,17 +479,20 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'portrait',
                 level: 20,
                 name: '%HERO_NAME% Lord Icon',
                 icon: '%HERO_DATA_DIR%head-lord.webp',
                 rarity: 'legendary'
             },
             {
+                type: 'item',
                 level: 22,
                 name: '100 Unstable Molecules',
                 icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
+                type: 'nameplate',
                 level: 24,
                 name: 'Uncanny %HERO_NAME%',
                 icon: '%HERO_DATA_DIR%uncanny-nameplate.webp',
@@ -500,17 +513,20 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'badge',
                 level: 25,
                 name: 'Count Badge',
                 icon: '/img/common-rewards/count-badge.webp',
                 rarity: 'rare'
             },
             {
+                type: 'item',
                 level: 27,
                 name: '100 Units',
                 icon: '/img/common-rewards/units.webp'
             },
             {
+                type: 'title',
                 level: 29,
                 name: 'Uncanny %HERO_NAME%',
                 icon: '/img/common-rewards/title.webp',
@@ -531,17 +547,20 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'frame',
                 level: 30,
                 name: 'Colonel Avatar Frame',
                 icon: '/img/common-rewards/colonel-frame.webp',
                 rarity: 'epic'
             },
             {
+                type: 'item',
                 level: 32,
                 name: '100 Unstable Molecules',
                 icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
+                type: 'nameplate',
                 level: 34,
                 name: 'Amazing %HERO_NAME%',
                 icon: '%HERO_DATA_DIR%amazing-nameplate.webp',
@@ -562,17 +581,20 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'badge',
                 level: 35,
                 name: 'Warrior Badge',
                 icon: '/img/common-rewards/warrior-badge.webp',
                 rarity: 'epic'
             },
             {
+                type: 'item',
                 level: 37,
                 name: '100 Units',
                 icon: '/img/common-rewards/units.webp'
             },
             {
+                type: 'title',
                 level: 39,
                 name: 'Amazing %HERO_NAME%',
                 icon: '/img/common-rewards/title.webp',
@@ -593,17 +615,20 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'frame',
                 level: 40,
                 name: 'Elite Avatar Frame',
                 icon: '/img/common-rewards/elite-frame.webp',
                 rarity: 'legendary'
             },
             {
+                type: 'item',
                 level: 42,
                 name: '100 Unstable Molecules',
                 icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
+                type: 'item',
                 level: 44,
                 name: '100 Units',
                 icon: '/img/common-rewards/units.webp'
@@ -623,17 +648,20 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'badge',
                 level: 45,
                 name: 'Guardian Badge',
                 icon: '/img/common-rewards/guardian-badge.webp',
                 rarity: 'epic'
             },
             {
+                type: 'item',
                 level: 47,
                 name: '100 Unstable Molecules',
                 icon: '/img/common-rewards/unstable-mollecule.webp'
             },
             {
+                type: 'item',
                 level: 49,
                 name: '100 Units',
                 icon: '/img/common-rewards/units.webp'
@@ -653,6 +681,7 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
 
         rewards: [
             {
+                type: 'portrait',
                 level: 50,
                 name: '%HERO_NAME% Champion Icon',
                 icon: '%HERO_DATA_DIR%bust-champion.webp',
@@ -665,24 +694,28 @@ export const PROFICIENCY_RANKS: Record<string, ProficiencyRank> = {
                 rarity: 'legendary'
             },
             {
+                type: 'badge',
                 level: 55,
                 name: 'Champion Badge',
                 icon: '/img/common-rewards/champion-badge.webp',
                 rarity: 'legendary'
             },
             {
+                type: 'title',
                 level: 60,
                 name: 'Immortal %HERO_NAME%',
                 icon: '/img/common-rewards/title.webp',
                 rarity: 'epic'
             },
             {
+                type: 'nameplate',
                 level: 65,
                 name: 'Immortal %HERO_NAME%',
                 icon: '%HERO_DATA_DIR%immortal-nameplate.webp',
                 rarity: 'epic'
             },
             {
+                type: 'title',
                 level: 70,
                 name: 'Legendary %HERO_NAME%',
                 icon: '/img/common-rewards/title.webp',
@@ -752,6 +785,8 @@ export const HeroDataSchema = z.object({
     iconAnimationSize: z.tuple([z.number(), z.number()]).optional(),
     iconAnimationOffset: z.tuple([z.number(), z.number()]).optional(),
     iconLargeAnimationOffset: z.tuple([z.number(), z.number()]).optional(),
+    iconBattleAnimationOffset: z.tuple([z.number(), z.number()]).optional(),
+    iconBattleAltAnimation: z.string().optional(),
     iconLargeMask: z.string().optional(),
 
     easterEgg: z.string().optional(),
@@ -1163,7 +1198,9 @@ export const AnySegmentSchema = z.discriminatedUnion('type', [
     ProfileSegmentSchema
 ])
 
-export async function fixUnknownHeroesImagePaths() {
+export async function updateUnknownHeroes() {
+    const { UNKNOWN_HERO } = await import('./heroes');
+    const DEFAULT_UNKNOWN_HERO = UNKNOWN_HERO();
     const unknownHeroes = useLocalStorage<HeroData[]>('unknown_heroes', []);
 
     for (const hero of unknownHeroes.value) {
@@ -1171,7 +1208,10 @@ export async function fixUnknownHeroesImagePaths() {
         if (!hasChangedBustChampion && hero.iconAnimationOffset?.[0] == -10 && hero.iconAnimationOffset?.[1] ==  -40)
             hero.iconAnimationOffset = [10, 40];
 
-        for (const rank of hero.ranks) {
+        for (const [rank, idx] of withIndices(hero.ranks)) {
+            if (rank.type.rewards.some(r => typeof r.type === 'undefined'))
+                rank.type = DEFAULT_UNKNOWN_HERO.ranks[idx]!.type;
+
             for (const reward of rank.type.rewards) {
                 const oldPath = '/img/heroes/common-rewards/';
                 if (!reward.icon.startsWith(oldPath))

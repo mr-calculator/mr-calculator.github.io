@@ -19,6 +19,7 @@ export const Magneto: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [15, 30],
+    iconBattleAnimationOffset: [4, 20],
 
     ranks: [
         {

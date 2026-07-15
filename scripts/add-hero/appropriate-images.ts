@@ -27,7 +27,19 @@ export const FILES = {
     'bust-champion': 'Mastery/Common/%HERO_ID%/fb_mastery2%HERO_ID%020',
     'bust-lord': 'HeroPortrait/TransverseHeroHead/Proficiency/img_commontransverse_2%HERO_ID%020_avatar',
     'head': 'HeroPortrait/SquareHeroHead/img_squarehead_%HERO_ID%0010_avatar',
+    'transverse-head': [
+        'HeroPortrait/TransverseHeroHead/img_commontransverse_%HERO_ID%0010_avatar',
+        'HeroPortrait/TransverseHeroHead/img_commontransverse_%HERO_ID%0011_avatar' // hulk
+    ],
     'head-lord': 'HeroPortrait/SquareHeroHead/Proficiency/img_squarehead_2%HERO_ID%020_avatar',
+    'battle-head': [
+        'Battle/PlayerInfo/V2/img_battle_%HERO_ID%0_avatar',
+        'Battle/PlayerInfo/V2/img_battle_%HERO_ID%1_avatar' // cnd (tandy)
+    ],
+    'battle-head-lord': [
+        'Battle/PlayerInfo/V2/Proficiency/img_battle_2%HERO_ID%020_avatar',
+        'Battle/PlayerInfo/V2/Proficiency/img_battle_2%HERO_ID%021_avatar' // cnd (tandy)
+    ],
 
     'ko-1': 'Item/Kill/item_kill_2%HERO_ID%12',
     'ko-2': 'Item/Kill/item_kill_2%HERO_ID%13',

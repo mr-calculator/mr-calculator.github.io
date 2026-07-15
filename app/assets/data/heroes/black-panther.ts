@@ -16,6 +16,7 @@ export const BlackPanther: HeroData = {
     dataDir: '/img/heroes/data/black-panther/',
 
     iconAnimationOffset: [5, 20],
+    iconBattleAnimationOffset: [6, 16],
 
     ranks: [
         {

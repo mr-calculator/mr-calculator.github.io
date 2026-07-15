@@ -14,6 +14,7 @@ export const RocketRaccoon: HeroData = {
     iconAnimationSize: [3584, 3972],
     iconAnimationOffset: [7, 33],
     iconLargeAnimationOffset: [-5, 28],
+    iconBattleAnimationOffset: [-2, 30],
 
     ranks: [
         {

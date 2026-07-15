@@ -19,6 +19,7 @@ export const StarLord: HeroData = {
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [0, 47],
     iconLargeAnimationOffset: [-20, 47],
+    iconBattleAnimationOffset: [-4, 40],
 
     ranks: [
         {

@@ -23,6 +23,7 @@ export const SpiderMan: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [0, 20],
+    iconBattleAnimationOffset: [-4, 10],
 
     ranks: [
         {

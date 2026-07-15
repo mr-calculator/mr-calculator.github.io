@@ -22,6 +22,7 @@ export const Deadpool: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [-5, 30],
+    iconBattleAnimationOffset: [-8, 34],
 
     ranks: [
         {

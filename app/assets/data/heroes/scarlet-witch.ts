@@ -19,6 +19,7 @@ export const ScarletWitch: HeroData = {
 
     iconAnimationSize: [3576, 3980],
     iconAnimationOffset: [5, 30],
+    iconBattleAnimationOffset: [0, 30],
     iconLargeMask: '/img/heroes/data/scarlet-witch/hero-select-mask.webp',
 
     ranks: [

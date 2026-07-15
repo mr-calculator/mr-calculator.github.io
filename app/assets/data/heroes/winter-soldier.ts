@@ -18,6 +18,7 @@ export const WinterSoldier: HeroData = {
     iconAnimationSize: [3584, 3960],
     iconAnimationOffset: [10, 53],
     iconLargeAnimationOffset: [-5, 43],
+    iconBattleAnimationOffset: [5, 45],
 
     ranks: [
         {

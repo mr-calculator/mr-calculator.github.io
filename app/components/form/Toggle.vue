@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="{toggle: 1, both, large}"
+        :class="{toggle: 1, both, large, vertical}"
         @click="toggle"
     >
         <div
@@ -65,7 +65,18 @@
         .state
             min-height: 48px
             padding: 5px 20px
+
+    &.vertical
+        grid-template-columns: auto
+        grid-template-rows: 1fr 1fr
+
+        .state
+            min-width: unset
             
+            &.off
+                grid-column: 1 / 2
+            &.on
+                grid-column: 1 / 2
     
     &.both
         gap: 5px
@@ -109,6 +120,7 @@
 <script setup lang="ts">
 const props = defineProps<{
     large?: boolean,
+    vertical?: boolean,
     both?: boolean
 }>();
 

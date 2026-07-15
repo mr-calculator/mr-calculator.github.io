@@ -18,7 +18,7 @@
 <style src="@/assets/style/components/notifications.sass"></style>
 
 <script setup lang="ts">
-import { fixUnknownHeroesImagePaths, setupProfile } from './assets/data/common';
+import { updateUnknownHeroes, setupProfile } from './assets/data/common';
 import { injectTexturesCss } from './assets/data/textures';
 
 const route = useRoute();
@@ -28,6 +28,6 @@ injectTexturesCss();
 
 onMounted(() => {
     setupProfile();
-    fixUnknownHeroesImagePaths();
+    updateUnknownHeroes();
 });
 </script>

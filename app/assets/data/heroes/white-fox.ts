@@ -22,6 +22,7 @@ export const WhiteFox: HeroData = {
 
     iconAnimationOffset: [-4, 42],
     iconLargeAnimationOffset: [-15, 42],
+    iconBattleAnimationOffset: [-14, 40],
     
     ranks: [
         {

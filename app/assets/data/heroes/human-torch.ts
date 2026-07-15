@@ -15,6 +15,7 @@ export const HumanTorch: HeroData = {
 
     iconAnimationSize: [3588, 3972],
     iconAnimationOffset: [0, 32],
+    iconBattleAnimationOffset: [-8, 24],
 
     ranks: [
         {

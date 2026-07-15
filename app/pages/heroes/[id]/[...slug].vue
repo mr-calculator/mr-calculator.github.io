@@ -391,20 +391,29 @@
                 class="content"
                 ref="content"
             >
-                <PanelTabbedContainer class="tabbed-container" container-class="tab-container">
-                    <template #rewards>
+                <PanelTabbedContainer
+                    :class="{'tabbed-container': 1, 'preview-reward': previewReward !== null}"
+                    container-class="tab-container"
+                    :slot-order="['rewards', 'missions', 'stats']"
+                >
+                    <template v-if="previewReward === null" #rewards>
                         <PanelHeroProficiencyRewardList
                             :hero="hero"
                             :checked="obtainedRewards"
                             :selectedItemSpecial="true"
                             :selected-item="storedLevel.goal"
 
-                            :tooltip="{
+                            :reward-tooltip="{
+                                text: `Preview reward`,
+                                icon: 'mouseLeft'
+                            }"
+                            :level-tooltip="{
                                 text: `Set as <b>goal</b>`,
                                 icon: 'mouseLeft'
                             }"
 
-                            @reward-click="setGoal"
+                            @reward-click="setPreviewReward"
+                            @level-click="setGoal"
                         />
 
                         <p>(You can select your goal by clicking on an item)</p>
@@ -413,6 +422,15 @@
                             SEE YOUR ESTIMATES
                         </FormButton>
                     </template>
+                    <template v-else #rewards>
+                        <PanelRewardPreview
+                            :hero="hero"
+                            v-model="previewReward"
+
+                            @close="previewReward = null"
+                        />
+                    </template>
+
                     <template #missions>
                         <PanelMissionTable
                             :hero="hero"
@@ -1391,6 +1409,11 @@ function setGoal(level: number) {
         3000, 
         { image: 'target', color: 'var(--color)' }
     );
+}
+
+const previewReward = ref<Reward|null>(null);
+function setPreviewReward(reward: Reward) {
+    previewReward.value = structuredClone(reward);
 }
 
 // ==== ACHIEVEMENTS =====
