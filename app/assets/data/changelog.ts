@@ -563,7 +563,6 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.3.1/costumes-selection.webp',
         ]
     },
-
     {
         version: {
             number: '2.4.0',
@@ -582,6 +581,29 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         ],
         images: [
             '/img/changelog/v2.4.0/hero-page.webp',
+        ]
+    },
+    {
+        version: {
+            number: '2.5.0',
+            date: 'July 16, 2026',
+            time: '10:33 PM',
+        },
+        title: 'Reward Preview System',
+        description: `Added a reward preview system for the proficiency rewards at hero pages.
+        <br/>
+        Click/tap on the reward itself to preview it; click/tap on the level to quickly set your goal.`,
+        listTitle: 'features',
+        list: [
+            'Can preview all rewards (aside from KO prompts)',
+            'Can mix rewards for the hero select/in-game UI hero portraits',
+            'Can view both hero select and in-game portraits',
+            'Can mix rewards for titles and nameplates'
+        ],
+        images: [
+            '/img/changelog/v2.5.0/preview-1.webp',
+            '/img/changelog/v2.5.0/preview-2.webp',
+            '/img/changelog/v2.5.0/preview-3.webp',
         ]
     },
 ];

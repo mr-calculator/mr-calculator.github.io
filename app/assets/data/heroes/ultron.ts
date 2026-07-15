@@ -15,6 +15,7 @@ export const Ultron: HeroData = {
 
     iconAnimationSize: [3584, 3972],
     iconAnimationOffset: [5, 33],
+    iconBattleAnimationOffset: [-4, 30],
 
     ranks: [
         {

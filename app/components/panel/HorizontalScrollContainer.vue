@@ -142,10 +142,10 @@ function onTouchMove(e: TouchEvent) {
         e.preventDefault();
 }
 
-function scrollToElement(el: HTMLElement, smoothing = DEFAULT_SCROLL_SMOOTH) {
+function scrollToElement(el: HTMLElement, smoothing = DEFAULT_SCROLL_SMOOTH, offset = 0) {
     targetX = Math.max(
         0,
-        Math.min(el.offsetLeft, maxScroll)
+        Math.min(el.offsetLeft + offset, maxScroll)
     );
 
     simulatedScrollSmooth = smoothing;

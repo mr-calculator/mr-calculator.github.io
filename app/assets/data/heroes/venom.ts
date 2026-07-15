@@ -15,6 +15,7 @@ export const Venom: HeroData = {
     dataDir: '/img/heroes/data/venom/',
 
     iconAnimationOffset: [15, 15],
+    iconBattleAnimationOffset: [10, 10],
 
     ranks: [
         {

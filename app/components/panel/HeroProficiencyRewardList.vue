@@ -1,5 +1,5 @@
 <template>
-    <div :class="{rewards: 1, contrast: contrastMode, 'no-clicking': noClicking}">
+    <div :class="{rewards: 1, contrast: contrastMode, 'no-clicking': noClicking, 'no-wrap': noWrap && filteredRewards.length}">
         <div
             v-for="[level, [rewards, rank]] in aggregatedRewards"
             :key="`${hero.id}_${level}`"
@@ -10,16 +10,15 @@
                 checked: checked?.includes(level),
                 special: selectedItem == level && selectedItemSpecial
             }"
-
-            @click="$emit('rewardClick', level)"
-
-            v-tooltip="noClicking ? undefined : tooltip"
         >
             <div class="reward-list">
                 <div
                     v-for="reward in rewards"
                     :key="`${hero.id}_${reward.level}_${reward.name}_${reward.icon}`"
                     class="reward"
+
+                    @click="$emit('rewardClick', reward)"
+                    v-tooltip="noClicking ? undefined : cloneObjectRefAsRaw(rewardTooltip)"
                 >
                     <div :class="['image', `rarity-${reward.rarity ?? 'none'}`]">
                         <ClientOnly>
@@ -54,12 +53,21 @@
                 </div>
             </div>
 
-            <div class="level-title">
+            <div
+                class="level-title"
+                @click="$emit('levelClick', level)"
+
+                v-tooltip="noClicking ? undefined : cloneObjectRefAsRaw(levelTooltip)"
+            >
                 <div v-if="rank" class="rank-icon">
                     <img :src="rank.icon" :alt="`${rank.name} Icon`" draggable="false" />
                 </div>
                 <h3>LV{{ level }}</h3>
             </div>
+        </div>
+
+        <div v-if="!filteredRewards.length" class="empty-state">
+            <slot name="empty" />
         </div>
 
         <div
@@ -90,11 +98,16 @@ const props = defineProps<{
     idPrefix?: string,
 
     noClicking?: boolean,
-    tooltip?: TooltipBinding
+    levelTooltip?: TooltipBinding
+    rewardTooltip?: TooltipBinding,
+
+    noWrap?: boolean,
+    filter?: (reward: Reward) => boolean
 }>();
 
 const emit = defineEmits<{
-    rewardClick: [ level: number ]
+    rewardClick: [ reward: Reward ],
+    levelClick: [ level: number ]
 }>();
 
 // =======EASTER EGG========
@@ -157,11 +170,12 @@ const allRewards = computed<Reward[]>(() => {
     return allRewards;
 });
 
+const filteredRewards = computed(() => allRewards.value.filter(props.filter ?? (() => true)));
 const aggregatedRewards = computed(() => {
     let aggregated: Map<number, [Reward[], ProficiencyRank?]> = new Map();
     let min = 1;
     let max = 0;
-    allRewards.value.forEach(r => {
+    filteredRewards.value.forEach(r => {
         if (!aggregated.has(r.level))
             aggregated.set(r.level, [[], levelToRank(r.level, true)]);
 
@@ -174,20 +188,22 @@ const aggregatedRewards = computed(() => {
         if (hasEasterEgg.value)
             applyEasterEgg(reward);
 
+        let icon = replaceRewardPlaceholders(reward.icon, props.hero);
 
-        const iconPath = replaceRewardPlaceholders(reward.icon, props.hero);
-        let iconKey = iconPath.split('/').at(-1)!;
-        iconKey = iconKey.slice(0, iconKey.length - '.webp'.length)!;
-        const icon = Object.keys(HERO_IMAGES).includes(iconKey)
-            ? useHeroImage(iconKey, props.hero).value
-            : iconPath;
+        if (!hasEasterEgg.value) {
+            const iconPath = replaceRewardPlaceholders(reward.icon, props.hero);
+            let iconKey = iconPath.split('/').at(-1)!;
+            iconKey = iconKey.slice(0, iconKey.length - '.webp'.length)!;
+            icon = Object.keys(HERO_IMAGES).includes(iconKey)
+                ? useHeroImage(iconKey, props.hero).value
+                : iconPath;
+        }
 
         const processed: Reward = {
             ...reward,
             name: replaceRewardPlaceholders(reward.name, props.hero),
             icon
         }
-
 
 
         if (processed.iconAnimation) {

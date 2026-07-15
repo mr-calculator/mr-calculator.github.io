@@ -22,6 +22,7 @@ export const Jubilee: HeroData = {
     
     iconAnimationOffset: [17, 20],
     iconLargeAnimationOffset: [-8, 17],
+    iconBattleAnimationOffset: [4, 14],
 
     ranks: [
         {

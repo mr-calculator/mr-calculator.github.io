@@ -23,6 +23,7 @@ export const Daredevil: HeroData = {
 
     iconAnimationOffset: [10, 25],
     iconLargeAnimationOffset: [-15, 25],
+    iconBattleAnimationOffset: [10, 34],
 
     ranks: [
         {

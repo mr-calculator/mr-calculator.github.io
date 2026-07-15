@@ -17,6 +17,7 @@ export const Namor: HeroData = {
 
     iconAnimationSize: [3584, 3972],
     iconAnimationOffset: [0, 30],
+    iconBattleAnimationOffset: [-4, 30],
 
     ranks: [
         {

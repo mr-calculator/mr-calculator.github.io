@@ -18,6 +18,7 @@ export const Ironman: HeroData = {
     dataDir: '/img/heroes/data/ironman/',
 
     iconAnimationOffset: [17, 15],
+    iconBattleAnimationOffset: [4, 10],
 
     ranks: [
         {

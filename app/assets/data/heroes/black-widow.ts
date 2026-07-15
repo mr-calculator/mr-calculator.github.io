@@ -23,6 +23,7 @@ export const BlackWidow: HeroData = {
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [0, 25],
     iconLargeAnimationOffset: [-10, 25],
+    iconBattleAnimationOffset: [-10, 20],
 
     ranks: [
         {

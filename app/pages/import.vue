@@ -664,7 +664,7 @@ import {
     DEFAULT_HERO_STORE,
     DEFAULT_PREFERENCES_STORE,
     DEFAULT_PROFILE_STORE,
-    fixUnknownHeroesImagePaths,
+    updateUnknownHeroes,
     levelToRank,
     PreferencesStoreSchema,
     ProfileStoreSchema,
@@ -1354,7 +1354,7 @@ async function importData() {
         resetLocalStorageCache();
         revokeHeroImageCache();
 
-        nextTick(fixUnknownHeroesImagePaths)
+        nextTick(updateUnknownHeroes)
     });
 
     dataSegment.value = null;

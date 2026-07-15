@@ -21,6 +21,7 @@ export const PeniParker: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [7, 30],
+    iconBattleAnimationOffset: [10, 30],
 
     ranks: [
         {

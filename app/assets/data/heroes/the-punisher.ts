@@ -19,6 +19,7 @@ export const ThePunisher: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [10, 30],
+    iconBattleAnimationOffset: [4, 30],
 
     ranks: [
         {

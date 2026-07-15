@@ -19,6 +19,7 @@ export const ElsaBloodstone: HeroData = {
     dataDir: '/img/heroes/data/elsa-bloodstone/',
 
     iconAnimationOffset: [-15, 20],
+    iconBattleAnimationOffset: [-24, 14],
 
     ranks: [
         {

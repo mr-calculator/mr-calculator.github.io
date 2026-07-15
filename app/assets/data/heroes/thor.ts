@@ -20,6 +20,7 @@ export const Thor: HeroData = {
 
     iconAnimationSize: [2400, 2668],
     iconAnimationOffset: [5, 20],
+    iconBattleAnimationOffset: [-4, 10],
 
     ranks: [
         {

@@ -1,5 +1,89 @@
 [
   {
+    "sha": "c5890ddd6ed96719ddf93963b132b7a2bdb5b8ab",
+    "node_id": "C_kwDORv7rQ9oAKGM1ODkwZGRkNmVkOTY3MTlkZGY5Mzk2M2IxMzJiN2EyYmRiNWI4YWI",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-07-13T22:19:09Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-07-13T22:19:09Z"
+      },
+      "message": "Added commit sha to the 2.4.0 changelog version, as the previous commit would incorrectly cause that version to be assigned to it.",
+      "tree": {
+        "sha": "f6b3039efcd7885483233effb6a225885fe25948",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/f6b3039efcd7885483233effb6a225885fe25948"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/c5890ddd6ed96719ddf93963b132b7a2bdb5b8ab",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c5890ddd6ed96719ddf93963b132b7a2bdb5b8ab",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/c5890ddd6ed96719ddf93963b132b7a2bdb5b8ab",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/c5890ddd6ed96719ddf93963b132b7a2bdb5b8ab/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "f35ea87b8ab56207a55dc327c540c984c5f26dc4",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/f35ea87b8ab56207a55dc327c540c984c5f26dc4",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/f35ea87b8ab56207a55dc327c540c984c5f26dc4"
+      }
+    ]
+  },
+  {
+    "sha": "f35ea87b8ab56207a55dc327c540c984c5f26dc4",
+    "node_id": "C_kwDORv7rQ9oAKGYzNWVhODdiOGFiNTYyMDdhNTVkYzMyN2M1NDBjOTg0YzVmMjZkYzQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-07-13T22:18:04Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-07-13T22:18:04Z"
+      },
+      "message": "Added generic average stats for Jubilee\nAdded a new column to the hero list view \"Time to Goal\". Sortable by (asc & desc). [Requested by raptor96824 in the Discord server]\nFixed 2 bugs related to the Time Played (under Hero Page -> Overview -> Stats), where the edit modal would incorrectly show the time in seconds when editing an existing value and would incorrectly parse the number as an integer instead of a float. (As the input was supposed to be in hours, on save, since it was displaying seconds, it would re-convert those seconds (as hours) again into hours every time if they were not fully replaced by the user.",
+      "tree": {
+        "sha": "f82620c809d0fb7ae3bd1a418b0491855c897bf6",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/f82620c809d0fb7ae3bd1a418b0491855c897bf6"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/f35ea87b8ab56207a55dc327c540c984c5f26dc4",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/f35ea87b8ab56207a55dc327c540c984c5f26dc4",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/f35ea87b8ab56207a55dc327c540c984c5f26dc4",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/f35ea87b8ab56207a55dc327c540c984c5f26dc4/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "74dfc6b1ca8bac660d0a32126b70bb7de105a60a",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/74dfc6b1ca8bac660d0a32126b70bb7de105a60a",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/74dfc6b1ca8bac660d0a32126b70bb7de105a60a"
+      }
+    ]
+  },
+  {
     "sha": "74dfc6b1ca8bac660d0a32126b70bb7de105a60a",
     "node_id": "C_kwDORv7rQ9oAKDc0ZGZjNmIxY2E4YmFjNjYwZDBhMzIxMjZiNzBiYjdkZTEwNWE2MGE",
     "commit": {
@@ -5202,90 +5286,6 @@
         "sha": "0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65"
-      }
-    ]
-  },
-  {
-    "sha": "0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65",
-    "node_id": "C_kwDORv7rQ9oAKDBkZWEzNmY3ZjY2NzUyY2RkNDJmNjA1YTZmNmFiNjhmYTlkOGRkNjU",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-10T01:51:08Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-10T01:51:08Z"
-      },
-      "message": "Added Arcade mode for stats and estimates (most likely use is for 18v18 Annihilation)",
-      "tree": {
-        "sha": "2848c2e23cd25ee67de3e1c8623c2865589ef289",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/2848c2e23cd25ee67de3e1c8623c2865589ef289"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/0dea36f7f66752cdd42f605a6f6ab68fa9d8dd65/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "a6cdbd381cdac5863c05e9b3836e4060a24a87ac",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/a6cdbd381cdac5863c05e9b3836e4060a24a87ac",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/a6cdbd381cdac5863c05e9b3836e4060a24a87ac"
-      }
-    ]
-  },
-  {
-    "sha": "a6cdbd381cdac5863c05e9b3836e4060a24a87ac",
-    "node_id": "C_kwDORv7rQ9oAKGE2Y2RiZDM4MWNkYWM1ODYzYzA1ZTliMzgzNmU0MDYwYTI0YTg3YWM",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-08T21:27:37Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-08T21:27:37Z"
-      },
-      "message": "Added ability to see generic average stats on a hero's page (not only in the landing page)\nAdded alt attrs to some images in the landing page that were missing it.",
-      "tree": {
-        "sha": "eb362d14f1f4fc45e591c966ef9fded071f5102d",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/eb362d14f1f4fc45e591c966ef9fded071f5102d"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/a6cdbd381cdac5863c05e9b3836e4060a24a87ac",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/a6cdbd381cdac5863c05e9b3836e4060a24a87ac",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/a6cdbd381cdac5863c05e9b3836e4060a24a87ac",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/a6cdbd381cdac5863c05e9b3836e4060a24a87ac/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "65ce28e2e485c3ff9ba22ad0732e6c92a3f10330",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/65ce28e2e485c3ff9ba22ad0732e6c92a3f10330",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/65ce28e2e485c3ff9ba22ad0732e6c92a3f10330"
       }
     ]
   }

@@ -735,6 +735,9 @@ const sortedHeroData = computed(() => {
 
             case 'level':
                 cmp = a.storedLevel.level - b.storedLevel.level;
+                if (cmp == 0)
+                    cmp = a.storedLevel.points - b.storedLevel.points;
+                
                 break;
 
             case 'xp':

@@ -23,6 +23,7 @@ export const Loki: HeroData = {
     dataDir: '/img/heroes/data/loki/',
 
     iconAnimationOffset: [10, 30],
+    iconBattleAnimationOffset: [0, 30],
 
     ranks: [
         {

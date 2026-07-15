@@ -2,7 +2,7 @@
     <div class="tabbed-container" :data-current-tab="tab">
         <ul class="tabs">
             <li
-                v-for="[name] in Object.entries($slots)"
+                v-for="[name] in Object.entries(orderedSlots)"
                 :key="name"
 
                 :class="{ selected: tab == name }"
@@ -34,7 +34,7 @@
 
     background: #222635
 
-    z-index: 3
+    z-index: 4
 
     +media-desktop
         justify-content: start
@@ -123,13 +123,21 @@
 <script setup lang="ts">
 const props = defineProps<{
     containerClass?: string|string[],
-    slotLabels?: Record<string, string>
+    slotLabels?: Record<string, string>,
+    slotOrder?: string[]
 }>();
+const slots = useSlots();
 
 const containerClassComp = computed(() => {
     return Array.isArray(props.containerClass) ? [...props.containerClass] : [props.containerClass]
 })
 
-const slots = useSlots();
-const tab = ref(Object.keys(slots)[0]);
+const orderedSlots = computed(() => {
+    if (!props.slotOrder)
+        return slots;
+
+    return Object.fromEntries(props.slotOrder.map(name => [name, slots[name]]).filter(([_, slot]) => !!slot));
+})
+
+const tab = ref(Object.keys(orderedSlots.value)[0]);
 </script>

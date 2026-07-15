@@ -57,6 +57,7 @@
                 "
                 :rarity="costume.rarity"
                 :checked="ownedCostumes.includes(costume.id)"
+                :owned="ownedCostumes.includes(costume.id)"
                 :color="hero.color"
 
                 @toggle="toggleCostumeOwned(costume.id)"

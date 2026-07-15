@@ -20,6 +20,7 @@ export const AdamWarlock: HeroData = {
 
     iconAnimationSize: [3584, 3972],
     iconAnimationOffset: [20, 20],
+    iconBattleAnimationOffset: [10, 12],
 
     ranks: [
         {

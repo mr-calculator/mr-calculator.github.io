@@ -19,6 +19,7 @@ export const DoctorStrange: HeroData = {
     dataDir: '/img/heroes/data/doctor-strange/',
 
     iconAnimationOffset: [5, 10],
+    iconBattleAnimationOffset: [0, 12],
 
     ranks: [
         {

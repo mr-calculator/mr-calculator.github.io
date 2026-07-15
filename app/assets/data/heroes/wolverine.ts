@@ -19,6 +19,7 @@ export const Wolverine: HeroData = {
     iconAnimationSize: [2400, 2668],
     iconAnimationOffset: [5, 15],
     iconLargeAnimationOffset: [-5, 15],
+    iconBattleAnimationOffset: [4, 12],
 
     ranks: [
         {

@@ -17,6 +17,8 @@ export const CloakAndDagger: HeroData = {
     dataDir: '/img/heroes/data/cloak-and-dagger/',
 
     iconAnimationOffset: [-22, 45],
+    iconBattleAnimationOffset: [-8, 34],
+    iconBattleAltAnimation: 'dagger-bust-champion',
 
     ranks: [
         {

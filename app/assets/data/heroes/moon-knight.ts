@@ -23,6 +23,7 @@ export const MoonKnight: HeroData = {
 
     iconAnimationSize: [3584, 3980],
     iconAnimationOffset: [0, 42],
+    iconBattleAnimationOffset: [-12, 35],
 
     ranks: [
         {

@@ -24,6 +24,7 @@ export const DevilDinosaur: HeroData = {
 
     iconAnimationOffset: [-10, 20],
     iconLargeAnimationOffset: [-15, 18],
+    iconBattleAnimationOffset: [-30, 14],
     
     ranks: [
         {

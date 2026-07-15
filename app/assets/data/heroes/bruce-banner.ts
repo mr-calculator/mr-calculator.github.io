@@ -23,6 +23,7 @@ export const BruceBanner: HeroData = {
     dataDir: '/img/heroes/data/bruce-banner/',
 
     iconAnimationOffset: [10, 25],
+    iconBattleAnimationOffset: [6, 24],
 
     ranks: [
         {

@@ -18,6 +18,7 @@ export const Phoenix: HeroData = {
 
     iconAnimationSize: [3528, 3980],
     iconAnimationOffset: [-10, 25],
+    iconBattleAnimationOffset: [-25, 30],
 
     ranks: [
         {

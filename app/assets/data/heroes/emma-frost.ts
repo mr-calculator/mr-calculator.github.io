@@ -15,6 +15,7 @@ export const EmmaFrost: HeroData = {
     dataDir: '/img/heroes/data/emma-frost/',
 
     iconAnimationOffset: [11, 35],
+    iconBattleAnimationOffset: [10, 34],
 
     ranks: [
         {

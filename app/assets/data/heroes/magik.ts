@@ -19,6 +19,7 @@ export const Magik: HeroData = {
 
     iconAnimationOffset: [15, 30],
     iconLargeAnimationOffset: [-5, 30],
+    iconBattleAnimationOffset: [8, 30],
 
     ranks: [
         {

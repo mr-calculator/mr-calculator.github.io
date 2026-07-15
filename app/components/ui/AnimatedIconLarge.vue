@@ -8,13 +8,15 @@
             height="150px"
         />
         <Tex
+            v-if="frame"
             class="frame-right"
-            image="heroSelectFrameRightGold"
+            :image="frame == 'colonel' ? 'heroSelectFrameRightPurple' : 'heroSelectFrameRightGold'"
 
             width="350px"
             height="150px"
         />
         <Tex
+            v-if="shine"
             class="shine"
             image="star"
 
@@ -23,6 +25,7 @@
         />
         <div class="animated-icon-wrapper">
             <UiAnimatedIcon
+                v-if="reward.iconAnimation"
                 class="animated-icon"
                 :style="{
                     '--mask-url': `url('${iconMask ?? DEFAULT_ANIMATED_ICON_LARGE_MASK}')`
@@ -30,19 +33,40 @@
                 :reward="reward"
                 :size="350"
             />
+            <img
+                v-else
+                class="icon"
+                :src="reward.icon"
+                :alt="`${reward.name} Icon`"
+                draggable="false"
+
+                :style="{
+                    '--mask-url': `url('${iconMask ?? DEFAULT_ANIMATED_ICON_LARGE_MASK}')`
+                }"
+            />
         </div>
         <Tex
+            v-if="frame"
             class="frame-left"
-            image="heroSelectFrameLeftGold"
+            :image="frame == 'colonel' ? 'heroSelectFrameLeftPurple' : 'heroSelectFrameLeftGold'"
+
+            width="350px"
+            height="150px"
+        />
+        <Tex
+            v-else-if="badge"
+            class="frame-left"
+            image="heroSelectFrameForBadge"
 
             width="350px"
             height="150px"
         />
 
         <img
+            v-if="badge"
             class="badge"
-            src="/img/common-rewards/champion-badge.webp"
-            alt="Champion Icon"
+            :src="BADGES[badge]"
+            alt="Proficiency Badge"
             draggable="false"
         />
         <img
@@ -113,6 +137,22 @@
             mask-size: 360px 220px
             mask-position: -10px 28px
 
+        > img
+            position: absolute
+            width: 350px
+            height: 350px
+            bottom: -85px
+            left: -20px
+
+            object-fit: contain
+            object-position: 0 15px
+
+            mask-image: var(--mask-url)
+            mask-repeat: no-repeat
+            mask-size: 360px 220px
+            mask-position: -10px 28px
+
+
     .badge
         position: absolute
         bottom: 25px
@@ -138,9 +178,25 @@
 <script setup lang="ts">
 import { DEFAULT_ANIMATED_ICON_LARGE_MASK, ROLE_ICONS, type HeroData, type HeroRole, type Reward } from '~/assets/data/common';
 
-const props = defineProps<{
+type BadgeRank = 'count'|'warrior'|'guardian'|'champion';
+const BADGES: Record<BadgeRank, string> = {
+    count: '/img/common-rewards/count-badge.webp',
+    warrior: '/img/common-rewards/warrior-badge.webp',
+    guardian: '/img/common-rewards/guardian-badge.webp',
+    champion: '/img/common-rewards/champion-badge.webp',
+}
+
+const props = withDefaults(defineProps<{
     iconMask?: string,
     reward: Reward,
     heroRole?: HeroRole,
-}>();
+
+    shine?: boolean,
+    frame?: null|'colonel'|'elite',
+    badge?: null|BadgeRank
+}>(), {
+    shine: true,
+    frame: 'elite',
+    badge: 'champion'
+});
 </script>
