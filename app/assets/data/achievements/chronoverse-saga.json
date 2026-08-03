@@ -755,5 +755,41 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "id": "05002868-a10d-4dce-bc5e-cfd4cf00f764_eclipsing-the-moon",
+    "title": "Eclipsing the Moon",
+    "description": "Stop Moon Knight from delivering the Faith-Harvesting Engine to the Temple of Khonshu.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "d61a12bc-964d-4e8c-89b9-6a3fb61f1df2_flawed-ascension",
+    "title": "Flawed Ascension",
+    "description": "Use the central pyramid elevator to launch yourself into the air in Thebes.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "46b71861-eda6-4a18-ba11-2b490057e2ab_memento-mori",
+    "title": "Memento Mori",
+    "description": "Use 1 emote in front of Apocalypse's Sarcophagus in Thebes.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "7741f043-5686-44da-9697-60a782125c1a_test-of-faith",
+    "title": "Test of Faith",
+    "description": "Deliver the Faith-Harvesting Engine to the Temple of Khonshu.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

@@ -1331,6 +1331,19 @@
             "sourceLink": "/wiki/Krakoan_Reels",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-06-18"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036802",
+            "wikiLink": "/wiki/Spider-Man:_Brand_New_Day_(Spider-Man)",
+            "name": "SPIDER-MAN: BRAND NEW DAY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-07-31"
         }
     ],
     "ironman": [
@@ -1562,6 +1575,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "bruce-banner",
+            "id": "1011801",
+            "wikiLink": "/wiki/Spider-Man:_Brand_New_Day_(Hulk)",
+            "name": "SPIDER-MAN: BRAND NEW DAY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-07-31"
         }
     ],
     "hela": [
@@ -1702,6 +1728,19 @@
             "sourceLink": "/wiki/FLIGHT_MODE!_World_Tour_Merch",
             "theme": "Disco Revolution",
             "releaseDate": "2026-01-29"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024308",
+            "wikiLink": "/wiki/Consort_of_Khonshu",
+            "name": "CONSORT OF KHONSHU",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Temple Protectors",
+            "releaseDate": "2026-07-24"
         }
     ],
     "doctor-strange": [
@@ -2043,6 +2082,19 @@
             "source": "Tablet of Life and Time (BattlePass)",
             "sourceLink": "/wiki/Tablet_of_Life_and_Time_(BattlePass)",
             "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021302",
+            "wikiLink": "/wiki/Bed-Stuy%27s_Best",
+            "name": "BED-STUY'S BEST",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2026-07-17"
         }
     ],
     "captain-america": [
@@ -2616,6 +2668,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-01-09"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046303",
+            "wikiLink": "/wiki/Tailored_Perfection",
+            "name": "TAILORED PERFECTION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Van Dyne Couture",
+            "sourceLink": "/wiki/Van_Dyne_Couture",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2026-07-16"
         }
     ],
     "namor": [
@@ -2880,6 +2945,19 @@
             "sourceLink": "/wiki/Twisted_Nightmare_(Event)",
             "theme": "Twisted Nightmare",
             "releaseDate": "2026-02-19"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038803",
+            "wikiLink": "/wiki/Avengers:_Age_of_Ultron_(Scarlet_Witch)",
+            "name": "AVENGERS: AGE OF ULTRON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-07-31"
         }
     ],
     "black-widow": [
@@ -3099,6 +3177,19 @@
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "theme": "Year One",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041802",
+            "wikiLink": "/wiki/Captain_America:_The_Winter_Soldier_(Winter_Soldier)",
+            "name": "CAPTAIN AMERICA: THE WINTER SOLDIER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-07-31"
         }
     ],
     "the-punisher": [
@@ -3559,6 +3650,19 @@
             "sourceLink": "/wiki/FLIGHT_MODE!_World_Tour_Merch",
             "theme": "Disco Revolution",
             "releaseDate": "2026-01-29"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048506",
+            "wikiLink": "/wiki/Pinned_Butterfly",
+            "name": "PINNED BUTTERFLY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Horsemen of Death",
+            "releaseDate": "2026-07-24"
         }
     ],
     "peni-parker": [
@@ -3931,6 +4035,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Quiet Council of Krakoa",
             "releaseDate": "2026-02-06"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037303",
+            "wikiLink": "/wiki/Magnetic_Vintage",
+            "name": "MAGNETIC VINTAGE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Van Dyne Couture",
+            "sourceLink": "/wiki/Van_Dyne_Couture",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2026-07-16"
         }
     ],
     "luna-snow": [
@@ -4061,6 +4178,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Disco Revolution",
             "releaseDate": "2026-01-23"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031316",
+            "wikiLink": "/wiki/Carmine_Cassette",
+            "name": "CARMINE CASSETTE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2026-07-24"
         }
     ],
     "iron-fist": [
@@ -4740,6 +4870,19 @@
             "source": "Twitch Drops",
             "sourceLink": "/wiki/Twitch_Drops",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050310",
+            "wikiLink": "/wiki/Baxter_Building_Beauty",
+            "name": "BAXTER BUILDING BEAUTY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Van Dyne Couture",
+            "sourceLink": "/wiki/Van_Dyne_Couture",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2026-07-16"
         }
     ],
     "mister-fantastic": [
@@ -4977,6 +5120,17 @@
             "source": "The Faith-Harvesting Engine (BattlePass)",
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028504",
+            "wikiLink": "/wiki/Avengers:_Age_of_Ultron_(Ultron)",
+            "name": "AVENGERS: AGE OF ULTRON",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-07-30"
         }
     ],
     "angela": [
@@ -5144,6 +5298,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Mr. & Mrs. X",
             "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058304",
+            "wikiLink": "/wiki/Dead_Man%27s_Hand",
+            "name": "DEAD MAN'S HAND",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Horsemen of Death",
+            "releaseDate": "2026-07-17"
         }
     ],
     "the-thing": [
@@ -5713,6 +5880,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-05-15"
+        },
+        {
+            "heroId": "devil-dinosaur",
+            "id": "1062501",
+            "wikiLink": "/wiki/Jeff_the_Dinosaur",
+            "name": "JEFF THE DINOSAUR",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2026-07-17"
         }
     ],
     "deadpool": [

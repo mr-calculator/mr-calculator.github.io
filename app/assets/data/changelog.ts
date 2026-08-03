@@ -588,6 +588,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.5.0',
             date: 'July 16, 2026',
             time: '10:33 PM',
+            commitSha: '44294948dc88ea6647cf0d80bbc71839d7599d72'
         },
         title: 'Reward Preview System',
         description: `Added a reward preview system for the proficiency rewards at hero pages.
