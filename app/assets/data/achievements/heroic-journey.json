@@ -1038,5 +1038,25 @@
     "rarity": "silver",
     "requirement": 1,
     "reward": 10
+  },
+  {
+    "owner": "the-hood",
+    "id": "0295ee72-8173-44e4-9f0a-d0dfe3f1025a_hasta-la-muerte",
+    "title": "Hasta La Muerte",
+    "description": "As The Hood, land 3 KOs with a single use of Demon of the End.",
+    "category": "heroic-journey",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "owner": "the-hood",
+    "id": "5e1bab64-88fb-4f05-a014-b02dfaa255bd_a-tale-of-two-capes",
+    "title": "A Tale of Two Capes",
+    "description": "As The Hood, take down an enemy Doctor Strange.",
+    "category": "heroic-journey",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

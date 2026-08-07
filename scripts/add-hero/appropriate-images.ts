@@ -8,6 +8,7 @@ import { generateSeoImage, SEO_DEST_DIR } from '../generate-hero-seo-image/gener
 /**
  * From pak: `pakchunkHQ-Windows.utoc`
  * To export root directories:
+ * - Battle/
  * - HeroDetail/
  * - HeroGallery_V3/
  * - HeroLogo/

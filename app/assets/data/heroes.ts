@@ -53,6 +53,7 @@ import { Cyclops } from "./heroes/cyclops";
 import { deleteHeroImageStore, moveHeroImageStore } from "../../services/hero-image-operations";
 import { deleteCostumeImage } from "../../services/costume-image-operations";
 import { Jubilee } from "./heroes/jubilee";
+import { TheHood } from "./heroes/the-hood";
 
 export const HERO_LIST: HeroData[] = [
     AdamWarlock,
@@ -99,6 +100,7 @@ export const HERO_LIST: HeroData[] = [
     SquirrelGirl,
     StarLord,
     Storm,
+    TheHood,
     ThePunisher,
     TheThing,
     Thor,

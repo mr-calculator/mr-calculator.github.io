@@ -1,5 +1,47 @@
 [
   {
+    "sha": "6d256baabe6a40dfef7a87df9038b022b31ddaed",
+    "node_id": "C_kwDORv7rQ9oAKDZkMjU2YmFhYmU2YTQwZGZlZjdhODdkZjkwMzhiMDIyYjMxZGRhZWQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-08-03T04:58:45Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-08-03T04:58:45Z"
+      },
+      "message": "Added new costumes & nameplates",
+      "tree": {
+        "sha": "4fdbe4b850324e2ec3976498924444ab656e235d",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/4fdbe4b850324e2ec3976498924444ab656e235d"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/6d256baabe6a40dfef7a87df9038b022b31ddaed",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6d256baabe6a40dfef7a87df9038b022b31ddaed",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/6d256baabe6a40dfef7a87df9038b022b31ddaed",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6d256baabe6a40dfef7a87df9038b022b31ddaed/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "44294948dc88ea6647cf0d80bbc71839d7599d72",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/44294948dc88ea6647cf0d80bbc71839d7599d72",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/44294948dc88ea6647cf0d80bbc71839d7599d72"
+      }
+    ]
+  },
+  {
     "sha": "44294948dc88ea6647cf0d80bbc71839d7599d72",
     "node_id": "C_kwDORv7rQ9oAKDQ0Mjk0OTQ4ZGM4OGVhNjY0N2NmMGQ4MGJiYzcxODM5ZDc1OTlkNzI",
     "commit": {
@@ -5289,48 +5331,6 @@
         "sha": "223b72e3096d446bc44efdf0386451fb7861a5ec",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/223b72e3096d446bc44efdf0386451fb7861a5ec",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/223b72e3096d446bc44efdf0386451fb7861a5ec"
-      }
-    ]
-  },
-  {
-    "sha": "223b72e3096d446bc44efdf0386451fb7861a5ec",
-    "node_id": "C_kwDORv7rQ9oAKDIyM2I3MmUzMDk2ZDQ0NmJjNDRlZmRmMDM4NjQ1MWZiNzg2MWE1ZWM",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-14T04:43:34Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-14T04:43:34Z"
-      },
-      "message": "More QoL changes and bug fixes\nImproved hero page (again) - it's now easier than ever to change your current level data, no more menu inception.\nFixed some major issues with importing/downloading data.\n\nAdded ability to increase the current level by 1 just by pressing on it (now marked with a chevron) - resets proficiency points to 0\nAdded ability to drag/slide the proficiency points meter to set your proficiency points\nFixed \"Download My Data\" button downloading the selected hero\\'s data instead of all the data when a hero was selected\nFixed Import data page not honoring the user choices of what heroes to overwrite (be it custom hero info or stats)\nAdded a visual interface to see what heroes are being imported which also allows to filter out heroes (stats or info - for custom heroes) when importing",
-      "tree": {
-        "sha": "a6366409f95a751af9614ab1bbee6c9f54bfc668",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/a6366409f95a751af9614ab1bbee6c9f54bfc668"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/223b72e3096d446bc44efdf0386451fb7861a5ec",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/223b72e3096d446bc44efdf0386451fb7861a5ec",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/223b72e3096d446bc44efdf0386451fb7861a5ec",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/223b72e3096d446bc44efdf0386451fb7861a5ec/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "3393b9ff99b71692776cfa77e45fb0cdff8a117e",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/3393b9ff99b71692776cfa77e45fb0cdff8a117e",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/3393b9ff99b71692776cfa77e45fb0cdff8a117e"
       }
     ]
   }

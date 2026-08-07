@@ -45,6 +45,7 @@ export const WIKI_HERO_ID_MAP: Record<string, string> = {
     "Squirrel Girl":            "squirrel-girl",
     "Star-Lord":                "star-lord",
     "Storm":                    "storm",
+    "The Hood":                 "the-hood",
     "The Punisher":             "the-punisher",
     "The Thing":                "the-thing",
     "Thor":                     "thor",

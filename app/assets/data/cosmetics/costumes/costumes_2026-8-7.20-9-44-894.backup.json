@@ -696,18 +696,6 @@
             "customizable": false,
             "category": "Free Event Reward",
             "releaseDate": "2026-01-16"
-        },
-        {
-            "heroId": "jeff-the-land-shark",
-            "id": "1047505",
-            "wikiLink": "/wiki/Jeff-Pool",
-            "name": "JEFF-POOL",
-            "rarity": "epic",
-            "customizable": false,
-            "category": "Premium Event Reward",
-            "source": "Creed of Akkaba",
-            "sourceLink": "/wiki/Creed_of_Akkaba",
-            "releaseDate": "2026-08-07"
         }
     ],
     "thor": [
@@ -3305,19 +3293,6 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "New Marauders",
             "releaseDate": "2026-03-20"
-        },
-        {
-            "heroId": "the-punisher",
-            "id": "1014302",
-            "wikiLink": "/wiki/Sandstorm_Soldier",
-            "name": "SANDSTORM SOLDIER",
-            "rarity": "epic",
-            "customizable": false,
-            "category": "Free Event Reward",
-            "source": "Creed of Akkaba",
-            "sourceLink": "/wiki/Creed_of_Akkaba",
-            "theme": "Clan Akkaba",
-            "releaseDate": "2026-08-07"
         }
     ],
     "storm": [
@@ -3934,18 +3909,6 @@
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "theme": "Trumps of The Grandmaster",
             "releaseDate": "2026-01-16"
-        },
-        {
-            "heroId": "moon-knight",
-            "id": "1030503",
-            "wikiLink": "/wiki/Fist_of_Khonshu",
-            "name": "FIST OF KHONSHU",
-            "rarity": "epic",
-            "customizable": false,
-            "category": "Permanent",
-            "source": "Shop",
-            "sourceLink": "/wiki/Category:Permanent_Costumes",
-            "releaseDate": "2026-08-07"
         }
     ],
     "magneto": [
@@ -4343,19 +4306,6 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "ESU Showdown",
             "releaseDate": "2026-04-10"
-        },
-        {
-            "heroId": "iron-fist",
-            "id": "1052306",
-            "wikiLink": "/wiki/Furious_Flow",
-            "name": "FURIOUS FLOW",
-            "rarity": "legendary",
-            "customizable": true,
-            "category": "Permanent",
-            "source": "Shop",
-            "sourceLink": "/wiki/Category:Permanent_Costumes",
-            "theme": "Street Style",
-            "releaseDate": "2026-08-07"
         }
     ],
     "cloak-and-dagger": [
@@ -4587,18 +4537,6 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-06-26"
-        },
-        {
-            "heroId": "daredevil",
-            "id": "1055104",
-            "wikiLink": "/wiki/IGNITE_Daredevil_(2026)",
-            "name": "IGNITE DAREDEVIL (2026)",
-            "rarity": "rare",
-            "customizable": false,
-            "category": "Twitch Drop",
-            "source": "Twitch Drops",
-            "sourceLink": "/wiki/Twitch_Drops",
-            "releaseDate": "2026-08-01"
         }
     ],
     "rogue": [
@@ -6263,18 +6201,6 @@
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "theme": "Savage Land",
             "releaseDate": "2026-07-10"
-        },
-        {
-            "heroId": "elsa-bloodstone",
-            "id": "1059102",
-            "wikiLink": "/wiki/Will_of_Galacta_(Elsa_Bloodstone)",
-            "name": "WILL OF GALACTA",
-            "rarity": "rare",
-            "customizable": false,
-            "category": "Twitch Drop",
-            "source": "Twitch Drops",
-            "sourceLink": "/wiki/Twitch_Drops",
-            "releaseDate": "2026-08-07"
         }
     ],
     "white-fox": [
@@ -6403,45 +6329,6 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-07-10"
-        }
-    ],
-    "the-hood": [
-        {
-            "heroId": "the-hood",
-            "id": "1066500",
-            "wikiLink": "/wiki/Sinful_Blackout",
-            "name": "SINFUL BLACKOUT",
-            "rarity": "epic",
-            "customizable": false,
-            "category": "Permanent",
-            "source": "Shop",
-            "sourceLink": "/wiki/Category:Permanent_Costumes",
-            "theme": "Street Style",
-            "releaseDate": "2026-08-07"
-        },
-        {
-            "heroId": "the-hood",
-            "id": "1066101",
-            "wikiLink": "/wiki/Sapphire_Sands",
-            "name": "SAPPHIRE SANDS",
-            "rarity": "rare",
-            "customizable": false,
-            "category": "Ranked Reward",
-            "source": "Competitive",
-            "sourceLink": "/wiki/Competitive#Rewards",
-            "releaseDate": "2026-08-07"
-        },
-        {
-            "heroId": "the-hood",
-            "id": "1066100",
-            "wikiLink": "/wiki/Oblivion%27s_Whisper",
-            "name": "OBLIVION'S WHISPER",
-            "rarity": "rare",
-            "customizable": false,
-            "category": "Permanent",
-            "source": "Shop",
-            "sourceLink": "/wiki/Category:Permanent_Costumes",
-            "releaseDate": "2026-08-07"
         }
     ]
 }

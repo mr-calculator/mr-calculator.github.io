@@ -607,6 +607,24 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             '/img/changelog/v2.5.0/preview-3.webp',
         ]
     },
+    {
+        version: {
+            number: '2.6.0',
+            date: 'August 7, 2026',
+            time: '8:24 PM',
+        },
+        title: 'Added The Hood',
+        description: `Added The Hood to the calculator without generic stats (will add later - when averages are more accurate)<br/>Added new costumes.
+        `,
+        list: [
+            'Added The Hood',
+            'Added new costumes',
+            'Added new achievements'
+        ],
+        images: [
+            '/img/changelog/v2.6.0/the-hood.webp',
+        ]
+    },
 ];
 
 export function groupCommitsByVersion(commits: GitHubCommit[]):
