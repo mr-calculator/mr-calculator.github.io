@@ -1058,5 +1058,25 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "owner": "gorr-the-god-butcher",
+    "id": "c6316a83-a349-4c2e-93d7-21a894d10cb1_unholy-crusade",
+    "title": "Unholy Crusade",
+    "description": "As Gorr the God Butcher, take down Asgardian gods 10 times.",
+    "category": "heroic-journey",
+    "rarity": "silver",
+    "requirement": 10,
+    "reward": 10
+  },
+  {
+    "owner": "gorr-the-god-butcher",
+    "id": "109a3680-4db0-4736-80ae-5932050e7874_all-black-allegiance",
+    "title": "All-Black Allegiance",
+    "description": "As Gorr the God Butcher, partner with Venom to land 1 KO.",
+    "category": "heroic-journey",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

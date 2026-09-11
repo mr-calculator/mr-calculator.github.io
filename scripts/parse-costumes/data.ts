@@ -17,6 +17,7 @@ export const WIKI_HERO_ID_MAP: Record<string, string> = {
     "Elsa Bloodstone":          "elsa-bloodstone",
     "Emma Frost":               "emma-frost",
     "Gambit":                   "gambit",
+    "Gorr":                     "gorr-the-god-butcher",
     "Groot":                    "groot",
     "Hawkeye":                  "hawkeye",
     "Hela":                     "hela",

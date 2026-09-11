@@ -612,6 +612,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.6.0',
             date: 'August 7, 2026',
             time: '8:24 PM',
+            commitSha: '0283ab97bb4ce788b36b5b68daebe125f4728849'
         },
         title: 'Added The Hood',
         description: `Added The Hood to the calculator without generic stats (will add later - when averages are more accurate)<br/>Added new costumes.
@@ -623,6 +624,24 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         ],
         images: [
             '/img/changelog/v2.6.0/the-hood.webp',
+        ]
+    },
+    {
+        version: {
+            number: '2.7.0',
+            date: 'September 11, 2026',
+            time: '6:55 PM',
+        },
+        title: 'Added Gorr',
+        description: `Added Gorr to the calculator without generic stats<br/>Added new costumes.
+        `,
+        list: [
+            'Added Gorr',
+            'Added new costumes',
+            'Added new achievements'
+        ],
+        images: [
+            '/img/changelog/v2.7.0/gorr.webp',
         ]
     },
 ];

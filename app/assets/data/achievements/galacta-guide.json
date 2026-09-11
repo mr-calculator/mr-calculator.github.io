@@ -304,5 +304,14 @@
     "rarity": "silver",
     "requirement": 1,
     "reward": 10
+  },
+  {
+    "id": "41a31b30-7b66-4b5e-b6e6-3fb6a88b5880_butchers-blasphemy",
+    "title": "BUTCHER'S BLASPHEMY",
+    "description": "Unlock all Butcher's Blasphemy gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

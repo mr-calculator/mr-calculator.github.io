@@ -8078,5 +8078,129 @@
         "sourceLink": "/wiki/Van_Dyne_Surprise",
         "theme": "Van Dyne Designs",
         "releaseDate": "2026-07-16"
+    },
+    {
+        "type": "normal",
+        "id": "30000178",
+        "name": "Divine Moon",
+        "rarity": "rare",
+        "sourceFull": "Event (S9.5): Creed of Akkaba",
+        "category": "Event",
+        "source": "Creed of Akkaba",
+        "sourceLink": "/wiki/Creed_of_Akkaba",
+        "releaseDate": "2026-08-07"
+    },
+    {
+        "type": "normal",
+        "id": "31014208",
+        "name": "Sandstorm Soldier",
+        "rarity": "rare",
+        "sourceFull": "Event (S9.5): Creed of Akkaba",
+        "category": "Event",
+        "source": "Creed of Akkaba",
+        "sourceLink": "/wiki/Creed_of_Akkaba",
+        "theme": "Clan Akkaba",
+        "releaseDate": "2026-08-07"
+    },
+    {
+        "type": "normal",
+        "id": "31030209",
+        "name": "Fist of Khonshu",
+        "rarity": "rare",
+        "sourceFull": "Store: Fist of Khonshu Bundle",
+        "category": "Store",
+        "source": "Fist of Khonshu",
+        "sourceLink": "/wiki/Fist_of_Khonshu",
+        "releaseDate": "2026-08-07"
+    },
+    {
+        "type": "normal",
+        "id": "31047211",
+        "name": "Jeff-Pool",
+        "rarity": "rare",
+        "sourceFull": "Event (S9.5): Creed of Akkaba",
+        "category": "Event",
+        "source": "Creed of Akkaba",
+        "sourceLink": "/wiki/Creed_of_Akkaba",
+        "releaseDate": "2026-08-07"
+    },
+    {
+        "type": "animated",
+        "id": "31052209",
+        "name": "Furious Flow",
+        "rarity": "epic",
+        "sourceFull": "Store: Furious Flow Bundle",
+        "category": "Store",
+        "source": "Furious Flow",
+        "sourceLink": "/wiki/Furious_Flow",
+        "theme": "Street Style",
+        "releaseDate": "2026-08-07"
+    },
+    {
+        "type": "normal",
+        "id": "31059206",
+        "name": "Will of Galacta",
+        "rarity": "rare",
+        "sourceFull": "Event (S9.5): Twitch Drop",
+        "category": "Event",
+        "source": "Twitch Drops",
+        "sourceLink": "/wiki/Twitch_Drops",
+        "releaseDate": "2026-08-07"
+    },
+    {
+        "type": "normal",
+        "id": "31066201",
+        "name": "Sinful Blackout",
+        "rarity": "rare",
+        "sourceFull": "Store: Sinful Blackout Bundle",
+        "category": "Store",
+        "source": "Sinful Blackout",
+        "sourceLink": "/wiki/Sinful_Blackout",
+        "theme": "Street Style",
+        "releaseDate": "2026-08-07"
+    },
+    {
+        "type": "normal",
+        "id": "31066002",
+        "name": "Fantastic The Hood",
+        "rarity": "rare",
+        "sourceFull": "Proficiency Reward",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-07-10"
+    },
+    {
+        "type": "normal",
+        "id": "31066003",
+        "name": "Uncanny The Hood",
+        "rarity": "rare",
+        "sourceFull": "Proficiency Reward",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-07-10"
+    },
+    {
+        "type": "normal",
+        "id": "31066004",
+        "name": "Amazing The Hood",
+        "rarity": "rare",
+        "sourceFull": "Proficiency Reward",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-07-10"
+    },
+    {
+        "type": "animated",
+        "id": "31066005",
+        "name": "Immortal The Hood",
+        "rarity": "epic",
+        "sourceFull": "Proficiency Reward",
+        "category": "Proficiency Reward",
+        "source": "Proficiency",
+        "sourceLink": "/wiki/Proficiency",
+        "releaseDate": "2026-07-10"
     }
 ]

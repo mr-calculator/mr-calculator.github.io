@@ -301,6 +301,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Corporate Raiders",
             "releaseDate": "2026-06-12"
+        },
+        {
+            "heroId": "magik",
+            "id": "1029504",
+            "wikiLink": "/wiki/Soul_Surfer",
+            "name": "SOUL SURFER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-08-13"
         }
     ],
     "rocket-raccoon": [
@@ -558,6 +571,18 @@
             "sourceLink": "/wiki/Shenloong_Tournament",
             "theme": "Immortal Weapon",
             "releaseDate": "2026-06-12"
+        },
+        {
+            "heroId": "groot",
+            "id": "1027305",
+            "wikiLink": "/wiki/Grootlactus",
+            "name": "GROOTLACTUS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "releaseDate": "2026-09-11"
         }
     ],
     "jeff-the-land-shark": [
@@ -992,6 +1017,19 @@
             "source": "Museum Ticket (BattlePass)",
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "star-lord",
+            "id": "1043304",
+            "wikiLink": "/wiki/Star_Swimmer",
+            "name": "STAR SWIMMER",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "source": "Krakoan Reels Vol.2",
+            "sourceLink": "/wiki/Krakoan_Reels_Vol.2",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-08-13"
         }
     ],
     "mantis": [
@@ -1892,6 +1930,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-06-18"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018801",
+            "wikiLink": "/wiki/Astral_Arcana",
+            "name": "ASTRAL ARCANA",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "theme": "Celestial Messenger",
+            "releaseDate": "2026-09-11"
         }
     ],
     "black-panther": [
@@ -2107,6 +2158,18 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Van Dyne Designs",
             "releaseDate": "2026-07-17"
+        },
+        {
+            "heroId": "hawkeye",
+            "id": "1021305",
+            "wikiLink": "/wiki/Thunderbolts_(Hawkeye)",
+            "name": "THUNDERBOLTS",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "releaseDate": "2026-09-11"
         }
     ],
     "captain-america": [
@@ -2275,6 +2338,19 @@
             "source": "Twitch Drops",
             "sourceLink": "/wiki/Twitch_Drops",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022506",
+            "wikiLink": "/wiki/Astral_Aegis",
+            "name": "ASTRAL AEGIS",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "theme": "Celestial Messenger",
+            "releaseDate": "2026-09-11"
         }
     ],
     "wolverine": [
@@ -2567,6 +2643,18 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-07-02"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016507",
+            "wikiLink": "/wiki/The_Chronicler",
+            "name": "THE CHRONICLER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "releaseDate": "2026-09-11"
         }
     ],
     "adam-warlock": [
@@ -2970,6 +3058,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-07-31"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038503",
+            "wikiLink": "/wiki/Seaside_Sorceress",
+            "name": "SEASIDE SORCERESS",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-08-13"
         }
     ],
     "black-widow": [
@@ -3202,6 +3303,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-07-31"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041303",
+            "wikiLink": "/wiki/Summer_Soldier",
+            "name": "SUMMER SOLDIER",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Krakoan Reels Vol.2",
+            "sourceLink": "/wiki/Krakoan_Reels_Vol.2",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-08-13"
         }
     ],
     "the-punisher": [
@@ -3318,6 +3432,19 @@
             "sourceLink": "/wiki/Creed_of_Akkaba",
             "theme": "Clan Akkaba",
             "releaseDate": "2026-08-07"
+        },
+        {
+            "heroId": "the-punisher",
+            "id": "1014102",
+            "wikiLink": "/wiki/Vengeful_Vigilante",
+            "name": "VENGEFUL VIGILANTE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2026-09-11"
         }
     ],
     "storm": [
@@ -3416,6 +3543,19 @@
             "source": "Twitch Drops",
             "sourceLink": "/wiki/Twitch_Drops",
             "releaseDate": "2026-06-12"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015802",
+            "wikiLink": "/wiki/Sacred_Skies",
+            "name": "SACRED SKIES",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-08-13"
         }
     ],
     "squirrel-girl": [
@@ -3546,6 +3686,44 @@
             "sourceLink": "/wiki/Citizenship_of_Monster_Kingdom",
             "theme": "Animal Party",
             "releaseDate": "2026-02-13"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032307",
+            "wikiLink": "/wiki/Savage_Squirrel",
+            "name": "SAVAGE SQUIRREL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "theme": "Savage Land",
+            "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032101",
+            "wikiLink": "/wiki/Will_of_Galacta_(Squirrel_Girl)",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "sourceLink": "/wiki/Twitch_Drops",
+            "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032308",
+            "wikiLink": "/wiki/Acorn_Divinity",
+            "name": "ACORN DIVINITY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Clan Akkaba",
+            "releaseDate": "2026-08-28"
         }
     ],
     "psylocke": [
@@ -3688,6 +3866,18 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Horsemen of Death",
             "releaseDate": "2026-07-24"
+        },
+        {
+            "heroId": "psylocke",
+            "id": "1048507",
+            "wikiLink": "/wiki/Business_Elite",
+            "name": "BUSINESS ELITE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "releaseDate": "2026-09-11"
         }
     ],
     "peni-parker": [
@@ -3804,6 +3994,19 @@
             "sourceLink": "/wiki/Tablet_of_Life_and_Time_(BattlePass)",
             "theme": "Twisted Nightmare",
             "releaseDate": "2026-03-20"
+        },
+        {
+            "heroId": "peni-parker",
+            "id": "1042307",
+            "wikiLink": "/wiki/Liquid_Shell",
+            "name": "LIQUID SHELL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Van Dyne Designs",
+            "releaseDate": "2026-08-28"
         }
     ],
     "moon-knight": [
@@ -4472,6 +4675,19 @@
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "theme": "Year One",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025502",
+            "wikiLink": "/wiki/Dreamy_Duo",
+            "name": "DREAMY DUO",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Pajama Party",
+            "releaseDate": "2026-09-11"
         }
     ],
     "daredevil": [
@@ -4599,6 +4815,18 @@
             "source": "Twitch Drops",
             "sourceLink": "/wiki/Twitch_Drops",
             "releaseDate": "2026-08-01"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055503",
+            "wikiLink": "/wiki/Attorney_at_Law",
+            "name": "ATTORNEY AT LAW",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-08-21"
         }
     ],
     "rogue": [
@@ -4689,6 +4917,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Corporate Raiders",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065800",
+            "wikiLink": "/wiki/X-Men_%2797_Season_2_(Rogue)",
+            "name": "X-MEN '97 SEASON 2",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-09-04"
         }
     ],
     "blade": [
@@ -4792,6 +5033,18 @@
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "theme": "Year One",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044103",
+            "wikiLink": "/wiki/Silvered_Slayer",
+            "name": "SILVERED SLAYER",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "releaseDate": "2026-09-11"
         }
     ],
     "invisible-woman": [
@@ -5193,6 +5446,19 @@
             "category": "Free Event Reward",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-07-30"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028301",
+            "wikiLink": "/wiki/B-Boy_Prime",
+            "name": "B-BOY PRIME",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Street Style",
+            "releaseDate": "2026-09-04"
         }
     ],
     "angela": [
@@ -5270,6 +5536,18 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Trumps of The Grandmaster",
             "releaseDate": "2026-01-30"
+        },
+        {
+            "heroId": "angela",
+            "id": "1056503",
+            "wikiLink": "/wiki/Queen_of_Hel",
+            "name": "QUEEN OF HEL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-08-28"
         }
     ],
     "gambit": [
@@ -5373,6 +5651,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Horsemen of Death",
             "releaseDate": "2026-07-17"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058800",
+            "wikiLink": "/wiki/X-Men_%2797_Season_2_(Gambit)",
+            "name": "X-MEN '97 SEASON 2",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-09-04"
         }
     ],
     "the-thing": [
@@ -5624,6 +5915,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-06-12"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054504",
+            "wikiLink": "/wiki/Viridian_Vogue",
+            "name": "VIRIDIAN VOGUE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Hellfire Gala 2027",
+            "releaseDate": "2026-08-21"
         }
     ],
     "emma-frost": [
@@ -5752,6 +6056,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-06-18"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053303",
+            "wikiLink": "/wiki/Glittering_Goddess",
+            "name": "GLITTERING GODDESS",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Temple Protectors",
+            "releaseDate": "2026-09-11"
         }
     ],
     "human-torch": [
@@ -5904,6 +6221,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-04-17"
+        },
+        {
+            "heroId": "black-cat",
+            "id": "1061501",
+            "wikiLink": "/wiki/Coastal_Cat",
+            "name": "COASTAL CAT",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Krakoan Reels Vol.2",
+            "sourceLink": "/wiki/Krakoan_Reels_Vol.2",
+            "theme": "Swimsuit Special",
+            "releaseDate": "2026-08-13"
         }
     ],
     "devil-dinosaur": [
@@ -6327,6 +6657,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-07-02"
+        },
+        {
+            "heroId": "white-fox",
+            "id": "1060302",
+            "wikiLink": "/wiki/Cosmic_Kumiho",
+            "name": "COSMIC KUMIHO",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Godbomb (BattlePass)",
+            "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
+            "theme": "Celestial Messenger",
+            "releaseDate": "2026-09-11"
         }
     ],
     "cyclops": [
@@ -6365,6 +6708,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-06-12"
+        },
+        {
+            "heroId": "cyclops",
+            "id": "1063300",
+            "wikiLink": "/wiki/Elegant_Eye",
+            "name": "ELEGANT EYE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Hellfire Gala 2027",
+            "releaseDate": "2026-08-21"
         }
     ],
     "jubilee": [
@@ -6442,6 +6798,44 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-08-07"
+        }
+    ],
+    "gorr-the-god-bitcher": [
+        {
+            "heroId": "gorr-the-god-bitcher",
+            "id": "1067300",
+            "wikiLink": "/wiki/Divine_Destroyer",
+            "name": "DIVINE DESTROYER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "gorr-the-god-bitcher",
+            "id": "1067101",
+            "wikiLink": "/wiki/Gods%27_Graveyard",
+            "name": "GODS' GRAVEYARD",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "sourceLink": "/wiki/Competitive#Rewards",
+            "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "gorr-the-god-bitcher",
+            "id": "1067100",
+            "wikiLink": "/wiki/Blue_Requiem",
+            "name": "BLUE REQUIEM",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-09-11"
         }
     ]
 }

@@ -54,6 +54,7 @@ import { deleteHeroImageStore, moveHeroImageStore } from "../../services/hero-im
 import { deleteCostumeImage } from "../../services/costume-image-operations";
 import { Jubilee } from "./heroes/jubilee";
 import { TheHood } from "./heroes/the-hood";
+import { GorrTheGodButcher } from "./heroes/gorr-the-god-butcher";
 
 export const HERO_LIST: HeroData[] = [
     AdamWarlock,
@@ -73,6 +74,7 @@ export const HERO_LIST: HeroData[] = [
     ElsaBloodstone,
     EmmaFrost,
     Gambit,
+    GorrTheGodButcher,
     Groot,
     Hawkeye,
     Hela,
