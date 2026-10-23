@@ -160,6 +160,18 @@
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "theme": "Savage Land",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035504",
+            "wikiLink": "/wiki/President_Ozzy",
+            "name": "PRESIDENT OZZY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Jeff's Dream Eater",
+            "sourceLink": "/wiki/Jeff%27s_Dream_Eater",
+            "releaseDate": "2026-09-17"
         }
     ],
     "magik": [
@@ -457,6 +469,19 @@
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "theme": "Clan Akkaba",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023309",
+            "wikiLink": "/wiki/Trash_King",
+            "name": "TRASH KING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "All Hallows' Glow",
+            "sourceLink": "/wiki/All_Hallows%27_Glow",
+            "theme": "Midnight Monsters",
+            "releaseDate": "2026-10-15"
         }
     ],
     "groot": [
@@ -733,6 +758,43 @@
             "source": "Creed of Akkaba",
             "sourceLink": "/wiki/Creed_of_Akkaba",
             "releaseDate": "2026-08-07"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047507",
+            "wikiLink": "/wiki/Sharknos",
+            "name": "SHARKNOS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-10-23"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047101",
+            "wikiLink": "/wiki/Razor-Tooth",
+            "name": "RAZOR-TOOTH",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "sourceLink": "/wiki/Competitive#Rewards",
+            "releaseDate": "2026-10-09"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047508",
+            "wikiLink": "/wiki/Shark_in_Sheep%27s_Clothing",
+            "name": "SHARK IN SHEEP'S CLOTHING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Jeff's Dream Eater",
+            "sourceLink": "/wiki/Jeff%27s_Dream_Eater",
+            "theme": "Pajama Party",
+            "releaseDate": "2026-09-17"
         }
     ],
     "thor": [
@@ -882,6 +944,31 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Disco Revolution",
             "releaseDate": "2026-01-23"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039509",
+            "wikiLink": "/wiki/The_Avengers_(Thor)",
+            "name": "THE AVENGERS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "source": "Infinity Finale",
+            "sourceLink": "/wiki/Infinity_Finale",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-10-09"
+        },
+        {
+            "heroId": "thor",
+            "id": "1039510",
+            "wikiLink": "/wiki/King_Thor",
+            "name": "KING THOR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-09-25"
         }
     ],
     "star-lord": [
@@ -1181,6 +1268,19 @@
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "theme": "Clan Akkaba",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020308",
+            "wikiLink": "/wiki/Morning_Dew",
+            "name": "MORNING DEW",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Pajama Party",
+            "releaseDate": "2026-09-25"
         }
     ],
     "spider-man": [
@@ -1791,6 +1891,18 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Temple Protectors",
             "releaseDate": "2026-07-24"
+        },
+        {
+            "heroId": "hela",
+            "id": "1024503",
+            "wikiLink": "/wiki/The_Redeemed",
+            "name": "THE REDEEMED",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "All Hallows' Glow",
+            "sourceLink": "/wiki/All_Hallows%27_Glow",
+            "releaseDate": "2026-10-15"
         }
     ],
     "doctor-strange": [
@@ -1943,6 +2055,19 @@
             "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
             "theme": "Celestial Messenger",
             "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "doctor-strange",
+            "id": "1018306",
+            "wikiLink": "/wiki/Avengers:_Infinity_War_(Doctor_Strange)",
+            "name": "AVENGERS: INFINITY WAR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Infinity Finale",
+            "sourceLink": "/wiki/Infinity_Finale",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-10-09"
         }
     ],
     "black-panther": [
@@ -2046,6 +2171,19 @@
             "sourceLink": "/wiki/Museum_Ticket_(BattlePass)",
             "theme": "Old Flames",
             "releaseDate": "2026-01-16"
+        },
+        {
+            "heroId": "black-panther",
+            "id": "1026800",
+            "wikiLink": "/wiki/Avengers:_Infinity_War_(Black_Panther)",
+            "name": "AVENGERS: INFINITY WAR",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Infinity Finale",
+            "sourceLink": "/wiki/Infinity_Finale",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-10-09"
         }
     ],
     "hawkeye": [
@@ -2351,6 +2489,17 @@
             "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
             "theme": "Celestial Messenger",
             "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "captain-america",
+            "id": "1022802",
+            "wikiLink": "/wiki/Captain_America:_The_Winter_Soldier_(Captain_America)",
+            "name": "CAPTAIN AMERICA: THE WINTER SOLDIER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Event Reward",
+            "theme": "Marvel Cinematic Universe",
+            "releaseDate": "2026-10-24"
         }
     ],
     "wolverine": [
@@ -3071,6 +3220,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-08-13"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038804",
+            "wikiLink": "/wiki/Chaos_Weaver",
+            "name": "CHAOS WEAVER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "All Hallows' Glow",
+            "sourceLink": "/wiki/All_Hallows%27_Glow",
+            "theme": "Fate Witches",
+            "releaseDate": "2026-10-15"
         }
     ],
     "black-widow": [
@@ -4149,6 +4311,18 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-08-07"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030504",
+            "wikiLink": "/wiki/Eternity_Knight",
+            "name": "ETERNITY KNIGHT",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-09-17"
         }
     ],
     "magneto": [
@@ -4288,6 +4462,19 @@
             "sourceLink": "/wiki/Van_Dyne_Couture",
             "theme": "Van Dyne Designs",
             "releaseDate": "2026-07-16"
+        },
+        {
+            "heroId": "magneto",
+            "id": "1037304",
+            "wikiLink": "/wiki/Master_of_Slumber",
+            "name": "MASTER OF SLUMBER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Pajama Party",
+            "releaseDate": "2026-09-17"
         }
     ],
     "luna-snow": [
@@ -4431,6 +4618,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Van Dyne Designs",
             "releaseDate": "2026-07-24"
+        },
+        {
+            "heroId": "luna-snow",
+            "id": "1031500",
+            "wikiLink": "/wiki/Lunar_Luna",
+            "name": "LUNAR LUNA",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Celestial Messenger",
+            "releaseDate": "2026-10-02"
         }
     ],
     "iron-fist": [
@@ -4827,6 +5027,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-08-21"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055504",
+            "wikiLink": "/wiki/Dare-Dragon",
+            "name": "DARE-DRAGON",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Pajama Party",
+            "releaseDate": "2026-09-25"
         }
     ],
     "rogue": [
@@ -4930,6 +5143,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-09-04"
+        },
+        {
+            "heroId": "rogue",
+            "id": "1065801",
+            "wikiLink": "/wiki/Slumber_Sugah",
+            "name": "SLUMBER SUGAH",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Jeff's Dream Eater",
+            "sourceLink": "/wiki/Jeff%27s_Dream_Eater",
+            "theme": "Pajama Party",
+            "releaseDate": "2026-09-17"
         }
     ],
     "blade": [
@@ -5045,6 +5271,19 @@
             "source": "The Godbomb (BattlePass)",
             "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
             "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "blade",
+            "id": "1044303",
+            "wikiLink": "/wiki/Vampire_King",
+            "name": "VAMPIRE KING",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Midnight Monsters",
+            "releaseDate": "2026-10-09"
         }
     ],
     "invisible-woman": [
@@ -5198,6 +5437,19 @@
             "sourceLink": "/wiki/Van_Dyne_Couture",
             "theme": "Van Dyne Designs",
             "releaseDate": "2026-07-16"
+        },
+        {
+            "heroId": "invisible-woman",
+            "id": "1050508",
+            "wikiLink": "/wiki/Unseen_Weaver",
+            "name": "UNSEEN WEAVER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Fate Witches",
+            "releaseDate": "2026-10-16"
         }
     ],
     "mister-fantastic": [
@@ -5325,6 +5577,19 @@
             "source": "The Faith-Harvesting Engine (BattlePass)",
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "mister-fantastic",
+            "id": "1040304",
+            "wikiLink": "/wiki/Mr._Malignance",
+            "name": "MR. MALIGNANCE",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Midnight Monsters",
+            "releaseDate": "2026-10-16"
         }
     ],
     "ultron": [
@@ -5548,6 +5813,18 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-08-28"
+        },
+        {
+            "heroId": "angela",
+            "id": "1056102",
+            "wikiLink": "/wiki/Will_of_Galacta_(Angela)",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "sourceLink": "/wiki/Twitch_Drops",
+            "releaseDate": "2026-10-09"
         }
     ],
     "gambit": [
@@ -5928,6 +6205,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Hellfire Gala 2027",
             "releaseDate": "2026-08-21"
+        },
+        {
+            "heroId": "phoenix",
+            "id": "1054505",
+            "wikiLink": "/wiki/Cosmic_Spark",
+            "name": "COSMIC SPARK",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Celestial Messenger",
+            "releaseDate": "2026-10-02"
         }
     ],
     "emma-frost": [
@@ -6234,6 +6524,19 @@
             "sourceLink": "/wiki/Krakoan_Reels_Vol.2",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-08-13"
+        },
+        {
+            "heroId": "black-cat",
+            "id": "1061303",
+            "wikiLink": "/wiki/Fatal_Weaver",
+            "name": "FATAL WEAVER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Fate Witches",
+            "releaseDate": "2026-10-23"
         }
     ],
     "devil-dinosaur": [
@@ -6285,6 +6588,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Van Dyne Designs",
             "releaseDate": "2026-07-17"
+        },
+        {
+            "heroId": "devil-dinosaur",
+            "id": "1062302",
+            "wikiLink": "/wiki/Skele-Saurus",
+            "name": "SKELE-SAURUS",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Midnight Monsters",
+            "releaseDate": "2026-10-09"
         }
     ],
     "deadpool": [
@@ -6528,6 +6844,19 @@
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "theme": "Temple Protectors",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057801",
+            "wikiLink": "/wiki/Nurse-Pool",
+            "name": "NURSE-POOL",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Midnight Monsters",
+            "releaseDate": "2026-10-16"
         }
     ],
     "elsa-bloodstone": [
@@ -6605,6 +6934,19 @@
             "source": "Twitch Drops",
             "sourceLink": "/wiki/Twitch_Drops",
             "releaseDate": "2026-08-07"
+        },
+        {
+            "heroId": "elsa-bloodstone",
+            "id": "1059304",
+            "wikiLink": "/wiki/Gothic_Huntress",
+            "name": "GOTHIC HUNTRESS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Midnight Monsters",
+            "releaseDate": "2026-10-23"
         }
     ],
     "white-fox": [
@@ -6721,6 +7063,31 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Hellfire Gala 2027",
             "releaseDate": "2026-08-21"
+        },
+        {
+            "heroId": "cyclops",
+            "id": "1063102",
+            "wikiLink": "/wiki/Will_of_Galacta_(Cyclops)",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "sourceLink": "/wiki/Twitch_Drops",
+            "releaseDate": "2026-10-18"
+        },
+        {
+            "heroId": "cyclops",
+            "id": "1063301",
+            "wikiLink": "/wiki/Phoenix_Cyclops",
+            "name": "PHOENIX CYCLOPS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Phoenix Force",
+            "releaseDate": "2026-10-09"
         }
     ],
     "jubilee": [
@@ -6759,6 +7126,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "jubilee",
+            "id": "1064300",
+            "wikiLink": "/wiki/Vampy_Jammies",
+            "name": "VAMPY JAMMIES",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Pajama Party",
+            "releaseDate": "2026-09-17"
         }
     ],
     "the-hood": [

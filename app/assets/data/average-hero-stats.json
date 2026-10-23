@@ -222,5 +222,9 @@
     "the-hood": {
         "take_damage": 28178.810911710792,
         "kos": 20.641337616962087
+    },
+    "gorr-the-god-butcher": {
+        "damage": 15502.415628847808,
+        "finals": 8.6
     }
 }

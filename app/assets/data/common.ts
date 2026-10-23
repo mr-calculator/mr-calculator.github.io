@@ -992,6 +992,7 @@ export const PreferencesStoreSchema = z.object({
         ).default('all-roles'),
         filterFavourites: z.boolean().default(false),
 
+        listTtgType: z.enum(['normal', 'arcade']).default('normal'),
         listSortKey: z.enum(['name', 'role', 'rank', 'level', 'xp', 'current-xp', 'ttg']).default('xp'),
         listSortDirection: z.enum(['asc', 'desc']).default('desc')
     })

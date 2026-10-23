@@ -37,6 +37,13 @@
                     v-model="filterByRole"
                     :small="mobile"
                 />
+                <FormDropdown
+                    v-if="view == 'list'"
+                    ref="ttgTypeDropdown"
+                    :options="ttgTypesDropdownOption"
+                    v-model="ttgType"
+                    :small="mobile"
+                />
             </div>
         </div>
         <template v-if="view === 'list' && sortedHeroData.length">
@@ -525,16 +532,39 @@ const roleDropdownOptions: Option[] = [
     }
 ];
 
+const ttgTypesDropdownOption: Option[] = [
+    {
+        leftIcon: {
+            key: 'quickMatchIcon',
+        },
+
+        label: `TTG QUICK/COMP`,
+        value: 'normal'
+    },
+    {
+        leftIcon: {
+            key: 'arcadeIcon',
+        },
+
+        label: `TTG ARCADE`,
+        value: 'arcade' 
+    }
+];
+
 const mobile = isMobile();
 
 const tools = useTemplateRef('tools');
 const searchBox = useTemplateRef('searchBox');
 const rolesDropdown = useTemplateRef('rolesDropdown');
+const ttgTypeDropdown = useTemplateRef('ttgTypeDropdown');
 
 useStickyBar(tools, {
     showClass: 'sticky-mobile-show',
     mobileOnly: true,
-    onScrollDownWhileSticky: () => rolesDropdown.value?.setExpanded(false),
+    onScrollDownWhileSticky: () => {
+        rolesDropdown.value?.setExpanded(false)
+        ttgTypeDropdown.value?.setExpanded(false)
+    }
 })
 
 // stores
@@ -548,6 +578,10 @@ const view = computed(() => props.listViewDisabled ? 'gallery' : viewStore.value
 const filterByRole = computed({
     get: () => preferences.value.heroList.filterRole,
     set: (value) => preferences.value.heroList.filterRole = value
+});
+const ttgType = computed({
+    get: () => preferences.value.heroList.listTtgType,
+    set: (value) => preferences.value.heroList.listTtgType = value
 });
 const filterFavourites = computed({
     get: () => preferences.value.heroList.filterFavourites,
@@ -657,7 +691,7 @@ const heroData = computed(() => {
         const totalXp = calcTotalXp(stored.value.level, stored.value.points);
 
         const calc = new Calculator(hero, stored.value);
-        const estimates = calc.totalTimes();
+        const estimates = calc.totalTimes(ttgType.value == 'arcade');
         let timeToGoal = 0;
         estimates.forEach(r => timeToGoal += r.time[1]);
 
