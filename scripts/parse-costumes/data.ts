@@ -36,6 +36,7 @@ export const WIKI_HERO_ID_MAP: Record<string, string> = {
     "Mister Fantastic":         "mister-fantastic",
     "Moon Knight":              "moon-knight",
     "Namor":                    "namor",
+    "Nightcrawler":             "nightcrawler",
     "Peni Parker":              "peni-parker",
     "Phoenix":                  "phoenix",
     "Psylocke":                 "psylocke",

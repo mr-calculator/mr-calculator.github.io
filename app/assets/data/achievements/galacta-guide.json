@@ -313,5 +313,14 @@
     "rarity": "silver",
     "requirement": 1,
     "reward": 10
+  },
+  {
+    "id": "1986b92b-9f3f-44b0-bb4d-2d6ba2aa6df3_doomsday",
+    "title": "Doomsday",
+    "description": "Unlock all Doomsday gallery cards.",
+    "category": "galacta-guide",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
   }
 ]

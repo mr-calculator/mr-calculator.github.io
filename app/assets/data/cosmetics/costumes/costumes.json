@@ -172,6 +172,18 @@
             "source": "Jeff's Dream Eater",
             "sourceLink": "/wiki/Jeff%27s_Dream_Eater",
             "releaseDate": "2026-09-17"
+        },
+        {
+            "heroId": "venom",
+            "id": "1035002",
+            "wikiLink": "/wiki/Chrome_Carnivore",
+            "name": "CHROME CARNIVORE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "releaseDate": "2026-11-13"
         }
     ],
     "magik": [
@@ -1281,6 +1293,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Pajama Party",
             "releaseDate": "2026-09-25"
+        },
+        {
+            "heroId": "mantis",
+            "id": "1020002",
+            "wikiLink": "/wiki/Chronal_Harmony",
+            "name": "CHRONAL HARMONY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "theme": "Incursion",
+            "releaseDate": "2026-11-13"
         }
     ],
     "spider-man": [
@@ -1494,6 +1519,18 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-07-31"
+        },
+        {
+            "heroId": "spider-man",
+            "id": "1036803",
+            "wikiLink": "/wiki/Worthy_Spider-Man",
+            "name": "WORTHY SPIDER-MAN",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-11-06"
         }
     ],
     "ironman": [
@@ -1647,6 +1684,31 @@
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "theme": "Clan Akkaba",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034002",
+            "wikiLink": "/wiki/Silver_Centurion",
+            "name": "SILVER CENTURION",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "releaseDate": "2026-11-13"
+        },
+        {
+            "heroId": "ironman",
+            "id": "1034802",
+            "wikiLink": "/wiki/Marvel_T%C5%8Dkon:_Fighting_Souls_(Iron_Man)",
+            "name": "MARVEL TŌKON: FIGHTING SOULS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Games",
+            "releaseDate": "2026-10-30"
         }
     ],
     "bruce-banner": [
@@ -2639,6 +2701,18 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Horsemen of Death",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "wolverine",
+            "id": "1049002",
+            "wikiLink": "/wiki/X_Deaths",
+            "name": "X DEATHS",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "releaseDate": "2026-11-13"
         }
     ],
     "loki": [
@@ -2930,6 +3004,19 @@
             "sourceLink": "/wiki/Van_Dyne_Couture",
             "theme": "Van Dyne Designs",
             "releaseDate": "2026-07-16"
+        },
+        {
+            "heroId": "adam-warlock",
+            "id": "1046002",
+            "wikiLink": "/wiki/Infinity_Watch",
+            "name": "INFINITY WATCH",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "theme": "Year One",
+            "releaseDate": "2026-11-13"
         }
     ],
     "namor": [
@@ -3057,6 +3144,19 @@
             "source": "The Faith-Harvesting Engine (BattlePass)",
             "sourceLink": "/wiki/The_Faith-Harvesting_Engine_(BattlePass)",
             "releaseDate": "2026-07-10"
+        },
+        {
+            "heroId": "namor",
+            "id": "1045002",
+            "wikiLink": "/wiki/Chronal_Monarch",
+            "name": "CHRONAL MONARCH",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "theme": "Incursion",
+            "releaseDate": "2026-11-13"
         }
     ],
     "scarlet-witch": [
@@ -3478,6 +3578,19 @@
             "sourceLink": "/wiki/Krakoan_Reels_Vol.2",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-08-13"
+        },
+        {
+            "heroId": "winter-soldier",
+            "id": "1041306",
+            "wikiLink": "/wiki/Celestial_Soldier",
+            "name": "CELESTIAL SOLDIER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Celestial Messenger",
+            "releaseDate": "2026-10-30"
         }
     ],
     "the-punisher": [
@@ -3718,6 +3831,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Swimsuit Special",
             "releaseDate": "2026-08-13"
+        },
+        {
+            "heroId": "storm",
+            "id": "1015800",
+            "wikiLink": "/wiki/Marvel_T%C5%8Dkon:_Fighting_Souls_(Storm)",
+            "name": "MARVEL TŌKON: FIGHTING SOULS",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Marvel Games",
+            "releaseDate": "2026-10-30"
         }
     ],
     "squirrel-girl": [
@@ -3886,6 +4012,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Clan Akkaba",
             "releaseDate": "2026-08-28"
+        },
+        {
+            "heroId": "squirrel-girl",
+            "id": "1032002",
+            "wikiLink": "/wiki/Chronal_Squirrel",
+            "name": "CHRONAL SQUIRREL",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "theme": "Incursion",
+            "releaseDate": "2026-11-13"
         }
     ],
     "psylocke": [
@@ -5040,6 +5179,18 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Pajama Party",
             "releaseDate": "2026-09-25"
+        },
+        {
+            "heroId": "daredevil",
+            "id": "1055002",
+            "wikiLink": "/wiki/The_Man_Without_Fear",
+            "name": "THE MAN WITHOUT FEAR",
+            "rarity": "epic",
+            "customizable": true,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "releaseDate": "2026-11-13"
         }
     ],
     "rogue": [
@@ -5724,6 +5875,18 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Street Style",
             "releaseDate": "2026-09-04"
+        },
+        {
+            "heroId": "ultron",
+            "id": "1028002",
+            "wikiLink": "/wiki/Avenger_Ultron",
+            "name": "AVENGER ULTRON",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Free Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "releaseDate": "2026-11-13"
         }
     ],
     "angela": [
@@ -5941,6 +6104,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Marvel Cinematic Universe",
             "releaseDate": "2026-09-04"
+        },
+        {
+            "heroId": "gambit",
+            "id": "1058801",
+            "wikiLink": "/wiki/Versatile_Valet",
+            "name": "VERSATILE VALET",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Black, White and Broom",
+            "releaseDate": "2026-11-13"
         }
     ],
     "the-thing": [
@@ -6079,6 +6255,18 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-03-13"
+        },
+        {
+            "heroId": "the-thing",
+            "id": "1051506",
+            "wikiLink": "/wiki/Cosmic_Cook",
+            "name": "COSMIC COOK",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-11-06"
         }
     ],
     "phoenix": [
@@ -6359,6 +6547,19 @@
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "theme": "Temple Protectors",
             "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "emma-frost",
+            "id": "1053309",
+            "wikiLink": "/wiki/Seat_of_Winter",
+            "name": "SEAT OF WINTER",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Luxury Battle Pass",
+            "source": "The Incursion (BattlePass)",
+            "sourceLink": "/wiki/The_Incursion_(BattlePass)",
+            "theme": "Quiet Council of Krakoa",
+            "releaseDate": "2026-11-13"
         }
     ],
     "human-torch": [
@@ -6601,6 +6802,18 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Midnight Monsters",
             "releaseDate": "2026-10-09"
+        },
+        {
+            "heroId": "devil-dinosaur",
+            "id": "1062003",
+            "wikiLink": "/wiki/Will_of_Galacta_(Devil_Dinosaur)",
+            "name": "WILL OF GALACTA",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Twitch Drop",
+            "source": "Twitch Drops",
+            "sourceLink": "/wiki/Twitch_Drops",
+            "releaseDate": "2026-11-13"
         }
     ],
     "deadpool": [
@@ -7178,6 +7391,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-08-07"
+        },
+        {
+            "heroId": "the-hood",
+            "id": "1066300",
+            "wikiLink": "/wiki/Astral_Oblivion",
+            "name": "ASTRAL OBLIVION",
+            "rarity": "legendary",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "theme": "Celestial Messenger",
+            "releaseDate": "2026-11-13"
         }
     ],
     "gorr-the-god-butcher": [
@@ -7216,6 +7442,44 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-09-11"
+        }
+    ],
+    "nightcrawler": [
+        {
+            "heroId": "nightcrawler",
+            "id": "1068002",
+            "wikiLink": "/wiki/Steadfast_Swordsman",
+            "name": "STEADFAST SWORDSMAN",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-11-13"
+        },
+        {
+            "heroId": "nightcrawler",
+            "id": "1068008",
+            "wikiLink": "/wiki/Hope_Soared",
+            "name": "HOPE SOARED",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Ranked Reward",
+            "source": "Competitive",
+            "sourceLink": "/wiki/Competitive#Rewards",
+            "releaseDate": "2026-11-13"
+        },
+        {
+            "heroId": "nightcrawler",
+            "id": "1068007",
+            "wikiLink": "/wiki/X-Force_(Nightcrawler)",
+            "name": "X-FORCE",
+            "rarity": "rare",
+            "customizable": false,
+            "category": "Permanent",
+            "source": "Shop",
+            "sourceLink": "/wiki/Category:Permanent_Costumes",
+            "releaseDate": "2026-11-13"
         }
     ]
 }

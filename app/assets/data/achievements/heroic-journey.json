@@ -1078,5 +1078,25 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "owner": "nightcrawler",
+    "id": "61f1ac8f-8466-484a-952a-2309a4fddc41_bamf-bamf-bamf",
+    "title": "BAMF! BAMF! BAMF!",
+    "description": "As Nightcrawler, land 1 terrain KO with Phasing Finale.",
+    "category": "heroic-journey",
+    "rarity": "silver",
+    "requirement": 1,
+    "reward": 10
+  },
+  {
+    "owner": "nightcrawler",
+    "id": "ab9027cd-f693-44cc-8d27-feb85c13e109_family-mystique",
+    "title": "Family Mystique",
+    "description": "As Nightcrawler, assist Rogue in landing 1 KO.",
+    "category": "heroic-journey",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

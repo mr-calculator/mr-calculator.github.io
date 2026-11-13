@@ -631,6 +631,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.7.0',
             date: 'September 11, 2026',
             time: '6:55 PM',
+            commitSha: 'd31fd0ab96084212e904f538b0415c2b94c110e5'
         },
         title: 'Added Gorr',
         description: `Added Gorr to the calculator without generic stats<br/>Added new costumes.
@@ -642,6 +643,23 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
         ],
         images: [
             '/img/changelog/v2.7.0/gorr.webp',
+        ]
+    },
+    {
+        version: {
+            number: '2.8.0',
+            date: 'November 13, 2026',
+            time: '9:09 PM',
+        },
+        title: 'Added Nightcrawler',
+        description: `Added Nightcrawler to the calculator without generic stats<br/>Added new costumes and achievements.
+        `,
+        list: [
+            'Added Nightcrawler',
+            'Added achievements',
+            'Updated costumes',
+            'Added stats for Gorr',
+            'Added ability to switch Time to Goal between Quick/Comp games and Arcade',
         ]
     },
 ];

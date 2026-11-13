@@ -1,5 +1,47 @@
 [
   {
+    "sha": "038afb3aec87286dc034c9b82befa3b2da56e710",
+    "node_id": "C_kwDORv7rQ9oAKDAzOGFmYjNhZWM4NzI4NmRjMDM0YzliODJiZWZhM2IyZGE1NmU3MTA",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-10-23T07:02:01Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-10-23T07:02:01Z"
+      },
+      "message": "Updated costumes\nAdded stats for Gorr\nAdded ability to switch Time to Goal between Quick/Comp games and Arcade",
+      "tree": {
+        "sha": "33298fdd2bacd0d0e04bb5b5d634ca11e99135cd",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/33298fdd2bacd0d0e04bb5b5d634ca11e99135cd"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/038afb3aec87286dc034c9b82befa3b2da56e710",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/038afb3aec87286dc034c9b82befa3b2da56e710",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/038afb3aec87286dc034c9b82befa3b2da56e710",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/038afb3aec87286dc034c9b82befa3b2da56e710/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "d31fd0ab96084212e904f538b0415c2b94c110e5",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/d31fd0ab96084212e904f538b0415c2b94c110e5",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/d31fd0ab96084212e904f538b0415c2b94c110e5"
+      }
+    ]
+  },
+  {
     "sha": "d31fd0ab96084212e904f538b0415c2b94c110e5",
     "node_id": "C_kwDORv7rQ9oAKGQzMWZkMGFiOTYwODQyMTJlOTA0ZjUzOGIwNDE1YzJiOTRjMTEwZTU",
     "commit": {
@@ -5289,48 +5331,6 @@
         "sha": "6528c82eec8e32083cdeac4dd3ffaec255d6a498",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6528c82eec8e32083cdeac4dd3ffaec255d6a498",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/6528c82eec8e32083cdeac4dd3ffaec255d6a498"
-      }
-    ]
-  },
-  {
-    "sha": "6528c82eec8e32083cdeac4dd3ffaec255d6a498",
-    "node_id": "C_kwDORv7rQ9oAKDY1MjhjODJlZWM4ZTMyMDgzY2RlYWM0ZGQzZmZhZWMyNTVkNmE0OTg",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-15T16:39:23Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-15T16:39:23Z"
-      },
-      "message": "Added add-hero script to repository\nAdded LICENSE",
-      "tree": {
-        "sha": "4e083f41a66f3c7d9df28a32540318bec2122c20",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/4e083f41a66f3c7d9df28a32540318bec2122c20"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/6528c82eec8e32083cdeac4dd3ffaec255d6a498",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6528c82eec8e32083cdeac4dd3ffaec255d6a498",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/6528c82eec8e32083cdeac4dd3ffaec255d6a498",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6528c82eec8e32083cdeac4dd3ffaec255d6a498/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "536108952a8b06e236e5cdec6465a9d24079c0de",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/536108952a8b06e236e5cdec6465a9d24079c0de",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/536108952a8b06e236e5cdec6465a9d24079c0de"
       }
     ]
   }
