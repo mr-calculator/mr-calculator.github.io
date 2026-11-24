@@ -534,6 +534,9 @@ export const TEX = {
     checklist: {
         default: 'icon/checklist.png'
     } as Texture,
+    checklistPlus: {
+        default: 'icon/checklist-plus.png'
+    } as Texture,
 
     filter: {
         default: 'icon/filter/filter.png',
@@ -661,6 +664,19 @@ export const TEX = {
     } as Texture,
     achievementRivalryRisingGold: {
         default: 'icon/achievement/rivalry-rising-gold.png'
+    } as Texture,
+
+    achievementMyList: {
+        default: 'icon/achievement/my-list.png'
+    } as Texture,
+    achievementMyListCopper: {
+        default: 'icon/achievement/my-list-copper.png'
+    } as Texture,
+    achievementMyListSilver: {
+        default: 'icon/achievement/my-list-silver.png'
+    } as Texture,
+    achievementMyListGold: {
+        default: 'icon/achievement/my-list-gold.png'
     } as Texture,
 
 

@@ -13,7 +13,7 @@
             <aside>
                 <div class="categories-list">
                     <div
-                        v-for="category in ACHIEVEMENT_CATEGORIES"
+                        v-for="category in ACHIEVEMENT_CATEGORIES_LIST"
                         :class="{category: 1, selected: selectedCategory == category.id}"
 
                         @click="selectedCategory = category.id"
@@ -97,10 +97,22 @@
 <style src="@/assets/style/pages/achievements.sass" scoped></style>
 
 <script setup lang="ts">
-import { ACHIEVEMENT_CATEGORIES, ACHIEVEMENT_ICONS, ACHIEVEMENT_RARITY_NAMES, getAchievements, type AchievementType, type AchievementTypeCategory, type AchievementTypeRarity } from '~/assets/data/achievements/achievements';
+import { ACHIEVEMENT_CATEGORIES, ACHIEVEMENT_ICONS, ACHIEVEMENT_RARITY_NAMES, getAchievements, type AchievementCategory, type AchievementType, type AchievementTypeCategory, type AchievementTypeRarity } from '~/assets/data/achievements/achievements';
 import { PreferencesStoreSchema, type PreferencesStore, DEFAULT_PREFERENCES_STORE } from '~/assets/data/common';
 import type { Option } from '~/components/form/Dropdown.vue';
 import type { AchievementWithState } from '~/components/panel/Achievements.vue';
+
+const ACHIEVEMENT_CATEGORIES_LIST : AchievementCategory[] = [
+    ...ACHIEVEMENT_CATEGORIES,
+    {
+        id: 'my-list',
+        name: 'My List',
+        icon() {
+            return ACHIEVEMENT_ICONS[this.id].normal;
+        },
+        rewards: []
+    }
+]
 
 const route = useRoute();
 const router = useRouter();
@@ -108,7 +120,7 @@ const router = useRouter();
 const category = computed(() => {
     const catId = route.params.slug?.[0] ?? 'galacta-guide';
 
-    if (!ACHIEVEMENT_CATEGORIES.find(c => c.id == catId))
+    if (!ACHIEVEMENT_CATEGORIES_LIST.find(c => c.id == catId))
         throw createError({ status: 404 });
 
     return catId as AchievementTypeCategory;
@@ -149,6 +161,8 @@ onMounted(() => {
     preferences.value.sawAchievementsPage = true;
 });
 
+const achievementsListStore = useLocalStorage<string[]>('achievements-my-list', []);
+
 const selectedCategory = ref<AchievementTypeCategory>(category.value);
 watch(category, (newCategory, oldCategory) => {
     if (newCategory == oldCategory)
@@ -164,7 +178,12 @@ watch(selectedCategory, cat => {
     })
 });
 
-const achievementsList = computed(() => getAchievements(selectedCategory.value));
+const achievementsList = computed(() => {
+    if (selectedCategory.value == 'my-list')
+        return getAchievements().filter(a => achievementsListStore.value.includes(a.id))
+
+    return getAchievements(selectedCategory.value)
+});
 
 const searchText = ref('');
 

@@ -1,6 +1,6 @@
 <template>
     <div class="achievements-panel">
-        <div class="header">
+        <div v-if="category !== 'my-list'" class="header">
             <div class="title">
                 <h3>ACHIEVEMENTS POINTS</h3>
                 <div class="counter">
@@ -26,6 +26,11 @@
                     width="50px"
                     height="50px"
                 />
+            </div>
+        </div>
+        <div v-else class="header">
+            <div class="title">
+                <h3>MY LIST</h3>
             </div>
         </div>
 
@@ -103,6 +108,30 @@
                         </div>
                     </div>
 
+                    <div
+                        class="add-to-list"
+
+                        @click.stop="toggleAchievementInList(achievement.id)"
+
+                        v-tooltip="({
+                            text: achievement.inList ?
+                                'Remove from <b>My List</b>'
+                                :
+                                'Add to <b>My List</b>',
+                            icon: 'mouseLeft'
+                        } satisfies TooltipBinding)"
+                    >
+                        <Tex
+                            :image="achievement.inList ? 'checklist' : 'checklistPlus'"
+
+                            width="30px"
+                            height="30px"
+
+                            :color="achievement.inList ? 'var(--color-accent)' : 'var(--blue-gray)'"
+                            hover="color"
+                            hover-color="var(--color-accent)"
+                        />
+                    </div>
                     <div class="points">
                         <Tex
                             image="achievementPoint"
@@ -117,7 +146,7 @@
                 </li>
             </UiVirtualizedScroll>
         </ul>
-        <div v-else class="no-results">
+        <div v-else-if="achievements.length != 0" class="no-results">
             <p>No achievements match your filters</p>
             <FormButton
                 size="tiny"
@@ -125,6 +154,12 @@
             >
                 Reset filters
             </FormButton>
+        </div>
+        <div v-else-if="category == 'my-list'" class="no-results">
+            <p>You haven't added any achievements to your list yet</p>
+        </div>
+        <div v-else class="no-results">
+            <p>There are no achievements here</p>
         </div>
     </div>
 </template>
@@ -173,6 +208,7 @@ const emits = defineEmits<{
 const mobile = isMobile();
 
 const achievementsStore = useLocalStorage<Achievement[]>('achievements', []);
+const achievementsListStore = useLocalStorage<string[]>('achievements-my-list', []);
 
 const achievementPointsToGain = computed(() => props.achievements.map(a => a.reward).reduce((s, c) => s + c, 0));
 const achievementPointsObtained = computed(() => 
@@ -188,7 +224,11 @@ const achievementsWithState = computed(() => {
         heroOwner: HERO_LIST.find(h => h.id == a.owner)
     }));
 
-    const final = mapped.map(a => ({ ...a, completed: a.current == a.requirement }))
+    const final = mapped.map(a => ({ 
+                            ...a,
+                            completed: a.current == a.requirement,
+                            inList: achievementsListStore.value.includes(a.id)
+                        }))
                         .filter(props.filter)
                         .sort(props.sort ?? (() => 0));
 
@@ -222,6 +262,13 @@ function completeOrResetAchievement(achievement: AchievementType) {
         setAchievement(achievement.id, 0);
     else
         setAchievement(achievement.id, achievement.requirement);
+}
+
+function toggleAchievementInList(achievementId: string) {
+    if (achievementsListStore.value.includes(achievementId))
+        achievementsListStore.value.splice(achievementsListStore.value.indexOf(achievementId), 1);
+    else
+        achievementsListStore.value.push(achievementId);
 }
 
 function openRewardsList() {

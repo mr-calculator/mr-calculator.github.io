@@ -8,7 +8,7 @@ import z from "zod";
 import type { TEX } from '../textures';
 import { getHeroCostumes } from '../cosmetics/costumes/costumes';
 
-export type AchievementTypeCategory = 'galacta-guide'|'rivalry-rising'|'heroic-journey'|'chronoverse-saga';
+export type AchievementTypeCategory = 'galacta-guide'|'rivalry-rising'|'heroic-journey'|'chronoverse-saga'|'my-list';
 export interface AchievementCategoryReward {
     title: string,
     icon: string,
@@ -67,6 +67,12 @@ export const ACHIEVEMENT_ICONS: Record<
         silver: 'achievementChronoverseSagaSilver',
         gold: 'achievementChronoverseSagaGold',
     },
+    'my-list': {
+        normal: 'achievementMyList',
+        copper: 'achievementMyListCopper',
+        silver: 'achievementMyListSilver',
+        gold: 'achievementMyListGold',
+    },
 }
 
 export const ACHIEVEMENT_RARITY_NAMES: Record<AchievementTypeRarity, string> = {
@@ -90,12 +96,14 @@ async function openCostumeRewardModal(heroId: string, costumeId: string) {
     .catch(() => null);
 }
 
-export const ACHIEVEMENT_CATEGORIES: {
+export type AchievementCategory = {
     id: AchievementTypeCategory,
     name: string,
     icon(): keyof typeof TEX,
     rewards: AchievementCategoryReward[]
-}[] = [
+};
+
+export const ACHIEVEMENT_CATEGORIES: AchievementCategory[] = [
     {
         id: 'galacta-guide',
         name: 'Galacta\'s Guide',

@@ -650,6 +650,7 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.8.0',
             date: 'November 13, 2026',
             time: '9:09 PM',
+            commitSha: '318620011f551de252d56e9ff2d76830f2a21ad8'
         },
         title: 'Added Nightcrawler',
         description: `Added Nightcrawler to the calculator without generic stats<br/>Added new costumes and achievements.
@@ -660,6 +661,19 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             'Updated costumes',
             'Added stats for Gorr',
             'Added ability to switch Time to Goal between Quick/Comp games and Arcade',
+        ]
+    },
+    {
+        version: {
+            number: '2.9.0',
+            date: 'November 24, 2026',
+            time: '7:30 AM',
+        },
+        title: 'Added "My List" to achievements',
+        description: `Added "My List" as a feature to the achievements page. This allows you to save specific achievements you'd like to complete to a list`,
+        list: [
+            'Added "My List" to achievements',
+            'Fixed a missing font',
         ]
     },
 ];
