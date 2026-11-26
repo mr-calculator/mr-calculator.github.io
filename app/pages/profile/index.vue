@@ -46,14 +46,23 @@
                 </div>
 
                 <div class="overview">
-                    <div class="bar">
-                        Proficiency Stats
+                    <div class="bar with-settings">
+                        <h3>Proficiency Stats</h3>
+                        <div class="settings-button" @click="openBannerSettings">
+                            <Tex
+                                image="swap"
+                                width="20px"
+                                height="20px"
+                                color="#454658"
+                            />
+                            <p>Change Banner</p>
+                        </div>
                     </div>
                     <div class="panels">
                         <div
                             class="ranked"
                             :style="{
-                                '--season-bg': `url('/img/season-banners/season_${LATEST_SEASON_NO}.png')`
+                                '--season-bg': `url('/img/season-banners/season_${profile.selectedSeasonBanner}.png')`
                             }"
                         >
                             <template v-if="highestRanksWithHeroData.length && highestRanksWithHeroData[0]!.store.level > 1">
@@ -419,11 +428,13 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core';
 import { ACHIEVEMENTS, getAchievements, type Achievement } from '~/assets/data/achievements/achievements';
-import { calcTotalXp, DEFAULT_HERO_STORE, DEFAULT_PROFILE_STORE, LATEST_SEASON_NO, PROFICIENCY_RANK_BADGE_BGS, PROFICIENCY_RANK_BADGES, PROFICIENCY_RANKS, ProfileStoreSchema, RARITY_DATA, type HeroData, type PlayerHeroStore, type ProfileSheetDataExportable } from '~/assets/data/common';
+import { calcTotalXp, DEFAULT_HERO_STORE, DEFAULT_PROFILE_STORE, LATEST_SEASON_NO, PROFICIENCY_RANK_BADGE_BGS, PROFICIENCY_RANK_BADGES, PROFICIENCY_RANKS, ProfileStoreSchema, RARITY_DATA, seasonToImg, type HeroData, type PlayerHeroStore, type ProfileSheetDataExportable } from '~/assets/data/common';
 import { CostumeCollectionStoreSchema, getHeroCostumes, RARITY_ORDER, type Costume, type CostumeRarity } from '~/assets/data/cosmetics/costumes/costumes';
 import { HERO_LIST, UNKNOWN_HERO } from '~/assets/data/heroes';
 import { tex } from '~/assets/data/textures';
 import InputModal from '~/components/modals/InputModal.vue';
+import ProfileModal from '~/components/modals/ProfileModal.vue';
+import SeasonBannerSelector from '~/components/modals/SeasonBannerSelector.vue';
 import type { TooltipBinding } from '~/directives/tooltip';
 import { loadCostumeImage } from '~/services/costume-image-operations';
 import { clearProfileSheetCache, generateProfileSheet } from '~/services/generate-profile-sheet';
@@ -529,13 +540,12 @@ const ownedCostumesCount = computed(() => costumeStores.value.flatMap(val => val
 
 
 function changeName() {
-    openModal(InputModal, {
-        title: "Change your name",
-        inputPlaceholder: "New name...",
-        inputValue: profile.value.name
+    openModal(ProfileModal, {
+        title: "Update your profile",
+        name: profile.value.name
     })
     .promise
-    .then((name: string) => {
+    .then(({name, level }) => {
         name = name.trim();
 
         if (name.length < 3 || name.length > 50) {
@@ -559,6 +569,7 @@ function changeName() {
         });
         
         profile.value.name = name;
+        profile.value.level = Math.max(Math.min(parseInt(level), 100), 1);
     })
     .catch(() => null)
 }
@@ -666,6 +677,21 @@ watch(heroSelectOpen, (open) => {
     heroSelectCostumeListOpen.value = false;
 })
 
+
+
+// banner settings
+function openBannerSettings() {
+    openModal(SeasonBannerSelector, {
+        title: "Select a season banner",
+    })
+    .promise
+    .then((season: string) => {
+        profile.value.selectedSeasonBanner = season;
+    })
+    .catch(() => null)
+}
+
+
 const lightBoxedImage = ref<string|undefined>();
 function openLightBox() {
     if (profileSheetUrl.value && profileSheetUrl.value != 'loading')
@@ -696,6 +722,7 @@ async function createProfileSheet() {
             level: profile.value.level,
             selectedHeroImageUrl: selectedHeroSkin.value,
             iconUrl: `/img/cosmetics/items/icons/${profile.value.nameplate}.webp`,
+            seasonBanner: seasonToImg(profile.value.selectedSeasonBanner),
             frameUrl: profile.value.frame
                 ? `/img/cosmetics/items/frames/icon/img_playerheadframe_${profile.value.frame}.png`
                 : undefined,
@@ -705,7 +732,7 @@ async function createProfileSheet() {
                 name: highestRanksWithHeroData.value[0]!.rank.name,
                 level: highestRanksWithHeroData.value[0]!.store.level,
                 heroName: highestRanksWithHeroData.value[0]!.store.hero.name
-            }
+            },
         },
         heroes,
         proficiency: {
@@ -743,6 +770,7 @@ function createProfileSheetLink() {
             highestRanksWithHeroData.value[0]!.rank.id,
             highestRanksWithHeroData.value[0]!.store.level,
             highestRanksWithHeroData.value[0]!.store.hero.name,
+        profile.value.selectedSeasonBanner
     ];
 
     if (profile.value.frame)

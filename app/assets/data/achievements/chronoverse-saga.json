@@ -791,5 +791,41 @@
     "rarity": "copper",
     "requirement": 1,
     "reward": 5
+  },
+  {
+    "id": "c00c46c5-abb5-487f-9a15-912bdcd45da4_doom-unmasked",
+    "title": "Doom Unmasked",
+    "description": "Witness Doctor Doom sacrifice himself to block the Anti-Matter Cannon's blast in Incursion Point.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "baa98ba7-4321-4362-905a-2c6425b2a0cc_fire-and-brimstone",
+    "title": "Fire and Brimstone",
+    "description": "Witness Nightcrawler stitch the Brimstone Dimension into the physical world in Incursion Point.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
+  },
+  {
+    "id": "82e7ca75-76b9-4def-82e5-e0bd9a61bc21_cannon-controller",
+    "title": "Cannon Controller",
+    "description": "Land 10 KOs inside the Anti-Matter Cannon Control Center in Incursion Point.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 10,
+    "reward": 5
+  },
+  {
+    "id": "dd782976-3879-4dfa-850a-def33b912213_days-of-mutants-past",
+    "title": "Days of Mutants Past",
+    "description": "Use 1 emote in front of the Professor X Portrait in Incursion Point.",
+    "category": "chronoverse-saga",
+    "rarity": "copper",
+    "requirement": 1,
+    "reward": 5
   }
 ]

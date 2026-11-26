@@ -94,7 +94,7 @@
             background: #414171
 
         h3
-            font-family: $font
+            font-family: $font-bold
             font-size: 20px
             font-weight: 400
             text-transform: uppercase
@@ -211,14 +211,49 @@
                 .bar
                     flex-shrink: 0
                     width: 100%
-                    padding: 6px 10px
-
                     background: #adb4d1
 
-                    font-family: $font-bold
-                    font-size: 24px
-                    text-transform: uppercase
-                    color: #454658
+                    h3
+                        padding: 6px 10px
+                        font-family: $font-bold
+                        font-size: 24px
+                        text-transform: uppercase
+                        color: #454658
+
+                    &.with-settings
+                        display: grid
+                        grid-template-columns: auto min-content
+
+                        .settings-button
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                            gap: 10px
+
+                            padding: 3px 12px
+                            border: 2px solid transparent
+                            cursor: pointer
+
+                            +hover
+                                background: #525a6e
+                                border: 2px solid #fff
+
+                                .texture
+                                    --tex-color: #fff !important
+
+                                p
+                                    color: #fff
+
+                            p
+                                display: none
+                                white-space: nowrap
+                                font-family: $font-bold
+                                font-size: 20px
+                                text-transform: uppercase
+                                color: #454658
+
+                                +media-desktop
+                                    display: block
 
                 .panels
                     width: 100%

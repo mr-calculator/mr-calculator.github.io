@@ -668,12 +668,26 @@ export const CHANGELOG = (): ChangeLogEntry[] => [
             number: '2.9.0',
             date: 'November 24, 2026',
             time: '7:30 AM',
+            commitSha: '257f6e3ab3c585e44dc81ce8ffdf7dd6e2c1a774'
         },
         title: 'Added "My List" to achievements',
         description: `Added "My List" as a feature to the achievements page. This allows you to save specific achievements you'd like to complete to a list`,
         list: [
             'Added "My List" to achievements',
             'Fixed a missing font',
+        ]
+    },
+    {
+        version: {
+            number: '2.9.1',
+            date: 'November 27, 2026',
+            time: '10:09 PM',
+        },
+        title: 'New Costumes, Achievements, and Season Banner/Lvl Profile changes',
+        description: `Added new costumes, achievements, and achievement rewards that were missing`,
+        list: [
+            'Added the ability to change the profile season banner (also applies to sharing an image/link)',
+            'Added the ability to change your level (by clicking on your name, the modal now has a second field for level)',
         ]
     },
 ];

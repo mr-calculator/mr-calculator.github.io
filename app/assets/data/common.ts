@@ -9,7 +9,33 @@ import type { ProfileSheetData } from "~/services/generate-profile-sheet";
 import { CostumeCollectionSchema, CostumeSchema, type CostumeCollection } from "./cosmetics/costumes/costumes";
 import { loadHeroImage } from "../../services/hero-image-operations";
 
-export const LATEST_SEASON_NO = '10';
+export const LATEST_SEASON_NO = '11';
+type Season = {
+    name: string,
+    number: string
+}
+export const SEASONS: Season[] = [
+    { name: 'Default', number: 'default' },
+    { name: 'Season 0', number: '0' },
+    { name: 'Season 1', number: '1' },
+    { name: 'Season 2', number: '2' },
+    { name: 'Season 3', number: '3' },
+    { name: 'Season 4', number: '4' },
+    { name: 'Season 5', number: '5' },
+    { name: 'Season 6', number: '6' },
+    { name: 'Season 7', number: '7' },
+    { name: 'Season 8', number: '8' },
+    { name: 'Season 9', number: '9' },
+    { name: 'Season 10', number: '10' },
+    { name: 'Season 11', number: '11' },
+];
+export function seasonToImg(seasonOrNumber?: Season|string) {
+    let number = seasonOrNumber || 'default';
+    if (typeof seasonOrNumber === 'object')
+        number = seasonOrNumber.number;
+
+    return `/img/season-banners/season_${number}.png`
+}
 
 export type HeroRole = 'vanguard'|'duelist'|'strategist';
 export const HeroRoleSchema = z.enum(['vanguard', 'duelist', 'strategist']);
@@ -943,7 +969,8 @@ export const ProfileStoreSchema = z.object({
     selectedHero: z.object({
         id: z.string().default('luna-snow'),
         skin: z.string().optional()
-    })
+    }),
+    selectedSeasonBanner: z.string().default('default')
 });
 export type ProfileStore = z.infer<typeof ProfileStoreSchema>;
 export const DEFAULT_PROFILE_STORE = async (): Promise<ProfileStore> => 
@@ -1024,7 +1051,8 @@ export const ProfileSheetDataExportableSchema = z.object({
             /** 5 level */ z.number(),
             /** 6 heroName */ z.string(),
 
-        /** 7 frameId */ z.string().optional(),  
+        /** 7 seasonNumber */ z.string(),
+        /** 8 frameId */ z.string().optional(),  
     ]),
     // heroes
     h: z.array(z.tuple([
@@ -1078,8 +1106,9 @@ export async function parseProfileSheetData(base64: string) {
                 level: data.p[1],
                 selectedHeroImageUrl: data.p[2],
                 iconUrl: `/img/cosmetics/items/icons/${data.p[3]}.webp`,
-                frameUrl: data.p[7]
-                    ? `/img/cosmetics/items/frames/icon/img_playerheadframe_${data.p[7]}.png`
+                seasonBanner: seasonToImg(data.p[7]),
+                frameUrl: data.p[8]
+                    ? `/img/cosmetics/items/frames/icon/img_playerheadframe_${data.p[8]}.png`
                     : undefined,
 
                 highestRank: {
@@ -1088,7 +1117,7 @@ export async function parseProfileSheetData(base64: string) {
                     name: PROFICIENCY_RANKS[data.p[4]]!.name,
                     level: data.p[5],
                     heroName: data.p[6]
-                }
+                },
             },
             heroes: data.h.map(h => {
                 let hero = HERO_LIST.find(hL => hL.id == h[0]);

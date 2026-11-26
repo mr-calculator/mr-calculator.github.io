@@ -494,6 +494,19 @@
             "sourceLink": "/wiki/All_Hallows%27_Glow",
             "theme": "Midnight Monsters",
             "releaseDate": "2026-10-15"
+        },
+        {
+            "heroId": "rocket-raccoon",
+            "id": "1023002",
+            "wikiLink": "/wiki/Retro_Rocketeer",
+            "name": "RETRO ROCKETEER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Gaming Life",
+            "releaseDate": "2026-11-19"
         }
     ],
     "groot": [
@@ -807,6 +820,19 @@
             "sourceLink": "/wiki/Jeff%27s_Dream_Eater",
             "theme": "Pajama Party",
             "releaseDate": "2026-09-17"
+        },
+        {
+            "heroId": "jeff-the-land-shark",
+            "id": "1047002",
+            "wikiLink": "/wiki/Noob_Nibbler",
+            "name": "NOOB NIBBLER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Gaming Life",
+            "releaseDate": "2026-11-19"
         }
     ],
     "thor": [
@@ -2878,6 +2904,19 @@
             "source": "The Godbomb (BattlePass)",
             "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
             "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "loki",
+            "id": "1016002",
+            "wikiLink": "/wiki/Envious_Emerald",
+            "name": "ENVIOUS EMERALD",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Shining Moment",
+            "releaseDate": "2026-11-26"
         }
     ],
     "adam-warlock": [
@@ -3333,6 +3372,19 @@
             "sourceLink": "/wiki/All_Hallows%27_Glow",
             "theme": "Fate Witches",
             "releaseDate": "2026-10-15"
+        },
+        {
+            "heroId": "scarlet-witch",
+            "id": "1038002",
+            "wikiLink": "/wiki/Virtual_Insanity",
+            "name": "VIRTUAL INSANITY",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Gaming Life",
+            "releaseDate": "2026-11-26"
         }
     ],
     "black-widow": [
@@ -4462,6 +4514,19 @@
             "source": "Shop",
             "sourceLink": "/wiki/Category:Permanent_Costumes",
             "releaseDate": "2026-09-17"
+        },
+        {
+            "heroId": "moon-knight",
+            "id": "1030002",
+            "wikiLink": "/wiki/Moonjack_Hacker",
+            "name": "MOONJACK HACKER",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Limited Time",
+            "source": "Shop/Limited-Time Costumes",
+            "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
+            "theme": "Gaming Life",
+            "releaseDate": "2026-11-26"
         }
     ],
     "magneto": [
@@ -5027,6 +5092,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Pajama Party",
             "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "cloak-and-dagger",
+            "id": "1025002",
+            "wikiLink": "/wiki/Gilded_Agate",
+            "name": "GILDED AGATE",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Premium Event Reward",
+            "source": "Van Dyne's: Idea Matrix",
+            "sourceLink": "/wiki/Van_Dyne%27s:_Idea_Matrix",
+            "theme": "Shining Moment",
+            "releaseDate": "2026-11-26"
         }
     ],
     "daredevil": [
@@ -7070,6 +7148,19 @@
             "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
             "theme": "Midnight Monsters",
             "releaseDate": "2026-10-16"
+        },
+        {
+            "heroId": "deadpool",
+            "id": "1057002",
+            "wikiLink": "/wiki/Moment_Stealer",
+            "name": "MOMENT STEALER",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Free Event Reward",
+            "source": "Van Dyne's: Idea Matrix",
+            "sourceLink": "/wiki/Van_Dyne%27s:_Idea_Matrix",
+            "theme": "Shining Moment",
+            "releaseDate": "2026-11-26"
         }
     ],
     "elsa-bloodstone": [
@@ -7160,6 +7251,19 @@
             "sourceLink": "/wiki/Costumes/Limited-Time_Costumes",
             "theme": "Midnight Monsters",
             "releaseDate": "2026-10-23"
+        },
+        {
+            "heroId": "elsa-bloodstone",
+            "id": "1059002",
+            "wikiLink": "/wiki/Ruby_Radiance",
+            "name": "RUBY RADIANCE",
+            "rarity": "epic",
+            "customizable": false,
+            "category": "Premium Event Reward",
+            "source": "Van Dyne's: Idea Matrix",
+            "sourceLink": "/wiki/Van_Dyne%27s:_Idea_Matrix",
+            "theme": "Shining Moment",
+            "releaseDate": "2026-11-26"
         }
     ],
     "white-fox": [
@@ -7225,6 +7329,19 @@
             "sourceLink": "/wiki/The_Godbomb_(BattlePass)",
             "theme": "Celestial Messenger",
             "releaseDate": "2026-09-11"
+        },
+        {
+            "heroId": "white-fox",
+            "id": "1060002",
+            "wikiLink": "/wiki/Jade_Majesty",
+            "name": "JADE MAJESTY",
+            "rarity": "legendary",
+            "customizable": true,
+            "category": "Lucky Draw",
+            "source": "Lucky Draw Costumes",
+            "sourceLink": "/wiki/Category:Lucky_Draw_Costumes",
+            "theme": "Shining Moment",
+            "releaseDate": "2026-11-19"
         }
     ],
     "cyclops": [

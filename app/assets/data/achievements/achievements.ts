@@ -151,6 +151,11 @@ export const ACHIEVEMENT_CATEGORIES: AchievementCategory[] = [
                 icon: '/img/achievements/rewards/galacta-guide/wade-wilson-the-spirit-guard.webp',
                 requirement: 320,
             },
+            {
+                title: 'Midnight Meow',
+                icon: '/img/achievements/rewards/galacta-guide/midnight-meow.webp',
+                requirement: 360,
+            },
         ]
     },
     {
@@ -282,6 +287,11 @@ export const ACHIEVEMENT_CATEGORIES: AchievementCategory[] = [
                 title: '200 Chrono Tokens',
                 icon: '/img/common-rewards/chrono-tokens.webp',
                 requirement: 780,
+            },
+            {
+                title: '200 Chrono Tokens',
+                icon: '/img/common-rewards/chrono-tokens.webp',
+                requirement: 840,
             },
         ]
     },

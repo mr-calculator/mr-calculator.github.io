@@ -1,5 +1,47 @@
 [
   {
+    "sha": "257f6e3ab3c585e44dc81ce8ffdf7dd6e2c1a774",
+    "node_id": "C_kwDORv7rQ9oAKDI1N2Y2ZTNhYjNjNTg1ZTQ0ZGM4MWNlOGZmZGY3ZGQ2ZTJjMWE3NzQ",
+    "commit": {
+      "author": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-11-24T07:29:14Z"
+      },
+      "committer": {
+        "name": "mr-calculator",
+        "email": "mr-calculator.estimate510@slmails.com",
+        "date": "2026-11-24T07:29:14Z"
+      },
+      "message": "Added \"My List\" to achievements\nAdded \"My List\" as a feature to the achievements page. This allows you to save specific achievements you'd like to complete to a list\nFixed a missing font",
+      "tree": {
+        "sha": "ac04750c86ec9fd72850c48cfc7176569f913dfa",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/ac04750c86ec9fd72850c48cfc7176569f913dfa"
+      },
+      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/257f6e3ab3c585e44dc81ce8ffdf7dd6e2c1a774",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/257f6e3ab3c585e44dc81ce8ffdf7dd6e2c1a774",
+    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/257f6e3ab3c585e44dc81ce8ffdf7dd6e2c1a774",
+    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/257f6e3ab3c585e44dc81ce8ffdf7dd6e2c1a774/comments",
+    "author": null,
+    "committer": null,
+    "parents": [
+      {
+        "sha": "318620011f551de252d56e9ff2d76830f2a21ad8",
+        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/318620011f551de252d56e9ff2d76830f2a21ad8",
+        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/318620011f551de252d56e9ff2d76830f2a21ad8"
+      }
+    ]
+  },
+  {
     "sha": "318620011f551de252d56e9ff2d76830f2a21ad8",
     "node_id": "C_kwDORv7rQ9oAKDMxODYyMDAxMWY1NTFkZTI1MmQ1NmU5ZmYyZDc2ODMwZjJhMjFhZDg",
     "commit": {
@@ -5289,48 +5331,6 @@
         "sha": "632e0c6771e5d61b97fe2697f04e4a5b87c4b63c",
         "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/632e0c6771e5d61b97fe2697f04e4a5b87c4b63c",
         "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/632e0c6771e5d61b97fe2697f04e4a5b87c4b63c"
-      }
-    ]
-  },
-  {
-    "sha": "859f5a6ce7c8663e9220b7d8d7ab08d9df941b20",
-    "node_id": "C_kwDORv7rQ9oAKDg1OWY1YTZjZTdjODY2M2U5MjIwYjdkOGQ3YWIwOGQ5ZGY5NDFiMjA",
-    "commit": {
-      "author": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-16T22:28:49Z"
-      },
-      "committer": {
-        "name": "mr-calculator",
-        "email": "mr-calculator.estimate510@slmails.com",
-        "date": "2026-04-16T22:28:49Z"
-      },
-      "message": "Improved add-hero script in preparation for Black Cat\n\nAdded ability to refresh full hero, images and stats\nMade console prompts better\nFixed add-hero script's image copying function throwing an error because .env was not automatically added to the compile output, since it uses npx tsx and is, hence, not part of the project (slight oversight without testing on my part).\nFixed an issue with displaying heroes in the landing page (in the credibility section) that had no generic average stats, bricking the page completely.",
-      "tree": {
-        "sha": "60d89788e8d68e79dc554d876378b336a749184e",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/trees/60d89788e8d68e79dc554d876378b336a749184e"
-      },
-      "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/git/commits/859f5a6ce7c8663e9220b7d8d7ab08d9df941b20",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null,
-        "verified_at": null
-      }
-    },
-    "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/859f5a6ce7c8663e9220b7d8d7ab08d9df941b20",
-    "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/859f5a6ce7c8663e9220b7d8d7ab08d9df941b20",
-    "comments_url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/859f5a6ce7c8663e9220b7d8d7ab08d9df941b20/comments",
-    "author": null,
-    "committer": null,
-    "parents": [
-      {
-        "sha": "6528c82eec8e32083cdeac4dd3ffaec255d6a498",
-        "url": "https://api.github.com/repos/mr-calculator/mr-calculator.github.io/commits/6528c82eec8e32083cdeac4dd3ffaec255d6a498",
-        "html_url": "https://github.com/mr-calculator/mr-calculator.github.io/commit/6528c82eec8e32083cdeac4dd3ffaec255d6a498"
       }
     ]
   }

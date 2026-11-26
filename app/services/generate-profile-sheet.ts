@@ -133,7 +133,7 @@ export function clearProfileSheetCache() {
 
 const CALCULATOR_LOGO = '/img/icons/logo-large.webp';
 const BACKGROUND = '/img/tex/bg/page-bg.png';
-const SEASON_BANNER = `/img/season-banners/season_${LATEST_SEASON_NO}.png`;
+// const SEASON_BANNER = `/img/season-banners/season_${LATEST_SEASON_NO}.png`;
 const NAMEPLATE_BG = '/img/tex/bg/profile-header-bg.png';
 const HERO_IMG_MASK = '/img/tex/mask/hero-display.png';
 const PLAYER_LEVEL_BG = '/img/tex/ui/player-level-background.png';
@@ -159,7 +159,9 @@ export type ProfileSheetData = {
             name: string,
             level: number,
             heroName: string
-        }
+        },
+
+        seasonBanner: string
     },
     heroes: {
         name: string,
@@ -196,7 +198,7 @@ export async function generateProfileSheet(data: ProfileSheetData): Promise<Blob
         useCache('fonts', () => getFonts()),
         useCache('background', () => toBase64(BACKGROUND, 'image/png')),
         useCache('calc_logo', () => webpToBase64Png(CALCULATOR_LOGO)),
-        useCache('season_banner', () => toBase64(SEASON_BANNER, 'image/png')),
+        toBase64(data.profile.seasonBanner, 'image/png'),
 
         useCache('nameplate_bg', () => toBase64(NAMEPLATE_BG, 'image/png')),
         useCache('hero_img_mask', () => toBase64(HERO_IMG_MASK, 'image/png')),
